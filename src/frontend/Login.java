@@ -79,7 +79,7 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 34)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frontend/logologin.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logologin.png"))); // NOI18N
         jLabel4.setText("STUDENT MANAGEMENT APP");
         jLabel4.setToolTipText("");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -118,7 +118,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setRequestFocusEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frontend/icons8-user-20.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-user-20.png"))); // NOI18N
         jLabel2.setText("Username");
 
         username.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -131,7 +131,7 @@ public class Login extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frontend/icons8-lock-20.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-lock-20.png"))); // NOI18N
         jLabel3.setText("Password");
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel3.setIconTextGap(5);
@@ -145,7 +145,7 @@ public class Login extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(47, 47));
         jPanel4.setLayout(new java.awt.CardLayout());
 
-        eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frontend/icons8-eye-20.png"))); // NOI18N
+        eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-hide-20.png"))); // NOI18N
         eye.setBorder(null);
         eye.setPreferredSize(new java.awt.Dimension(47, 47));
         eye.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +155,7 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel4.add(eye, "card2");
 
-        eyeHide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frontend/icons8-hide-20.png"))); // NOI18N
+        eyeHide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-eye-20.png"))); // NOI18N
         eyeHide.setBorder(null);
         eyeHide.setPreferredSize(new java.awt.Dimension(47, 47));
         eyeHide.addActionListener(new java.awt.event.ActionListener() {
@@ -336,7 +336,7 @@ public class Login extends javax.swing.JFrame {
         int width = evt.getComponent().getWidth();
         int height = evt.getComponent().getHeight();
         if (width <= 1072) {
-            loginHeader.setIcon(new ImageIcon(getClass().getResource("/testswing/logologinsmaller.png")));
+            loginHeader.setIcon(new ImageIcon(getClass().getResource("/images/logologinsmaller.png")));
 //            loginHeader.setBackground(Color.decode("#5b5b5b"));
             loginHeader.setHorizontalTextPosition(SwingConstants.CENTER);
             loginHeader.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -409,10 +409,10 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-//        try {
-//            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-//        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ignored) {
-//        }
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ignored) {
+        }
         new Login().setVisible(true);
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {

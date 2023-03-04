@@ -67,7 +67,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/frontend/logologin.png"/>
+              <Image iconType="3" name="/images/logologin.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="STUDENT MANAGEMENT APP"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -213,7 +213,7 @@
                       <Font name="Segoe UI" size="18" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/frontend/icons8-user-20.png"/>
+                      <Image iconType="3" name="/images/icons8-user-20.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Username"/>
                   </Properties>
@@ -272,7 +272,7 @@
                           <Font name="Segoe UI" size="18" style="0"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/frontend/icons8-lock-20.png"/>
+                          <Image iconType="3" name="/images/icons8-lock-20.png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Password"/>
                         <Property name="verticalAlignment" type="int" value="3"/>
@@ -310,7 +310,7 @@
                         <Component class="javax.swing.JButton" name="eye">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/frontend/icons8-eye-20.png"/>
+                              <Image iconType="3" name="/images/icons8-hide-20.png"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
@@ -331,7 +331,7 @@
                         <Component class="javax.swing.JButton" name="eyeHide">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/frontend/icons8-hide-20.png"/>
+                              <Image iconType="3" name="/images/icons8-eye-20.png"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
