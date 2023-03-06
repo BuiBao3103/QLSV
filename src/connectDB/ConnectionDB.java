@@ -21,7 +21,6 @@ public class ConnectionDB {
         try {
             con = DriverManager.getConnection(url, userName, password);
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return con;
     }
@@ -31,8 +30,7 @@ public class ConnectionDB {
             if (con != null) {
                 con.close();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
         }
     }
 }

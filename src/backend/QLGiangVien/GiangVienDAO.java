@@ -20,13 +20,12 @@ public class GiangVienDAO {
     public GiangVienDAO() {
     }
 
-    
     public ArrayList<GiangVien> get() {
         ArrayList<GiangVien> dsgv = new ArrayList<>();
         try {
             String query = "select * from GiangVien";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
+            PreparedStatement st = con.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 String maGV = rs.getString("MaGV");
                 String tenGV = rs.getString("TenGV");
@@ -35,11 +34,51 @@ public class GiangVienDAO {
                 dsgv.add(gv);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         } finally {
-           ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con);
         }
         return dsgv;
     }
 
+    public void add(GiangVien gv) {
+        try {
+            String query = "INSERT INTO GiangVien VALUES (?,?,?);";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, gv.getMaGV());
+            st.setString(2, gv.getTenGV());
+            st.setString(3, gv.getMaTK());
+            st.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con);
+        }
+    }
+
+    public void update(String maGV, GiangVien gv) {
+        try {
+            String query = "UPDATE GiangVien SET MaGV = ?, TenGV= ?, MaTK = ? WHERE maGV=?";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, gv.getMaGV());
+            st.setString(2, gv.getTenGV());
+            st.setString(3, gv.getMaTK());
+            st.setString(4, maGV);
+            ResultSet rs = st.executeQuery();
+        } catch (SQLException e) {
+        } finally {
+            ConnectionDB.closeConnection(con);
+        }
+    }
+
+    public void delete(String maGV) {
+        try {
+            String query = "DELETE FROM Giangvien WHERE MaGV=?;";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, maGV);
+            ResultSet rs = st.executeQuery();
+        } catch (SQLException e) {
+        } finally {
+            ConnectionDB.closeConnection(con);
+        }
+    }
 }
