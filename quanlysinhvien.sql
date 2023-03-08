@@ -1,5 +1,5 @@
 ﻿--Tạo cơ sở dữ liệu quản lý sinh viên
-drop database quanlysinhvien
+--drop database quanlysinhvien
 Create database quanlysinhvien
 Go
 use quanlysinhvien
