@@ -14,14 +14,13 @@ public class ConnectionDB {
 
     static String url = "jdbc:sqlserver://localhost:1433;DatabaseName=quanlysinhvien";
     static String userName = "sa";
-    static String password = "123456";
+    static String password = "04092003T";
 
     public static Connection getConnection() {
         Connection con = null;
         try {
             con = DriverManager.getConnection(url, userName, password);
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return con;
     }
@@ -31,8 +30,7 @@ public class ConnectionDB {
             if (con != null) {
                 con.close();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
         }
     }
     public static void main(String[] args) {

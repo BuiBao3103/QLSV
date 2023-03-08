@@ -11,18 +11,21 @@ import java.util.ArrayList;
  * @author ASUS
  */
 public class GiangVienBUS {
-
-    ArrayList<GiangVien> dsgv = new ArrayList<>();
-    GiangVienDAO gvDao = new GiangVienDAO();
-
+    
+    static ArrayList<GiangVien> dsgv = new ArrayList<>();
+    static GiangVienDAO gvDao = new GiangVienDAO();
+    
     public GiangVienBUS() {
     }
-
+    
     public static void main(String[] args) {
-        GiangVienBUS gvBUS = new GiangVienBUS();
-        gvBUS.dsgv = gvBUS.gvDao.get();
-        gvBUS.dsgv.forEach(gv -> {
-            System.out.println(gv.toString());
-        });
+//        dsgv = gvDao.get();
+//        dsgv.forEach(gv -> {
+//            System.out.println(gv.toString());
+//        });
+        GiangVien gvMoi = new GiangVien("11556", "Pham Nguyễn Khắc Huy", "12");
+//        gvDao.update("11556", gvMoi);
+//        gvDao.delete("11556");
+        gvDao.add(gvMoi);
     }
 }
