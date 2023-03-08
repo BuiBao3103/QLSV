@@ -35,4 +35,7 @@ public class ConnectionDB {
             e.printStackTrace();
         }
     }
+    public static void main(String[] args) {
+        getConnection();
+    }
 }
