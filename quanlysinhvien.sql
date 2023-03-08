@@ -208,7 +208,6 @@ Insert into SINHVIEN values
 
 
 
-
 					-----======================		KHOA	 ======================
 Insert into KHOA  values
 ('CNTT',N'Công Nghệ Thông Tin',2),
@@ -233,7 +232,7 @@ Insert into NGANH values
 ('DSI',N'Sư Phạm Sinh Học','SPKHTN'),
 ('DKH',N'Sư Phạm Khoa Học Tự Nhiên','SPKHTN'),
 ('DLI',N'Sư Phạm Lí','SPKHTN'),
-('DHO',N'Sư Hóa','SPKHTN'),
+('DHO',N'Sư Phạm Hóa','SPKHTN'),
 ('DTN',N'Tài Chính - Ngân Hàng','TCKT'),
 ('DKE',N'Kế Toán','TCKT')
 
@@ -283,7 +282,40 @@ Insert into GIANGVIEN values
 ('20764',N'Mai Vân Phương Vũ',49),
 ('20609',N'Văn Thế Thành',50),
 ('10011',N'Cao Minh Thành',51),
-('20771',N'Huỳnh Hồ Thị Mộng Trinh',52)
+('20771',N'Huỳnh Hồ Thị Mộng Trinh',52),
+('10125',N'Võ Thành Lâm',53), --Sư Phạm KHTN--
+('11139',N'Nguyễn Hữu Duy Khang',54),
+('11260',N'Nguyễn Thanh Tuấn',55),
+('11050',N'Nguyễn Văn Tú',56),
+('10161',N'Vũ Hoài Nam',57),
+('10595',N'Lê Minh Đức',58),
+('11222',N'Lê Thị Minh Phương',59),
+('11158',N'Nguyễn Hữu Thọ',60),
+('10095',N'Mai Ngọc Dũng',61),
+('10147',N'Đặng Thị Ngọc Thanh',62),
+('11540',N'Đỗ Quang Bình',63),
+('11157',N'Nguyễn Thị Lan Hương',64),
+('11139',N'Nguyễn Hữu Duy Khang',65),
+('11325',N'Bùi Xuân Vương',66),
+('11153',N'Phạm Thị Thủy',67),
+('11375',N'Lương Văn Tùng',68),
+('10138',N'Bùi Thị Cẩm Huệ',69),
+('10156',N'Lê Minh Thanh Châu',70),
+('10092',N'Dương Trí Trung',71),
+('10133',N'Phạm Thị Giang Anh',72),
+('11607',N'Lê Thị Thanh Thúy',73),
+('11158',N'Nguyễn Hữu Thọ',74),
+('11333',N'Quách Nguyễn Khánh Nguyên',75),
+('11300',N'Nguyễn Thị Phượng Liên',76),
+('10150',N'Ngô Huyền Trân',77),
+('10916',N'Đặng Xuân Dự',78),
+('11325',N'Bùi Xuân Vương',79),
+('11260',N'Nguyễn Thanh Tuấn',80),
+('10139',N'Nguyễn Đức Hưng',81),
+('10095',N'Mai Ngọc Dũng',82),
+('10141',N'Dư Lý Thùy Hương',83),
+('11105',N'Nguyễn Văn Thắng',84),
+('11075',N'Phạm Thị Thanh Hiền',85)
 
 --('11206',N'Nguyễn Thị Hương Giang',18),
 --('11232',N'Nguyễn Thị Lệ Giang',19),
@@ -394,7 +426,80 @@ Insert into HOCPHAN values
 ('841463',N'Phát Triển Ứng Dụng Trên Thiết Bị Di Động Nâng Cao',4,1,'50%','CNTT',null),
 ('841428',N'Nhập Môn An Toàn Thông Tin ',3,2,'50%','CNTT','DKP'),
 ('841462',N'Phát Triển Ứng Dụng Trên Thiết Bị Di Động',4,2,'50%','CNTT','DKP'),
-('841477',N'Lập Trình Game',4,2,'50%','CNTT','DKP')
+('841477',N'Lập Trình Game',4,2,'50%','CNTT','DKP'),
+
+---Khoa Sư Phạm Khoa Học Tự Nhiên-------------
+('863001',N'Tâm Lý Học Đại Cương',2,1,'50%','SPKHTN',null),
+('863005',N'Giáo Dục Học Đại Cương',2,1,'50%','SPKHTN',null),
+('863404',N'TLH Lứa Tuổi Trung Học và TLH Sư Phạm',2,1,'50%','SPKHTN',null),
+('863408',N'Tổ Chức HĐ Dạy Học và GD ở Trường Trung Học',2,1,'50%','SPKHTN',null),
+('863412',N'Quản Lý HCNN và Quản Lý Ngành GDDT (Trường TH)',2,1,'50%','SPKHTN',null),
+-----Sư Phạm Khoa Học Tự Nhiên-----------
+('821402',N'Toán Cho SPKHTN 1',3,2,'50%','SPKHTN','DKH'),
+('821403',N'Toán Cho SPKHTN 2',2,2,'50%','SPKHTN','DKH'),
+('821401',N'Sinh Học Phân Tử và Tế Bào',3,2,'50%','SPKHTN','DKH'),
+('821407',N'Động Vật Học',4,2,'50%','SPKHTN','DKH'),
+('821303',N'Thực Vật Học',3,2,'50%','SPKHTN','DKH'),
+('821404',N'Cơ Sở Vật Lý 1',4,2,'50%','SPKHTN','DKH'),
+('821405',N'Cơ Sở Vật Lý 2',4,2,'50%','SPKHTN','DKH'),
+('821315',N'Dao Động và Sóng',2,2,'50%','SPKHTN','DKH'),
+('821408',N'Thí Nghiệm Cơ Sở Vật Lý',2,2,'50%','SPKHTN','DKH'),
+('821409',N'Hóa Lý',3,2,'50%','SPKHTN','DKH'),
+-----Sư Phạm Vật Lý---------------------
+('802301',N'Cơ Học',4,2,'50%','SPKHTN','DLI'),
+('802103',N'Nhiệt Học',3,2,'50%','SPKHTN','DLI'),
+('802022',N'Điện và Từ',4,2,'50%','SPKHTN','DLI'),
+('802024',N'Quang Học',3,2,'50%','SPKHTN','DLI'),
+('802302',N'Toán Cho Vật Lý',3,2,'50%','SPKHTN','DLI'),
+('802023',N'Dao Động và Sóng',3,2,'50%','SPKHTN','DLI'),
+('802401',N'Vật Lý Nguyên Tử và Hạt Nhân',3,2,'50%','SPKHTN','DLI'),
+('802402',N'Thí Nghiệm Vật Lý Đại Cương',2,2,'50%','SPKHTN','DLI'),
+('802135',N'Thiên Văn Học Đại Cương',3,2,'50%','SPKHTN','DLI'),
+('802051',N'Nhiệt Động Lực Học',2,2,'50%','SPKHTN','DLI'),
+------Sư Phạm Hóa Học----------------
+('803301',N'Toán Cho Hóa',4,2,'50%','SPKHTN','DHO'),
+('864003',N'Vật Lý Đại Cương',3,2,'50%','SPKHTN','DHO'),
+('803102',N'Hóa Học Đại Cương 1',3,2,'50%','SPKHTN','DHO'),
+('803022',N'Hóa Học Đại Cương 2',3,2,'50%','SPKHTN','DHO'),
+('803103',N'Thực Hành Hóa Học Đại Cương',1,2,'50%','SPKHTN','DHO'),
+('803302',N'Cơ Sở Hóa Lượng Tử',3,2,'50%','SPKHTN','DHO'),
+('803050',N'Hóa Vô Cơ 1',3,2,'50%','SPKHTN','DHO'),
+('803105',N'Hóa Vô Cơ 2',3,2,'50%','SPKHTN','DHO'),
+('803052',N'Thực Hành Hóa Vô Cơ',2,2,'50%','SPKHTN','DHO'),
+('803303',N'Hóa Hữu Cơ 1',4,2,'50%','SPKHTN','DHO'),
+-------Sư Phạm Sinh Học-------------------
+('864004',N'Hóa Học Đại Cương',3,2,'50%','SPKHTN','DSI'),
+('806402',N'Thống Kê Sinh Học',3,2,'50%','SPKHTN','DSI'),
+('806302',N'Sinh Học Tế Bào',3,2,'50%','SPKHTN','DSI'),
+('806401',N'Sinh Hóa Học',3,2,'50%','SPKHTN','DSI'),
+('806050',N'Động Vật Học 1',3,2,'50%','SPKHTN','DSI'),
+('806051',N'Động Vật Học 2',3,2,'50%','SPKHTN','DSI'),
+('806052',N'Thực Vật Học 1',3,2,'50%','SPKHTN','DSI'),
+('806053',N'Thực Vật Học 2',3,2,'50%','SPKHTN','DSI'),
+('806060',N'Vi Sinh Vật Học',3,2,'50%','SPKHTN','DSI'),
+('806403',N'Di Truyền Học',4,2,'50%','SPKHTN','DSI')
+
+					-----======================		Điều Kiện	 ======================
+insert into DIEUKIEN values
+('863404','863001'),
+('863408','863005'),
+('863412','863408'),
+('821407','821401'),
+('821303','821401'),
+('821405','821404'),
+('821315','821405'),
+('802023','802301'),
+('802402','802301'),
+('802051','802103'),
+('803103','803102'),
+('803302','803301'),
+('803050','803102'),
+('803105','803050'),
+('806051','806050'),
+('806053','806052')
+
+
+
 
 
 					-----======================		END		======================
