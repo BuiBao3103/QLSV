@@ -14,7 +14,7 @@ public class ConnectionDB {
 
     static String url = "jdbc:sqlserver://localhost:1433;DatabaseName=quanlysinhvien";
     static String userName = "sa";
-    static String password = "04092003T";
+    static String password = "123456";
 
     public static Connection getConnection() {
         Connection con = null;

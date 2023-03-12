@@ -4,7 +4,6 @@
  */
 package backend.QLHocPhan;
 
-import backend.QLHocPhan.HocPhan;
 import connectDB.ConnectionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

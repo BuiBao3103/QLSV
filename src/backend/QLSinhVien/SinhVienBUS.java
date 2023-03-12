@@ -9,5 +9,18 @@ package backend.QLSinhVien;
  * @author ASUS
  */
 public class SinhVienBUS {
-    
+
+    static SinhVienDAO svDAO=new SinhVienDAO();
+
+    public SinhVienBUS() {
+    }
+
+    public static void main(String[] args) {
+        svDAO.get().forEach(sv->{
+            System.out.println(sv.toString());});
+        for(SinhVien sv : svDAO.get()){
+            
+        }
+//        svDAO.get();
+    }
 }

@@ -51,6 +51,10 @@ public class SinhVienDAO {
         }
         return dssv;//+
     }
+    public static void main(String[] args) {
+        (new SinhVienDAO()).get();
+        System.out.println("yes");
+    }
 
     public void add(SinhVien sv) {
         try {

@@ -19,13 +19,13 @@ public class GiangVienBUS {
     }
     
     public static void main(String[] args) {
-//        dsgv = gvDao.get();
-//        dsgv.forEach(gv -> {
-//            System.out.println(gv.toString());
-//        });
-        GiangVien gvMoi = new GiangVien("11556", "Pham Nguyễn Khắc Huy", "12");
+        dsgv = gvDao.get();
+        dsgv.forEach(gv -> {
+            System.out.println(gv.toString());
+        });
+//        GiangVien gvMoi = new GiangVien("11556", "Pham Nguyễn Khắc Huy", "12");
 //        gvDao.update("11556", gvMoi);
 //        gvDao.delete("11556");
-        gvDao.add(gvMoi);
+//        gvDao.add(gvMoi);
     }
 }

@@ -4,10 +4,129 @@
  */
 package backend.QLSinhVien;
 
+import java.util.Date;
+
 /**
  *
  * @author ASUS
  */
 public class SinhVien {
-    
+    private String maSV;
+    private String cmnd;
+    private String hoTen;
+    private Date ngaySinh;
+    private String gioiTinh;
+    private String diaChi;
+    private String danToc;
+    private String tonGiao;
+    private String nienKhoa;
+    private String maNganh;
+    private int maTK;
+
+    @Override
+    public String toString() {
+        return "SinhVien{" + "maSV=" + maSV + ", cmnd=" + cmnd + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", danToc=" + danToc + ", tonGiao=" + tonGiao + ", nienKhoa=" + nienKhoa + ", maNganh=" + maNganh + ", maTK=" + maTK + '}';
+    }
+
+    public String getMaSV() {
+        return maSV;
+    }
+
+    public void setMaSV(String maSV) {
+        this.maSV = maSV;
+    }
+
+    public String getCmnd() {
+        return cmnd;
+    }
+
+    public void setCmnd(String cmnd) {
+        this.cmnd = cmnd;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public Date getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public String getDanToc() {
+        return danToc;
+    }
+
+    public void setDanToc(String danToc) {
+        this.danToc = danToc;
+    }
+
+    public String getTonGiao() {
+        return tonGiao;
+    }
+
+    public void setTonGiao(String tonGiao) {
+        this.tonGiao = tonGiao;
+    }
+
+    public String getNienKhoa() {
+        return nienKhoa;
+    }
+
+    public void setNienKhoa(String nienKhoa) {
+        this.nienKhoa = nienKhoa;
+    }
+
+    public String getMaNganh() {
+        return maNganh;
+    }
+
+    public void setMaNganh(String maNganh) {
+        this.maNganh = maNganh;
+    }
+
+    public int getMaTK() {
+        return maTK;
+    }
+
+    public void setMaTK(int maTK) {
+        this.maTK = maTK;
+    }
+
+    public SinhVien(String maSV, String cmnd, String hoTen, Date ngaySinh, String gioiTinh, String diaChi, String danToc, String tonGiao, String nienKhoa, String maNganh, int maTK) {
+        this.maSV = maSV;
+        this.cmnd = cmnd;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.danToc = danToc;
+        this.tonGiao = tonGiao;
+        this.nienKhoa = nienKhoa;
+        this.maNganh = maNganh;
+        this.maTK = maTK;
+    }
 }
