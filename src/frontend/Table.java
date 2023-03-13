@@ -845,7 +845,9 @@ public class Table extends javax.swing.JFrame {
     }//GEN-LAST:event_studentListActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        SinhVienBUS.showMoreInforStudent(jTable1, jTable1.getSelectedRow());
+       
+       StudentInfo info = new StudentInfo();
+       SinhVienBUS.showMoreInfoStudent(info, SinhVienBUS.StudentinTable(jTable1, jTable1.getSelectedRow()));
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -884,7 +886,7 @@ public class Table extends javax.swing.JFrame {
         new Table().setVisible(true);
     }
     
-    private javax.swing.JTable tblStudentInfor = new JTable();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountList;
     private javax.swing.JPanel address;
