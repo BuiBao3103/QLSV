@@ -4,6 +4,7 @@
  */
 package frontend;
 
+import backend.QLSinhVien.SinhVienBUS;
 import java.awt.Font;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -18,6 +19,7 @@ public class Table extends javax.swing.JFrame {
      */
     public Table() {
         initComponents();
+
     }
 
     /**
@@ -194,6 +196,11 @@ public class Table extends javax.swing.JFrame {
         studentList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         studentList.setText("Danh sách sinh viên");
         studentList.setPreferredSize(new java.awt.Dimension(190, 50));
+        studentList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentListActionPerformed(evt);
+            }
+        });
 
         group.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         group.setText("Nhóm môn học");
@@ -418,6 +425,11 @@ public class Table extends javax.swing.JFrame {
                 continue;
             }
         }
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setMinWidth(50);
@@ -824,6 +836,18 @@ public class Table extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
+    private void studentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentListActionPerformed
+//        remove(jTable1);
+//        tblStudentInfor.setBounds(250, 50, 890, 500);
+//        add(tblStudentInfor);
+        SinhVienBUS.showStudentList(jTable1);
+        
+    }//GEN-LAST:event_studentListActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        SinhVienBUS.showMoreInforStudent(jTable1, jTable1.getSelectedRow());
+    }//GEN-LAST:event_jTable1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -859,7 +883,8 @@ public class Table extends javax.swing.JFrame {
         }
         new Table().setVisible(true);
     }
-
+    
+    private javax.swing.JTable tblStudentInfor = new JTable();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountList;
     private javax.swing.JPanel address;

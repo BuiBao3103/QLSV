@@ -28,6 +28,9 @@ public class SinhVien {
         return "SinhVien{" + "maSV=" + maSV + ", cmnd=" + cmnd + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", danToc=" + danToc + ", tonGiao=" + tonGiao + ", nienKhoa=" + nienKhoa + ", maNganh=" + maNganh + ", maTK=" + maTK + '}';
     }
 
+    public SinhVien() {
+    }
+
     public String getMaSV() {
         return maSV;
     }

@@ -24,6 +24,7 @@ public class SinhVienDAO {
     }
 
     public ArrayList<SinhVien> get() {
+        con = ConnectionDB.getConnection();
         ArrayList<SinhVien> dssv = new ArrayList<>();//+
         try {
             String query = "select * from SinhVien";//+
