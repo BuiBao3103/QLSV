@@ -8,6 +8,9 @@ import backend.QLSinhVien.SinhVienBUS;
 import java.awt.Font;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author ASUS
@@ -19,7 +22,7 @@ public class Table extends javax.swing.JFrame {
      */
     public Table() {
         initComponents();
-
+        
     }
 
     /**
@@ -448,7 +451,10 @@ public class Table extends javax.swing.JFrame {
         schedule.setLayout(scheduleLayout);
         scheduleLayout.setHorizontalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
+                .addContainerGap())
         );
         scheduleLayout.setVerticalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -818,7 +824,7 @@ public class Table extends javax.swing.JFrame {
     private void signOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutActionPerformed
         // TODO add your handling code here:
         int choice = JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc chắn muốn đăng xuất không");
-        if(choice == 0){
+        if (choice == 0) {
             dispose();
             new Login().setVisible(true);
         }
@@ -837,17 +843,29 @@ public class Table extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void studentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentListActionPerformed
-//        remove(jTable1);
-//        tblStudentInfor.setBounds(250, 50, 890, 500);
-//        add(tblStudentInfor);
-        SinhVienBUS.showStudentList(jTable1);
-        
-    }//GEN-LAST:event_studentListActionPerformed
 
+        mainPanel.removeAll(); // xóa hết nội dung vùng content
+        mainPanel.repaint();
+        mainPanel.revalidate();
+        studentTable.addMouseListener(new java.awt.event.MouseAdapter() { // thêm sự kiện click chuột vào mỗi dòng
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentTableMouseClicked(evt);
+            }
+        });
+        SinhVienBUS.showStudentList(studentTable);
+        JScrollPane scrollPane = new JScrollPane(studentTable);// Bảng được đặt trong 1 khung có thể cuộn
+        mainPanel.add(scrollPane);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+
+    }//GEN-LAST:event_studentListActionPerformed
+    private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {
+        
+        SinhVienBUS.showMoreInfoStudent(info, SinhVienBUS.StudentinTable(studentTable, studentTable.getSelectedRow()));
+        
+    }
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
-       StudentInfo info = new StudentInfo();
-       SinhVienBUS.showMoreInfoStudent(info, SinhVienBUS.StudentinTable(jTable1, jTable1.getSelectedRow()));
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -886,7 +904,8 @@ public class Table extends javax.swing.JFrame {
         new Table().setVisible(true);
     }
     
-    
+    JTable studentTable = new JTable();
+    StudentInfo info = new StudentInfo();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountList;
     private javax.swing.JPanel address;

@@ -31,8 +31,10 @@ public class SinhVienDAO {
             PreparedStatement st = con.prepareStatement(query);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
                 String maSV = rs.getString("MaSV");//+
                 String cmnd = rs.getString("Cmnd");//+
+                String soDienThoai = rs.getString("SoDienThoai");
                 String hoTen = rs.getString("HoTen");//+
                 Date ngaySinh = rs.getDate("NgaySinh");//+
                 String gioiTinh = rs.getString("GioiTinh");//+
@@ -42,8 +44,7 @@ public class SinhVienDAO {
                 String nienKhoa = rs.getString("NienKhoa");//+
                 String maNganh = rs.getString("MaNganh");//+
                 int maTK = rs.getInt("MaTK");
-
-                SinhVien sv = new SinhVien(maSV, cmnd, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);//+
+                SinhVien sv = new SinhVien(trangThai, maSV, cmnd, soDienThoai, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
                 dssv.add(sv);//+
             }
         } catch (SQLException e) {
@@ -52,26 +53,30 @@ public class SinhVienDAO {
         }
         return dssv;//+
     }
+
     public static void main(String[] args) {
         (new SinhVienDAO()).get();
         System.out.println("yes");
     }
 
     public void add(SinhVien sv) {
+        con = ConnectionDB.getConnection();
         try {
-            String query = "INSERT INTO SinhVien VALUES (?,?,?,?,?,?,?,?,?,?,?);";//++
+            String query = "INSERT INTO SinhVien VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";//++
             PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, sv.getMaSV());//+
-            st.setString(2, sv.getCmnd());//+
-            st.setString(3, sv.getHoTen());//+
-            st.setDate(4, (java.sql.Date) sv.getNgaySinh());
-            st.setString(5, sv.getGioiTinh());//+
-            st.setString(6, sv.getDiaChi());//+
-            st.setString(7, sv.getDanToc());//+
-            st.setString(8, sv.getTonGiao());//+
-            st.setString(9, sv.getNienKhoa());//+
-            st.setString(10, sv.getMaNganh());//+
-            st.setInt(11, sv.getMaTK());//+
+            st.setInt(1, sv.getTrangThai());
+            st.setString(2, sv.getMaSV());//+
+            st.setString(3, sv.getCmnd());//+
+            st.setString(4, sv.getSoDienThoai());
+            st.setString(5, sv.getHoTen());//+
+            st.setDate(6, (java.sql.Date) sv.getNgaySinh());
+            st.setString(7, sv.getGioiTinh());//+
+            st.setString(8, sv.getDiaChi());//+
+            st.setString(9, sv.getDanToc());//+
+            st.setString(10, sv.getTonGiao());//+
+            st.setString(11, sv.getNienKhoa());//+
+            st.setString(12, sv.getMaNganh());//+
+            st.setInt(13, sv.getMaTK());//+
 
             st.executeQuery();
         } catch (SQLException e) {
@@ -82,23 +87,27 @@ public class SinhVienDAO {
     }
 
     public void update(String maSV, SinhVien sv) {
+
         try {
-            String query = "UPDATE SinhVien SET MaSV = ?, Cmnd= ?, HoTen= ?, "
+            con = ConnectionDB.getConnection();
+            String query = "UPDATE SinhVien SET TrangThai = ?,MaSV = ?, Cmnd= ?,SoDienThoai = ?, HoTen= ?, "
                     + "NganhSinh=?,GioiTinh=?, DiaChi=?, DanToc=?, TonGiao=?, "
                     + "NienKhoa=?, MaNganh=?, MaTK=? WHERE MaSV=?";//+
             PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, sv.getMaSV());//+
-            st.setString(2, sv.getCmnd());//+
-            st.setString(3, sv.getHoTen());//+
-            st.setDate(4, (java.sql.Date) sv.getNgaySinh());
-            st.setString(5, sv.getGioiTinh());//+
-            st.setString(6, sv.getDiaChi());//+
-            st.setString(7, sv.getDanToc());//+
-            st.setString(8, sv.getTonGiao());//+
-            st.setString(9, sv.getNienKhoa());//+
-            st.setString(10, sv.getMaNganh());//+
-            st.setInt(11, sv.getMaTK());//+
-            st.setString(12, maSV);//+
+            st.setInt(1, sv.getTrangThai());
+            st.setString(2, sv.getMaSV());//+
+            st.setString(3, sv.getCmnd());//+
+            st.setString(4, sv.getSoDienThoai());
+            st.setString(5, sv.getHoTen());//+
+            st.setDate(6, (java.sql.Date) sv.getNgaySinh());
+            st.setString(7, sv.getGioiTinh());//+
+            st.setString(8, sv.getDiaChi());//+
+            st.setString(9, sv.getDanToc());//+
+            st.setString(10, sv.getTonGiao());//+
+            st.setString(11, sv.getNienKhoa());//+
+            st.setString(12, sv.getMaNganh());//+
+            st.setInt(13, sv.getMaTK());//+
+            st.setString(14, maSV);//+
 
             ResultSet rs = st.executeQuery();
         } catch (SQLException e) {
@@ -109,6 +118,7 @@ public class SinhVienDAO {
 
     public void delete(String maSV) {
         try {
+            con = ConnectionDB.getConnection();
             String query = "DELETE FROM SinhVien WHERE MaSV=?;";//+
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, maSV);//+

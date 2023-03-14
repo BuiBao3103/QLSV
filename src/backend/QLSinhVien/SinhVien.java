@@ -11,8 +11,11 @@ import java.util.Date;
  * @author ASUS
  */
 public class SinhVien {
+
+    private int trangThai;
     private String maSV;
     private String cmnd;
+    private String soDienThoai;
     private String hoTen;
     private Date ngaySinh;
     private String gioiTinh;
@@ -67,6 +70,22 @@ public class SinhVien {
         return gioiTinh;
     }
 
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public String getSoDienThoai() {
+        return soDienThoai;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+        this.soDienThoai = soDienThoai;
+    }
+
     public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
@@ -119,9 +138,11 @@ public class SinhVien {
         this.maTK = maTK;
     }
 
-    public SinhVien(String maSV, String cmnd, String hoTen, Date ngaySinh, String gioiTinh, String diaChi, String danToc, String tonGiao, String nienKhoa, String maNganh, int maTK) {
+    public SinhVien(int trangThai, String maSV, String cmnd, String soDienThoai, String hoTen, Date ngaySinh, String gioiTinh, String diaChi, String danToc, String tonGiao, String nienKhoa, String maNganh, int maTK) {
+        this.trangThai = trangThai;
         this.maSV = maSV;
         this.cmnd = cmnd;
+        this.soDienThoai = soDienThoai;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
@@ -132,4 +153,5 @@ public class SinhVien {
         this.maNganh = maNganh;
         this.maTK = maTK;
     }
+
 }
