@@ -11,6 +11,11 @@ import java.awt.Font;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+<<<<<<< HEAD
+=======
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+>>>>>>> 99fe3dad0ab4eba75328e85a71320caba9c5db5f
 
 /**
  *
@@ -20,8 +25,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     public Table() {
         initComponents();
+<<<<<<< HEAD
         Thread t = new Thread(this);
         t.start();
+=======
+        
+>>>>>>> 99fe3dad0ab4eba75328e85a71320caba9c5db5f
     }
 
     @SuppressWarnings("unchecked")
@@ -478,7 +487,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
         schedule.setLayout(scheduleLayout);
         scheduleLayout.setHorizontalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
+=======
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
+                .addContainerGap())
+>>>>>>> 99fe3dad0ab4eba75328e85a71320caba9c5db5f
         );
         scheduleLayout.setVerticalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -918,6 +934,18 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
+<<<<<<< HEAD
+=======
+    private void signOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutActionPerformed
+        // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc chắn muốn đăng xuất không");
+        if (choice == 0) {
+            dispose();
+            new Login().setVisible(true);
+        }
+    }//GEN-LAST:event_signOutActionPerformed
+
+>>>>>>> 99fe3dad0ab4eba75328e85a71320caba9c5db5f
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -931,15 +959,38 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void studentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentListActionPerformed
+<<<<<<< HEAD
 //        remove(jTable1);
 //        tblStudentInfor.setBounds(250, 50, 890, 500);
 //        add(tblStudentInfor);
         SinhVienBUS.showStudentList(jTable1);
 
     }//GEN-LAST:event_studentListActionPerformed
+=======
+>>>>>>> 99fe3dad0ab4eba75328e85a71320caba9c5db5f
 
+        mainPanel.removeAll(); // xóa hết nội dung vùng content
+        mainPanel.repaint();
+        mainPanel.revalidate();
+        studentTable.addMouseListener(new java.awt.event.MouseAdapter() { // thêm sự kiện click chuột vào mỗi dòng
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentTableMouseClicked(evt);
+            }
+        });
+        SinhVienBUS.showStudentList(studentTable);
+        JScrollPane scrollPane = new JScrollPane(studentTable);// Bảng được đặt trong 1 khung có thể cuộn
+        mainPanel.add(scrollPane);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+
+    }//GEN-LAST:event_studentListActionPerformed
+    private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {
+        
+        SinhVienBUS.showMoreInfoStudent(info, SinhVienBUS.StudentinTable(studentTable, studentTable.getSelectedRow()));
+        
+    }
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        SinhVienBUS.showMoreInforStudent(jTable1, jTable1.getSelectedRow());
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -981,8 +1032,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
         }
         new Table().setVisible(true);
     }
+<<<<<<< HEAD
 
 //    private javax.swing.JTable tblStudentInfor = new JTable();
+=======
+    
+    JTable studentTable = new JTable();
+    StudentInfo info = new StudentInfo();
+>>>>>>> 99fe3dad0ab4eba75328e85a71320caba9c5db5f
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountList;
     private javax.swing.JPanel address;
