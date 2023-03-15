@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/ASUS/Desktop/Student/StudentManager/src/backend/KetQua/KetQuaBUS.java</file>
             <file>file:/C:/Users/ASUS/Desktop/Student/StudentManager/src/backend/QLChiTietQuyen/ChiTietQuyen.java</file>
             <file>file:/C:/Users/ASUS/Desktop/Student/StudentManager/src/connectDB/ConnectionDB.java</file>
@@ -32,6 +33,9 @@
             <file>file:/C:/Users/ASUS/Desktop/Student/StudentManager/src/backend/Nhom/Nhom.java</file>
             <file>file:/C:/Users/ASUS/Desktop/Student/StudentManager/src/backend/KetQua/KetQua.java</file>
             <file>file:/C:/Users/ASUS/Desktop/Student/StudentManager/src/backend/Nganh/NganhBUS.java</file>
+=======
+            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/frontend/Table.java</file>
+>>>>>>> 5d9da0ecc56cc9a593f2bf7fbbe812a220e51390
         </group>
     </open-files>
 </project-private>
