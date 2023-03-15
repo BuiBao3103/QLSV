@@ -48,13 +48,13 @@ public class Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        eyeHide = new com.raven.swing.Button();
-        eye = new com.raven.swing.Button();
-        password = new com.raven.swing.PasswordField();
+        eyeHide = new component.Button();
+        eye = new component.Button();
+        password = new component.PasswordField();
         jPanel7 = new javax.swing.JPanel();
-        username = new com.raven.swing.TextField();
-        button1 = new com.raven.swing.Button();
-        background1 = new com.raven.swing.Background();
+        username = new component.TextField();
+        button1 = new component.Button();
+        background1 = new component.Background();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Responsive");
@@ -379,10 +379,10 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.swing.Background background1;
-    private com.raven.swing.Button button1;
-    private com.raven.swing.Button eye;
-    private com.raven.swing.Button eyeHide;
+    private component.Background background1;
+    private component.Button button1;
+    private component.Button eye;
+    private component.Button eyeHide;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -392,7 +392,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel loginHeader;
-    private com.raven.swing.PasswordField password;
-    private com.raven.swing.TextField username;
+    private component.PasswordField password;
+    private component.TextField username;
     // End of variables declaration//GEN-END:variables
 }

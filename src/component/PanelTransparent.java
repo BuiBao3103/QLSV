@@ -1,4 +1,4 @@
-package com.raven.swing;
+package component;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics;

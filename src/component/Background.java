@@ -1,4 +1,4 @@
-package com.raven.swing;
+package component;
 
 import java.awt.Color;
 import java.awt.Graphics;
