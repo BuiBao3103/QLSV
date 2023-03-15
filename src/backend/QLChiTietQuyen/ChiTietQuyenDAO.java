@@ -3,21 +3,22 @@ package backend.QLChiTietQuyen;
 import connectDB.ConnectionDB;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.naming.spi.DirStateFactory;
 
 public class ChiTietQuyenDAO {
 
-    Connection con = ConnectionDB.getConnection();
+    Connection con = null;
+    PreparedStatement pstm = null;
 
     public ChiTietQuyenDAO() {
     }
 
     public ArrayList<ChiTietQuyen> get() {
+        con = ConnectionDB.getConnection();
         ArrayList<ChiTietQuyen> dsctq = new ArrayList<>();//+
         try {
             String query = "select * from ChiTietQuyen";//+
-            PreparedStatement st = con.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 String maQuyen = rs.getString("MaQuyen");
                 String tenQuyen = rs.getString("TenQuyen");
@@ -28,49 +29,55 @@ public class ChiTietQuyenDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
         return dsctq;//+
     }
 
     public void add(ChiTietQuyen ctq) {
+        con = ConnectionDB.getConnection();
+
         try {
             String query = "INSERT INTO ChiTietQuyen VALUES (?,?,?);";//++
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, ctq.getMaQuyen());//+
-            st.setString(2, ctq.getTenQuyen());//+
-            st.setString(3, ctq.getMaNhomQuyen());//+
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, ctq.getMaQuyen());//+
+            pstm.setString(2, ctq.getTenQuyen());//+
+            pstm.setString(3, ctq.getMaNhomQuyen());//+
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
     public void update(String maQuyen, ChiTietQuyen ctq) {
+        con = ConnectionDB.getConnection();
+
         try {
             String query = "UPDATE ChiTietQuyen SET MaQuyen = ?, TenQuyen = ?, MaNhomQuyen = ? WHERE MaQuyen=?";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, ctq.getMaQuyen());//+
-            st.setString(2, ctq.getTenQuyen());//+
-            st.setString(3, ctq.getMaNhomQuyen());//+
-            st.setString(4, maQuyen);
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, ctq.getMaQuyen());//+
+            pstm.setString(2, ctq.getTenQuyen());//+
+            pstm.setString(3, ctq.getMaNhomQuyen());//+
+            pstm.setString(4, maQuyen);
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
     public void delete(String maQuyen) {
+        con = ConnectionDB.getConnection();
+
         try {
             String query = "DELETE FROM ChiTietQuyen WHERE MaQuyen=?;";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, maQuyen);//+
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, maQuyen);//+
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 //    -----------------------------Kiem Tra----------------------------------------------

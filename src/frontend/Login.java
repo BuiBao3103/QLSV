@@ -5,6 +5,9 @@
 //Hello world
 package frontend;
 
+import backend.QLTaiKhoan.TaiKhoan;
+import backend.QLTaiKhoan.TaiKhoanBUS;
+import component.PasswordField;
 import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
@@ -20,6 +23,7 @@ import org.jdesktop.animation.timing.Animator;
 public class Login extends javax.swing.JFrame {
 
     private Animator animatorLogin;
+
     public Login() {
 //        password.setEchoChar('•');
         this.getContentPane().setBackground(Color.white);
@@ -319,7 +323,9 @@ public class Login extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
 //        JOptionPane.showMessageDialog(rootPane, "Hello");
-          animatorLogin.start();
+//        animatorLogin.start();
+       TaiKhoanBUS.login(this);
+
     }//GEN-LAST:event_button1ActionPerformed
 
     private void eyeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyeActionPerformed
@@ -330,11 +336,10 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_eyeActionPerformed
 
     private void eyeHideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyeHideActionPerformed
-       CardLayout cardLayout = (CardLayout) jPanel4.getLayout();
+        CardLayout cardLayout = (CardLayout) jPanel4.getLayout();
         cardLayout.previous(jPanel4);
         password.setEchoChar('\u25CF');
     }//GEN-LAST:event_eyeHideActionPerformed
-
 
     /**
      * @param args the command line arguments
@@ -376,6 +381,22 @@ public class Login extends javax.swing.JFrame {
 //                new Login().setVisible(true);
 //            }
 //        });
+    }
+
+    public PasswordField getPassword() {
+        return password;
+    }
+
+    public void setPassword(PasswordField password) {
+        this.password = password;
+    }
+
+    public component.TextField getUsername() {
+        return username;
+    }
+
+    public void setUsername(component.TextField username) {
+        this.username = username;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

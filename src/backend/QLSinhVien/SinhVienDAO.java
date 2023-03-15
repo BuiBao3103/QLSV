@@ -18,7 +18,8 @@ import java.util.Date;
  */
 public class SinhVienDAO {
 
-    Connection con = ConnectionDB.getConnection();
+    Connection con = null;
+    PreparedStatement pstm = null;
 
     public SinhVienDAO() {
     }
@@ -28,8 +29,8 @@ public class SinhVienDAO {
         ArrayList<SinhVien> dssv = new ArrayList<>();//+
         try {
             String query = "select * from SinhVien";//+
-            PreparedStatement st = con.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 int trangThai = rs.getInt("TrangThai");
                 String maSV = rs.getString("MaSV");//+
@@ -49,9 +50,29 @@ public class SinhVienDAO {
             }
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
         return dssv;//+
+    }
+
+    public int getTrangThaiByMaTk(int MaTK) {
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "select TrangThai from SinhVien where MaTK = ?";//+
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, MaTK);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
+                SinhVien sv = new SinhVien(trangThai);
+                return sv.getTrangThai();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -63,69 +84,68 @@ public class SinhVienDAO {
         con = ConnectionDB.getConnection();
         try {
             String query = "INSERT INTO SinhVien VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";//++
-            PreparedStatement st = con.prepareStatement(query);
-            st.setInt(1, sv.getTrangThai());
-            st.setString(2, sv.getMaSV());//+
-            st.setString(3, sv.getCmnd());//+
-            st.setString(4, sv.getSoDienThoai());
-            st.setString(5, sv.getHoTen());//+
-            st.setDate(6, (java.sql.Date) sv.getNgaySinh());
-            st.setString(7, sv.getGioiTinh());//+
-            st.setString(8, sv.getDiaChi());//+
-            st.setString(9, sv.getDanToc());//+
-            st.setString(10, sv.getTonGiao());//+
-            st.setString(11, sv.getNienKhoa());//+
-            st.setString(12, sv.getMaNganh());//+
-            st.setInt(13, sv.getMaTK());//+
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, sv.getTrangThai());
+            pstm.setString(2, sv.getMaSV());//+
+            pstm.setString(3, sv.getCmnd());//+
+            pstm.setString(4, sv.getSoDienThoai());
+            pstm.setString(5, sv.getHoTen());//+
+            pstm.setDate(6, (java.sql.Date) sv.getNgaySinh());
+            pstm.setString(7, sv.getGioiTinh());//+
+            pstm.setString(8, sv.getDiaChi());//+
+            pstm.setString(9, sv.getDanToc());//+
+            pstm.setString(10, sv.getTonGiao());//+
+            pstm.setString(11, sv.getNienKhoa());//+
+            pstm.setString(12, sv.getMaNganh());//+
+            pstm.setInt(13, sv.getMaTK());//+
 
-            st.executeQuery();
+            pstm.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
     public void update(String maSV, SinhVien sv) {
-
+        con = ConnectionDB.getConnection();
         try {
-            con = ConnectionDB.getConnection();
             String query = "UPDATE SinhVien SET TrangThai = ?,MaSV = ?, Cmnd= ?,SoDienThoai = ?, HoTen= ?, "
                     + "NganhSinh=?,GioiTinh=?, DiaChi=?, DanToc=?, TonGiao=?, "
                     + "NienKhoa=?, MaNganh=?, MaTK=? WHERE MaSV=?";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setInt(1, sv.getTrangThai());
-            st.setString(2, sv.getMaSV());//+
-            st.setString(3, sv.getCmnd());//+
-            st.setString(4, sv.getSoDienThoai());
-            st.setString(5, sv.getHoTen());//+
-            st.setDate(6, (java.sql.Date) sv.getNgaySinh());
-            st.setString(7, sv.getGioiTinh());//+
-            st.setString(8, sv.getDiaChi());//+
-            st.setString(9, sv.getDanToc());//+
-            st.setString(10, sv.getTonGiao());//+
-            st.setString(11, sv.getNienKhoa());//+
-            st.setString(12, sv.getMaNganh());//+
-            st.setInt(13, sv.getMaTK());//+
-            st.setString(14, maSV);//+
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, sv.getTrangThai());
+            pstm.setString(2, sv.getMaSV());//+
+            pstm.setString(3, sv.getCmnd());//+
+            pstm.setString(4, sv.getSoDienThoai());
+            pstm.setString(5, sv.getHoTen());//+
+            pstm.setDate(6, (java.sql.Date) sv.getNgaySinh());
+            pstm.setString(7, sv.getGioiTinh());//+
+            pstm.setString(8, sv.getDiaChi());//+
+            pstm.setString(9, sv.getDanToc());//+
+            pstm.setString(10, sv.getTonGiao());//+
+            pstm.setString(11, sv.getNienKhoa());//+
+            pstm.setString(12, sv.getMaNganh());//+
+            pstm.setInt(13, sv.getMaTK());//+
+            pstm.setString(14, maSV);//+
 
-            ResultSet rs = st.executeQuery();
+            ResultSet rs = pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
     public void delete(String maSV) {
+        con = ConnectionDB.getConnection();
         try {
-            con = ConnectionDB.getConnection();
             String query = "DELETE FROM SinhVien WHERE MaSV=?;";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, maSV);//+
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, maSV);//+
+            ResultSet rs = pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 }

@@ -131,7 +131,9 @@ public class SinhVienBUS {
             return "";
         }
     }
-
+ public int getTrangThai(int MaTK){
+       return svDAO.getTrangThaiByMaTk(MaTK);
+   }
     public static void main(String[] args) {
         svDAO.get().forEach(sv -> {
             System.out.println(sv.toString());

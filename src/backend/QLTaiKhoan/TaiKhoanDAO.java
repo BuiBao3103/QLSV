@@ -3,22 +3,23 @@ package backend.QLTaiKhoan;
 import connectDB.ConnectionDB;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.naming.spi.DirStateFactory;
 
 public class TaiKhoanDAO {
 
-    Connection con = ConnectionDB.getConnection();
+    Connection con = null;
+    PreparedStatement pstm = null;
 
     public TaiKhoanDAO() {
 
     }
 
     public ArrayList<TaiKhoan> get() {
+        con = ConnectionDB.getConnection();
         ArrayList<TaiKhoan> dstk = new ArrayList<>();//+
         try {
             String query = "select * from TaiKhoan";//+
-            PreparedStatement st = con.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 int maTK = rs.getInt("MaTK");//+
                 String tenTaiKhoan = rs.getString("TenTaiKhoan");//+
@@ -30,51 +31,80 @@ public class TaiKhoanDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con,pstm);
         }
         return dstk;//+
     }
 
+    public TaiKhoan getByUserName(String username) {
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "select * from TaiKhoan where TenTaiKhoan = ?";//+
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, username);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                int maTK = rs.getInt("MaTK");//+
+                String tenTaiKhoan = rs.getString("TenTaiKhoan");//+
+                String matKhau = rs.getString("MatKhau");//+
+                String maNhomQuyen = rs.getString("MaNhomQuyen");//+
+                TaiKhoan tk = new TaiKhoan(maTK, tenTaiKhoan, matKhau, maNhomQuyen);
+                return tk;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return null;
+    }
+
     public void add(TaiKhoan tk) {
+        con = ConnectionDB.getConnection();
+
         try {
             String query = "INSERT INTO TaiKhoan VALUES (?,?,?,?);";//++
-            PreparedStatement st = con.prepareStatement(query);
-            st.setInt(1, tk.getMaTK());//+
-            st.setString(2, tk.getTenTaiKhoan());//+
-            st.setString(3, tk.getMatKhau());//+
-            st.setString(4, tk.getMaNhomQuyen());//+
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, tk.getMaTK());//+
+            pstm.setString(2, tk.getTenTaiKhoan());//+
+            pstm.setString(3, tk.getMatKhau());//+
+            pstm.setString(4, tk.getMaNhomQuyen());//+
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con,pstm);
         }
     }
 
     public void update(int maTK, TaiKhoan tk) {
+        con = ConnectionDB.getConnection();
+
         try {
             String query = "UPDATE TaiKhoan SET MaTK = ?, TenTaiKhoan= ?, MatKhau = ?, MaNhomQuyen = ? WHERE maTK=?";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setInt(1, tk.getMaTK());
-            st.setString(2, tk.getTenTaiKhoan());//+
-            st.setString(3, tk.getMatKhau());//+
-            st.setString(4, tk.getMaNhomQuyen());//+
-            st.setInt(5, maTK);//+
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, tk.getMaTK());
+            pstm.setString(2, tk.getTenTaiKhoan());//+
+            pstm.setString(3, tk.getMatKhau());//+
+            pstm.setString(4, tk.getMaNhomQuyen());//+
+            pstm.setInt(5, maTK);//+
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con,pstm);
         }
     }
 
     public void delete(int maTK) {
+        con = ConnectionDB.getConnection();
+
         try {
             String query = "DELETE FROM TaiKhoan WHERE MaTK=?;";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setInt(1, maTK);//+
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, maTK);//+
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con,pstm);
         }
     }
 // ---------------------------------------------kiem tra cac ham-----------------------------------------------

@@ -6,10 +6,7 @@ package backend.QLSinhVien;
 
 import java.util.Date;
 
-/**
- *
- * @author ASUS
- */
+
 public class SinhVien {
 
     private int trangThai;
@@ -32,6 +29,10 @@ public class SinhVien {
     }
 
     public SinhVien() {
+    }
+
+    public SinhVien(int trangThai) {
+        this.trangThai = trangThai;
     }
 
     public String getMaSV() {

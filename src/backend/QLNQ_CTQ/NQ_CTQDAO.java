@@ -3,21 +3,22 @@ package backend.QLNQ_CTQ;
 import connectDB.ConnectionDB;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.naming.spi.DirStateFactory;
 
 public class NQ_CTQDAO {
 
-    Connection con = ConnectionDB.getConnection();
+    Connection con = null;
+    PreparedStatement pstm = null;
 
     public NQ_CTQDAO() {
     }
 
     public ArrayList<NQ_CTQ> get() {
+        con = ConnectionDB.getConnection();
         ArrayList<NQ_CTQ> dsnq_ctq = new ArrayList<>();//+
         try {
             String query = "select * from NQ_CTQ";//+
-            PreparedStatement st = con.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 String maNhomQuyen = rs.getString("MaNhomQuyen");//+
                 String maQuyen = rs.getString("MaQuyen");//+
@@ -27,50 +28,76 @@ public class NQ_CTQDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
         return dsnq_ctq;//+
     }
 
+    public ArrayList<String> getListCTQByNQuyen(String nhomQuyen) {
+        con = ConnectionDB.getConnection();
+        ArrayList<String> dsctq = new ArrayList<>();//+
+        try {
+            String query = "select MaQuyen from NQ_CTQ where NhomQuyen = ?";//+
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, nhomQuyen);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String maQuyen = rs.getString("MaQuyen");//+ 
+                dsctq.add(maQuyen);//+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dsctq;
+    }
+
     public void add(NQ_CTQ nq_ctq) {
+        con = ConnectionDB.getConnection();
+
         try {
             String query = "INSERT INTO NQ_CTQ VALUES (?,?);";//++
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, nq_ctq.getMaNhomQuyen());//+
-            st.setString(2, nq_ctq.getMaQuyen());//+
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, nq_ctq.getMaNhomQuyen());//+
+            pstm.setString(2, nq_ctq.getMaQuyen());//+
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
     // vì bảng NQ_CTQ có 2 khóa chính nên truyền vào cả 2 để cập nhật
     public void update(String maNhomQuyen, String maQuyen, NQ_CTQ nq_ctq) {
+        con = ConnectionDB.getConnection();
+
         try {
             String query = "UPDATE NQ_CTQ SET MaNhomQuyen = ?, MaQuyen = ? WHERE MaNhomQuyen=? and MaQuyen = ?";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, nq_ctq.getMaNhomQuyen());//+
-            st.setString(2, nq_ctq.getMaQuyen());//+
-            st.setString(3, maNhomQuyen);//+
-            st.setString(4, maQuyen);
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, nq_ctq.getMaNhomQuyen());//+
+            pstm.setString(2, nq_ctq.getMaQuyen());//+
+            pstm.setString(3, maNhomQuyen);//+
+            pstm.setString(4, maQuyen);
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
     public void delete(String maNhomQuyen, String maQuyen) {
+        con = ConnectionDB.getConnection();
+
         try {
             String query = "DELETE FROM NQ_CTQ WHERE MaNhomQuyen = ? and MaQuyen = ?;";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, maNhomQuyen);//+
-            st.setString(2, maQuyen);
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, maNhomQuyen);//+
+            pstm.setString(2, maQuyen);
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 // -------------------------Kiem Tra--------------------------------

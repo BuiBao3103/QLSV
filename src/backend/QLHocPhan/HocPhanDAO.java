@@ -17,17 +17,19 @@ import java.util.ArrayList;
  */
 public class HocPhanDAO {
 
-    Connection con = ConnectionDB.getConnection();
+    Connection con = null;
+    PreparedStatement pstm = null;
 
     public HocPhanDAO() {
     }
 
     public ArrayList<HocPhan> get() {
+        con = ConnectionDB.getConnection();
         ArrayList<HocPhan> dshp = new ArrayList<>();//+
         try {
             String query = "select * from HocPhan";//+
-            PreparedStatement st = con.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 String maHP = rs.getString("MaHP");//+
                 String tenHP = rs.getString("TenMon");//+
@@ -41,60 +43,63 @@ public class HocPhanDAO {
             }
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
         return dshp;//+
     }
 
     public void add(HocPhan hp) {
+        con = ConnectionDB.getConnection();
         try {
             String query = "INSERT INTO HocPhan VALUES (?,?,?,?,?,?,?);";//++
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, hp.getMaHP());//+
-            st.setString(2, hp.getTenHP());//+
-            st.setInt(3, hp.getTinChi());//+
-            st.setInt(4, hp.getChuyenBiet());//+
-            st.setString(5, hp.getPhanTramQuaTrinh());//+
-            st.setString(6, hp.getMaKhoa());//+
-            st.setString(7, hp.getMaNganh());//+
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, hp.getMaHP());//+
+            pstm.setString(2, hp.getTenHP());//+
+            pstm.setInt(3, hp.getTinChi());//+
+            pstm.setInt(4, hp.getChuyenBiet());//+
+            pstm.setString(5, hp.getPhanTramQuaTrinh());//+
+            pstm.setString(6, hp.getMaKhoa());//+
+            pstm.setString(7, hp.getMaNganh());//+
 
-            st.executeQuery();
+            pstm.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
     public void update(String maHP, HocPhan hp) {
+        con = ConnectionDB.getConnection();
         try {
             String query = "UPDATE HocPhan SET MaHP = ?, TenMon= ?, TinChi= ?,ChuyenBiet =?,PhanTramQuaTrinh=?,MaKhoa=?,MaNganh=? WHERE MaHP=?";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, hp.getMaHP());//+
-            st.setString(2, hp.getTenHP());//+
-            st.setInt(3, hp.getTinChi());//+
-            st.setInt(4, hp.getChuyenBiet());//+
-            st.setString(5, hp.getPhanTramQuaTrinh());//+
-            st.setString(6, hp.getMaKhoa());//+
-            st.setString(7, hp.getMaNganh());//+
-            st.setString(8, maHP);//+
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, hp.getMaHP());//+
+            pstm.setString(2, hp.getTenHP());//+
+            pstm.setInt(3, hp.getTinChi());//+
+            pstm.setInt(4, hp.getChuyenBiet());//+
+            pstm.setString(5, hp.getPhanTramQuaTrinh());//+
+            pstm.setString(6, hp.getMaKhoa());//+
+            pstm.setString(7, hp.getMaNganh());//+
+            pstm.setString(8, maHP);//+
 
-            ResultSet rs = st.executeQuery();
+            ResultSet rs = pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
     public void delete(String maHP) {
+        con = ConnectionDB.getConnection();
         try {
             String query = "DELETE FROM HocPhan WHERE MaHP=?;";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, maHP);//+
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, maHP);//+
+            ResultSet rs = pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 }

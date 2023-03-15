@@ -3,21 +3,22 @@ package backend.QLNhomQuyen;
 import connectDB.ConnectionDB;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.naming.spi.DirStateFactory;
 
 public class NhomQuyenDAO {
 
-    Connection con = ConnectionDB.getConnection();
+    Connection con = null;
+    PreparedStatement pstm = null;
 
     public NhomQuyenDAO() {
     }
 
     public ArrayList<NhomQuyen> get() {
+        con = ConnectionDB.getConnection();
         ArrayList<NhomQuyen> dsnq = new ArrayList<>();//+
         try {
             String query = "select * from NhomQuyen";//+
-            PreparedStatement st = con.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 String maNhomQuyen = rs.getString("MaNhomQuyen");//+
                 String tenNhomQuyen = rs.getString("TenNhomQuyen");//+
@@ -27,47 +28,52 @@ public class NhomQuyenDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con,pstm);
         }
         return dsnq;//+
     }
 
     public void add(NhomQuyen nq) {
+                con = ConnectionDB.getConnection();
+
         try {
             String query = "INSERT INTO NhomQuyen VALUES (?,?);";//++
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, nq.getMaNhomQuyen());//+
-            st.setString(2, nq.getTenNhomQuyen());//+
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, nq.getMaNhomQuyen());//+
+            pstm.setString(2, nq.getTenNhomQuyen());//+
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con,pstm);
         }
     }
 
     public void update(String maNhomQuyen, NhomQuyen nq) {
+                con = ConnectionDB.getConnection();
+
         try {
             String query = "UPDATE NhomQuyen SET MaNhomQuyen = ?, TenNhomQuyen = ? WHERE MaNhomQuyen=?";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, nq.getMaNhomQuyen());//+
-            st.setString(2, nq.getTenNhomQuyen());//+
-            st.setString(3, maNhomQuyen);//+
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, nq.getMaNhomQuyen());//+
+            pstm.setString(2, nq.getTenNhomQuyen());//+
+            pstm.setString(3, maNhomQuyen);//+
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con,pstm);
         }
     }
 
     public void delete(String maNhomQuyen) {
+        
         try {
             String query = "DELETE FROM NhomQuyen WHERE MaNhomQuyen=?;";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, maNhomQuyen);//+
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, maNhomQuyen);//+
+            pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con,pstm);
         }
     }
 //    ----------------------------Kiem Tra-----------------------------------

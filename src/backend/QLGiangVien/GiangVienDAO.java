@@ -7,7 +7,6 @@ package backend.QLGiangVien;
 import connectDB.ConnectionDB;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.naming.spi.DirStateFactory;
 
 /**
  *
@@ -15,17 +14,19 @@ import javax.naming.spi.DirStateFactory;
  */
 public class GiangVienDAO {
 
-    Connection con = ConnectionDB.getConnection();
+    Connection con = null;
+    PreparedStatement pstm = null;
 
     public GiangVienDAO() {
     }
 
     public ArrayList<GiangVien> get() {
+        con = ConnectionDB.getConnection();
         ArrayList<GiangVien> dsgv = new ArrayList<>();//+
         try {
             String query = "select * from GiangVien";//+
-            PreparedStatement st = con.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 String maGV = rs.getString("MaGV");//+
                 String tenGV = rs.getString("TenGV");//+
@@ -35,50 +36,53 @@ public class GiangVienDAO {
             }
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
         return dsgv;//+
     }
 
     public void add(GiangVien gv) {
+        con = ConnectionDB.getConnection();
         try {
             String query = "INSERT INTO GiangVien VALUES (?,?,?);";//++
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, gv.getMaGV());//+
-            st.setString(2, gv.getTenGV());//+
-            st.setString(3, gv.getMaTK());//+
-            st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, gv.getMaGV());//+
+            pstm.setString(2, gv.getTenGV());//+
+            pstm.setString(3, gv.getMaTK());//+
+            pstm.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
     public void update(String maGV, GiangVien gv) {
+        con = ConnectionDB.getConnection();
         try {
             String query = "UPDATE GiangVien SET MaGV = ?, TenGV= ?, MaTK = ? WHERE maGV=?";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, gv.getMaGV());//+
-            st.setString(2, gv.getTenGV());//+
-            st.setString(3, gv.getMaTK());//+
-            st.setString(4, maGV);//+
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, gv.getMaGV());//+
+            pstm.setString(2, gv.getTenGV());//+
+            pstm.setString(3, gv.getMaTK());//+
+            pstm.setString(4, maGV);//+
+            ResultSet rs = pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
     public void delete(String maGV) {
+        con = ConnectionDB.getConnection();
         try {
             String query = "DELETE FROM Giangvien WHERE MaGV=?;";//+
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, maGV);//+
-            ResultSet rs = st.executeQuery();
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, maGV);//+
+            ResultSet rs = pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 }

@@ -1,5 +1,5 @@
 
-package Nhom;
+package backend.Nhom;
 
 public class Nhom {
    private String maHP;

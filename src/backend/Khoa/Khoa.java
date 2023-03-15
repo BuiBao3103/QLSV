@@ -1,5 +1,5 @@
 
-package Khoa;
+package backend.Khoa;
 
 public class Khoa {
     private String maKhoa;

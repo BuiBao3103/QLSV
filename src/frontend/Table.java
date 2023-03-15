@@ -6,6 +6,7 @@ package frontend;
 
 import backend.QLSinhVien.SinhVienBUS;
 import java.awt.Font;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -20,9 +21,53 @@ public class Table extends javax.swing.JFrame {
     /**
      * Creates new form TableInside
      */
-    public Table() {
+    public Table(ArrayList<String> dsq) {
         initComponents();
-        
+        btnInformation.setVisible(false);
+        btnSubjectRegistration.setVisible(false);
+        btnSchedule.setVisible(false);
+        btnScore.setVisible(false);
+        inputPoint.setVisible(false);
+        btnInformation.setVisible(false);
+        jButton7.setVisible(false);
+        jButton8.setVisible(false);
+        jButton9.setVisible(false);
+        studentList.setVisible(false);
+        for (String q : dsq) {
+            switch (q) {
+                case "CTQ1" -> {
+                    btnInformation.setVisible(true);
+                }
+                case "CTQ2" -> {
+                    btnSubjectRegistration.setVisible(true);
+                }
+                case "CTQ3" -> {
+                    btnSchedule.setVisible(true);
+                }
+                case "CTQ4" -> {
+                    btnScore.setVisible(true);
+                }
+                case "CTQ5" -> {
+                    inputPoint.setVisible(true);
+                }
+                case "CTQ6" -> {
+                    btnInformation.setVisible(true);
+                }
+                case "CTQ7" -> {
+                    jButton7.setVisible(true);
+                }
+                case "CTQ8" -> {
+                    jButton8.setVisible(true);
+                }
+                case "CTQ9" -> {
+                    jButton9.setVisible(true);
+                }
+                case "CTQ10" -> {
+                    studentList.setVisible(true);
+                }
+            }
+        }
+
     }
 
     /**
@@ -158,6 +203,11 @@ public class Table extends javax.swing.JFrame {
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jButton8.setText("jButton8");
         jButton8.setPreferredSize(new java.awt.Dimension(190, 50));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jButton9.setText("jButton9");
@@ -857,13 +907,17 @@ public class Table extends javax.swing.JFrame {
 
     }//GEN-LAST:event_studentListActionPerformed
     private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {
-        
+
         SinhVienBUS.showMoreInfoStudent(info, SinhVienBUS.StudentinTable(studentTable, studentTable.getSelectedRow()));
-        
+
     }
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -898,9 +952,9 @@ public class Table extends javax.swing.JFrame {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ignored) {
         }
-        new Table().setVisible(true);
+        new Table(new ArrayList<>()).setVisible(true);
     }
-    
+
     JTable studentTable = new JTable();
     StudentInfo info = new StudentInfo();
     // Variables declaration - do not modify//GEN-BEGIN:variables
