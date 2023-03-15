@@ -114,7 +114,6 @@ Go
 Create table CHITIETQUYEN(
 MaQuyen nvarchar(10) not null primary key,
 TenQuyen nvarchar(50),
-MaNhomQuyen nvarchar(10)
 )
 Go
 -- Tạo bảng nhóm quyền chi tiết quyền 
@@ -132,7 +131,30 @@ Insert into NHOMQUYEN values
 ('Q3','GiangVien'),
 ('Q4','SinhVien')
 Insert into CHITIETQUYEN values
-('','','')
+('CTQ1',N'Xem thông tin cá nhân'),
+('CTQ2',N'Đăng ký môn học'),
+('CTQ3',N'Xem thời khóa biểu'),
+('CTQ4',N'Xem điểm'),
+('CTQ5',N'Nhập điểm'),
+('CTQ6',N'Xem danh sách sinh viên'),
+('CTQ7',N'Tạo nhóm đăn ký môn học'),
+('CTQ8',N'Quản lý sinh viên'),
+('CTQ9',N'Đổi mật khẩu'),
+('CTQ10',N'Quan lý tài khoản')
+
+Insert into NQ_CTQ values 
+('Q4','CTQ1'),
+('Q4','CTQ2'),
+('Q4','CTQ3'),
+('Q4','CTQ4'),
+('Q3','CTQ5'),
+('Q3','CTQ6'),
+('Q2','CTQ7'),
+('Q2','CTQ8'),
+('Q2','CTQ9'),
+('Q3','CTQ9'),
+('Q4','CTQ9'),
+('Q1','CTQ10')
 					-----======================		Tài Khoản	 ======================
 		
 Insert into  TAIKHOAN values
@@ -804,3 +826,4 @@ Alter table NQ_CTQ
 add constraint FK_NQ_CTQ_MaNhomQUyen_NHONQUYEN_MaNhonQuyen foreign key(MaNhomQuyen) references NHOMQUYEN(MaNhomQuyen),
 constraint FK_NQ_CTQ_MaQuyen_CHITIETQUYEN_MaQuyen foreign key(MaQuyen) references CHITIETQUYEN(MaQuyen)
 
+select * from NQ_CTQ

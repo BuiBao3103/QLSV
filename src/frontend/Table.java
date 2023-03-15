@@ -44,6 +44,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jButton8.setVisible(false);
         jButton9.setVisible(false);
         studentList.setVisible(false);
+        jButton12.setVisible(false);
+        jButton13.setVisible(false);
+        group.setVisible(false);
+        accountList.setVisible(false);
+        tool1.setVisible(false);
+        setting.setVisible(false);
+        scholastic.setVisible(false);
+
         for (String q : dsq) {
             switch (q) {
                 case "CTQ1" -> {
@@ -74,7 +82,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
                     jButton9.setVisible(true);
                 }
                 case "CTQ10" -> {
-                    studentList.setVisible(true);
+                    accountList.setVisible(true);
+                    scholastic.setVisible(true);
                 }
             }
         }
@@ -943,12 +952,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     }// GEN-LAST:event_jTable1MouseClicked
 
-    <<<<<<<HEAD
-
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jButton8ActionPerformed
-    =======
 
     private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_openMenuActionPerformed
         btnHeader.removeAll();
@@ -981,7 +987,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // }
         // }).start();
     }// GEN-LAST:event_closeMenuActionPerformed
-    >>>>>>>5d 9d a0ecc56cc9a593f2bf7fbbe812a220e51390
 
     /**
      * @param args the command line arguments

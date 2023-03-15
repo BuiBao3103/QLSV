@@ -37,7 +37,7 @@ public class NQ_CTQDAO {
         con = ConnectionDB.getConnection();
         ArrayList<String> dsctq = new ArrayList<>();//+
         try {
-            String query = "select MaQuyen from NQ_CTQ where NhomQuyen = ?";//+
+            String query = "select MaQuyen from NQ_CTQ where MaNhomQuyen = ?";//+
             pstm = con.prepareStatement(query);
             pstm.setString(1, nhomQuyen);
             ResultSet rs = pstm.executeQuery();
