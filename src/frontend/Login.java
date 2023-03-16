@@ -354,7 +354,7 @@ public class Login extends javax.swing.JFrame {
 //            }
 //        });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.swing.Button button1;
     private com.raven.swing.Button eye;

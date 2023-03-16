@@ -4,9 +4,18 @@
  */
 package frontend;
 
+import backend.QLSinhVien.SinhVien;
+import backend.QLSinhVien.SinhVienBUS;
+import backend.QLSinhVien.SinhVienDAO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 /**
  *
@@ -58,15 +67,37 @@ public class StudentInfo extends javax.swing.JFrame {
         txtSoDienThoaiSinhVien = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtMaTKSinhVien = new javax.swing.JTextField();
+        btnLuu = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(900, 320, 0, 0));
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                formWindowStateChanged(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowDeactivated(java.awt.event.WindowEvent evt) {
+                formWindowDeactivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Họ Tên:");
 
+        txtHoTenSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtHoTenSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtHoTenSinhVien.setEnabled(false);
         txtHoTenSinhVien.addActionListener(new java.awt.event.ActionListener() {
@@ -75,10 +106,13 @@ public class StudentInfo extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Mã Số Sinh Viên:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Chứng Minh Nhân Dân:");
 
+        txtMSSV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtMSSV.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtMSSV.setEnabled(false);
         txtMSSV.addActionListener(new java.awt.event.ActionListener() {
@@ -87,17 +121,19 @@ public class StudentInfo extends javax.swing.JFrame {
             }
         });
 
+        txtCMNDSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCMNDSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCMNDSinhVien.setEnabled(false);
-        txtCMNDSinhVien.setFocusable(false);
         txtCMNDSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCMNDSinhVienActionPerformed(evt);
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Ngày Sinh:");
 
+        txtNgaySinhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNgaySinhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNgaySinhSinhVien.setEnabled(false);
         txtNgaySinhSinhVien.addActionListener(new java.awt.event.ActionListener() {
@@ -106,8 +142,10 @@ public class StudentInfo extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Giới Tính: ");
 
+        txtGioiTinhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtGioiTinhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtGioiTinhSinhVien.setEnabled(false);
         txtGioiTinhSinhVien.addActionListener(new java.awt.event.ActionListener() {
@@ -116,8 +154,10 @@ public class StudentInfo extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Tôn Giáo:");
 
+        txtTonGiaoSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTonGiaoSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTonGiaoSinhVien.setEnabled(false);
         txtTonGiaoSinhVien.addActionListener(new java.awt.event.ActionListener() {
@@ -126,8 +166,10 @@ public class StudentInfo extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Ngành:");
 
+        txtNganhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNganhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNganhSinhVien.setEnabled(false);
         txtNganhSinhVien.addActionListener(new java.awt.event.ActionListener() {
@@ -136,8 +178,10 @@ public class StudentInfo extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Niên Khóa: ");
 
+        txtNienKhoaSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNienKhoaSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNienKhoaSinhVien.setEnabled(false);
         txtNienKhoaSinhVien.addActionListener(new java.awt.event.ActionListener() {
@@ -146,8 +190,10 @@ public class StudentInfo extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Địa Chỉ:");
 
+        txtDiaChiSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDiaChiSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDiaChiSinhVien.setEnabled(false);
         txtDiaChiSinhVien.addActionListener(new java.awt.event.ActionListener() {
@@ -156,8 +202,10 @@ public class StudentInfo extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Dân Tộc");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Dân Tộc:");
 
+        txtDanTocSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDanTocSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDanTocSinhVien.setEnabled(false);
         txtDanTocSinhVien.addActionListener(new java.awt.event.ActionListener() {
@@ -166,9 +214,16 @@ public class StudentInfo extends javax.swing.JFrame {
             }
         });
 
+        btnSuaSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSuaSinhVien.setText("Sửa");
         btnSuaSinhVien.setDefaultCapable(false);
+        btnSuaSinhVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaSinhVienActionPerformed(evt);
+            }
+        });
 
+        btnXoaSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoaSinhVien.setText("Xóa");
         btnXoaSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,15 +231,28 @@ public class StudentInfo extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("Số Điện Thoại:");
 
+        txtSoDienThoaiSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSoDienThoaiSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSoDienThoaiSinhVien.setEnabled(false);
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("Mã Tài Khoản:");
 
+        txtMaTKSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtMaTKSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtMaTKSinhVien.setEnabled(false);
+
+        btnLuu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnLuu.setText("Lưu");
+        btnLuu.setEnabled(false);
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,27 +270,24 @@ public class StudentInfo extends javax.swing.JFrame {
                             .addComponent(txtDiaChiSinhVien)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtNienKhoaSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69)
+                                .addGap(54, 54, 54)
                                 .addComponent(btnSuaSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                                .addComponent(btnXoaSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNganhSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnXoaSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 6, Short.MAX_VALUE))
+                            .addComponent(txtNganhSinhVien)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtHoTenSinhVien))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMSSV))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCMNDSinhVien)))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtHoTenSinhVien)
+                            .addComponent(txtMSSV)
+                            .addComponent(txtCMNDSinhVien))
                         .addGap(6, 6, 6))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +295,7 @@ public class StudentInfo extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtSoDienThoaiSinhVien)
@@ -246,7 +311,7 @@ public class StudentInfo extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtGioiTinhSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,12 +367,13 @@ public class StudentInfo extends javax.swing.JFrame {
                     .addComponent(txtNganhSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnXoaSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(btnSuaSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtNienKhoaSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSuaSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnXoaSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLuu))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNienKhoaSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
+                        .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -322,7 +388,7 @@ public class StudentInfo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -383,10 +449,107 @@ public class StudentInfo extends javax.swing.JFrame {
 
     private void btnXoaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaSinhVienActionPerformed
         int a = JOptionPane.showConfirmDialog(rootPane, "Xóa Sinh Viên", "Bạn Có Chắc Muốn Xóa ?", JOptionPane.YES_NO_OPTION);
-        
+        if (a == JOptionPane.YES_OPTION) {
+            SinhVienDAO svDAO = new SinhVienDAO();
+            svDAO.delete(txtMSSV.getText());
+            dispose();
+        }
+
     }//GEN-LAST:event_btnXoaSinhVienActionPerformed
 
-    
+    private void btnSuaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaSinhVienActionPerformed
+        btnLuu.setEnabled(true);
+        String HoTen = txtHoTenSinhVien.getText();
+        String MSSV = txtMSSV.getText();
+        String CMND = txtCMNDSinhVien.getText();
+        String SoDT = txtSoDienThoaiSinhVien.getText();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        Date NgaySinh = new Date();
+        try {
+            NgaySinh = date.parse(txtNgaySinhSinhVien.getText());
+        } catch (ParseException ex) {
+            System.out.println("Chuyển kiểu sang date bị lỗi ở StudentInfo.btnSuaSinhVien");
+        }
+        String GioiTinh = txtGioiTinhSinhVien.getText();
+        String DiaChi = txtDiaChiSinhVien.getText();
+        String DanToc = txtDanTocSinhVien.getText();
+        String TonGiao = txtTonGiaoSinhVien.getText();
+        String NienKhoa = txtNienKhoaSinhVien.getText();
+        String Nganh = SinhVienBUS.tenNganhToMaNganh(txtNganhSinhVien.getText());
+        int MaTK = Integer.parseInt(txtMaTKSinhVien.getText());
+        svCu = new SinhVien(1, MSSV, CMND, SoDT, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
+        SinhVienBUS.updateSinhVien(this);
+    }//GEN-LAST:event_btnSuaSinhVienActionPerformed
+
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        String HoTen = txtHoTenSinhVien.getText();
+        String MSSV = txtMSSV.getText();
+        String CMND = txtCMNDSinhVien.getText();
+        String SoDT = txtSoDienThoaiSinhVien.getText();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        Date NgaySinh = new Date();
+        try {
+            NgaySinh = date.parse(txtNgaySinhSinhVien.getText());
+        } catch (ParseException ex) {
+            System.out.println("Chuyển kiểu sang date bị lỗi ở StudentInfo.btnSuaSinhVien");
+        }
+        String GioiTinh = txtGioiTinhSinhVien.getText();
+        String DiaChi = txtDiaChiSinhVien.getText();
+        String DanToc = txtDanTocSinhVien.getText();
+        String TonGiao = txtTonGiaoSinhVien.getText();
+        String NienKhoa = txtNienKhoaSinhVien.getText();
+        String Nganh = SinhVienBUS.tenNganhToMaNganh(txtNganhSinhVien.getText());
+        int MaTK = Integer.parseInt(txtMaTKSinhVien.getText());
+        SinhVien svMoi = new SinhVien(1, MSSV, CMND, SoDT, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
+        int a = JOptionPane.showConfirmDialog(rootPane, "Bạn muốn lưu thông tin mới \n" + SinhVienBUS.compare2SinhVien(svCu, svMoi), "Lưu Sinh Viên", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            dispose();
+            btnSuaSinhVien.setEnabled(true);
+            btnLuu.setEnabled(false);
+            txtHoTenSinhVien.setEnabled(false);
+            txtCMNDSinhVien.setEnabled(false);
+            txtDanTocSinhVien.setEnabled(false);
+            txtDiaChiSinhVien.setEnabled(false);
+            txtGioiTinhSinhVien.setEnabled(false);
+            txtNganhSinhVien.setEnabled(false);
+            txtNgaySinhSinhVien.setEnabled(false);
+            txtSoDienThoaiSinhVien.setEnabled(false);
+            txtNienKhoaSinhVien.setEnabled(false);
+            txtTonGiaoSinhVien.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_btnLuuActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        btnLuu.setEnabled(false);
+        btnSuaSinhVien.setEnabled(true);
+        txtHoTenSinhVien.setEnabled(false);
+        txtCMNDSinhVien.setEnabled(false);
+        txtDanTocSinhVien.setEnabled(false);
+        txtDiaChiSinhVien.setEnabled(false);
+        txtGioiTinhSinhVien.setEnabled(false);
+        txtNganhSinhVien.setEnabled(false);
+        txtNgaySinhSinhVien.setEnabled(false);
+        txtSoDienThoaiSinhVien.setEnabled(false);
+        txtNienKhoaSinhVien.setEnabled(false);
+        txtTonGiaoSinhVien.setEnabled(false);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
+
+    }//GEN-LAST:event_formWindowStateChanged
+
+    private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
+
+    }//GEN-LAST:event_formWindowDeactivated
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -423,8 +586,72 @@ public class StudentInfo extends javax.swing.JFrame {
         });
     }
 
+    public SinhVien getSvCu() {
+        return svCu;
+    }
+
+    public void setSvCu(SinhVien svCu) {
+        this.svCu = svCu;
+    }
+
+    public JButton getBtnSuaSinhVien() {
+        return btnSuaSinhVien;
+    }
+
+    public void setBtnSuaSinhVien(JButton btnSuaSinhVien) {
+        this.btnSuaSinhVien = btnSuaSinhVien;
+    }
+
+    public JTextField getTxtMSSV() {
+        return txtMSSV;
+    }
+
+    public JTextField getTxtMaTKSinhVien() {
+        return txtMaTKSinhVien;
+    }
+
+    public JTextField getTxtHoTenSinhVien() {
+        return txtHoTenSinhVien;
+    }
+
+    public JTextField getTxtCMNDSinhVien() {
+        return txtCMNDSinhVien;
+    }
+
+    public JTextField getTxtDanTocSinhVien() {
+        return txtDanTocSinhVien;
+    }
+
+    public JTextField getTxtDiaChiSinhVien() {
+        return txtDiaChiSinhVien;
+    }
+
+    public JTextField getTxtGioiTinhSinhVien() {
+        return txtGioiTinhSinhVien;
+    }
+
+    public JTextField getTxtNganhSinhVien() {
+        return txtNganhSinhVien;
+    }
+
+    public JTextField getTxtNgaySinhSinhVien() {
+        return txtNgaySinhSinhVien;
+    }
+
+    public JTextField getTxtNienKhoaSinhVien() {
+        return txtNienKhoaSinhVien;
+    }
+
+    public JTextField getTxtSoDienThoaiSinhVien() {
+        return txtSoDienThoaiSinhVien;
+    }
+
+    public JTextField getTxtTonGiaoSinhVien() {
+        return txtTonGiaoSinhVien;
+    }
+
     public void setTxtMaTKSinhVien(int maTK) {
-        this.txtMaTKSinhVien.setText(maTK+ "");
+        this.txtMaTKSinhVien.setText(maTK + "");
     }
 
     public void setTxtSoDienThoaiSinhVien(String soDienThoai) {
@@ -471,7 +698,9 @@ public class StudentInfo extends javax.swing.JFrame {
         this.txtTonGiaoSinhVien.setText(tonGiao);
     }
 
+    private SinhVien svCu;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnSuaSinhVien;
     private javax.swing.JButton btnXoaSinhVien;
     private javax.swing.JButton jButton1;

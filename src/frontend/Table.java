@@ -5,11 +5,10 @@
 package frontend;
 
 import backend.QLSinhVien.SinhVienBUS;
-import java.awt.Font;
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+
 
 /**
  *
@@ -458,7 +457,10 @@ public class Table extends javax.swing.JFrame {
         );
         scheduleLayout.setVerticalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         mainPanel.add(schedule, "card4");
@@ -843,7 +845,6 @@ public class Table extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void studentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentListActionPerformed
-
         mainPanel.removeAll(); // xóa hết nội dung vùng content
         mainPanel.repaint();
         mainPanel.revalidate();
@@ -854,12 +855,13 @@ public class Table extends javax.swing.JFrame {
         });
         SinhVienBUS.showStudentList(studentTable);
         JScrollPane scrollPane = new JScrollPane(studentTable);// Bảng được đặt trong 1 khung có thể cuộn
+        scrollPane.setAutoscrolls(true);
         mainPanel.add(scrollPane);
         mainPanel.repaint();
         mainPanel.revalidate();
 
     }//GEN-LAST:event_studentListActionPerformed
-    private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {
+    public void studentTableMouseClicked(java.awt.event.MouseEvent evt) {
         
         SinhVienBUS.showMoreInfoStudent(info, SinhVienBUS.StudentinTable(studentTable, studentTable.getSelectedRow()));
         

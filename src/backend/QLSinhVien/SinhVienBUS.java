@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import frontend.StudentInfo;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -18,6 +19,7 @@ import java.awt.Font;
 public class SinhVienBUS {
 
     static SinhVienDAO svDAO = new SinhVienDAO();
+    static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // cái này để chuyển qua lại kiểu date với String
 
     public SinhVienBUS() {
     }
@@ -61,20 +63,23 @@ public class SinhVienBUS {
         table.setFont(new java.awt.Font("Segoe UI", 0, 16));
         table.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-
     }
 
-    public static SinhVien StudentinTable(JTable table, int position) { //hàm này trả về sinh viên ở dòng được chọn trong bảng
+    public static SinhVien StudentinTable(JTable table, int row) { //hàm này trả về sinh viên ở dòng được chọn trong bảng
         ArrayList<SinhVien> dssv = new ArrayList();
         dssv = svDAO.get();
-        SinhVien sv = new SinhVien();
-        sv = dssv.get(position);
-        return sv;
+        String mssv = table.getValueAt(row, 0) + ""; // cái dòng này sẽ từ cái dòng được chọn trong bảng lấy ra giá trị trong ô mssv
+        for (SinhVien sv : dssv) {
+            if (sv.getMaSV().equals(mssv)) {
+                return sv;
+            }
+        }
+        return null;
     }
 
     public static void showMoreInfoStudent(StudentInfo info, SinhVien sv) {
         if (!info.isVisible()) { // cái này kiểm tra xem có mở cửa sổ thông tin sinh viên chưa
-            info.setVisible(true);
+            info.setVisible(true); // mở rồi thì chỉ cần thay đổi giá trị trong bảng thôi
         }
         info.setTxtHoTenSinhVien(sv.getHoTen());
         info.setTxtMSSV(sv.getMaSV());
@@ -130,6 +135,74 @@ public class SinhVienBUS {
         } else {
             return "";
         }
+    }
+
+    public static String tenNganhToMaNganh(String tenNganh) {
+        String maNganh = tenNganh.split("[()]")[1]; // cái "[()]" là cắt chuỗi khi gặp 2 dấu hiệu là ')' và '('
+        return maNganh;
+    }
+
+    public static void updateSinhVien(StudentInfo stu) {
+        stu.getBtnSuaSinhVien().setEnabled(false);
+        JTextField txtHoTen = stu.getTxtHoTenSinhVien();
+        JTextField txtCMND = stu.getTxtCMNDSinhVien();
+        JTextField txtDanToc = stu.getTxtDanTocSinhVien();
+        JTextField txtDiaChi = stu.getTxtDiaChiSinhVien();
+        JTextField txtGioiTinh = stu.getTxtGioiTinhSinhVien();
+        JTextField txtNganh = stu.getTxtNganhSinhVien();
+        JTextField txtNgaySinh = stu.getTxtNgaySinhSinhVien();
+        JTextField txtSoDienThoai = stu.getTxtSoDienThoaiSinhVien();
+        JTextField txtNienKhoa = stu.getTxtNienKhoaSinhVien();
+        JTextField txtTonGiao = stu.getTxtTonGiaoSinhVien();
+        txtHoTen.setEnabled(true);
+        txtCMND.setEnabled(true);
+        txtDanToc.setEnabled(true);
+        txtDiaChi.setEnabled(true);
+        txtGioiTinh.setEnabled(true);
+        txtNganh.setEnabled(true);
+        txtNgaySinh.setEnabled(true);
+        txtSoDienThoai.setEnabled(true);
+        txtNienKhoa.setEnabled(true);
+        txtTonGiao.setEnabled(true);
+
+    }
+
+    public static String compare2SinhVien(SinhVien svCu, SinhVien svMoi) {
+        String result = "";
+        if (!svCu.getMaSV().equals(svMoi.getMaSV())) {
+            result += "Mã Sinh Vien: " + svCu.getMaSV() + "-->" + svMoi.getMaSV() + "\n";
+        }
+        if (!svCu.getCmnd().equals(svMoi.getCmnd())) {
+            result += "CMND: " + svCu.getCmnd() + "-->" + svMoi.getCmnd() + "\n";
+        }
+        if (!svCu.getSoDienThoai().equals(svMoi.getSoDienThoai())) {
+            result += "Số Điện Thoại: " + svCu.getSoDienThoai() + "-->" + svMoi.getSoDienThoai() + "\n";
+        }
+        if (!svCu.getHoTen().equals(svMoi.getHoTen())) {
+            result += "Họ Tên: " + svCu.getHoTen() + "-->" + svMoi.getHoTen() + "\n";
+        }
+        if (!svCu.getNgaySinh().equals(svMoi.getNgaySinh())) {
+            result += "Ngày Sinh: " + dateFormat.format(svCu.getNgaySinh()) + "-->" + dateFormat.format(svMoi.getNgaySinh()) + "\n";
+        }
+        if (!svCu.getGioiTinh().equals(svMoi.getGioiTinh())) {
+            result += "Giới Tính: " + svCu.getGioiTinh() + "-->" + svMoi.getGioiTinh() + "\n";
+        }
+        if (!svCu.getDiaChi().equals(svMoi.getDiaChi())) {
+            result += "Địa Chỉ: " + svCu.getDiaChi() + "-->" + svMoi.getDiaChi() + "\n";
+        }
+        if (!svCu.getDanToc().equals(svMoi.getDanToc())) {
+            result += "Dân Tộc: " + svCu.getDanToc() + "-->" + svMoi.getDanToc() + "\n";
+        }
+        if (!svCu.getTonGiao().equals(svMoi.getTonGiao())) {
+            result += "Niên Khóa: " + svCu.getNienKhoa() + "-->" + svMoi.getNienKhoa() + "\n";
+        }
+        if (!svCu.getMaNganh().equals(svMoi.getMaNganh())) {
+            result += "Ngành: " + maNganhToTenNganh(svCu.getMaNganh()) + "-->" + maNganhToTenNganh(svMoi.getMaNganh()) + "\n";
+        }
+        if (result.equals("")) {
+            return "Không có gì thay đổi\n";
+        }
+        return result;
     }
 
     public static void main(String[] args) {
