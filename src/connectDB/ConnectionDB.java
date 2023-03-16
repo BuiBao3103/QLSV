@@ -25,15 +25,19 @@ public class ConnectionDB {
         return con;
     }
 
-    public static void closeConnection(Connection con) {
+    public static void closeConnection(Connection con, PreparedStatement pstm) {
         try {
             if (con != null) {
                 con.close();
             }
+            if (pstm != null) {
+                pstm.close();
+            }
         } catch (SQLException e) {
         }
     }
-    public static void main(String[] args) {
-        getConnection();
-    }
+
+//    public static void main(String[] args) {
+//        getConnection();
+//    }
 }

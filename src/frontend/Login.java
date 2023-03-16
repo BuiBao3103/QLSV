@@ -2,14 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+//Hello world
 package frontend;
 
+import backend.QLTaiKhoan.TaiKhoan;
+import backend.QLTaiKhoan.TaiKhoanBUS;
+import component.PasswordField;
 import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jdesktop.animation.timing.Animator;
 
 /**
  *
@@ -17,9 +22,8 @@ import java.util.logging.Logger;
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TestLogin
-     */
+    private Animator animatorLogin;
+
     public Login() {
 //        password.setEchoChar('•');
         this.getContentPane().setBackground(Color.white);
@@ -48,16 +52,18 @@ public class Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        eyeHide = new com.raven.swing.Button();
-        eye = new com.raven.swing.Button();
-        password = new com.raven.swing.PasswordField();
+        eyeHide = new component.Button();
+        eye = new component.Button();
+        password = new component.PasswordField();
         jPanel7 = new javax.swing.JPanel();
-        username = new com.raven.swing.TextField();
-        button1 = new com.raven.swing.Button();
+        username = new component.TextField();
+        button1 = new component.Button();
+        background1 = new component.Background();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Responsive");
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1200, 630));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
@@ -87,13 +93,17 @@ public class Login extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel5);
@@ -112,6 +122,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setToolTipText("");
+        jPanel2.setPreferredSize(new java.awt.Dimension(600, 400));
         jPanel2.setRequestFocusEnabled(false);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -217,7 +228,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,10 +248,9 @@ public class Login extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -263,6 +273,22 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(jPanel6);
 
+        background1.setPreferredSize(new java.awt.Dimension(1200, 100));
+        repaint();
+
+        javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
+        background1.setLayout(background1Layout);
+        background1Layout.setHorizontalGroup(
+            background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1200, Short.MAX_VALUE)
+        );
+        background1Layout.setVerticalGroup(
+            background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(background1);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -276,7 +302,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         int width = evt.getComponent().getWidth();
         int height = evt.getComponent().getHeight();
-        if (width <= 1072) {
+        if (width <= 1135) {
             loginHeader.setIcon(new ImageIcon(getClass().getResource("/images/logologinsmaller.png")));
 //            loginHeader.setBackground(Color.decode("#5b5b5b"));
             loginHeader.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -296,7 +322,10 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentResized
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Hello");
+//        JOptionPane.showMessageDialog(rootPane, "Hello");
+//        animatorLogin.start();
+       TaiKhoanBUS.login(this);
+
     }//GEN-LAST:event_button1ActionPerformed
 
     private void eyeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyeActionPerformed
@@ -307,11 +336,10 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_eyeActionPerformed
 
     private void eyeHideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyeHideActionPerformed
-       CardLayout cardLayout = (CardLayout) jPanel4.getLayout();
+        CardLayout cardLayout = (CardLayout) jPanel4.getLayout();
         cardLayout.previous(jPanel4);
         password.setEchoChar('\u25CF');
     }//GEN-LAST:event_eyeHideActionPerformed
-
 
     /**
      * @param args the command line arguments
@@ -354,11 +382,30 @@ public class Login extends javax.swing.JFrame {
 //            }
 //        });
     }
-    
+
+
+    public PasswordField getPassword() {
+        return password;
+    }
+
+    public void setPassword(PasswordField password) {
+        this.password = password;
+    }
+
+    public component.TextField getUsername() {
+        return username;
+    }
+
+    public void setUsername(component.TextField username) {
+        this.username = username;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.swing.Button button1;
-    private com.raven.swing.Button eye;
-    private com.raven.swing.Button eyeHide;
+    private component.Background background1;
+    private component.Button button1;
+    private component.Button eye;
+    private component.Button eyeHide;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -368,7 +415,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel loginHeader;
-    private com.raven.swing.PasswordField password;
-    private com.raven.swing.TextField username;
+    private component.PasswordField password;
+    private component.TextField username;
     // End of variables declaration//GEN-END:variables
 }

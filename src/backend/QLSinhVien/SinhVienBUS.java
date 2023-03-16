@@ -137,6 +137,7 @@ public class SinhVienBUS {
         }
     }
 
+
     public static String tenNganhToMaNganh(String tenNganh) {
         String maNganh = tenNganh.split("[()]")[1]; // cái "[()]" là cắt chuỗi khi gặp 2 dấu hiệu là ')' và '('
         return maNganh;
@@ -204,6 +205,11 @@ public class SinhVienBUS {
         }
         return result;
     }
+
+
+    public int getTrangThai(int MaTK){
+       return svDAO.getTrangThaiByMaTk(MaTK);
+   }
 
     public static void main(String[] args) {
         svDAO.get().forEach(sv -> {

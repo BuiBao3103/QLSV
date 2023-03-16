@@ -4,10 +4,17 @@
  */
 package backend.QLNQ_CTQ;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author PC
  */
 public class NQ_CTQBUS {
-    
+NQ_CTQDAO nqDao = new NQ_CTQDAO();
+    public NQ_CTQBUS() {
+    }
+     public ArrayList<String> getListCTQByNQuyen(String nhomQuyen){
+         return nqDao.getListCTQByNQuyen(nhomQuyen);
+     }
 }

@@ -1,5 +1,5 @@
 
-package Nganh;
+package backend.Nganh;
 
 public class Nganh {
    private String maNganh;
