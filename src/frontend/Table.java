@@ -4,6 +4,7 @@
  */
 package frontend;
 
+import backend.KetQua.KetQuaBUS;
 import backend.QLSinhVien.SinhVienBUS;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -503,7 +504,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
-    public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
@@ -554,9 +555,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(scheduleLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         mainPanel.add(schedule, "card4");
@@ -566,10 +564,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jTable2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(1),  new Integer(866123), "Lập Trình Java",  new Integer(4),  new Integer(50),  new Integer(50),  new Float(10.0),  new Float(10.0), "A",  new Float(4.0)},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "STT", "Mã Môn", "Tên Môn", "TC", "% KT", "% Thi", "Kiểm Tra", "Điểm thi", "Điểm TK", "ĐTK(4)"
@@ -579,7 +574,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.Float.class
             };
 
-    public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
@@ -599,8 +594,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         }
         jScrollPane3.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setMinWidth(3);
             jTable2.getColumnModel().getColumn(1).setMinWidth(40);
-            jTable2.getColumnModel().getColumn(2).setMinWidth(300);
+            jTable2.getColumnModel().getColumn(2).setMinWidth(250);
             jTable2.getColumnModel().getColumn(3).setMinWidth(30);
             jTable2.getColumnModel().getColumn(4).setMinWidth(30);
             jTable2.getColumnModel().getColumn(5).setMinWidth(30);
@@ -911,7 +907,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // thêm 1 component mới hoặc xóa component cũ
         // và nó sẽ gọi thèn layout parent tính toán lại kích thước
         // Có lẽ sẽ phù hợp cho responsive
+         
         mainPanel.revalidate();
+        new KetQuaBUS().addRowData(jTable2);
+       
     }// GEN-LAST:event_btnScoreActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton7ActionPerformed

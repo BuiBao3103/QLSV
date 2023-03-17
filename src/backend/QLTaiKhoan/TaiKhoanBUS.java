@@ -18,9 +18,15 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author PC
  */
 public class TaiKhoanBUS {
-    public static void login(Login lg){
-         String tenTK = lg.getUsername().getText();
-        String matkhau = lg.getPassword().getText();
+    private static String tenTK = "";
+
+    public static String getTenTK() {
+        return tenTK;
+    }
+     
+    public static  void login(Login lg){
+        tenTK= lg.getUsername().getText();
+        String matkhau= lg.getPassword().getText();
         TaiKhoanBUS qltk = new TaiKhoanBUS();
         TaiKhoan tk = qltk.getByUsername(tenTK);
         if (tk != null) {
