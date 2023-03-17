@@ -18,8 +18,9 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author PC
  */
 public class TaiKhoanBUS {
-    public static void login(Login lg){
-         String tenTK = lg.getUsername().getText();
+
+    public static void login(Login lg) {
+        String tenTK = lg.getUsername().getText();
         String matkhau = lg.getPassword().getText();
         TaiKhoanBUS qltk = new TaiKhoanBUS();
         TaiKhoan tk = qltk.getByUsername(tenTK);
@@ -30,11 +31,11 @@ public class TaiKhoanBUS {
                 return;
             }
             if (tk.getMatKhau().equals(matkhau)) {
-                ArrayList<String>dsq = new NQ_CTQBUS().getListCTQByNQuyen(tk.getMaNhomQuyen());
+                ArrayList<String> dsq = new NQ_CTQBUS().getListCTQByNQuyen(tk.getMaNhomQuyen());
                 try {
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ignored) {
-                    
+
                 }
                 new Table(dsq).setVisible(true);
             } else {
@@ -45,17 +46,18 @@ public class TaiKhoanBUS {
             JOptionPane.showMessageDialog(null, "Sai tên đăng nhập");
         }
     }
+
     public TaiKhoan getByUsername(String tentk) {
         TaiKhoanDAO tkDAO = new TaiKhoanDAO();
         return tkDAO.getByUserName(tentk);
+    }
+
+    public int getTrangThai(TaiKhoan tk) {
+        switch (tk.getMaNhomQuyen()) {
+            case "Q4":
+                return new SinhVienBUS().getTrangThai(tk.getMaTK());
         }
-       public  int getTrangThai(TaiKhoan tk)
-       {
-           switch (tk.getMaNhomQuyen()){
-               case "Q4":
-                   return new SinhVienBUS().getTrangThai(tk.getMaTK());
-           }
-               
-          return -1;
-       }
+
+        return -1;
+    }
 }
