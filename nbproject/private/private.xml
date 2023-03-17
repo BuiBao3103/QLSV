@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0" />
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+
         <group>
             <file>file:/C:/Users/ASUS/Desktop/StudentManager/src/backend/QLSinhVien/SinhVienBUS.java</file>
             <file>file:/C:/Users/ASUS/Desktop/StudentManager/src/frontend/StudentInfo.java</file>
@@ -13,6 +13,34 @@
             <file>file:/C:/Users/ASUS/Desktop/StudentManager/src/backend/QLTaiKhoan/TaiKhoan.java</file>
             <file>file:/C:/Users/ASUS/Desktop/StudentManager/src/backend/KetQua/KetQuaBUS.java</file>
             <file>file:/C:/Users/ASUS/Desktop/StudentManager/src/backend/KetQua/KetQuaDAO.java</file>
+        </group>
+        <group>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/backend/QLSinhVien/SinhVien.java</file>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/backend/QLTaiKhoan/TaiKhoanBUS.java</file>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/frontend/Table.java</file>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/backend/QLSinhVien/SinhVienBUS.java</file>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/frontend/Login.java</file>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/backend/QLTaiKhoan/TaiKhoanDAO.java</file>
+        </group>
+        <group>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/backend/QLSinhVien/SinhVien.java</file>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/backend/QLTaiKhoan/TaiKhoanBUS.java</file>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/frontend/Table.java</file>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/backend/QLSinhVien/SinhVienBUS.java</file>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/frontend/Login.java</file>
+            <file>
+                file:/C:/Users/PC/Documents/HK2%202022-2023%20(Nam%202)/Lap%20Trinh%20Java/DoAn/StudentManager/src/backend/QLTaiKhoan/TaiKhoanDAO.java</file>
         </group>
     </open-files>
 </project-private>

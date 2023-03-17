@@ -9,8 +9,11 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import frontend.StudentInfo;
+import frontend.Table;
 import java.awt.Font;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -77,22 +80,22 @@ public class SinhVienBUS {
         return null;
     }
 
-    public static void showMoreInfoStudent(StudentInfo info, SinhVien sv) {
-        if (!info.isVisible()) { // cái này kiểm tra xem có mở cửa sổ thông tin sinh viên chưa
-            info.setVisible(true); // mở rồi thì chỉ cần thay đổi giá trị trong bảng thôi
-        }
-        info.setTxtHoTenSinhVien(sv.getHoTen());
-        info.setTxtMSSV(sv.getMaSV());
-        info.setTxtCMNDSinhVien(sv.getCmnd());
-        info.setTxtSoDienThoaiSinhVien(sv.getSoDienThoai());
-        info.setTxtNgaySinhSinhVien(sv.getNgaySinh());
-        info.setTxtGioiTinhSinhVien(sv.getGioiTinh());
-        info.setTxtDiaChiSinhVien(sv.getDiaChi());
-        info.setTxtDanTocSinhVien(sv.getDanToc());
-        info.setTxtTonGiaoSinhVien(sv.getTonGiao());
-        info.setTxtNienKhoaSinhVien(sv.getNienKhoa());
-        info.setTxtNganhSinhVien(maNganhToTenNganh(sv.getMaNganh()));
-        info.setTxtMaTKSinhVien(sv.getMaTK());
+    public static void showMoreInfoStudent(Table table,SinhVien sv) {
+//        if (!info.isVisible()) { // cái này kiểm tra xem có mở cửa sổ thông tin sinh viên chưa
+//            info.setVisible(true); // mở rồi thì chỉ cần thay đổi giá trị trong bảng thôi
+//        }
+        table.setTxtHoTenSinhVien(sv.getHoTen());
+        table.setTxtMSSinhVien(sv.getMaSV());
+        table.setTxtCMNDSinhVien(sv.getCmnd());
+        table.setTxtSoDTSinhVien(sv.getSoDienThoai());
+        table.setTxtNgaySinhSinhVien(dateFormat.format(sv.getNgaySinh()));
+        table.setTxtGioiTinhSinhVien(sv.getGioiTinh());
+        table.setTxtDiaChiSinhVien(sv.getDiaChi());
+        table.setTxtDanTocSinhVien(sv.getDanToc());
+        table.setTxtTonGiaoSinhVien(sv.getTonGiao());
+        table.setTxtNienKhoaSinhVien(sv.getNienKhoa());
+        table.setTxtNganhSinhVien(maNganhToTenNganh(sv.getMaNganh()));
+        table.setTxtMaTKSinhVien(sv.getMaTK()+"");
 
     }
 
@@ -143,18 +146,19 @@ public class SinhVienBUS {
         return maNganh;
     }
 
-    public static void updateSinhVien(StudentInfo stu) {
-        stu.getBtnSuaSinhVien().setEnabled(false);
-        JTextField txtHoTen = stu.getTxtHoTenSinhVien();
-        JTextField txtCMND = stu.getTxtCMNDSinhVien();
-        JTextField txtDanToc = stu.getTxtDanTocSinhVien();
-        JTextField txtDiaChi = stu.getTxtDiaChiSinhVien();
-        JTextField txtGioiTinh = stu.getTxtGioiTinhSinhVien();
-        JTextField txtNganh = stu.getTxtNganhSinhVien();
-        JTextField txtNgaySinh = stu.getTxtNgaySinhSinhVien();
-        JTextField txtSoDienThoai = stu.getTxtSoDienThoaiSinhVien();
-        JTextField txtNienKhoa = stu.getTxtNienKhoaSinhVien();
-        JTextField txtTonGiao = stu.getTxtTonGiaoSinhVien();
+    public static void updateSinhVien(Table table) {
+        table.getBtnSuaSinhVien().setEnabled(false);
+        table.getBtnLuuSinhVien().setEnabled(true);
+        JTextField txtHoTen = table.getTxtHoTenSinhVien();
+        JTextField txtCMND = table.getTxtCMNDSinhVien();
+        JTextField txtDanToc = table.getTxtDanTocSinhVien();
+        JTextField txtDiaChi = table.getTxtDiaChiSinhVien();
+        JTextField txtGioiTinh = table.getTxtGioiTinhSinhVien();
+        JTextField txtNganh = table.getTxtNganhSinhVien();
+        JTextField txtNgaySinh = table.getTxtNgaySinhSinhVien();
+        JTextField txtSoDienThoai = table.getTxtSoDTSinhVien();
+        JTextField txtNienKhoa = table.getTxtNienKhoaSinhVien();
+        JTextField txtTonGiao = table.getTxtTonGiaoSinhVien();
         txtHoTen.setEnabled(true);
         txtCMND.setEnabled(true);
         txtDanToc.setEnabled(true);
@@ -166,6 +170,21 @@ public class SinhVienBUS {
         txtNienKhoa.setEnabled(true);
         txtTonGiao.setEnabled(true);
 
+    }
+    
+    public static void resetJPanelMoreInfo(Table table){
+        table.getBtnSuaSinhVien().setEnabled(true);
+        table.getBtnLuuSinhVien().setEnabled(false);
+        table.getTxtHoTenSinhVien().setEnabled(false);
+        table.getTxtCMNDSinhVien().setEnabled(false);
+        table.getTxtDanTocSinhVien().setEnabled(false);
+        table.getTxtDiaChiSinhVien().setEnabled(false);
+        table.getTxtGioiTinhSinhVien().setEnabled(false);
+        table.getTxtNganhSinhVien().setEnabled(false);
+        table.getTxtNgaySinhSinhVien().setEnabled(false);
+        table.getTxtSoDTSinhVien().setEnabled(false);
+        table.getTxtNienKhoaSinhVien().setEnabled(false);
+        table.getTxtTonGiaoSinhVien().setEnabled(false);
     }
 
     public static String compare2SinhVien(SinhVien svCu, SinhVien svMoi) {
@@ -205,7 +224,28 @@ public class SinhVienBUS {
         }
         return result;
     }
-
+    
+    public static SinhVien getSinhVienFromMoreInfo(Table table){
+        String HoTen = table.getTxtHoTenSinhVien().getText();
+        String MSSV = table.getTxtMSSinhVien().getText();
+        String CMND = table.getTxtCMNDSinhVien().getText();
+        String SoDT = table.getTxtSoDTSinhVien().getText();
+        Date NgaySinh = new Date();
+        try {
+            NgaySinh = dateFormat.parse(table.getTxtNgaySinhSinhVien().getText());
+        } catch (ParseException ex) {
+            System.out.println("Chuyển kiểu sang date bị lỗi ở StudentInfo.btnSuaSinhVien");
+        }
+        String GioiTinh = table.getTxtNgaySinhSinhVien().getText();
+        String DiaChi = table.getTxtDiaChiSinhVien().getText();
+        String DanToc = table.getTxtDanTocSinhVien().getText();
+        String TonGiao = table.getTxtTonGiaoSinhVien().getText();
+        String NienKhoa = table.getTxtNienKhoaSinhVien().getText();
+        String Nganh = SinhVienBUS.tenNganhToMaNganh(table.getTxtNganhSinhVien().getText());
+        int MaTK = Integer.parseInt(table.getTxtMaTKSinhVien().getText());
+        SinhVien sv = new SinhVien(1, MSSV, CMND, SoDT, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
+        return sv;
+    }
 
     public int getTrangThai(int MaTK){
        return svDAO.getTrangThaiByMaTk(MaTK);
