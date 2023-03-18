@@ -7,6 +7,7 @@ package frontend;
 import backend.KetQua.KetQuaBUS;
 import backend.QLSinhVien.SinhVien;
 import backend.QLSinhVien.SinhVienBUS;
+import backend.QLTaiKhoan.TaiKhoanBUS;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,64 +45,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
     /**
      * Creates new form TableInside
      */
-    public Table(ArrayList<String> dsq) {
+    public Table() {
         Thread t = new Thread(this);
         t.start();
         initComponents();
-//        btnInformation.setVisible(false);
-//        btnSubjectRegistration.setVisible(false);
-//        btnSchedule.setVisible(false);
-//        btnScore.setVisible(false);
-//        inputPoint.setVisible(false);
-//        btnInformation.setVisible(false);
-//        jButton7.setVisible(false);
-//        jButton8.setVisible(false);
-//        jButton9.setVisible(false);
-//        studentList.setVisible(false);
-//        jButton12.setVisible(false);
-//        jButton13.setVisible(false);
-//        group.setVisible(false);
-//        accountList.setVisible(false);
-//        tool1.setVisible(false);
-//        setting.setVisible(false);
-//        scholastic.setVisible(false);
-//
-//        for (String q : dsq) {
-//            switch (q) {
-//                case "CTQ1" -> {
-//                    btnInformation.setVisible(true);
-//                }
-//                case "CTQ2" -> {
-//                    btnSubjectRegistration.setVisible(true);
-//                }
-//                case "CTQ3" -> {
-//                    btnSchedule.setVisible(true);
-//                }
-//                case "CTQ4" -> {
-//                    btnScore.setVisible(true);
-//                }
-//                case "CTQ5" -> {
-//                    inputPoint.setVisible(true);
-//                }
-//                case "CTQ6" -> {
-//                    btnInformation.setVisible(true);
-//                }
-//                case "CTQ7" -> {
-//                    jButton7.setVisible(true);
-//                }
-//                case "CTQ8" -> {
-//                    jButton8.setVisible(true);
-//                }
-//                case "CTQ9" -> {
-//                    jButton9.setVisible(true);
-//                }
-//                case "CTQ10" -> {
-//                    accountList.setVisible(true);
-//                    scholastic.setVisible(true);
-//                }
-//            }
-//        }
-
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -1513,7 +1461,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
                 | UnsupportedLookAndFeelException ignored) {
         }
-        new Table(new ArrayList<>()).setVisible(true);
+        new Table().setVisible(true);
     }
 
     public JButton getBtnDongSinhVien() {
@@ -1639,6 +1587,71 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }
     SinhVien svCu = new SinhVien();
     //    StudentInfo info = new StudentInfo();
+    
+    public JButton getAccountList() {
+        return accountList;
+    }
+
+    public JButton getBtnInformation() {
+        return btnInformation;
+    }
+
+    public JButton getBtnSchedule() {
+        return btnSchedule;
+    }
+
+    public JButton getBtnScore() {
+        return btnScore;
+    }
+
+    public JButton getBtnSubjectRegistration() {
+        return btnSubjectRegistration;
+    }
+
+    public JButton getGroup() {
+        return group;
+    }
+
+    public JButton getInputPoint() {
+        return inputPoint;
+    }
+
+    public JButton getjButton12() {
+        return jButton12;
+    }
+
+    public JButton getjButton13() {
+        return jButton13;
+    }
+
+    public JButton getjButton7() {
+        return jButton7;
+    }
+
+    public JButton getjButton8() {
+        return jButton8;
+    }
+
+    public JButton getjButton9() {
+        return jButton9;
+    }
+
+    public JButton getSetting() {
+        return setting;
+    }
+
+    public JButton getStudentList() {
+        return studentList;
+    }
+
+    public JButton getTool1() {
+        return tool1;
+    }
+
+    public JButton getScholastic() {
+        return scholastic;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountList;
     private javax.swing.JPanel address;

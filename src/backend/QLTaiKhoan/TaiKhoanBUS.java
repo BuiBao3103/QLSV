@@ -18,15 +18,16 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author PC
  */
 public class TaiKhoanBUS {
+
     private static String tenTK = "";
 
     public static String getTenTK() {
         return tenTK;
     }
-     
-    public static  void login(Login lg){
-        tenTK= lg.getUsername().getText();
-        String matkhau= lg.getPassword().getText();
+
+    public static void login(Login lg) {
+        tenTK = lg.getUsername().getText();
+        String matkhau = lg.getPassword().getText();
         TaiKhoanBUS qltk = new TaiKhoanBUS();
         TaiKhoan tk = qltk.getByUsername(tenTK);
         if (tk != null) {
@@ -42,7 +43,9 @@ public class TaiKhoanBUS {
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ignored) {
 
                 }
-                new Table(dsq).setVisible(true);
+                
+                new TaiKhoanBUS().phanQuyen(dsq);
+               
             } else {
                 JOptionPane.showMessageDialog(null, "Sai mật khẩu");
             }
@@ -64,5 +67,62 @@ public class TaiKhoanBUS {
         }
 
         return -1;
+    }
+
+    public void phanQuyen(ArrayList<String> dsq) {
+        Table table = new Table();
+        table.setVisible(true);
+        table.getBtnInformation().setVisible(false);
+        table.getBtnSubjectRegistration().setVisible(false);
+        table.getBtnSchedule().setVisible(false);
+        table.getBtnScore().setVisible(false);
+        table.getInputPoint().setVisible(false);
+        table.getjButton7().setVisible(false);
+        table.getjButton8().setVisible(false);
+        table.getjButton9().setVisible(false);
+        table.getStudentList().setVisible(false);
+        table.getjButton12().setVisible(false);
+        table.getjButton13().setVisible(false);
+        table.getGroup().setVisible(false);
+        table.getAccountList().setVisible(false);
+        table.getTool1().setVisible(false);
+        table.getSetting().setVisible(false);
+        table.getScholastic().setVisible(false);
+
+        for (String q : dsq) {
+            switch (q) {
+                case "CTQ1" -> {
+                    table.getBtnInformation().setVisible(true);
+                }
+                case "CTQ2" -> {
+                    table.getBtnSubjectRegistration().setVisible(true);
+                }
+                case "CTQ3" -> {
+                    table.getBtnSchedule().setVisible(true);
+                }
+                case "CTQ4" -> {
+                    table.getBtnScore().setVisible(true);
+                }
+                case "CTQ5" -> {
+                    table.getInputPoint().setVisible(true);
+                }
+                case "CTQ6" -> {
+                    table.getBtnInformation().setVisible(true);
+                }
+                case "CTQ7" -> {
+                    table.getjButton7().setVisible(true);
+                }
+                case "CTQ8" -> {
+                    table.getjButton8().setVisible(true);
+                }
+                case "CTQ9" -> {
+                    table.getjButton9().setVisible(true);
+                }
+                case "CTQ10" -> {
+                    table.getAccountList().setVisible(true);
+                    table.getScholastic().setVisible(true);
+                }
+            }
+        }
     }
 }

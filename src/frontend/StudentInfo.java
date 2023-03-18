@@ -474,7 +474,7 @@ public class StudentInfo extends javax.swing.JFrame {
         String Nganh = SinhVienBUS.tenNganhToMaNganh(txtNganhSinhVien.getText());
         int MaTK = Integer.parseInt(txtMaTKSinhVien.getText());
         svCu = new SinhVien(1, MSSV, CMND, SoDT, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
-        SinhVienBUS.updateSinhVien(this);
+//         SinhVienBUS.updateSinhVien();
     }//GEN-LAST:event_btnSuaSinhVienActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
