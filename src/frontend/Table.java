@@ -18,29 +18,21 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import java.util.*;
 import java.awt.*;
-
-import java.awt.Dimension;
-import java.awt.Font;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.text.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 
-/**
- *
- * @author ASUS
- */
 public class Table extends javax.swing.JFrame implements Runnable {
 
     private int widthBar = 221;
     private int heightBar = this.getHeight();
+    private String[] arrays = {"javax.swing.plaf.metal.MetalLookAndFeel",
+        "javax.swing.plaf.nimbus.NimbusLookAndFeel",
+        "com.sun.java.swing.plaf.motif.MotifLookAndFeel",
+        "com.sun.java.swing.plaf.windows.WindowsLookAndFeel",
+        "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel"};
 
     /**
      * Creates new form TableInside
@@ -77,13 +69,13 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jButton13 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel6 = new javax.swing.JPanel();
-        accountList = new javax.swing.JButton();
-        scholastic = new javax.swing.JButton();
-        tool1 = new javax.swing.JButton();
-        setting = new javax.swing.JButton();
+        btnTool = new javax.swing.JButton();
+        btnScholastic = new javax.swing.JButton();
+        btnSetting = new javax.swing.JButton();
+        btnAccountList = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         btnChangePassword = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        realTime = new javax.swing.JLabel();
         btnHeader = new javax.swing.JPanel();
         openMenu = new javax.swing.JButton();
         closeMenu = new javax.swing.JButton();
@@ -152,16 +144,31 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtNienKhoaSinhVien = new javax.swing.JTextField();
         btnDongSinhVien = new javax.swing.JButton();
         txtTimKiemSinhVien = new javax.swing.JTextField();
+        settings = new javax.swing.JPanel();
+        changeFrame = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        btnMetal = new javax.swing.JRadioButton();
+        btnWindow = new javax.swing.JRadioButton();
+        btnWindowClassic = new javax.swing.JRadioButton();
+        btnMotif = new javax.swing.JRadioButton();
+        btnNimbus = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hello");
+        setPreferredSize(new java.awt.Dimension(1025, 600));
 
         leftBar.setBackground(new java.awt.Color(204, 153, 255));
+        leftBar.setMaximumSize(new java.awt.Dimension(32767, 600));
         leftBar.setOpaque(false);
-        leftBar.setPreferredSize(new java.awt.Dimension(0, 487));
+        leftBar.setPreferredSize(new java.awt.Dimension(0, 450));
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setColumnHeaderView(null);
+        jScrollPane2.setMaximumSize(new java.awt.Dimension(32767, 700));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(226, 600));
+        jScrollPane2.getVerticalScrollBar().setUnitIncrement(16);
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -310,22 +317,32 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         jPanel6.setOpaque(false);
 
-        accountList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        accountList.setText("Công cụ");
-        accountList.setPreferredSize(new java.awt.Dimension(202, 50));
+        btnTool.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnTool.setText("Công cụ");
+        btnTool.setPreferredSize(new java.awt.Dimension(202, 50));
 
-        scholastic.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        scholastic.setText("Quản lí năm học");
-        scholastic.setPreferredSize(new java.awt.Dimension(202, 50));
+        btnScholastic.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnScholastic.setText("Quản lí năm học");
+        btnScholastic.setPreferredSize(new java.awt.Dimension(202, 50));
 
-        tool1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        tool1.setText("Cài đặt");
-        tool1.setPreferredSize(new java.awt.Dimension(202, 50));
+        btnSetting.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnSetting.setText("Cài đặt");
+        btnSetting.setPreferredSize(new java.awt.Dimension(202, 50));
+        btnSetting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSettingActionPerformed(evt);
+            }
+        });
 
-        setting.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        setting.setText("Quản lí tài khoản");
-        setting.setToolTipText("");
-        setting.setPreferredSize(new java.awt.Dimension(202, 50));
+        btnAccountList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnAccountList.setText("Quản lí tài khoản");
+        btnAccountList.setToolTipText("");
+        btnAccountList.setPreferredSize(new java.awt.Dimension(202, 50));
+        btnAccountList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccountListActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -333,23 +350,23 @@ public class Table extends javax.swing.JFrame implements Runnable {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(scholastic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(accountList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tool1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(setting, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnScholastic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTool, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSetting, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAccountList, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 16, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(setting, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAccountList, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(scholastic, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnScholastic, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(accountList, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTool, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(tool1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 609, Short.MAX_VALUE))
         );
 
@@ -411,7 +428,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             leftBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftBarLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
         );
 
         getContentPane().add(leftBar, java.awt.BorderLayout.LINE_START);
@@ -436,10 +453,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
         });
         header.add(btnChangePassword, java.awt.BorderLayout.LINE_END);
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        header.add(jLabel9, java.awt.BorderLayout.CENTER);
+        realTime.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        realTime.setForeground(new java.awt.Color(255, 0, 51));
+        realTime.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        header.add(realTime, java.awt.BorderLayout.CENTER);
 
         btnHeader.setOpaque(false);
         btnHeader.setPreferredSize(new java.awt.Dimension(60, 60));
@@ -537,10 +554,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         );
         scheduleLayout.setVerticalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         mainPanel.add(schedule, "card4");
@@ -599,7 +613,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         );
         scoreLayout.setVerticalGroup(
             scoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         mainPanel.add(score, "card5");
@@ -832,7 +846,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGroup(personalInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(detailInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         mainPanel.add(personalInfo, "card2");
@@ -847,7 +861,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         );
         subjectRegistrationLayout.setVerticalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
         mainPanel.add(subjectRegistration, "card3");
@@ -1129,7 +1143,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                                         .addComponent(btnXoaSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(btnDongSinhVien, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addComponent(txtMaTKSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnMoreInfoLayout.setVerticalGroup(
             pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1220,9 +1234,148 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         mainPanel.add(studentinfo, "card6");
 
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabel21.setText("Thay đổi giao diện");
+
+        ButtonGroup btnGroup = new ButtonGroup();
+        btnGroup.add(btnMetal);
+        btnGroup.add(btnNimbus);
+        btnGroup.add(btnMotif);
+        btnGroup.add(btnWindow);
+        btnGroup.add(btnWindowClassic);
+
+        jPanel2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jPanel2AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
+
+        btnMetal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnMetal.setText("Metal");
+        btnMetal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMetalActionPerformed(evt);
+            }
+        });
+
+        btnWindow.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnWindow.setText("Window");
+        btnWindow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWindowActionPerformed(evt);
+            }
+        });
+
+        btnWindowClassic.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnWindowClassic.setText("WindowClassic");
+        btnWindowClassic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWindowClassicActionPerformed(evt);
+            }
+        });
+
+        btnMotif.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnMotif.setText("Motif");
+        btnMotif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMotifActionPerformed(evt);
+            }
+        });
+
+        btnNimbus.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnNimbus.setText("Nimbus");
+        btnNimbus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNimbusActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMetal)
+                    .addComponent(btnWindow)
+                    .addComponent(btnNimbus)
+                    .addComponent(btnMotif)
+                    .addComponent(btnWindowClassic))
+                .addGap(0, 191, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(btnMetal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnNimbus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnMotif)
+                .addGap(12, 12, 12)
+                .addComponent(btnWindow)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnWindowClassic)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 626, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 210, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout changeFrameLayout = new javax.swing.GroupLayout(changeFrame);
+        changeFrame.setLayout(changeFrameLayout);
+        changeFrameLayout.setHorizontalGroup(
+            changeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        changeFrameLayout.setVerticalGroup(
+            changeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changeFrameLayout.createSequentialGroup()
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout settingsLayout = new javax.swing.GroupLayout(settings);
+        settings.setLayout(settingsLayout);
+        settingsLayout.setHorizontalGroup(
+            settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsLayout.createSequentialGroup()
+                .addContainerGap(86, Short.MAX_VALUE)
+                .addComponent(changeFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        settingsLayout.setVerticalGroup(
+            settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(changeFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(settings, "card7");
+
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
 
-        pack();
+        setSize(new java.awt.Dimension(1053, 568));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1261,10 +1414,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // thêm 1 component mới hoặc xóa component cũ
         // và nó sẽ gọi thèn layout parent tính toán lại kích thước
         // Có lẽ sẽ phù hợp cho responsive
-         
+
         mainPanel.revalidate();
         new KetQuaBUS().addRowData(jTable2);
-       
+
     }// GEN-LAST:event_btnScoreActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton7ActionPerformed
@@ -1335,9 +1488,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_txtTonGiaoSinhVienActionPerformed
 
     private void btnSuaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaSinhVienActionPerformed
-    
+
         svCu = SinhVienBUS.getSinhVienFromMoreInfo(this);
-        
+
         SinhVienBUS.updateSinhVien(this);
     }//GEN-LAST:event_btnSuaSinhVienActionPerformed
 
@@ -1345,7 +1498,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         SinhVien svMoi = new SinhVien();
         svMoi = SinhVienBUS.getSinhVienFromMoreInfo(this);
         int a = JOptionPane.showConfirmDialog(rootPane, "Bạn Muốn Lưu Sinh Viên Này ?\n" + SinhVienBUS.compare2SinhVien(svCu, svMoi));
-        if (a == JOptionPane.YES_OPTION){
+        if (a == JOptionPane.YES_OPTION) {
             System.out.println("đa Sửa");
             SinhVienBUS.resetJPanelMoreInfo(this);
         }
@@ -1353,11 +1506,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     private void btnXoaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaSinhVienActionPerformed
 
-       int a = JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn xóa sinh viên này ?", "Xóa Sinh Viên", JOptionPane.YES_NO_OPTION);
-       if (a == JOptionPane.YES_OPTION){
-           System.out.println("Đã Xóa");
-       }
-       
+        int a = JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn xóa sinh viên này ?", "Xóa Sinh Viên", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            System.out.println("Đã Xóa");
+        }
+
     }//GEN-LAST:event_btnXoaSinhVienActionPerformed
 
     private void tblStudentListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudentListMouseClicked
@@ -1381,6 +1534,44 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSoDTSinhVienActionPerformed
 
+    private void btnMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetalActionPerformed
+        changeTheme(btnMetal, arrays[0]);
+    }//GEN-LAST:event_btnMetalActionPerformed
+
+    private void btnMotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMotifActionPerformed
+        changeTheme(btnMotif,arrays[2]);
+    }//GEN-LAST:event_btnMotifActionPerformed
+
+    private void btnNimbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNimbusActionPerformed
+        changeTheme(btnNimbus, arrays[1]);
+    }//GEN-LAST:event_btnNimbusActionPerformed
+
+    private void btnWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWindowActionPerformed
+        changeTheme(btnWindow, arrays[3]);
+    }//GEN-LAST:event_btnWindowActionPerformed
+
+    private void btnWindowClassicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWindowClassicActionPerformed
+        changeTheme(btnWindowClassic, arrays[4]);
+    }//GEN-LAST:event_btnWindowClassicActionPerformed
+
+    private void btnAccountListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountListActionPerformed
+
+    }//GEN-LAST:event_btnAccountListActionPerformed
+
+    private void btnSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingActionPerformed
+        mainPanel.removeAll();
+        mainPanel.add(settings);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }//GEN-LAST:event_btnSettingActionPerformed
+
+    private void jPanel2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel2AncestorAdded
+
+    }//GEN-LAST:event_jPanel2AncestorAdded
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+
+    }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
 
@@ -1396,8 +1587,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnHeader.repaint();
         btnHeader.revalidate();
         leftBar.setPreferredSize(new Dimension(widthBar, heightBar));
-
-    }// GEN-LAST:event_openMenuActionPerformed
+//        System.out.println(UIManager.getSystemLookAndFeelClassName());
+    }
 
     private void closeMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_closeMenuActionPerformed
         btnHeader.removeAll();
@@ -1405,57 +1596,30 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnHeader.repaint();
         btnHeader.revalidate();
         leftBar.setPreferredSize(new Dimension(0, heightBar));
-        leftBar.removeAll();
 
-        // new Thread(new Runnable() {
-        // @Override
-        // public void run() {
-        // for (int i = widthBar; i > 0; i--) {
-        // leftBar.setPreferredSize(new Dimension(i, heightBar));
-        // try {
-        // Thread.sleep(1);
-        // } catch (InterruptedException ex) {
-        // Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
-        // }
-        //
-        // }
-        // }
-        // }).start();
-    }// GEN-LAST:event_closeMenuActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-        // (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-         * look and feel.
-         * For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Table.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Table.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Table.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Table.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    private void changeTheme(JRadioButton btn,String themeText){
+        String text = UIManager.getSystemLookAndFeelClassName();
+        if (text.equals(themeText)) {
+            btn.setSelected(true);
+        } else {
+            btn.setSelected(false);
         }
-        // </editor-fold>
-        // </editor-fold>
-
-        /* Create and display the form */
+        if (btn.isSelected()) {
+            try {
+                UIManager.setLookAndFeel(themeText);
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
+                    | UnsupportedLookAndFeelException ignored) {
+            }
+        } else {
+            
+        }
+        SwingUtilities.updateComponentTreeUI(this);
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }
+    public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
@@ -1487,14 +1651,13 @@ public class Table extends javax.swing.JFrame implements Runnable {
     public JButton getBtnXoaSinhVien() {
         return btnXoaSinhVien;
     }
-    
-    
+
     public JTextField getTxtNienKhoaSinhVien() {
         return txtNienKhoaSinhVien;
     }
 
 //    JTable studentTable = new JTable();
-    public void setTxtNienKhoaSinhVien(String txtNienKhoaSinhVien) {    
+    public void setTxtNienKhoaSinhVien(String txtNienKhoaSinhVien) {
         this.txtNienKhoaSinhVien.setText(txtNienKhoaSinhVien);
     }
 
@@ -1653,20 +1816,29 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton accountList;
     private javax.swing.JPanel address;
+    private javax.swing.JButton btnAccountList;
     private javax.swing.JButton btnChangePassword;
     private javax.swing.JButton btnDongSinhVien;
     private javax.swing.JPanel btnHeader;
     private javax.swing.JButton btnInformation;
     private javax.swing.JButton btnLuuSinhVien;
+    private javax.swing.JRadioButton btnMetal;
+    private javax.swing.JRadioButton btnMotif;
+    private javax.swing.JRadioButton btnNimbus;
     private javax.swing.JButton btnSchedule;
+    private javax.swing.JButton btnScholastic;
     private javax.swing.JButton btnScore;
+    private javax.swing.JButton btnSetting;
     private javax.swing.JButton btnSuaSinhVien;
     private javax.swing.JButton btnSubjectRegistration;
     private javax.swing.JButton btnThemSinhVien;
     private javax.swing.JButton btnTimSinhVien;
+    private javax.swing.JButton btnTool;
+    private javax.swing.JRadioButton btnWindow;
+    private javax.swing.JRadioButton btnWindowClassic;
     private javax.swing.JButton btnXoaSinhVien;
+    private javax.swing.JPanel changeFrame;
     private javax.swing.JPanel classID;
     private javax.swing.JButton closeMenu;
     private javax.swing.JPanel detailInformation;
@@ -1693,13 +1865,15 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -1726,16 +1900,15 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel personalInfo;
     private javax.swing.JPanel pnMoreInfo;
     private javax.swing.JPanel pninfo;
+    private javax.swing.JLabel realTime;
     private javax.swing.JPanel schedule;
-    private javax.swing.JButton scholastic;
     private javax.swing.JPanel score;
     private javax.swing.JScrollPane scpStudentList;
-    private javax.swing.JButton setting;
+    private javax.swing.JPanel settings;
     private javax.swing.JButton studentList;
     private javax.swing.JPanel studentinfo;
     private javax.swing.JPanel subjectRegistration;
     private javax.swing.JTable tblStudentList;
-    private javax.swing.JButton tool1;
     private javax.swing.JTextField txtCMNDSinhVien;
     private javax.swing.JTextField txtDanTocSinhVien;
     private javax.swing.JTextField txtDiaChiSinhVien;
@@ -1763,7 +1936,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 SimpleDateFormat timeRun = new SimpleDateFormat("HH:mm:ss aa");
                 Date date = cal.getTime();
                 String text = timeRun.format(date);
-                jLabel9.setText(text);
+                realTime.setText(text);
             } catch (Exception e) {
                 e.printStackTrace();
             }
