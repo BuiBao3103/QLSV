@@ -4,6 +4,7 @@
  */
 package backend.QLSinhVien;
 
+import backend.Nganh.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -80,7 +81,7 @@ public class SinhVienBUS {
         return null;
     }
 
-    public static void showMoreInfoStudent(Table table,SinhVien sv) {
+    public static void showMoreInfoStudent(Table table, SinhVien sv) {
 //        if (!info.isVisible()) { // cái này kiểm tra xem có mở cửa sổ thông tin sinh viên chưa
 //            info.setVisible(true); // mở rồi thì chỉ cần thay đổi giá trị trong bảng thôi
 //        }
@@ -95,7 +96,7 @@ public class SinhVienBUS {
         table.setTxtTonGiaoSinhVien(sv.getTonGiao());
         table.setTxtNienKhoaSinhVien(sv.getNienKhoa());
         table.setTxtNganhSinhVien(maNganhToTenNganh(sv.getMaNganh()));
-        table.setTxtMaTKSinhVien(sv.getMaTK()+"");
+        table.setTxtMaTKSinhVien(sv.getMaTK() + "");
 
     }
 
@@ -125,13 +126,13 @@ public class SinhVienBUS {
             return "Sư Phạm Khoa Học Tự Nhiên (DKH)";
         }
         if (maNganh.equals("DLI")) {
-            return "Sư Phạm Vật Lý (DLI)";
+            return "Sư Phạm Lí (DLI)";
         }
         if (maNganh.equals("DHO")) {
-            return "Sư Phạm Hóa Học (DHO)";
+            return "Sư Phạm Hóa (DHO)";
         }
         if (maNganh.equals("DTN")) {
-            return "Tài Chính Ngân Hàng (DTN)";
+            return "Tài Chính - Ngân Hàng (DTN)";
         }
         if (maNganh.equals("DKE")) {
             return "Kế Toán (DKE)";
@@ -139,7 +140,6 @@ public class SinhVienBUS {
             return "";
         }
     }
-
 
     public static String tenNganhToMaNganh(String tenNganh) {
         String maNganh = tenNganh.split("[()]")[1]; // cái "[()]" là cắt chuỗi khi gặp 2 dấu hiệu là ')' và '('
@@ -171,8 +171,8 @@ public class SinhVienBUS {
         txtTonGiao.setEnabled(true);
 
     }
-    
-    public static void resetJPanelMoreInfo(Table table){
+
+    public static void resetJPanelMoreInfo(Table table) {
         table.getBtnSuaSinhVien().setEnabled(true);
         table.getBtnLuuSinhVien().setEnabled(false);
         table.getTxtHoTenSinhVien().setEnabled(false);
@@ -224,8 +224,8 @@ public class SinhVienBUS {
         }
         return result;
     }
-    
-    public static SinhVien getSinhVienFromMoreInfo(Table table){
+
+    public static SinhVien getSinhVienFromMoreInfo(Table table) {
         String HoTen = table.getTxtHoTenSinhVien().getText();
         String MSSV = table.getTxtMSSinhVien().getText();
         String CMND = table.getTxtCMNDSinhVien().getText();
@@ -247,10 +247,233 @@ public class SinhVienBUS {
         return sv;
     }
 
-    public int getTrangThai(int MaTK){
-       return svDAO.getTrangThaiByMaTk(MaTK);
-   }
+    public int getTrangThai(int MaTK) {
+        return svDAO.getTrangThaiByMaTk(MaTK);
+    }
 
+    public static boolean checkHoTen(String hoTen) { // Kiểm tra tên hợp lệ không
+        if (hoTen.equals("")) {
+            return false;
+        }
+        for (int i = 0; i < hoTen.length(); i++) {
+            char kiTu = hoTen.charAt(i);
+            if ((kiTu < 'a' || kiTu > 'z') && (kiTu < 'A' || kiTu > 'Z')) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkMSSV(String MSSV) {
+        if (MSSV.length() != 10) {
+            return false;
+        }
+        for (int i = 0; i < MSSV.length(); i++) {
+            char so = MSSV.charAt(i);
+            if (so < '0' || so > '9') {
+                return false;
+            }
+        }
+        ArrayList<SinhVien> dssv = new ArrayList(); // Kiểm tra MSSV có tồn tại chưa
+        dssv = svDAO.get();
+        for (SinhVien i : dssv) {
+            if (i.getMaSV().equals(MSSV)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkCMND(String CMND) {
+        if (CMND.length() != 12) {
+            return false;
+        }
+        for (int i = 0; i < CMND.length(); i++) {
+            char so = CMND.charAt(i);
+            if (so < '0' || so > '9') {
+                return false;
+            }
+        }
+        ArrayList<SinhVien> dssv = new ArrayList(); // Kiểm tra CMND có tồn tại chưa
+        dssv = svDAO.get();
+        for (SinhVien i : dssv) {
+            if (i.getCmnd().equals(CMND)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkGioiTinh(String gioiTinh) {
+        if (!gioiTinh.equals("Nữ") && !gioiTinh.equals("Nam")) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkDanToc(String danToc) {
+        String[] dsDanToc = {"Kinh", "Tày", "Thái", "Mường", "Nùng", "H'Mông", "Dao", "Gia Rai", "Ê Đê", "Ba Na", "Chăm", "Sán Chay", "Cơ Ho", "Xơ Đăng", "Khơ Mú", "Giáy", "Lào", "La Chí", "La Ha", "Pu Péo", "Ro Măm", "Mạ", "Co", "Ta Ôi", "Chu Ru", "Lô Lô", "Kháng", "Xinh Mun", "Hrê", "Ra Glai", "Mnông", "Thổ", "Brâu", "Ơ Đu", "Khmer", "Chuông", "Mạ Pờ Lồ", "Rơ Măm", "Khơ Me", "Khơ Mạ", "Bru - Vân Kiều", "Thái Đen", "Cơ Tu", "Giẻ Triêng", "Tà Ôi", "Mạ Đức", "Cống", "Bố Y", "Si La", "Pu Thê", "Rơ Ngao", "La Hủ", "Lự", "Phù Lá", "Ngái", "Si Đăng", "Pu Ko", "Ba Na", "Xuống", "Krông", "Lự", "Lô Lô", "Chứt", "Mảng", "Cờ Lao", "Bố Y", "Lô Lô Si La", "Pà Thẻn", "Cống", "Si La", "La Hủ", "Lự", "Phù Lá", "Ngái", "Si Đăng", "Pu Ko", "Ba Na", "Xuống", "Krông", "Lự", "Lô Lô", "Chứt", "Mảng", "Cờ Lao", "Bố Y", "Lô Lô Si La", "Pà Thẻn"};
+        for (String dsDanToc1 : dsDanToc) {
+            if (danToc.equals(dsDanToc1)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public static boolean checkTonGiao(String tonGiao) {
+        // 10 tôn giáo phổ biến nhất Việt Nam
+        String[] dsTonGiao = {"Không", "Phật giáo", "Thiên chúa giáo", "Hòa hảo", "Cao Đài", "Đạo Bửu Sơn Kỳ Hương", "Đạo Tứ Ân Hiếu Nghĩa", "Đạo Tam Kỳ Khổng Tử", "Đạo Tứ Thánh Tâm Minh", "Đạo Đức Thanh Minh", "Đạo Minh Lý Phật"};
+        for (String dsTonGiao1 : dsTonGiao) {
+            if (tonGiao.equals(dsTonGiao1)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkSoDienThoai(String soDienThoai) {
+        if (soDienThoai.length() != 10) {
+            return false;
+        }
+        for (int i = 0; i < soDienThoai.length(); i++) {
+            char so = soDienThoai.charAt(i);
+            if (so < '0' || so > '9') {
+                return false;
+            }
+        }
+        // Khúc này kiểm tra đầu số có tồn tại trong 30 đầu số phổ biến nhất không
+        String[] dsDauSoDienThoai = {"086", "096", "097", "098", "032", "033", "034", "035", "036", "037", "038", "039", "088", "091", "094", "083", "084", "085", "081", "082", "089", "090", "093", "070", "079", "077", "076", "078", "092", "056", "058"};
+        String dauSoDienThoai = soDienThoai.substring(0, 3); // lấy 3 số đầu
+        int flag = 0;
+        for (String i : dsDauSoDienThoai) {
+            if (dauSoDienThoai.equals(i)) {
+                flag = 1;
+            }
+        }
+        if (flag == 0) {
+            return false;
+        }
+        // ---------------------------------------------------------
+        return true;
+    }
+
+    public static boolean checkDiaChi(String diaChi) {
+        if (diaChi.length() == 0) {
+            return false;
+        }
+        for (int i = 0; i < diaChi.length(); i++) {
+            char kitu = diaChi.charAt(i);
+            // các kí tự là chữ hoặc số hoặc dấu '/' thôi
+            if (kitu != '/' && kitu != ' ' && (kitu < '0' || kitu > '9') && (kitu < 'a' || kitu > 'z') && (kitu < 'A' || kitu > 'Z')) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkNienKhoa(String nienKhoa) {
+        int namVaoTruong = Integer.parseInt(nienKhoa.split("-")[0]);
+        int namRaTruong = Integer.parseInt(nienKhoa.split("-")[1]);
+
+        if (namRaTruong - namVaoTruong < 4 || namRaTruong - namVaoTruong > 10) {
+            return false;
+        }
+        Date today = new Date();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+        int namHienTai = Integer.parseInt(yearFormat.format(today));
+        if (namVaoTruong > namHienTai) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkNgaySinh(String ngaySinh) {
+        try {
+            System.out.println(dateFormat.parse(ngaySinh));
+        } catch (Exception e) {
+            return false;
+        }
+        if (!checkValidNgay(ngaySinh)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkNganh(String nganh) {
+//        String dsMaNganh[] = {"DAN","DCT","DHO","DKE","DKH","DKP","DKQ","DLI","DQK","DSA","DSI","DTN"};
+        ArrayList<Nganh> dsNganh = new ArrayList();
+        dsNganh = new NganhDAO().get();
+        String maNganh;
+        String tenNganh;
+        try {
+            maNganh = tenNganhToMaNganh(nganh); // cái ngành truyền vào là kiểu "Sư Phạm Hóa (DHO)"
+            tenNganh = maNganhToTenNganh(maNganh); // nên phải chuyển từ cái ngành sang mã ngành rồi chuyển lại thành tên ngành
+        } catch (Exception e) {
+            return false;
+        }
+        if (!tenNganh.equals(nganh)) { // cái này kiểm tra mã ngành với tên ngành k khớp nhau
+            return false;
+        }
+        for (Nganh i : dsNganh) {
+            if (i.getMaNganh().equals(maNganh)) { // so sánh mã ngành nếu tồn tại thì so sánh luôn tên ngành
+                if (maNganhToTenNganh(i.getMaNganh()).equals(nganh)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    //--------------------------- Các hàm dưới đây để kiểm tra ngày sinh của sinh viên-------------------------------------------
+
+    public static boolean checkValidNgay(String ngay) {  //kiem tra xem ngay dang xet co hop le khong
+        String ngaythangnam[] = ngay.split("-"); // Tách cái chuỗi ngày ra để lấy từng phần tử
+        int soNgay = Integer.parseInt(ngaythangnam[2]);
+        int soThang = Integer.parseInt(ngaythangnam[1]);
+        int soNam = Integer.parseInt(ngaythangnam[0]);
+        Date today = new Date();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+        int namHienTai = Integer.parseInt(yearFormat.format(today));
+        if (namHienTai - soNam > 100 || namHienTai - soNam < 18) {
+            return false;
+        }
+        if (soThang < 1 || soThang > 12) {
+            return false;
+        }
+        if (soNgay < 1 || soNgay > soNgayTrongThang(soThang, soNam)) {
+            return false;
+        }
+        return true;
+
+    }
+
+    public static boolean checkNamNhuan(int nam) {  // kiem tra xem nam dang xet co phai nam nhuan khong 
+        if ((nam % 4 == 0 && nam % 100 != 0) || nam % 400 == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int soNgayTrongThang(int thang, int nam) { // tim so ngay trong thang tuong ung
+        switch (thang) {
+            case 1, 3, 5, 7, 8, 10, 12 -> {
+                return 31;
+            }
+            case 4, 6, 9, 11 -> {
+                return 30;
+            }
+            case 2 -> {
+                if (checkNamNhuan(nam)) {
+                    return 29;
+                }
+                return 28;
+            }
+        }
+        return 0;
+    }
+
+    //-----------------------------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
         svDAO.get().forEach(sv -> {
             System.out.println(sv.toString());
