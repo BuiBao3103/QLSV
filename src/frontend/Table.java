@@ -1751,9 +1751,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     SinhVien svCu = new SinhVien();
     //    StudentInfo info = new StudentInfo();
     
-    public JButton getAccountList() {
-        return accountList;
-    }
+   
 
     public JButton getBtnInformation() {
         return btnInformation;
@@ -1799,20 +1797,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
         return jButton9;
     }
 
-    public JButton getSetting() {
-        return setting;
-    }
+  
 
     public JButton getStudentList() {
         return studentList;
-    }
-
-    public JButton getTool1() {
-        return tool1;
-    }
-
-    public JButton getScholastic() {
-        return scholastic;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -84,10 +84,7 @@ public class TaiKhoanBUS {
         table.getjButton12().setVisible(false);
         table.getjButton13().setVisible(false);
         table.getGroup().setVisible(false);
-        table.getAccountList().setVisible(false);
-        table.getTool1().setVisible(false);
-        table.getSetting().setVisible(false);
-        table.getScholastic().setVisible(false);
+      
 
         for (String q : dsq) {
             switch (q) {
@@ -118,10 +115,7 @@ public class TaiKhoanBUS {
                 case "CTQ9" -> {
                     table.getjButton9().setVisible(true);
                 }
-                case "CTQ10" -> {
-                    table.getAccountList().setVisible(true);
-                    table.getScholastic().setVisible(true);
-                }
+               
             }
         }
     }
