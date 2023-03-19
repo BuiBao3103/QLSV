@@ -5,6 +5,7 @@
 package backend.QLSinhVien;
 
 import backend.Nganh.*;
+import backend.QLTaiKhoan.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -24,6 +25,7 @@ public class SinhVienBUS {
 
     static SinhVienDAO svDAO = new SinhVienDAO();
     static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // cái này để chuyển qua lại kiểu date với String
+    static ArrayList<SinhVien> dssv = new SinhVienDAO().get();
 
     public SinhVienBUS() {
     }
@@ -44,12 +46,12 @@ public class SinhVienBUS {
         table.getColumn("Niên Khóa").setMaxWidth(100);
         table.getColumn("Niên Khóa").setMinWidth(100);
 
-        ArrayList<SinhVien> dssv = new ArrayList();
-        dssv = svDAO.get();
         for (SinhVien i : dssv) {
-            tblSinhVien.addRow(new Object[]{
-                i.getMaSV(), i.getHoTen(), maNganhToTenNganh(i.getMaNganh()), i.getNienKhoa()
-            });
+            if (i.getTrangThai() == 1) {
+                tblSinhVien.addRow(new Object[]{
+                    i.getMaSV(), i.getHoTen(), maNganhToTenNganh(i.getMaNganh()), i.getNienKhoa()
+                });
+            }
         }
 
         //--------------------Khúc này chỉnh các thuộc tính cho cái bảng -----------------------------------------------------
@@ -69,9 +71,58 @@ public class SinhVienBUS {
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     }
 
+    public static void showStudentListWithCondition(JTable table, String condition) {
+        DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
+        tblSinhVien.setRowCount(0);
+        tblSinhVien.setColumnCount(0); // xóa hết để cái bảng trống rồi mới thêm dữ liệu zo
+        tblSinhVien.setColumnIdentifiers(new Object[]{ // đặt tên các cột
+            "MSSV", "Họ Tên", "Ngành", "Niên Khóa"
+        });
+
+        ArrayList<SinhVien> dssvNew = new ArrayList();
+        for (SinhVien i : dssv) {
+            if (i.getMaSV().contains(condition) || i.getHoTen().contains(condition) || maNganhToTenNganh(i.getMaNganh()).contains(condition)) {
+                dssvNew.add(i);
+            }
+        }
+        if (dssvNew.isEmpty()) {
+            JOptionPane.showMessageDialog(table, "Không tìm thấy sinh viên nào\n");
+        }
+        for (SinhVien i : dssvNew) {
+            if (i.getTrangThai() == 1) {
+                tblSinhVien.addRow(new Object[]{
+                    i.getMaSV(), i.getHoTen(), maNganhToTenNganh(i.getMaNganh()), i.getNienKhoa()
+                });
+            }
+        }
+// --------------------Nguyên khúc này tùy chỉnh cái bảng thôi --------------------------------------------
+        table.getColumn("MSSV").setMinWidth(150);
+        table.getColumn("MSSV").setMaxWidth(150);
+        table.getColumn("Ngành").setMaxWidth(350);
+        table.getColumn("Ngành").setMinWidth(350);
+        table.getColumn("Niên Khóa").setMaxWidth(100);
+        table.getColumn("Niên Khóa").setMinWidth(100);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Căn Giữa cho các cột kiểu String
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.setDefaultRenderer(String.class, centerRenderer);
+        table.getColumn("MSSV").setCellRenderer(centerRenderer);
+        table.getColumn("Niên Khóa").setCellRenderer(centerRenderer);
+        table.getColumn("Họ Tên").setCellRenderer(centerRenderer);
+        table.getColumn("Ngành").setCellRenderer(centerRenderer);
+        table.getTableHeader().setDefaultRenderer(centerRenderer);
+        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        table.setRowHeight(35);
+        table.setRowMargin(10);
+        table.setFont(new java.awt.Font("Segoe UI", 0, 16));
+        table.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+//---------------------------------------------------------------------------------------------------------------
+
+    }
+
     public static SinhVien StudentinTable(JTable table, int row) { //hàm này trả về sinh viên ở dòng được chọn trong bảng
-        ArrayList<SinhVien> dssv = new ArrayList();
-        dssv = svDAO.get();
+//        ArrayList<SinhVien> dssv = new ArrayList();
+//        dssv = svDAO.get();
         String mssv = table.getValueAt(row, 0) + ""; // cái dòng này sẽ từ cái dòng được chọn trong bảng lấy ra giá trị trong ô mssv
         for (SinhVien sv : dssv) {
             if (sv.getMaSV().equals(mssv)) {
@@ -144,6 +195,26 @@ public class SinhVienBUS {
     public static String tenNganhToMaNganh(String tenNganh) {
         String maNganh = tenNganh.split("[()]")[1]; // cái "[()]" là cắt chuỗi khi gặp 2 dấu hiệu là ')' và '('
         return maNganh;
+    }
+
+    public static String checkUpdateInfo(SinhVien svCu, SinhVien svMoi) { // hàm này trả về các lỗi đã tồn tại của các thuộc tính khóa
+        String errorMessage = "";
+        if (!svCu.getCmnd().equals(svMoi.getCmnd())) {
+            if (checkExistCMND(svMoi.getCmnd())) { //cmnd đã tồn tại
+                errorMessage += "- Chứng Minh Nhân Dân\n";
+            }
+        }
+        if (!svCu.getMaSV().equals(svMoi.getMaSV())) {
+            if (checkExistMSSV(svMoi.getMaSV())) {  // mssv đã tồn tại
+                errorMessage += "- Mã Số Sinh Viên\n";
+            }
+        }
+        if (svCu.getMaTK() != svMoi.getMaTK()) {
+            if (checkExistMaTaiKhoan(svMoi.getMaTK() + "")) {
+                errorMessage += "- Mã Tài Khoản";
+            }
+        }
+        return errorMessage;
     }
 
     public static void updateSinhVien(Table table) {
@@ -255,13 +326,30 @@ public class SinhVienBUS {
         if (hoTen.equals("")) {
             return false;
         }
+
         for (int i = 0; i < hoTen.length(); i++) {
             char kiTu = hoTen.charAt(i);
-            if ((kiTu < 'a' || kiTu > 'z') && (kiTu < 'A' || kiTu > 'Z')) {
+            if ((kiTu < 'a' || kiTu > 'z') && (kiTu < 'A' || kiTu > 'Z') && kiTu != ' ' && !checkNguyenAm(kiTu)) {
                 return false;
             }
         }
         return true;
+    }
+
+    public static boolean checkNguyenAm(char kiTu) { // cái hàm check các kí tự trong tên có dấu
+        char dsNguyenAm[] = {'à', 'á', 'ả', 'ã', 'ạ', 'ă', 'Ă', 'â', 'Â', 'ằ', 'ắ', 'ẳ', 'ẵ', 'ặ', 'ầ', 'ấ', 'ẩ', 'ẫ', 'ậ',
+            'ê', 'è', 'é', 'ẻ', 'ẽ', 'ẹ', 'ề', 'ế', 'ể', 'ễ', 'ệ',
+            'ô', 'ơ', 'ò', 'ó', 'ỏ', 'õ', 'ọ', 'ồ', 'ố', 'ổ', 'ỗ', 'ộ', 'ờ', 'ớ', 'ở', 'ỡ', 'ợ',
+            'ư', 'Ư', 'ù', 'ú', 'ủ', 'ũ', 'ụ', 'ừ', 'ứ', 'ử', 'ữ', 'ự',
+            'ì', 'í', 'ỉ', 'ĩ', 'ị',
+            'đ', 'Đ',
+            'ỳ', 'ý', 'ỷ', 'ỹ', 'ỵ'};
+        for (char nguyenAm : dsNguyenAm) {
+            if (kiTu == nguyenAm) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean checkMSSV(String MSSV) {
@@ -274,14 +362,18 @@ public class SinhVienBUS {
                 return false;
             }
         }
-        ArrayList<SinhVien> dssv = new ArrayList(); // Kiểm tra MSSV có tồn tại chưa
-        dssv = svDAO.get();
+        return true;
+    }
+
+    public static boolean checkExistMSSV(String MSSV) { // nếu mssv tồn tại rồi trả về true
+//        ArrayList<SinhVien> dssv = new ArrayList(); // Kiểm tra MSSV có tồn tại chưa
+//        dssv = svDAO.get();
         for (SinhVien i : dssv) {
             if (i.getMaSV().equals(MSSV)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public static boolean checkCMND(String CMND) {
@@ -294,14 +386,18 @@ public class SinhVienBUS {
                 return false;
             }
         }
-        ArrayList<SinhVien> dssv = new ArrayList(); // Kiểm tra CMND có tồn tại chưa
-        dssv = svDAO.get();
+//        ArrayList<SinhVien> dssv = new ArrayList(); // Kiểm tra CMND có tồn tại chưa
+//        dssv = svDAO.get();
+        return true;
+    }
+
+    public static boolean checkExistCMND(String CMND) {
         for (SinhVien i : dssv) {
             if (i.getCmnd().equals(CMND)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public static boolean checkGioiTinh(String gioiTinh) {
@@ -312,7 +408,15 @@ public class SinhVienBUS {
     }
 
     public static boolean checkDanToc(String danToc) {
-        String[] dsDanToc = {"Kinh", "Tày", "Thái", "Mường", "Nùng", "H'Mông", "Dao", "Gia Rai", "Ê Đê", "Ba Na", "Chăm", "Sán Chay", "Cơ Ho", "Xơ Đăng", "Khơ Mú", "Giáy", "Lào", "La Chí", "La Ha", "Pu Péo", "Ro Măm", "Mạ", "Co", "Ta Ôi", "Chu Ru", "Lô Lô", "Kháng", "Xinh Mun", "Hrê", "Ra Glai", "Mnông", "Thổ", "Brâu", "Ơ Đu", "Khmer", "Chuông", "Mạ Pờ Lồ", "Rơ Măm", "Khơ Me", "Khơ Mạ", "Bru - Vân Kiều", "Thái Đen", "Cơ Tu", "Giẻ Triêng", "Tà Ôi", "Mạ Đức", "Cống", "Bố Y", "Si La", "Pu Thê", "Rơ Ngao", "La Hủ", "Lự", "Phù Lá", "Ngái", "Si Đăng", "Pu Ko", "Ba Na", "Xuống", "Krông", "Lự", "Lô Lô", "Chứt", "Mảng", "Cờ Lao", "Bố Y", "Lô Lô Si La", "Pà Thẻn", "Cống", "Si La", "La Hủ", "Lự", "Phù Lá", "Ngái", "Si Đăng", "Pu Ko", "Ba Na", "Xuống", "Krông", "Lự", "Lô Lô", "Chứt", "Mảng", "Cờ Lao", "Bố Y", "Lô Lô Si La", "Pà Thẻn"};
+        String[] dsDanToc = {"Kinh", "Tày", "Thái", "Mường", "Nùng", "H'Mông", "Dao", "Gia Rai", "Ê Đê", "Ba Na", "Chăm",
+            "Sán Chay", "Cơ Ho", "Xơ Đăng", "Khơ Mú", "Giáy", "Lào", "La Chí", "La Ha", "Pu Péo", "Ro Măm",
+            "Mạ", "Co", "Ta Ôi", "Chu Ru", "Lô Lô", "Kháng", "Xinh Mun", "Hrê", "Ra Glai", "Mnông", "Thổ",
+            "Brâu", "Ơ Đu", "Khmer", "Chuông", "Mạ Pờ Lồ", "Rơ Măm", "Khơ Me", "Khơ Mạ", "Bru - Vân Kiều",
+            "Thái Đen", "Cơ Tu", "Giẻ Triêng", "Tà Ôi", "Mạ Đức", "Cống", "Bố Y", "Si La", "Pu Thê", "Rơ Ngao",
+            "La Hủ", "Lự", "Phù Lá", "Ngái", "Si Đăng", "Pu Ko", "Ba Na", "Xuống", "Krông", "Lự", "Lô Lô",
+            "Chứt", "Mảng", "Cờ Lao", "Bố Y", "Lô Lô Si La", "Pà Thẻn", "Cống", "Si La", "La Hủ", "Lự", "Phù Lá",
+            "Ngái", "Si Đăng", "Pu Ko", "Ba Na", "Xuống", "Krông", "Lự", "Lô Lô", "Chứt", "Mảng", "Cờ Lao",
+            "Bố Y", "Lô Lô Si La", "Pà Thẻn"};
         for (String dsDanToc1 : dsDanToc) {
             if (danToc.equals(dsDanToc1)) {
                 return true;
@@ -324,7 +428,9 @@ public class SinhVienBUS {
 
     public static boolean checkTonGiao(String tonGiao) {
         // 10 tôn giáo phổ biến nhất Việt Nam
-        String[] dsTonGiao = {"Không", "Phật giáo", "Thiên chúa giáo", "Hòa hảo", "Cao Đài", "Đạo Bửu Sơn Kỳ Hương", "Đạo Tứ Ân Hiếu Nghĩa", "Đạo Tam Kỳ Khổng Tử", "Đạo Tứ Thánh Tâm Minh", "Đạo Đức Thanh Minh", "Đạo Minh Lý Phật"};
+        String[] dsTonGiao = {"Không", "Phật giáo", "Thiên chúa giáo", "Hòa hảo", "Cao Đài", "Đạo Bửu Sơn Kỳ Hương",
+            "Đạo Tứ Ân Hiếu Nghĩa", "Đạo Tam Kỳ Khổng Tử", "Đạo Tứ Thánh Tâm Minh", "Đạo Đức Thanh Minh",
+            "Đạo Minh Lý Phật"};
         for (String dsTonGiao1 : dsTonGiao) {
             if (tonGiao.equals(dsTonGiao1)) {
                 return true;
@@ -344,7 +450,9 @@ public class SinhVienBUS {
             }
         }
         // Khúc này kiểm tra đầu số có tồn tại trong 30 đầu số phổ biến nhất không
-        String[] dsDauSoDienThoai = {"086", "096", "097", "098", "032", "033", "034", "035", "036", "037", "038", "039", "088", "091", "094", "083", "084", "085", "081", "082", "089", "090", "093", "070", "079", "077", "076", "078", "092", "056", "058"};
+        String[] dsDauSoDienThoai = {"086", "096", "097", "098", "032", "033", "034", "035", "036", "037",
+            "038", "039", "088", "091", "094", "083", "084", "085", "081", "082", "089",
+            "090", "093", "070", "079", "077", "076", "078", "092", "056", "058", "012", "011", "013", "014", "015", "010176", ""};
         String dauSoDienThoai = soDienThoai.substring(0, 3); // lấy 3 số đầu
         int flag = 0;
         for (String i : dsDauSoDienThoai) {
@@ -366,7 +474,7 @@ public class SinhVienBUS {
         for (int i = 0; i < diaChi.length(); i++) {
             char kitu = diaChi.charAt(i);
             // các kí tự là chữ hoặc số hoặc dấu '/' thôi
-            if (kitu != '/' && kitu != ' ' && (kitu < '0' || kitu > '9') && (kitu < 'a' || kitu > 'z') && (kitu < 'A' || kitu > 'Z')) {
+            if (!checkNguyenAm(kitu) && kitu != '/' && kitu != ' ' && kitu != '.' && (kitu < '0' || kitu > '9') && (kitu < 'a' || kitu > 'z') && (kitu < 'A' || kitu > 'Z')) {
                 return false;
             }
         }
@@ -374,9 +482,13 @@ public class SinhVienBUS {
     }
 
     public static boolean checkNienKhoa(String nienKhoa) {
-        int namVaoTruong = Integer.parseInt(nienKhoa.split("-")[0]);
-        int namRaTruong = Integer.parseInt(nienKhoa.split("-")[1]);
-
+        int namVaoTruong, namRaTruong;
+        try {
+            namVaoTruong = Integer.parseInt(nienKhoa.split("-")[0]);
+            namRaTruong = Integer.parseInt(nienKhoa.split("-")[1]);
+        } catch (Exception e) {
+            return false;
+        }
         if (namRaTruong - namVaoTruong < 4 || namRaTruong - namVaoTruong > 10) {
             return false;
         }
@@ -391,7 +503,7 @@ public class SinhVienBUS {
 
     public static boolean checkNgaySinh(String ngaySinh) {
         try {
-            System.out.println(dateFormat.parse(ngaySinh));
+            dateFormat.parse(ngaySinh);
         } catch (Exception e) {
             return false;
         }
@@ -421,6 +533,36 @@ public class SinhVienBUS {
                 if (maNganhToTenNganh(i.getMaNganh()).equals(nganh)) {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkMaTaiKhoan(String maTaiKhoan) {
+        int intMaTaiKhoan;
+        try {
+            intMaTaiKhoan = Integer.parseInt(maTaiKhoan);
+        } catch (Exception e) {
+            return false;
+        }
+        if (intMaTaiKhoan < 0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean checkExistMaTaiKhoan(String maTaiKhoan) {
+        int intMaTaiKhoan;
+        try {
+            intMaTaiKhoan = Integer.parseInt(maTaiKhoan);
+        } catch (Exception e) {
+            return false;
+        }
+        ArrayList<TaiKhoan> dsTaiKhoan = new TaiKhoanDAO().get();
+        for (TaiKhoan tk : dsTaiKhoan) {
+            if (tk.getMaTK() == intMaTaiKhoan) { // mã tài khoản đã tồn tại
+                return true;
             }
         }
         return false;
@@ -475,12 +617,13 @@ public class SinhVienBUS {
 
     //-----------------------------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
-        svDAO.get().forEach(sv -> {
-            System.out.println(sv.toString());
-        });
-        for (SinhVien sv : svDAO.get()) {
-
-        }
+//        svDAO.get().forEach(sv -> {
+//            System.out.println(sv.toString());
+//        });
+//        for (SinhVien sv : svDAO.get()) {
+//
+//        }
 //        svDAO.get();
+        System.out.println('ă' == 'ă');
     }
 }

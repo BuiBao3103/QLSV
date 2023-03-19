@@ -4,9 +4,9 @@
  */
 package frontend;
 
+
 import backend.KetQua.KetQuaBUS;
-import backend.QLSinhVien.SinhVien;
-import backend.QLSinhVien.SinhVienBUS;
+import backend.QLSinhVien.*;
 import backend.QLTaiKhoan.TaiKhoanBUS;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,11 +17,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
 import java.util.*;
 import java.awt.*;
 import java.text.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class Table extends javax.swing.JFrame implements Runnable {
@@ -41,7 +41,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         Thread t = new Thread(this);
         t.start();
         initComponents();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -111,7 +111,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         studentinfo = new javax.swing.JPanel();
         pninfo = new javax.swing.JPanel();
         btnThemSinhVien = new javax.swing.JButton();
-        btnTimSinhVien = new javax.swing.JButton();
+        btnTimKiemSinhVien = new javax.swing.JButton();
         scpStudentList = new javax.swing.JScrollPane();
         tblStudentList = new javax.swing.JTable();
         pnMoreInfo = new javax.swing.JPanel();
@@ -157,7 +157,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hello");
-        setPreferredSize(new java.awt.Dimension(1025, 600));
 
         leftBar.setBackground(new java.awt.Color(204, 153, 255));
         leftBar.setMaximumSize(new java.awt.Dimension(32767, 600));
@@ -428,7 +427,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             leftBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftBarLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE))
         );
 
         getContentPane().add(leftBar, java.awt.BorderLayout.LINE_START);
@@ -554,7 +553,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         );
         scheduleLayout.setVerticalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
 
         mainPanel.add(schedule, "card4");
@@ -613,7 +612,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         );
         scoreLayout.setVerticalGroup(
             scoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
 
         mainPanel.add(score, "card5");
@@ -846,7 +845,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGroup(personalInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(detailInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         mainPanel.add(personalInfo, "card2");
@@ -861,7 +860,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         );
         subjectRegistrationLayout.setVerticalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 604, Short.MAX_VALUE)
         );
 
         mainPanel.add(subjectRegistration, "card3");
@@ -869,8 +868,13 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnThemSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThemSinhVien.setText("Thêm");
 
-        btnTimSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnTimSinhVien.setText("Tìm");
+        btnTimKiemSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTimKiemSinhVien.setText("Tìm");
+        btnTimKiemSinhVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemSinhVienActionPerformed(evt);
+            }
+        });
 
         tblStudentList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -911,6 +915,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtDiaChiSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDiaChiSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDiaChiSinhVien.setEnabled(false);
+        txtDiaChiSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtDiaChiSinhVienCaretUpdate(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("Mã Tài Khoản:");
@@ -918,6 +927,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtNganhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNganhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNganhSinhVien.setEnabled(false);
+        txtNganhSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNganhSinhVienCaretUpdate(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Họ Tên:");
@@ -925,9 +939,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtHoTenSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtHoTenSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtHoTenSinhVien.setEnabled(false);
-        txtHoTenSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHoTenSinhVienActionPerformed(evt);
+        txtHoTenSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtHoTenSinhVienCaretUpdate(evt);
             }
         });
 
@@ -940,18 +954,18 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtMSSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtMSSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtMSSinhVien.setEnabled(false);
-        txtMSSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMSSinhVienActionPerformed(evt);
+        txtMSSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtMSSinhVienCaretUpdate(evt);
             }
         });
 
         txtCMNDSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCMNDSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCMNDSinhVien.setEnabled(false);
-        txtCMNDSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCMNDSinhVienActionPerformed(evt);
+        txtCMNDSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtCMNDSinhVienCaretUpdate(evt);
             }
         });
 
@@ -961,9 +975,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtNgaySinhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNgaySinhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNgaySinhSinhVien.setEnabled(false);
-        txtNgaySinhSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNgaySinhSinhVienActionPerformed(evt);
+        txtNgaySinhSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNgaySinhSinhVienCaretUpdate(evt);
             }
         });
 
@@ -973,9 +987,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtMaTKSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtMaTKSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtMaTKSinhVien.setEnabled(false);
-        txtMaTKSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaTKSinhVienActionPerformed(evt);
+        txtMaTKSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtMaTKSinhVienCaretUpdate(evt);
             }
         });
 
@@ -985,9 +999,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtTonGiaoSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTonGiaoSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTonGiaoSinhVien.setEnabled(false);
-        txtTonGiaoSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTonGiaoSinhVienActionPerformed(evt);
+        txtTonGiaoSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTonGiaoSinhVienCaretUpdate(evt);
             }
         });
 
@@ -998,9 +1012,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtDanTocSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDanTocSinhVien.setEnabled(false);
         txtDanTocSinhVien.setMaximumSize(new java.awt.Dimension(64, 26));
-        txtDanTocSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDanTocSinhVienActionPerformed(evt);
+        txtDanTocSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtDanTocSinhVienCaretUpdate(evt);
             }
         });
 
@@ -1010,6 +1024,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtSoDTSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSoDTSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSoDTSinhVien.setEnabled(false);
+        txtSoDTSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtSoDTSinhVienCaretUpdate(evt);
+            }
+        });
         txtSoDTSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSoDTSinhVienActionPerformed(evt);
@@ -1022,6 +1041,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtGioiTinhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtGioiTinhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtGioiTinhSinhVien.setEnabled(false);
+        txtGioiTinhSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtGioiTinhSinhVienCaretUpdate(evt);
+            }
+        });
         txtGioiTinhSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGioiTinhSinhVienActionPerformed(evt);
@@ -1062,6 +1086,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
         txtNienKhoaSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNienKhoaSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNienKhoaSinhVien.setEnabled(false);
+        txtNienKhoaSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNienKhoaSinhVienCaretUpdate(evt);
+            }
+        });
         txtNienKhoaSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNienKhoaSinhVienActionPerformed(evt);
@@ -1080,7 +1109,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         pnMoreInfoLayout.setHorizontalGroup(
             pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnMoreInfoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnMoreInfoLayout.createSequentialGroup()
                         .addComponent(jLabel16)
@@ -1127,7 +1156,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                             .addGroup(pnMoreInfoLayout.createSequentialGroup()
                                 .addGroup(pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnMoreInfoLayout.createSequentialGroup()
-                                        .addComponent(txtDanTocSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDanTocSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel15))
                                     .addGroup(pnMoreInfoLayout.createSequentialGroup()
@@ -1137,13 +1166,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
                                 .addGroup(pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnMoreInfoLayout.createSequentialGroup()
                                         .addGap(28, 28, 28)
-                                        .addComponent(txtTonGiaoSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtTonGiaoSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pnMoreInfoLayout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addComponent(btnXoaSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(btnDongSinhVien, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(txtMaTKSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtMaTKSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         pnMoreInfoLayout.setVerticalGroup(
             pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1170,7 +1198,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                     .addComponent(jLabel11)
                     .addComponent(txtCMNDSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
-                    .addComponent(txtDanTocSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDanTocSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addComponent(txtTonGiaoSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
@@ -1187,35 +1215,44 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
+        //PromptSupport.setPrompt("Gợi ý ngắn", txtTimKiemSinhVien);
+        txtTimKiemSinhVien.setText("vd: 312141, Anh, Sư Phạm, ...");
+        txtTimKiemSinhVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTimKiemSinhVienMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pninfoLayout = new javax.swing.GroupLayout(pninfo);
         pninfo.setLayout(pninfoLayout);
         pninfoLayout.setHorizontalGroup(
             pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pninfoLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pninfoLayout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pninfoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pninfoLayout.createSequentialGroup()
                         .addComponent(btnThemSinhVien)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnTimSinhVien)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnTimKiemSinhVien)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addComponent(pnMoreInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addComponent(scpStudentList)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pninfoLayout.createSequentialGroup()
+                        .addComponent(pnMoreInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))))
+            .addComponent(scpStudentList, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         pninfoLayout.setVerticalGroup(
             pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pninfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThemSinhVien)
-                    .addComponent(btnTimSinhVien)
-                    .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTimKiemSinhVien)
+                    .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scpStudentList, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnMoreInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1339,7 +1376,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 210, Short.MAX_VALUE))
+                .addGap(0, 319, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout changeFrameLayout = new javax.swing.GroupLayout(changeFrame);
@@ -1375,7 +1412,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(1053, 568));
+        setSize(new java.awt.Dimension(1053, 671));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1459,34 +1496,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     }//GEN-LAST:event_studentListActionPerformed
 
-    private void txtHoTenSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoTenSinhVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHoTenSinhVienActionPerformed
-
-    private void txtMSSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMSSinhVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMSSinhVienActionPerformed
-
-    private void txtCMNDSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCMNDSinhVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCMNDSinhVienActionPerformed
-
-    private void txtDanTocSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDanTocSinhVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDanTocSinhVienActionPerformed
-
-    private void txtNgaySinhSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgaySinhSinhVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNgaySinhSinhVienActionPerformed
-
-    private void txtMaTKSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaTKSinhVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaTKSinhVienActionPerformed
-
-    private void txtTonGiaoSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTonGiaoSinhVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTonGiaoSinhVienActionPerformed
-
     private void btnSuaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaSinhVienActionPerformed
 
         svCu = SinhVienBUS.getSinhVienFromMoreInfo(this);
@@ -1495,12 +1504,17 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnSuaSinhVienActionPerformed
 
     private void btnLuuSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuSinhVienActionPerformed
-        SinhVien svMoi = new SinhVien();
-        svMoi = SinhVienBUS.getSinhVienFromMoreInfo(this);
+
+        String errorMessage = "Một số thông tin đã tồn tại rồi: \n";
+        SinhVien svMoi = SinhVienBUS.getSinhVienFromMoreInfo(this);
         int a = JOptionPane.showConfirmDialog(rootPane, "Bạn Muốn Lưu Sinh Viên Này ?\n" + SinhVienBUS.compare2SinhVien(svCu, svMoi));
         if (a == JOptionPane.YES_OPTION) {
-            System.out.println("đa Sửa");
-            SinhVienBUS.resetJPanelMoreInfo(this);
+            if (SinhVienBUS.checkUpdateInfo(svCu, svMoi).equals("")) {
+                new SinhVienDAO().update(svCu.getMaSV(), svMoi);
+                SinhVienBUS.resetJPanelMoreInfo(this);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, errorMessage + SinhVienBUS.checkUpdateInfo(svCu, svMoi));
+            }
         }
     }//GEN-LAST:event_btnLuuSinhVienActionPerformed
 
@@ -1539,7 +1553,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnMetalActionPerformed
 
     private void btnMotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMotifActionPerformed
-        changeTheme(btnMotif,arrays[2]);
+        changeTheme(btnMotif, arrays[2]);
     }//GEN-LAST:event_btnMotifActionPerformed
 
     private void btnNimbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNimbusActionPerformed
@@ -1572,6 +1586,117 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
 
     }//GEN-LAST:event_jPanel2MouseClicked
+    //-------------------------------các hàm này kiểm tra đầu vào khi ta muốn sửa hoặc thêm sinh viên -------------------------------------------------
+    private void txtHoTenSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtHoTenSinhVienCaretUpdate
+        if (!SinhVienBUS.checkHoTen(txtHoTenSinhVien.getText())) {
+            txtHoTenSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtHoTenSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtHoTenSinhVienCaretUpdate
+
+    private void txtMSSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMSSinhVienCaretUpdate
+        if (!SinhVienBUS.checkMSSV(txtMSSinhVien.getText())) {
+            txtMSSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtMSSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtMSSinhVienCaretUpdate
+
+    private void txtCMNDSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCMNDSinhVienCaretUpdate
+        if (!SinhVienBUS.checkCMND(txtCMNDSinhVien.getText())) {
+            txtCMNDSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtCMNDSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtCMNDSinhVienCaretUpdate
+
+    private void txtNganhSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNganhSinhVienCaretUpdate
+        if (!SinhVienBUS.checkNganh(txtNganhSinhVien.getText())) {
+            txtNganhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtNganhSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtNganhSinhVienCaretUpdate
+
+    private void txtNgaySinhSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNgaySinhSinhVienCaretUpdate
+        if (!SinhVienBUS.checkNgaySinh(txtNgaySinhSinhVien.getText())) {
+            txtNgaySinhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtNgaySinhSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtNgaySinhSinhVienCaretUpdate
+
+    private void txtSoDTSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSoDTSinhVienCaretUpdate
+        if (!SinhVienBUS.checkSoDienThoai(txtSoDTSinhVien.getText())) {
+            txtSoDTSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtSoDTSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtSoDTSinhVienCaretUpdate
+
+    private void txtGioiTinhSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtGioiTinhSinhVienCaretUpdate
+        if (!SinhVienBUS.checkGioiTinh(txtGioiTinhSinhVien.getText())) {
+            txtGioiTinhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtGioiTinhSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtGioiTinhSinhVienCaretUpdate
+
+    private void txtMaTKSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMaTKSinhVienCaretUpdate
+        if (!SinhVienBUS.checkMaTaiKhoan(txtMaTKSinhVien.getText())) {
+            txtMaTKSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtMaTKSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtMaTKSinhVienCaretUpdate
+
+    private void txtDiaChiSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtDiaChiSinhVienCaretUpdate
+        if (!SinhVienBUS.checkDiaChi(txtDiaChiSinhVien.getText())) {
+            txtDiaChiSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtDiaChiSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtDiaChiSinhVienCaretUpdate
+
+    private void txtNienKhoaSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNienKhoaSinhVienCaretUpdate
+        if (!SinhVienBUS.checkNienKhoa(txtNienKhoaSinhVien.getText())) {
+            txtNienKhoaSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtNienKhoaSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtNienKhoaSinhVienCaretUpdate
+
+    private void txtDanTocSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtDanTocSinhVienCaretUpdate
+        if (!SinhVienBUS.checkDanToc(txtDanTocSinhVien.getText())) {
+            txtDanTocSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtDanTocSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtDanTocSinhVienCaretUpdate
+
+    private void txtTonGiaoSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTonGiaoSinhVienCaretUpdate
+        if (!SinhVienBUS.checkTonGiao(txtTonGiaoSinhVien.getText())) {
+            txtTonGiaoSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtTonGiaoSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_txtTonGiaoSinhVienCaretUpdate
+
+    private void btnTimKiemSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemSinhVienActionPerformed
+        String condition = txtTimKiemSinhVien.getText();
+        if(!condition.equals("") && !condition.equals("vd: 312141, Anh, Sư Phạm, ...")){
+            SinhVienBUS.showStudentListWithCondition(tblStudentList, condition);
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập nội dung tìm kiếm\n Tên, Ngành, MSSV");
+        }
+    }//GEN-LAST:event_btnTimKiemSinhVienActionPerformed
+
+    private void txtTimKiemSinhVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKiemSinhVienMouseClicked
+        txtTimKiemSinhVien.setText("");
+    }//GEN-LAST:event_txtTimKiemSinhVienMouseClicked
+    // ------------------------------------------------------------------------------------------------------------------------------
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
 
@@ -1598,7 +1723,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
         leftBar.setPreferredSize(new Dimension(0, heightBar));
 
     }
-    private void changeTheme(JRadioButton btn,String themeText){
+
+    private void changeTheme(JRadioButton btn, String themeText) {
         String text = UIManager.getSystemLookAndFeelClassName();
         if (text.equals(themeText)) {
             btn.setSelected(true);
@@ -1612,13 +1738,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
                     | UnsupportedLookAndFeelException ignored) {
             }
         } else {
-            
+
         }
         SwingUtilities.updateComponentTreeUI(this);
         this.invalidate();
         this.validate();
         this.repaint();
     }
+
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -1645,7 +1772,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }
 
     public JButton getBtnTimSinhVien() {
-        return btnTimSinhVien;
+        return btnTimKiemSinhVien;
     }
 
     public JButton getBtnXoaSinhVien() {
@@ -1750,8 +1877,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }
     SinhVien svCu = new SinhVien();
     //    StudentInfo info = new StudentInfo();
-    
-   
 
     public JButton getBtnInformation() {
         return btnInformation;
@@ -1797,8 +1922,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         return jButton9;
     }
 
-  
-
     public JButton getStudentList() {
         return studentList;
     }
@@ -1821,7 +1944,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnSuaSinhVien;
     private javax.swing.JButton btnSubjectRegistration;
     private javax.swing.JButton btnThemSinhVien;
-    private javax.swing.JButton btnTimSinhVien;
+    private javax.swing.JButton btnTimKiemSinhVien;
     private javax.swing.JButton btnTool;
     private javax.swing.JRadioButton btnWindow;
     private javax.swing.JRadioButton btnWindowClassic;
