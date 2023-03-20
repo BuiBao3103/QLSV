@@ -29,6 +29,32 @@ public class SinhVienBUS {
 
     public SinhVienBUS() {
     }
+    
+//        public static void formatTable (JTable table){
+//        // --------------------Nguyên khúc này tùy chỉnh cái bảng thôi --------------------------------------------
+//        table.getColumn("MSSV").setMinWidth(150);
+//        table.getColumn("MSSV").setMaxWidth(150);
+//        table.getColumn("Ngành").setMaxWidth(350);
+//        table.getColumn("Ngành").setMinWidth(350);
+//        table.getColumn("Niên Khóa").setMaxWidth(100);
+//        table.getColumn("Niên Khóa").setMinWidth(100);
+//        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Căn Giữa cho các cột kiểu String
+//        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+//        table.setDefaultRenderer(String.class, centerRenderer);
+//        table.getColumn("MSSV").setCellRenderer(centerRenderer);
+//        table.getColumn("Niên Khóa").setCellRenderer(centerRenderer);
+//        table.getColumn("Họ Tên").setCellRenderer(centerRenderer);
+//        table.getColumn("Ngành").setCellRenderer(centerRenderer);
+//        table.getTableHeader().setDefaultRenderer(centerRenderer);
+//        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+//        table.setRowHeight(35);
+//        table.setRowMargin(10);
+//        table.setFont(new java.awt.Font("Segoe UI", 0, 16));
+//        table.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+//        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+//    //---------------------------------------------------------------------------------------------------------------
+//
+//    }
 
     public static void showStudentList(JTable table) {
 
@@ -38,13 +64,17 @@ public class SinhVienBUS {
         tblSinhVien.setColumnIdentifiers(new Object[]{ // đặt tên các cột
             "MSSV", "Họ Tên", "Ngành", "Niên Khóa"
         });
+//        formatTable(table);
 
-        table.getColumn("MSSV").setMinWidth(150);
-        table.getColumn("MSSV").setMaxWidth(150);
-        table.getColumn("Ngành").setMaxWidth(350);
-        table.getColumn("Ngành").setMinWidth(350);
-        table.getColumn("Niên Khóa").setMaxWidth(100);
-        table.getColumn("Niên Khóa").setMinWidth(100);
+//        table.getColumn("MSSV").setMinWidth(150);
+//        table.getColumn("MSSV").setMaxWidth(150);
+//        table.getColumn("Ngành").setMaxWidth(350);
+//        table.getColumn("Ngành").setMinWidth(350);
+//        table.getColumn("Niên Khóa").setMaxWidth(100);
+//        table.getColumn("Niên Khóa").setMinWidth(100);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Căn Giữa cho các cột kiểu String
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.getColumn("Niên Khóa").setCellRenderer(centerRenderer);
 
         for (SinhVien i : dssv) {
             if (i.getTrangThai() == 1) {
@@ -54,21 +84,20 @@ public class SinhVienBUS {
             }
         }
 
-        //--------------------Khúc này chỉnh các thuộc tính cho cái bảng -----------------------------------------------------
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Căn Giữa cho các cột kiểu String
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        table.setDefaultRenderer(String.class, centerRenderer);
-        table.getColumn("MSSV").setCellRenderer(centerRenderer);
-        table.getColumn("Niên Khóa").setCellRenderer(centerRenderer);
-        table.getColumn("Họ Tên").setCellRenderer(centerRenderer);
-        table.getColumn("Ngành").setCellRenderer(centerRenderer);
-        table.getTableHeader().setDefaultRenderer(centerRenderer);
-        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        table.setRowHeight(35);
-        table.setRowMargin(10);
-        table.setFont(new java.awt.Font("Segoe UI", 0, 16));
-        table.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+//        //--------------------Khúc này chỉnh các thuộc tính cho cái bảng -----------------------------------------------------
+
+//        table.setDefaultRenderer(String.class, centerRenderer);
+//        table.getColumn("MSSV").setCellRenderer(centerRenderer);
+//        table.getColumn("Niên Khóa").setCellRenderer(centerRenderer);
+//        table.getColumn("Họ Tên").setCellRenderer(centerRenderer);
+//        table.getColumn("Ngành").setCellRenderer(centerRenderer);
+//        table.getTableHeader().setDefaultRenderer(centerRenderer);
+//        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+//        table.setRowHeight(35);
+//        table.setRowMargin(10);
+//        table.setFont(new java.awt.Font("Segoe UI", 0, 16));
+//        table.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+//        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     }
 
     public static void showStudentListWithCondition(JTable table, String condition) {
@@ -78,6 +107,7 @@ public class SinhVienBUS {
         tblSinhVien.setColumnIdentifiers(new Object[]{ // đặt tên các cột
             "MSSV", "Họ Tên", "Ngành", "Niên Khóa"
         });
+//        formatTable(table);
 
         ArrayList<SinhVien> dssvNew = new ArrayList();
         for (SinhVien i : dssv) {
@@ -95,28 +125,28 @@ public class SinhVienBUS {
                 });
             }
         }
-// --------------------Nguyên khúc này tùy chỉnh cái bảng thôi --------------------------------------------
-        table.getColumn("MSSV").setMinWidth(150);
-        table.getColumn("MSSV").setMaxWidth(150);
-        table.getColumn("Ngành").setMaxWidth(350);
-        table.getColumn("Ngành").setMinWidth(350);
-        table.getColumn("Niên Khóa").setMaxWidth(100);
-        table.getColumn("Niên Khóa").setMinWidth(100);
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Căn Giữa cho các cột kiểu String
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        table.setDefaultRenderer(String.class, centerRenderer);
-        table.getColumn("MSSV").setCellRenderer(centerRenderer);
-        table.getColumn("Niên Khóa").setCellRenderer(centerRenderer);
-        table.getColumn("Họ Tên").setCellRenderer(centerRenderer);
-        table.getColumn("Ngành").setCellRenderer(centerRenderer);
-        table.getTableHeader().setDefaultRenderer(centerRenderer);
-        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        table.setRowHeight(35);
-        table.setRowMargin(10);
-        table.setFont(new java.awt.Font("Segoe UI", 0, 16));
-        table.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-//---------------------------------------------------------------------------------------------------------------
+//// --------------------Nguyên khúc này tùy chỉnh cái bảng thôi --------------------------------------------
+//        table.getColumn("MSSV").setMinWidth(150);
+//        table.getColumn("MSSV").setMaxWidth(150);
+//        table.getColumn("Ngành").setMaxWidth(350);
+//        table.getColumn("Ngành").setMinWidth(350);
+//        table.getColumn("Niên Khóa").setMaxWidth(100);
+//        table.getColumn("Niên Khóa").setMinWidth(100);
+//        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Căn Giữa cho các cột kiểu String
+//        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+//        table.setDefaultRenderer(String.class, centerRenderer);
+//        table.getColumn("MSSV").setCellRenderer(centerRenderer);
+//        table.getColumn("Niên Khóa").setCellRenderer(centerRenderer);
+//        table.getColumn("Họ Tên").setCellRenderer(centerRenderer);
+//        table.getColumn("Ngành").setCellRenderer(centerRenderer);
+//        table.getTableHeader().setDefaultRenderer(centerRenderer);
+//        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+//        table.setRowHeight(35);
+//        table.setRowMargin(10);
+//        table.setFont(new java.awt.Font("Segoe UI", 0, 16));
+//        table.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+//        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+////---------------------------------------------------------------------------------------------------------------
 
     }
 
@@ -151,45 +181,52 @@ public class SinhVienBUS {
 
     }
 
-    public static String maNganhToTenNganh(String maNganh) { // cái hàm này trả về tên ngành từ mã ngành
-        if (maNganh.equals("DCT")) {
-            return "Công Nghệ Thông Tin (DCT)";
-        }
-        if (maNganh.equals("DKP")) {
-            return "Kĩ Thuật Phần Mềm (DKP)";
-        }
-        if (maNganh.equals("DAN")) {
-            return "Ngôn Ngữ Anh (DAN)";
-        }
-        if (maNganh.equals("DSA")) {
-            return "Sư Phạm Tiếng Anh (DSA)";
-        }
-        if (maNganh.equals("DQK")) {
-            return "Quản Trị Kinh Doanh (DQK)";
-        }
-        if (maNganh.equals("DKQ")) {
-            return "Kinh Doanh Quốc Tế (DKQ)";
-        }
-        if (maNganh.equals("DSI")) {
-            return "Sư Phạm Sinh Học (DSI)";
-        }
-        if (maNganh.equals("DKH")) {
-            return "Sư Phạm Khoa Học Tự Nhiên (DKH)";
-        }
-        if (maNganh.equals("DLI")) {
-            return "Sư Phạm Lí (DLI)";
-        }
-        if (maNganh.equals("DHO")) {
-            return "Sư Phạm Hóa (DHO)";
-        }
-        if (maNganh.equals("DTN")) {
-            return "Tài Chính - Ngân Hàng (DTN)";
-        }
-        if (maNganh.equals("DKE")) {
-            return "Kế Toán (DKE)";
-        } else {
-            return "";
-        }
+    public static String maNganhToTenNganh(String maNganh) { // // cái hàm này trả về tên ngành từ mã ngành DCT -> Công Nghệ Thông Tin (DCT)
+         ArrayList<Nganh> dsNganh = new NganhDAO().get();
+            for (Nganh nganh : dsNganh){
+            if(nganh.getMaNganh().equals(maNganh)){
+                return nganh.getTenNganh() + " (" + maNganh +")";
+            }
+           }
+         return "";
+//        if (maNganh.equals("DCT")) {
+//            return "Công Nghệ Thông Tin (DCT)";
+//        }
+//        if (maNganh.equals("DKP")) {
+//            return "Kĩ Thuật Phần Mềm (DKP)";
+//        }
+//        if (maNganh.equals("DAN")) {
+//            return "Ngôn Ngữ Anh (DAN)";
+//        }
+//        if (maNganh.equals("DSA")) {
+//            return "Sư Phạm Tiếng Anh (DSA)";
+//        }
+//        if (maNganh.equals("DQK")) {
+//            return "Quản Trị Kinh Doanh (DQK)";
+//        }
+//        if (maNganh.equals("DKQ")) {
+//            return "Kinh Doanh Quốc Tế (DKQ)";
+//        }
+//        if (maNganh.equals("DSI")) {
+//            return "Sư Phạm Sinh Học (DSI)";
+//        }
+//        if (maNganh.equals("DKH")) {
+//            return "Sư Phạm Khoa Học Tự Nhiên (DKH)";
+//        }
+//        if (maNganh.equals("DLI")) {
+//            return "Sư Phạm Lí (DLI)";
+//        }
+//        if (maNganh.equals("DHO")) {
+//            return "Sư Phạm Hóa (DHO)";
+//        }
+//        if (maNganh.equals("DTN")) {
+//            return "Tài Chính - Ngân Hàng (DTN)";
+//        }
+//        if (maNganh.equals("DKE")) {
+//            return "Kế Toán (DKE)";
+//        } else {
+//            return "";
+//        }
     }
 
     public static String tenNganhToMaNganh(String tenNganh) {
@@ -307,7 +344,7 @@ public class SinhVienBUS {
         } catch (ParseException ex) {
             System.out.println("Chuyển kiểu sang date bị lỗi ở StudentInfo.btnSuaSinhVien");
         }
-        String GioiTinh = table.getTxtNgaySinhSinhVien().getText();
+        String GioiTinh = table.getTxtGioiTinhSinhVien().getText();
         String DiaChi = table.getTxtDiaChiSinhVien().getText();
         String DanToc = table.getTxtDanTocSinhVien().getText();
         String TonGiao = table.getTxtTonGiaoSinhVien().getText();
@@ -452,7 +489,7 @@ public class SinhVienBUS {
         // Khúc này kiểm tra đầu số có tồn tại trong 30 đầu số phổ biến nhất không
         String[] dsDauSoDienThoai = {"086", "096", "097", "098", "032", "033", "034", "035", "036", "037",
             "038", "039", "088", "091", "094", "083", "084", "085", "081", "082", "089",
-            "090", "093", "070", "079", "077", "076", "078", "092", "056", "058", "012", "011", "013", "014", "015", "010176", ""};
+            "090", "093", "070", "079", "077", "076", "078", "092", "056", "058", "012", "011", "013", "014", "015", "010", "016","017"};
         String dauSoDienThoai = soDienThoai.substring(0, 3); // lấy 3 số đầu
         int flag = 0;
         for (String i : dsDauSoDienThoai) {

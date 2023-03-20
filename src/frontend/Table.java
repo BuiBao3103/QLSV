@@ -561,7 +561,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         schedule.setLayout(scheduleLayout);
         scheduleLayout.setHorizontalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
         );
         scheduleLayout.setVerticalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -620,7 +620,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         score.setLayout(scoreLayout);
         scoreLayout.setHorizontalGroup(
             scoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
         );
         scoreLayout.setVerticalGroup(
             scoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -660,7 +660,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
         );
         fullNameLayout.setVerticalGroup(
             fullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -695,7 +695,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
         );
         idUniversityLayout.setVerticalGroup(
             idUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -725,7 +725,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
         );
         addressLayout.setVerticalGroup(
             addressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -755,7 +755,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
         );
         classIDLayout.setVerticalGroup(
             classIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -790,7 +790,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
         );
         majorLayout.setVerticalGroup(
             majorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -825,7 +825,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
         );
         major1Layout.setVerticalGroup(
             major1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -847,7 +847,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(62, 62, 62)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(detailInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                .addComponent(detailInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addGap(284, 284, 284))
         );
         personalInfoLayout.setVerticalGroup(
@@ -868,7 +868,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         subjectRegistration.setLayout(subjectRegistrationLayout);
         subjectRegistrationLayout.setHorizontalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 817, Short.MAX_VALUE)
+            .addGap(0, 913, Short.MAX_VALUE)
         );
         subjectRegistrationLayout.setVerticalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -914,6 +914,26 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 return canEdit [columnIndex];
             }
         });
+        tblStudentList.getColumn("MSSV").setMinWidth(150);
+        tblStudentList.getColumn("MSSV").setMaxWidth(150);
+        tblStudentList.getColumn("Ngành").setMaxWidth(350);
+        tblStudentList.getColumn("Ngành").setMinWidth(350);
+        tblStudentList.getColumn("Niên Khóa").setMaxWidth(100);
+        tblStudentList.getColumn("Niên Khóa").setMinWidth(100);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Căn Giữa cho các cột kiểu String
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        tblStudentList.setDefaultRenderer(String.class, centerRenderer);
+        tblStudentList.getColumn("MSSV").setCellRenderer(centerRenderer);
+        tblStudentList.getColumn("Niên Khóa").setCellRenderer(centerRenderer);
+        tblStudentList.getColumn("Họ Tên").setCellRenderer(centerRenderer);
+        tblStudentList.getColumn("Ngành").setCellRenderer(centerRenderer);
+        tblStudentList.getTableHeader().setDefaultRenderer(centerRenderer);
+        tblStudentList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblStudentList.setRowHeight(35);
+        tblStudentList.setRowMargin(10);
+        tblStudentList.setFont(new java.awt.Font("Segoe UI", 0, 16));
+        tblStudentList.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+        tblStudentList.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         tblStudentList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblStudentListMouseClicked(evt);
@@ -1259,9 +1279,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
             .addGroup(pninfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTimKiemSinhVien)
-                    .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTimKiemSinhVien)
+                    .addComponent(btnThemSinhVien))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scpStudentList, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1394,7 +1414,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGap(0, 63, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1475,7 +1495,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel23)
-            .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+            .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1542,7 +1562,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(1053, 558));
+        setSize(new java.awt.Dimension(1147, 558));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1627,10 +1647,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_studentListActionPerformed
 
     private void btnSuaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaSinhVienActionPerformed
-
-        svCu = SinhVienBUS.getSinhVienFromMoreInfo(this);
-
-        SinhVienBUS.updateSinhVien(this);
+        if (tblStudentList.getSelectedRow() != -1) {
+            svCu = SinhVienBUS.getSinhVienFromMoreInfo(this);
+            SinhVienBUS.updateSinhVien(this);
+        }
     }//GEN-LAST:event_btnSuaSinhVienActionPerformed
 
     private void btnLuuSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuSinhVienActionPerformed

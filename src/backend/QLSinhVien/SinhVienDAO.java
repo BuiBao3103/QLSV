@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,7 +21,7 @@ public class SinhVienDAO {
 
     Connection con = null;
     PreparedStatement pstm = null;
-
+    static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM--dd");
     public SinhVienDAO() {
     }
 
@@ -76,8 +77,19 @@ public class SinhVienDAO {
     }
 
     public static void main(String[] args) {
-        (new SinhVienDAO()).get();
-        System.out.println("yes");
+        ArrayList<SinhVien> dssv = new SinhVienDAO().get();
+        Date ngay = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        
+        System.out.println(ngay.toString());
+        System.out.println();
+        try{
+            System.out.println(java.sql.Date.valueOf(format.format(ngay)));
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        System.out.println(dssv.get(5).getNgaySinh().toString());
     }
 
     public void add(SinhVien sv) {
@@ -90,7 +102,7 @@ public class SinhVienDAO {
             pstm.setString(3, sv.getCmnd());//+
             pstm.setString(4, sv.getSoDienThoai());
             pstm.setString(5, sv.getHoTen());//+
-            pstm.setDate(6, (java.sql.Date) sv.getNgaySinh());
+            pstm.setDate(6, java.sql.Date.valueOf(dateFormat.format(sv.getNgaySinh())));
             pstm.setString(7, sv.getGioiTinh());//+
             pstm.setString(8, sv.getDiaChi());//+
             pstm.setString(9, sv.getDanToc());//+
@@ -119,7 +131,7 @@ public class SinhVienDAO {
             pstm.setString(3, sv.getCmnd());//+
             pstm.setString(4, sv.getSoDienThoai());
             pstm.setString(5, sv.getHoTen());//+
-            pstm.setDate(6, (java.sql.Date) sv.getNgaySinh());
+            pstm.setDate(6, java.sql.Date.valueOf(dateFormat.format(sv.getNgaySinh())));
             pstm.setString(7, sv.getGioiTinh());//+
             pstm.setString(8, sv.getDiaChi());//+
             pstm.setString(9, sv.getDanToc());//+
