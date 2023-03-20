@@ -152,7 +152,8 @@ public class SinhVienDAO {
     public void delete(String maSV) {
         con = ConnectionDB.getConnection();
         try {
-            String query = "DELETE FROM SinhVien WHERE MaSV=?;";//+
+//            String query = "DELETE FROM SinhVien WHERE MaSV=?;";//+
+            String query = "UPDATE SinhVien SET TrangThai = 0 WHERE MaSV=?;";
             pstm = con.prepareStatement(query);
             pstm.setString(1, maSV);//+
             pstm.executeUpdate();
