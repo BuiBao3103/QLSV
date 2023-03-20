@@ -1660,7 +1660,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
         int a = JOptionPane.showConfirmDialog(rootPane, "Bạn Muốn Lưu Sinh Viên Này ?\n" + SinhVienBUS.compare2SinhVien(svCu, svMoi));
         if (a == JOptionPane.YES_OPTION) {
             if (SinhVienBUS.checkUpdateInfo(svCu, svMoi).equals("")) {
-                new SinhVienDAO().update(svCu.getMaSV(), svMoi);
+                SinhVienDAO svDAO = new SinhVienDAO();
+                svDAO.update(svCu.getMaSV(), svMoi);
                 SinhVienBUS.resetJPanelMoreInfo(this);
             } else {
                 JOptionPane.showMessageDialog(rootPane, errorMessage + SinhVienBUS.checkUpdateInfo(svCu, svMoi));

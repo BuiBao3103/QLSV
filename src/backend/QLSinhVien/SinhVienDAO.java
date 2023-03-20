@@ -21,7 +21,7 @@ public class SinhVienDAO {
 
     Connection con = null;
     PreparedStatement pstm = null;
-    static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM--dd");
+    static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     public SinhVienDAO() {
     }
 
@@ -79,7 +79,7 @@ public class SinhVienDAO {
     public static void main(String[] args) {
         ArrayList<SinhVien> dssv = new SinhVienDAO().get();
         Date ngay = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         
         System.out.println(ngay.toString());
         System.out.println();
@@ -111,7 +111,7 @@ public class SinhVienDAO {
             pstm.setString(12, sv.getMaNganh());//+
             pstm.setInt(13, sv.getMaTK());//+
 
-            pstm.executeQuery();
+            pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -123,7 +123,7 @@ public class SinhVienDAO {
         con = ConnectionDB.getConnection();
         try {
             String query = "UPDATE SinhVien SET TrangThai = ?,MaSV = ?, Cmnd= ?,SoDienThoai = ?, HoTen= ?, "
-                    + "NganhSinh=?,GioiTinh=?, DiaChi=?, DanToc=?, TonGiao=?, "
+                    + "NgaySinh=?,GioiTinh=?, DiaChi=?, DanToc=?, TonGiao=?, "
                     + "NienKhoa=?, MaNganh=?, MaTK=? WHERE MaSV=?";//+
             pstm = con.prepareStatement(query);
             pstm.setInt(1, sv.getTrangThai());
@@ -141,8 +141,9 @@ public class SinhVienDAO {
             pstm.setInt(13, sv.getMaTK());//+
             pstm.setString(14, maSV);//+
 
-            ResultSet rs = pstm.executeQuery();
+            pstm.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             ConnectionDB.closeConnection(con, pstm);
         }
@@ -154,7 +155,7 @@ public class SinhVienDAO {
             String query = "DELETE FROM SinhVien WHERE MaSV=?;";//+
             pstm = con.prepareStatement(query);
             pstm.setString(1, maSV);//+
-            ResultSet rs = pstm.executeQuery();
+            pstm.executeUpdate();
         } catch (SQLException e) {
         } finally {
             ConnectionDB.closeConnection(con, pstm);
