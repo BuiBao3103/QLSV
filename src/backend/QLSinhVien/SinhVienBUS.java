@@ -27,9 +27,9 @@ public class SinhVienBUS {
     static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // cái này để chuyển qua lại kiểu date với String
     static ArrayList<SinhVien> dssv = new SinhVienDAO().get();
     static ArrayList<Nganh> dsNganh = new NganhDAO().get();
-
     public SinhVienBUS() {
     }
+    
 
     public static void formatTable(JTable table) {
         table.getColumn("MSSV").setMinWidth(150);
@@ -57,7 +57,7 @@ public class SinhVienBUS {
     }
 
     public static void showStudentList(JTable table) {
-         ArrayList<SinhVien> dssv = new SinhVienDAO().get();
+        ArrayList<SinhVien> dssv = new SinhVienDAO().get();
         DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
         tblSinhVien.setRowCount(0);
 
@@ -140,7 +140,7 @@ public class SinhVienBUS {
 
     public static String checkUpdateInfo(SinhVien svCu, SinhVien svMoi) { // hàm này trả về các lỗi đã tồn tại của các thuộc tính khóa
         String errorMessage = "";
-        if (!svCu.getCmnd().equals(svMoi.getCmnd())) {
+        if (!svCu.getCmnd().equals(svMoi.getCmnd())) {  // nếu sửa CMND thì 2 cái cmnd cũ mới khác nhau
             if (checkExistCMND(svMoi.getCmnd())) { //cmnd đã tồn tại
                 errorMessage += "- Chứng Minh Nhân Dân\n";
             }
@@ -158,35 +158,28 @@ public class SinhVienBUS {
         return errorMessage;
     }
 
-    public static void updateSinhVien(Table table) {
-        table.getBtnSuaSinhVien().setEnabled(false);
-        table.getBtnLuuSinhVien().setEnabled(true);
-        JTextField txtHoTen = table.getTxtHoTenSinhVien();
-        JTextField txtCMND = table.getTxtCMNDSinhVien();
-        JTextField txtDanToc = table.getTxtDanTocSinhVien();
-        JTextField txtDiaChi = table.getTxtDiaChiSinhVien();
-        JTextField txtGioiTinh = table.getTxtGioiTinhSinhVien();
-        JTextField txtNganh = table.getTxtNganhSinhVien();
-        JTextField txtNgaySinh = table.getTxtNgaySinhSinhVien();
-        JTextField txtSoDienThoai = table.getTxtSoDTSinhVien();
-        JTextField txtNienKhoa = table.getTxtNienKhoaSinhVien();
-        JTextField txtTonGiao = table.getTxtTonGiaoSinhVien();
-        txtHoTen.setEnabled(true);
-        txtCMND.setEnabled(true);
-        txtDanToc.setEnabled(true);
-        txtDiaChi.setEnabled(true);
-        txtGioiTinh.setEnabled(true);
-        txtNganh.setEnabled(true);
-        txtNgaySinh.setEnabled(true);
-        txtSoDienThoai.setEnabled(true);
-        txtNienKhoa.setEnabled(true);
-        txtTonGiao.setEnabled(true);
+    public static String checkAddInfo(SinhVien svMoi) { // hàm này trả về các lỗi đã tồn tại của các thuộc tính khóa
+        String errorMessage = "";
 
+        if (checkExistCMND(svMoi.getCmnd())) { //cmnd đã tồn tại
+            errorMessage += "- Chứng Minh Nhân Dân\n";
+        }
+
+        if (checkExistMSSV(svMoi.getMaSV())) {  // mssv đã tồn tại
+            errorMessage += "- Mã Số Sinh Viên\n";
+        }
+
+        if (checkExistMaTaiKhoan(svMoi.getMaTK() + "")) { // mã tk tồn tại rồi
+            errorMessage += "- Mã Tài Khoản";
+        }
+
+        return errorMessage;
     }
 
     public static void resetJPanelMoreInfo(Table table) {
         table.getBtnSuaSinhVien().setEnabled(true);
         table.getBtnLuuSinhVien().setEnabled(false);
+        table.getTxtMSSinhVien().setEnabled(false);
         table.getTxtHoTenSinhVien().setEnabled(false);
         table.getTxtCMNDSinhVien().setEnabled(false);
         table.getTxtDanTocSinhVien().setEnabled(false);
@@ -197,6 +190,7 @@ public class SinhVienBUS {
         table.getTxtSoDTSinhVien().setEnabled(false);
         table.getTxtNienKhoaSinhVien().setEnabled(false);
         table.getTxtTonGiaoSinhVien().setEnabled(false);
+        table.getTxtMaTKSinhVien().setEnabled(false);
         table.setTxtCMNDSinhVien("");
         table.setTxtDanTocSinhVien("");
         table.setTxtDiaChiSinhVien("");
@@ -250,7 +244,7 @@ public class SinhVienBUS {
         return result;
     }
 
-    public static SinhVien getSinhVienFromMoreInfo(Table table) {
+    public static SinhVien getSinhVienFromMoreInfo(Table table) {   // cái hàm này lấy thông tin từ panel Moreinfo tạo ra svien mới
         String HoTen = table.getTxtHoTenSinhVien().getText();
         String MSSV = table.getTxtMSSinhVien().getText();
         String CMND = table.getTxtCMNDSinhVien().getText();
@@ -259,7 +253,8 @@ public class SinhVienBUS {
         try {
             NgaySinh = dateFormat.parse(table.getTxtNgaySinhSinhVien().getText());
         } catch (ParseException ex) {
-            System.out.println("Chuyển kiểu sang date bị lỗi ở StudentInfo.btnSuaSinhVien");
+            // có ngoại lệ nên return về 1 sinh viên bị lỗi
+            return new SinhVien(1, "", "", "", "", NgaySinh, "", "", "", "", "", "", -1);
         }
         String GioiTinh = table.getTxtGioiTinhSinhVien().getText();
         String DiaChi = table.getTxtDiaChiSinhVien().getText();
@@ -270,6 +265,82 @@ public class SinhVienBUS {
         int MaTK = Integer.parseInt(table.getTxtMaTKSinhVien().getText());
         SinhVien sv = new SinhVien(1, MSSV, CMND, SoDT, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
         return sv;
+    }
+
+    public static void updateSinhVien(Table table) {
+        table.getBtnSuaSinhVien().setEnabled(false);
+        table.getBtnLuuSinhVien().setEnabled(true);
+        JTextField txtHoTen = table.getTxtHoTenSinhVien();
+        JTextField txtCMND = table.getTxtCMNDSinhVien();
+        JTextField txtDanToc = table.getTxtDanTocSinhVien();
+        JTextField txtDiaChi = table.getTxtDiaChiSinhVien();
+        JTextField txtGioiTinh = table.getTxtGioiTinhSinhVien();
+        JTextField txtNganh = table.getTxtNganhSinhVien();
+        JTextField txtNgaySinh = table.getTxtNgaySinhSinhVien();
+        JTextField txtSoDienThoai = table.getTxtSoDTSinhVien();
+        JTextField txtNienKhoa = table.getTxtNienKhoaSinhVien();
+        JTextField txtTonGiao = table.getTxtTonGiaoSinhVien();
+        txtHoTen.setEnabled(true);
+        txtCMND.setEnabled(true);
+        txtDanToc.setEnabled(true);
+        txtDiaChi.setEnabled(true);
+        txtGioiTinh.setEnabled(true);
+        txtNganh.setEnabled(true);
+        txtNgaySinh.setEnabled(true);
+        txtSoDienThoai.setEnabled(true);
+        txtNienKhoa.setEnabled(true);
+        txtTonGiao.setEnabled(true);
+    }
+
+    public static void updateSinhVienToServer(Table table, SinhVien svCu, SinhVien svMoi) {
+        String errorMessage = "Một số thông tin đã tồn tại rồi: \n";
+        int a = JOptionPane.showConfirmDialog(table, "Bạn Muốn Lưu Sinh Viên Này ?\n" + SinhVienBUS.compare2SinhVien(svCu, svMoi));
+        if (a == JOptionPane.YES_OPTION) {
+            if (SinhVienBUS.checkUpdateInfo(svCu, svMoi).equals("")) {  // khi thông tin nhập vào dúng thì kiểm tra trùng
+//                SinhVienDAO svDAO = new SinhVienDAO();
+                svDAO.update(svCu.getMaSV(), svMoi);
+                JOptionPane.showMessageDialog(table, "Sửa Thành Công");   
+                resetJPanelMoreInfo(table);
+            } else {    // có thông tin khóa bị trùng
+                JOptionPane.showMessageDialog(table, errorMessage + checkUpdateInfo(svCu, svMoi));
+            }
+        }
+    }
+
+    public static void addSinhVien(Table table) {
+        resetJPanelMoreInfo(table);
+        table.getPnMoreInfo().setVisible(true);
+        table.getBtnSuaSinhVien().setVisible(false);
+        table.getBtnLuuSinhVien().setVisible(true);
+        table.getBtnLuuSinhVien().setEnabled(true);
+        table.getBtnXoaSinhVien().setVisible(false);
+
+        table.getTxtMSSinhVien().setEnabled(true);
+        table.getTxtHoTenSinhVien().setEnabled(true);
+        table.getTxtCMNDSinhVien().setEnabled(true);
+        table.getTxtDanTocSinhVien().setEnabled(true);
+        table.getTxtDiaChiSinhVien().setEnabled(true);
+        table.getTxtGioiTinhSinhVien().setEnabled(true);
+        table.getTxtNganhSinhVien().setEnabled(true);
+        table.getTxtNgaySinhSinhVien().setEnabled(true);
+        table.getTxtSoDTSinhVien().setEnabled(true);
+        table.getTxtNienKhoaSinhVien().setEnabled(true);
+        table.getTxtTonGiaoSinhVien().setEnabled(true);
+        table.getTxtMaTKSinhVien().setEnabled(true);
+    }
+
+    public static void addSinhVienToServer(Table table, SinhVien svMoi) {
+        String errorMessage = "Một số thông tin đã tồn tại rồi: \n";
+        int a = JOptionPane.showConfirmDialog(table, "Bạn muốn thêm sinh viên này ?");
+        if (a == JOptionPane.YES_OPTION) {
+            if (SinhVienBUS.checkAddInfo(svMoi).equals("")) { // kiểm tra xem có bị trùng thông tin không
+                svDAO.add(svMoi);
+                JOptionPane.showMessageDialog(table, "Thêm Thành Công");
+                resetJPanelMoreInfo(table);
+            } else {   // thông tin khóa bị trùng
+                JOptionPane.showMessageDialog(table, errorMessage + checkAddInfo(svMoi));
+            }
+        }
     }
 
     public int getTrangThai(int MaTK) {
@@ -456,6 +527,9 @@ public class SinhVienBUS {
     }
 
     public static boolean checkNgaySinh(String ngaySinh) {
+        if(ngaySinh.length()!=10){ // 1999-07-08 -> true 1999-7-8 -> false
+            return false;
+        }
         try {
             dateFormat.parse(ngaySinh);
         } catch (Exception e) {
@@ -467,7 +541,7 @@ public class SinhVienBUS {
         return true;
     }
 
-    public static boolean checkNganh(String nganh) {
+    public static boolean checkNganh(String nganh) { // tham số truyền vao kiểu 'Công Nghệ Thông Tin (DCT)'
 //        String dsMaNganh[] = {"DAN","DCT","DHO","DKE","DKH","DKP","DKQ","DLI","DQK","DSA","DSI","DTN"};
         ArrayList<Nganh> dsNganh = new ArrayList();
         dsNganh = new NganhDAO().get();
@@ -568,6 +642,18 @@ public class SinhVienBUS {
         }
         return 0;
     }
+// ---------------------------------------------------------------------------------------------------------------
+
+    public static boolean checkAllInfo(SinhVien sv) {
+        if (!checkCMND(sv.getCmnd()) || !checkDanToc(sv.getDanToc()) || !checkDiaChi(sv.getDiaChi())
+                || !checkGioiTinh(sv.getGioiTinh()) || !checkHoTen(sv.getHoTen()) || !checkMSSV(sv.getMaSV())
+                || !checkMaTaiKhoan(sv.getMaTK() + "") || !checkNganh(maNganhToTenNganh(sv.getMaNganh())) || !checkNgaySinh(dateFormat.format(sv.getNgaySinh()))
+                || !checkNienKhoa(sv.getNienKhoa()) || !checkSoDienThoai(sv.getSoDienThoai()) || !checkTonGiao(sv.getTonGiao())) {
+
+            return false;
+        }
+        return true;
+    }
 
     //-----------------------------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
@@ -578,6 +664,6 @@ public class SinhVienBUS {
 //
 //        }
 //        svDAO.get();
-        System.out.println('ă' == 'ă');
+
     }
 }

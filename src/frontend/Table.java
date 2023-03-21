@@ -879,6 +879,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         btnThemSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThemSinhVien.setText("Thêm");
+        btnThemSinhVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemSinhVienActionPerformed(evt);
+            }
+        });
 
         btnTimKiemSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKiemSinhVien.setText("Tìm");
@@ -1223,8 +1228,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
                                 .addGap(18, 18, 18)
                                 .addGroup(pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnMoreInfoLayout.createSequentialGroup()
-                                        .addComponent(txtTonGiaoSinhVien)
-                                        .addGap(11, 11, 11))
+                                        .addComponent(txtTonGiaoSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(pnMoreInfoLayout.createSequentialGroup()
                                         .addComponent(btnXoaSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(15, 15, 15))))
@@ -1664,7 +1669,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.removeAll(); // xóa hết nội dung vùng content
         mainPanel.repaint();
         mainPanel.revalidate();
-
         mainPanel.add(studentinfo);
         SinhVienBUS.showStudentList(tblStudentList); // dòng này bị lag nè
         closeMenuActionPerformed(null); //tắt cái menu khu bấm zo nút
@@ -1682,19 +1686,16 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnSuaSinhVienActionPerformed
 
     private void btnLuuSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuSinhVienActionPerformed
-
-        String errorMessage = "Một số thông tin đã tồn tại rồi: \n";
         SinhVien svMoi = SinhVienBUS.getSinhVienFromMoreInfo(this);
-        int a = JOptionPane.showConfirmDialog(rootPane, "Bạn Muốn Lưu Sinh Viên Này ?\n" + SinhVienBUS.compare2SinhVien(svCu, svMoi));
-        if (a == JOptionPane.YES_OPTION) {
-            if (SinhVienBUS.checkUpdateInfo(svCu, svMoi).equals("")) {
-                SinhVienDAO svDAO = new SinhVienDAO();
-                svDAO.update(svCu.getMaSV(), svMoi);
-                btnDongSinhVienActionPerformed(null);
-                
-            } else {
-                JOptionPane.showMessageDialog(rootPane, errorMessage + SinhVienBUS.checkUpdateInfo(svCu, svMoi));
+        if (SinhVienBUS.checkAllInfo(svMoi)) {
+            if (btnSuaSinhVien.isVisible()) {   // cái này là lưu khi sinh viên được sửa
+                SinhVienBUS.updateSinhVienToServer(this, svCu, svMoi);
+            } else {           // cái này lưu khi sinh viên được thêm
+                SinhVienBUS.addSinhVienToServer(this, svMoi);
             }
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Thông tin không hợp lệ !");
         }
     }//GEN-LAST:event_btnLuuSinhVienActionPerformed
 
@@ -1883,6 +1884,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.repaint();
         mainPanel.validate();
     }//GEN-LAST:event_btnSettingActionPerformed
+
+    private void btnThemSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSinhVienActionPerformed
+        SinhVienBUS.addSinhVien(this);
+
+    }//GEN-LAST:event_btnThemSinhVienActionPerformed
     // ------------------------------------------------------------------------------------------------------------------------------
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
@@ -1954,8 +1960,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
     public void setPnMoreInfo(JPanel pnMoreInfo) {
         this.pnMoreInfo = pnMoreInfo;
     }
-    
-    
 
     public JButton getBtnDongSinhVien() {
         return btnDongSinhVien;

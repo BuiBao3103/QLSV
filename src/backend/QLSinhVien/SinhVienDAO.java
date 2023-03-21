@@ -55,6 +55,39 @@ public class SinhVienDAO {
         }
         return dssv;//+
     }
+    
+    public ArrayList<SinhVien> getByKhoa(String maKhoa){ // hàm này lấy dssv theo mã khoa truyền vào
+       con = ConnectionDB.getConnection();
+        ArrayList<SinhVien> dssv = new ArrayList<>();//+
+        try {
+//            String query = "select * from SinhVien where MaKhoa=?";//+
+            String query = "select sv.*\n from SINHVIEN sv join NGANH ng on sv.MaNganh = ng.MaNganh\n where ng.MaKhoa = '?'";
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, maKhoa);//+
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
+                String maSV = rs.getString("MaSV");//+
+                String cmnd = rs.getString("Cmnd");//+
+                String soDienThoai = rs.getString("SoDienThoai");
+                String hoTen = rs.getString("HoTen");//+
+                Date ngaySinh = rs.getDate("NgaySinh");//+
+                String gioiTinh = rs.getString("GioiTinh");//+
+                String diaChi = rs.getString("DiaChi");//+
+                String danToc = rs.getString("DanToc");//+
+                String tonGiao = rs.getString("TonGiao");//+
+                String nienKhoa = rs.getString("NienKhoa");//+
+                String maNganh = rs.getString("MaNganh");//+
+                int maTK = rs.getInt("MaTK");
+                SinhVien sv = new SinhVien(trangThai, maSV, cmnd, soDienThoai, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+                dssv.add(sv);//+
+            }
+        } catch (SQLException e) {
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dssv;//+
+    }
 
     public int getTrangThaiByMaTk(int MaTK) {
         con = ConnectionDB.getConnection();
