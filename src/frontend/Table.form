@@ -1361,11 +1361,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="631" max="-2" attributes="0"/>
-                          <Component id="btnThemSinhVien" pref="80" max="32767" attributes="0"/>
+                          <Component id="btnThemSinhVien" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnTimKiemSinhVien" pref="80" max="32767" attributes="0"/>
+                          <Component id="btnTimKiemSinhVien" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTimKiemSinhVien" pref="177" max="32767" attributes="0"/>
+                          <Component id="txtTimKiemSinhVien" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       </Group>
                       <Component id="scpStudentList" alignment="1" max="32767" attributes="0"/>
@@ -1384,7 +1384,7 @@
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="scpStudentList" pref="263" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="pnMoreInfo" max="32767" attributes="0"/>
+                          <Component id="pnMoreInfo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
