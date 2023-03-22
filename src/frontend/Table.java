@@ -117,7 +117,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jLabel12 = new javax.swing.JLabel();
         txtDiaChiSinhVien = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txtNganhSinhVien = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtHoTenSinhVien = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -142,6 +141,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jLabel20 = new javax.swing.JLabel();
         txtNienKhoaSinhVien = new javax.swing.JTextField();
         btnDongSinhVien = new javax.swing.JButton();
+        cbNganhSinhVien = new javax.swing.JComboBox<>();
         txtTimKiemSinhVien = new javax.swing.JTextField();
         settings = new javax.swing.JPanel();
         changeFrame = new javax.swing.JPanel();
@@ -963,15 +963,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Mã Tài Khoản:");
 
-        txtNganhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtNganhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtNganhSinhVien.setEnabled(false);
-        txtNganhSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtNganhSinhVienCaretUpdate(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Họ Tên:");
@@ -1153,6 +1144,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        cbNganhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbNganhSinhVien.setEnabled(false);
+        cbNganhSinhVien.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbNganhSinhVienItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnMoreInfoLayout = new javax.swing.GroupLayout(pnMoreInfo);
         pnMoreInfo.setLayout(pnMoreInfoLayout);
         pnMoreInfoLayout.setHorizontalGroup(
@@ -1160,10 +1159,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
             .addGroup(pnMoreInfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnMoreInfoLayout.createSequentialGroup()
-                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNganhSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnMoreInfoLayout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(29, 29, 29)
@@ -1175,7 +1170,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnMoreInfoLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(29, 29, 29)
-                        .addComponent(txtHoTenSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtHoTenSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnMoreInfoLayout.createSequentialGroup()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbNganhSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnMoreInfoLayout.createSequentialGroup()
@@ -1227,9 +1226,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                                         .addGap(5, 5, 5)))
                                 .addGap(18, 18, 18)
                                 .addGroup(pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnMoreInfoLayout.createSequentialGroup()
-                                        .addComponent(txtTonGiaoSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtTonGiaoSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(pnMoreInfoLayout.createSequentialGroup()
                                         .addComponent(btnXoaSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(15, 15, 15))))
@@ -1272,13 +1269,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(14, 14, 14)
                 .addGroup(pnMoreInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(txtNganhSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbNganhSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(txtMaTKSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSuaSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLuuSinhVien)
-                    .addComponent(btnXoaSinhVien))
-                .addContainerGap(7, Short.MAX_VALUE))
+                    .addComponent(btnXoaSinhVien)))
         );
 
         //PromptSupport.setPrompt("Gợi ý ngắn", txtTimKiemSinhVien);
@@ -1313,7 +1309,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                     .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnThemSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scpStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                .addComponent(scpStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnMoreInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1672,6 +1668,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.add(studentinfo);
         SinhVienBUS.showStudentList(tblStudentList); // dòng này bị lag nè
         closeMenuActionPerformed(null); //tắt cái menu khu bấm zo nút
+        this.setCbNganhSinhVien(SinhVienBUS.dsTenNganh);
         btnDongSinhVienActionPerformed(null);
         mainPanel.repaint();
         mainPanel.revalidate();
@@ -1793,14 +1790,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         }
     }//GEN-LAST:event_txtCMNDSinhVienCaretUpdate
 
-    private void txtNganhSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNganhSinhVienCaretUpdate
-        if (!SinhVienBUS.checkNganh(txtNganhSinhVien.getText())) {
-            txtNganhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtNganhSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtNganhSinhVienCaretUpdate
-
     private void txtNgaySinhSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNgaySinhSinhVienCaretUpdate
         if (!SinhVienBUS.checkNgaySinh(txtNgaySinhSinhVien.getText())) {
             txtNgaySinhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
@@ -1889,6 +1878,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
         SinhVienBUS.addSinhVien(this);
 
     }//GEN-LAST:event_btnThemSinhVienActionPerformed
+
+    private void cbNganhSinhVienItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbNganhSinhVienItemStateChanged
+        if (!SinhVienBUS.checkNganh(cbNganhSinhVien.getSelectedItem().toString())) {
+            cbNganhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            cbNganhSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
+    }//GEN-LAST:event_cbNganhSinhVienItemStateChanged
     // ------------------------------------------------------------------------------------------------------------------------------
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
@@ -2050,13 +2047,24 @@ public class Table extends javax.swing.JFrame implements Runnable {
         this.txtMaTKSinhVien.setText(txtMaTKSinhVien);
     }
 
-    public JTextField getTxtNganhSinhVien() {
-        return txtNganhSinhVien;
+    public JComboBox<String> getCbNganhSinhVien() {
+        return cbNganhSinhVien;
     }
 
-    public void setTxtNganhSinhVien(String txtNganhSinhVien) {
-        this.txtNganhSinhVien.setText(txtNganhSinhVien);
+    public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
+        cbNganhSinhVien.removeAllItems();
+        for(String i : dsTenNganh){
+            cbNganhSinhVien.addItem(i);
+        }
     }
+//
+//    public JTextField getTxtNganhSinhVien() {
+//        return txtNganhSinhVien;
+//    }
+//
+//    public void setTxtNganhSinhVien(String txtNganhSinhVien) {
+//        this.txtNganhSinhVien.setText(txtNganhSinhVien);
+//    }
 
     public JTextField getTxtNgaySinhSinhVien() {
         return txtNgaySinhSinhVien;
@@ -2155,6 +2163,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JRadioButton btnWindow;
     private javax.swing.JRadioButton btnWindowClassic;
     private javax.swing.JButton btnXoaSinhVien;
+    private javax.swing.JComboBox<String> cbNganhSinhVien;
     private javax.swing.JPanel changeFrame;
     private javax.swing.JPanel classID;
     private javax.swing.JButton closeMenu;
@@ -2244,7 +2253,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField txtHoTenSinhVien;
     private javax.swing.JTextField txtMSSinhVien;
     private javax.swing.JTextField txtMaTKSinhVien;
-    private javax.swing.JTextField txtNganhSinhVien;
     private javax.swing.JTextField txtNgaySinhSinhVien;
     private javax.swing.JTextField txtNienKhoaSinhVien;
     private javax.swing.JTextField txtSoDTSinhVien;

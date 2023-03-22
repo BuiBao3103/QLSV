@@ -27,9 +27,27 @@ public class SinhVienBUS {
     static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // cái này để chuyển qua lại kiểu date với String
     static ArrayList<SinhVien> dssv = new SinhVienDAO().get();
     static ArrayList<Nganh> dsNganh = new NganhDAO().get();
+    public static ArrayList<String> dsTenNganh = new ArrayList();
+
     public SinhVienBUS() {
     }
-    
+
+    public static void getDsTenNganh() { // hàm này sẽ thay đổi ds lấy tất cả các ngành
+        dsTenNganh.add(""); // cái này cho cái trường hợp chưa chọn
+        for (Nganh i : dsNganh) {
+            dsTenNganh.add(maNganhToTenNganh(i.getMaNganh()));
+        }
+
+    }
+
+    public static void getDsTenNganhByKhoa(String maKhoa) {  // hàm này sẽ lấy được ds các ngành thuộc về khoa '...'
+        dsTenNganh.add(""); // cái này cho cái trường hợp chưa chọn
+        for (Nganh i : dsNganh) {
+            if (i.getMaKhoa().equals(maKhoa)) {
+                dsTenNganh.add(maNganhToTenNganh(i.getMaNganh()));
+            }
+        }
+    }
 
     public static void formatTable(JTable table) {
         table.getColumn("MSSV").setMinWidth(150);
@@ -57,6 +75,7 @@ public class SinhVienBUS {
     }
 
     public static void showStudentList(JTable table) {
+        getDsTenNganh(); // cái hàm này sẽ thay đổi cái dstennganh cho cái combobox ten nganh
         ArrayList<SinhVien> dssv = new SinhVienDAO().get();
         DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
         tblSinhVien.setRowCount(0);
@@ -117,7 +136,8 @@ public class SinhVienBUS {
         table.setTxtDanTocSinhVien(sv.getDanToc());
         table.setTxtTonGiaoSinhVien(sv.getTonGiao());
         table.setTxtNienKhoaSinhVien(sv.getNienKhoa());
-        table.setTxtNganhSinhVien(maNganhToTenNganh(sv.getMaNganh()));
+//        table.setTxtNganhSinhVien(maNganhToTenNganh(sv.getMaNganh()));
+        table.getCbNganhSinhVien().setSelectedItem(maNganhToTenNganh(sv.getMaNganh()));
         table.setTxtMaTKSinhVien(sv.getMaTK() + "");
 
     }
@@ -185,7 +205,10 @@ public class SinhVienBUS {
         table.getTxtDanTocSinhVien().setEnabled(false);
         table.getTxtDiaChiSinhVien().setEnabled(false);
         table.getTxtGioiTinhSinhVien().setEnabled(false);
-        table.getTxtNganhSinhVien().setEnabled(false);
+//        table.getTxtNganhSinhVien().setEnabled(false);
+
+        table.getCbNganhSinhVien().setEnabled(false);
+
         table.getTxtNgaySinhSinhVien().setEnabled(false);
         table.getTxtSoDTSinhVien().setEnabled(false);
         table.getTxtNienKhoaSinhVien().setEnabled(false);
@@ -198,7 +221,9 @@ public class SinhVienBUS {
         table.setTxtHoTenSinhVien("");
         table.setTxtMSSinhVien("");
         table.setTxtMaTKSinhVien("");
-        table.setTxtNganhSinhVien("");
+//        table.setTxtNganhSinhVien("");
+        table.getCbNganhSinhVien().setSelectedIndex(0); // cái này để cái combobox ngành sinh viên nó không chứa ngành nào
+
         table.setTxtNgaySinhSinhVien("");
         table.setTxtNienKhoaSinhVien("");
         table.setTxtSoDTSinhVien("");
@@ -250,8 +275,11 @@ public class SinhVienBUS {
         String CMND = table.getTxtCMNDSinhVien().getText();
         String SoDT = table.getTxtSoDTSinhVien().getText();
         Date NgaySinh = new Date();
+        String Nganh;
         try {
             NgaySinh = dateFormat.parse(table.getTxtNgaySinhSinhVien().getText());
+            Nganh = SinhVienBUS.tenNganhToMaNganh(table.getCbNganhSinhVien().getSelectedItem().toString()); // dòng này nó lấy cái phần tử đang được chọn của combobox ngành rồi chuyển về thành mã ngành
+
         } catch (ParseException ex) {
             // có ngoại lệ nên return về 1 sinh viên bị lỗi
             return new SinhVien(1, "", "", "", "", NgaySinh, "", "", "", "", "", "", -1);
@@ -261,35 +289,27 @@ public class SinhVienBUS {
         String DanToc = table.getTxtDanTocSinhVien().getText();
         String TonGiao = table.getTxtTonGiaoSinhVien().getText();
         String NienKhoa = table.getTxtNienKhoaSinhVien().getText();
-        String Nganh = SinhVienBUS.tenNganhToMaNganh(table.getTxtNganhSinhVien().getText());
+//        String Nganh = SinhVienBUS.tenNganhToMaNganh(table.getTxtNganhSinhVien().getText());
         int MaTK = Integer.parseInt(table.getTxtMaTKSinhVien().getText());
         SinhVien sv = new SinhVien(1, MSSV, CMND, SoDT, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
         return sv;
     }
 
-    public static void updateSinhVien(Table table) {
+    public static void updateSinhVien(Table table) { // cái hàm nàỳ sẽ bật những component cho mình sửa sinh viên
         table.getBtnSuaSinhVien().setEnabled(false);
         table.getBtnLuuSinhVien().setEnabled(true);
-        JTextField txtHoTen = table.getTxtHoTenSinhVien();
-        JTextField txtCMND = table.getTxtCMNDSinhVien();
-        JTextField txtDanToc = table.getTxtDanTocSinhVien();
-        JTextField txtDiaChi = table.getTxtDiaChiSinhVien();
-        JTextField txtGioiTinh = table.getTxtGioiTinhSinhVien();
-        JTextField txtNganh = table.getTxtNganhSinhVien();
-        JTextField txtNgaySinh = table.getTxtNgaySinhSinhVien();
-        JTextField txtSoDienThoai = table.getTxtSoDTSinhVien();
-        JTextField txtNienKhoa = table.getTxtNienKhoaSinhVien();
-        JTextField txtTonGiao = table.getTxtTonGiaoSinhVien();
-        txtHoTen.setEnabled(true);
-        txtCMND.setEnabled(true);
-        txtDanToc.setEnabled(true);
-        txtDiaChi.setEnabled(true);
-        txtGioiTinh.setEnabled(true);
-        txtNganh.setEnabled(true);
-        txtNgaySinh.setEnabled(true);
-        txtSoDienThoai.setEnabled(true);
-        txtNienKhoa.setEnabled(true);
-        txtTonGiao.setEnabled(true);
+        table.getTxtHoTenSinhVien().setEnabled(true);
+        table.getTxtCMNDSinhVien().setEnabled(true);
+        table.getTxtDanTocSinhVien().setEnabled(true);
+        table.getTxtDiaChiSinhVien().setEnabled(true);
+        table.getTxtGioiTinhSinhVien().setEnabled(true);
+//        JTextField txtNganh = table.getTxtNganhSinhVien();
+        table.getCbNganhSinhVien().setEnabled(true);
+        table.getTxtNgaySinhSinhVien().setEnabled(true);
+        table.getTxtSoDTSinhVien().setEnabled(true);
+        table.getTxtNienKhoaSinhVien().setEnabled(true);
+        table.getTxtTonGiaoSinhVien().setEnabled(true);
+
     }
 
     public static void updateSinhVienToServer(Table table, SinhVien svCu, SinhVien svMoi) {
@@ -299,8 +319,9 @@ public class SinhVienBUS {
             if (SinhVienBUS.checkUpdateInfo(svCu, svMoi).equals("")) {  // khi thông tin nhập vào dúng thì kiểm tra trùng
 //                SinhVienDAO svDAO = new SinhVienDAO();
                 svDAO.update(svCu.getMaSV(), svMoi);
-                JOptionPane.showMessageDialog(table, "Sửa Thành Công");   
+                JOptionPane.showMessageDialog(table, "Sửa Thành Công");
                 resetJPanelMoreInfo(table);
+                dssv = svDAO.get();
             } else {    // có thông tin khóa bị trùng
                 JOptionPane.showMessageDialog(table, errorMessage + checkUpdateInfo(svCu, svMoi));
             }
@@ -321,7 +342,8 @@ public class SinhVienBUS {
         table.getTxtDanTocSinhVien().setEnabled(true);
         table.getTxtDiaChiSinhVien().setEnabled(true);
         table.getTxtGioiTinhSinhVien().setEnabled(true);
-        table.getTxtNganhSinhVien().setEnabled(true);
+//        table.getTxtNganhSinhVien().setEnabled(true);
+        table.getCbNganhSinhVien().setEnabled(true);
         table.getTxtNgaySinhSinhVien().setEnabled(true);
         table.getTxtSoDTSinhVien().setEnabled(true);
         table.getTxtNienKhoaSinhVien().setEnabled(true);
@@ -337,6 +359,7 @@ public class SinhVienBUS {
                 svDAO.add(svMoi);
                 JOptionPane.showMessageDialog(table, "Thêm Thành Công");
                 resetJPanelMoreInfo(table);
+                dssv = svDAO.get();
             } else {   // thông tin khóa bị trùng
                 JOptionPane.showMessageDialog(table, errorMessage + checkAddInfo(svMoi));
             }
@@ -527,7 +550,7 @@ public class SinhVienBUS {
     }
 
     public static boolean checkNgaySinh(String ngaySinh) {
-        if(ngaySinh.length()!=10){ // 1999-07-08 -> true 1999-7-8 -> false
+        if (ngaySinh.length() != 10) { // 1999-07-08 -> true 1999-7-8 -> false
             return false;
         }
         try {
@@ -553,7 +576,7 @@ public class SinhVienBUS {
         } catch (Exception e) {
             return false;
         }
-        if (!tenNganh.equals(nganh)) { // cái này kiểm tra mã ngành với tên ngành k khớp nhau
+        if (!tenNganh.equals(nganh)) { // cái này kiểm tra mã ngành với tên ngành k khớp nhau vd: Kế Toán (DKE) -> true mà nhập Kế Toán (DCT)
             return false;
         }
         for (Nganh i : dsNganh) {
