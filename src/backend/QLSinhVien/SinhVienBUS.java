@@ -71,6 +71,7 @@ public class SinhVienBUS {
         table.setFont(new java.awt.Font("Segoe UI", 0, 16));
         table.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.setAutoCreateRowSorter(true);
 
     }
 
@@ -79,7 +80,6 @@ public class SinhVienBUS {
         ArrayList<SinhVien> dssv = new SinhVienDAO().get();
         DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
         tblSinhVien.setRowCount(0);
-
         for (SinhVien i : dssv) {
             if (i.getTrangThai() == 1) {
                 tblSinhVien.addRow(new Object[]{
@@ -89,21 +89,73 @@ public class SinhVienBUS {
         }
         formatTable(table);
         table.setModel(tblSinhVien);
-
     }
 
-    public static void showStudentListWithCondition(JTable table, String condition) {
+    public static void showDeletedStudent(JTable table) {
         DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
         tblSinhVien.setRowCount(0);
+        for (SinhVien i : dssv) {
+            if (i.getTrangThai() == 0) {
+                tblSinhVien.addRow(new Object[]{
+                    i.getMaSV(), i.getHoTen(), maNganhToTenNganh(i.getMaNganh()), i.getNienKhoa()
+                });
+            }
+        }
+        formatTable(table);
+        table.setModel(tblSinhVien);
+    }
+
+    public static void resetDssvWhenChangeTrangThai(Table table) { // cái hàm này thay đổi dssv khi chọn giá trị cho cbTrangThai
+        ArrayList<SinhVien> dssvNew = new ArrayList();
+        dssv = svDAO.get();
+        if (table.getCbTrangThaiSinhVien().getSelectedIndex() == 0){ // đang hoạt động
+            for (SinhVien i : dssv){
+                if(i.getTrangThai() == 1){
+                    dssvNew.add(i);
+                }
+            }
+        }
+        else{
+            for (SinhVien i : dssv){
+                if(i.getTrangThai() == 0){
+                    dssvNew.add(i);
+                }
+            }
+        }
+        dssv = dssvNew;
+//       System.out.println(dssv.size());
+    }
+
+    public static void showStudentListWithCondition(JTable table, String condition, String conditionName) {
+        DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
+        tblSinhVien.setRowCount(0);
+//        System.out.println(conditionName);
+
 
         ArrayList<SinhVien> dssvNew = new ArrayList();
-        for (SinhVien i : dssv) {
-            if (i.getMaSV().contains(condition) || i.getHoTen().contains(condition) || maNganhToTenNganh(i.getMaNganh()).contains(condition)) {
-                dssvNew.add(i);
+        if (conditionName.equals("MSSV")) {
+            for (SinhVien i : dssv) {
+                if (i.getMaSV().contains(condition)) {
+                    dssvNew.add(i);
+                }
+            }
+        }
+        if (conditionName.equals("Tên")) {
+            for (SinhVien i : dssv) {
+                if (i.getHoTen().contains(condition)) {
+                    dssvNew.add(i);
+                }
+            }
+        }
+        if (conditionName.equals("Ngành")) {
+            for (SinhVien i : dssv) {
+                if (maNganhToTenNganh(i.getMaNganh()).contains(condition)) {
+                    dssvNew.add(i);
+                }
             }
         }
         if (dssvNew.isEmpty()) {
-            JOptionPane.showMessageDialog(table, "Không tìm thấy sinh viên nào\n");
+            JOptionPane.showMessageDialog(null, "Không tìm thấy sinh viên nào\n");
             return;
         }
         for (SinhVien i : dssvNew) {
@@ -197,7 +249,10 @@ public class SinhVienBUS {
     }
 
     public static void resetJPanelMoreInfo(Table table) {
-        table.getBtnSuaSinhVien().setEnabled(true);
+        if (table.getCbTrangThaiSinhVien().getSelectedIndex() != 1) {   // cái này nó bật lại mấy cái nút nên chỉ bật cho bên trạng thái chưa xóa thôi
+            table.getBtnSuaSinhVien().setEnabled(true);
+        }
+//        table.getBtnKhoiPhucSinhVien().setVisible(false); // tắt cái nút khôi phục đi
         table.getBtnLuuSinhVien().setEnabled(false);
         table.getTxtMSSinhVien().setEnabled(false);
         table.getTxtHoTenSinhVien().setEnabled(false);
@@ -229,6 +284,20 @@ public class SinhVienBUS {
         table.setTxtSoDTSinhVien("");
         table.setTxtTonGiaoSinhVien("");
         table.getPnMoreInfo().setVisible(false);
+    }
+
+    public static void changeBtnForTrangThai(Table table) {
+        table.getBtnThemSinhVien().setEnabled(false);
+        table.getBtnSuaSinhVien().setEnabled(false);
+        table.getBtnXoaSinhVien().setEnabled(false);
+        table.getBtnKhoiPhucSinhVien().setVisible(true);
+    }
+
+    public static void resetBtnForTrangThai(Table table) {
+        table.getBtnThemSinhVien().setEnabled(true);
+        table.getBtnSuaSinhVien().setEnabled(true);
+        table.getBtnXoaSinhVien().setEnabled(true);
+        table.getBtnKhoiPhucSinhVien().setVisible(false);
     }
 
     public static String compare2SinhVien(SinhVien svCu, SinhVien svMoi) {

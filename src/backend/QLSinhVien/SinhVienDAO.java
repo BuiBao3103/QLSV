@@ -195,4 +195,17 @@ public class SinhVienDAO {
             ConnectionDB.closeConnection(con, pstm);
         }
     }
+    public void restore(String maSV){
+         con = ConnectionDB.getConnection();
+        try {
+//            String query = "DELETE FROM SinhVien WHERE MaSV=?;";//+
+            String query = "UPDATE SinhVien SET TrangThai = 1 WHERE MaSV=?;";
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, maSV);//+
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+    }
 }

@@ -641,7 +641,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="490" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="606" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -836,7 +836,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="0" pref="490" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" pref="606" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -967,7 +967,7 @@
                           <Component id="jLabel2" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="detailInformation" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace pref="143" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1326,7 +1326,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="490" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="606" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1360,29 +1360,40 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="631" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="cbTrangThaiSinhVien" min="-2" pref="125" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnKhoiPhucSinhVien" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
                           <Component id="btnThemSinhVien" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="btnTimKiemSinhVien" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbTimKiemSinhVien" pref="70" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTimKiemSinhVien" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Component id="txtTimKiemSinhVien" min="-2" pref="143" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <Component id="scpStudentList" alignment="1" max="32767" attributes="0"/>
-                      <Component id="pnMoreInfo" alignment="1" max="32767" attributes="0"/>
+                      <Component id="pnMoreInfo" alignment="1" pref="907" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtTimKiemSinhVien" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnTimKiemSinhVien" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnThemSinhVien" alignment="1" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnThemSinhVien" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="btnTimKiemSinhVien" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="cbTimKiemSinhVien" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="cbTrangThaiSinhVien" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="btnKhoiPhucSinhVien" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="txtTimKiemSinhVien" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="scpStudentList" pref="270" max="32767" attributes="0"/>
+                          <Component id="scpStudentList" pref="384" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="pnMoreInfo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -1458,6 +1469,9 @@
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblStudentListMouseClicked"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xa;    public boolean isCellEditable(int row, int column) {&#xa;        return false;&#xa;    }&#xa;}"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1945,6 +1959,44 @@
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Table_txtTimKiemSinhVien"/>
                   </AuxValues>
                 </Component>
+                <Component class="javax.swing.JComboBox" name="cbTimKiemSinhVien">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="T&#xea;n"/>
+                        <StringItem index="1" value="MSSV"/>
+                        <StringItem index="2" value="Ng&#xe0;nh"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cbTrangThaiSinhVien">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="&#x110;ang Ho&#x1ea1;t &#x110;&#x1ed9;ng"/>
+                        <StringItem index="1" value="&#x110;ang Kh&#xf3;a"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbTrangThaiSinhVienItemStateChanged"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnKhoiPhucSinhVien">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Kh&#xf4;i Ph&#x1ee5;c"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKhoiPhucSinhVienActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -2025,7 +2077,7 @@
                               <Component id="jLabel21" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="177" max="32767" attributes="0"/>
+                              <EmptySpace pref="298" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

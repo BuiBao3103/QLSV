@@ -112,7 +112,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnThemSinhVien = new javax.swing.JButton();
         btnTimKiemSinhVien = new javax.swing.JButton();
         scpStudentList = new javax.swing.JScrollPane();
-        tblStudentList = new javax.swing.JTable();
+        tblStudentList = new javax.swing.JTable(){
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         pnMoreInfo = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         txtDiaChiSinhVien = new javax.swing.JTextField();
@@ -143,6 +147,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnDongSinhVien = new javax.swing.JButton();
         cbNganhSinhVien = new javax.swing.JComboBox<>();
         txtTimKiemSinhVien = new javax.swing.JTextField();
+        cbTimKiemSinhVien = new javax.swing.JComboBox<>();
+        cbTrangThaiSinhVien = new javax.swing.JComboBox<>();
+        btnKhoiPhucSinhVien = new javax.swing.JButton();
         settings = new javax.swing.JPanel();
         changeFrame = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -565,7 +572,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         );
         scheduleLayout.setVerticalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
         );
 
         mainPanel.add(schedule, "card4");
@@ -624,7 +631,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         );
         scoreLayout.setVerticalGroup(
             scoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
         );
 
         mainPanel.add(score, "card5");
@@ -857,7 +864,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGroup(personalInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(detailInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         mainPanel.add(personalInfo, "card2");
@@ -872,7 +879,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         );
         subjectRegistrationLayout.setVerticalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 606, Short.MAX_VALUE)
         );
 
         mainPanel.add(subjectRegistration, "card3");
@@ -1285,31 +1292,57 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        cbTimKiemSinhVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên", "MSSV", "Ngành" }));
+
+        cbTrangThaiSinhVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang Hoạt Động", "Đang Khóa" }));
+        cbTrangThaiSinhVien.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbTrangThaiSinhVienItemStateChanged(evt);
+            }
+        });
+
+        btnKhoiPhucSinhVien.setText("Khôi Phục");
+        btnKhoiPhucSinhVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhoiPhucSinhVienActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pninfoLayout = new javax.swing.GroupLayout(pninfo);
         pninfo.setLayout(pninfoLayout);
         pninfoLayout.setHorizontalGroup(
             pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pninfoLayout.createSequentialGroup()
-                .addGap(631, 631, 631)
+                .addContainerGap()
+                .addComponent(cbTrangThaiSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnKhoiPhucSinhVien)
+                .addGap(267, 267, 267)
                 .addComponent(btnThemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(cbTimKiemSinhVien, 0, 70, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTimKiemSinhVien)
-                .addGap(12, 12, 12))
+                .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
             .addComponent(scpStudentList, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(pnMoreInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnMoreInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 907, Short.MAX_VALUE)
         );
         pninfoLayout.setVerticalGroup(
             pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pninfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThemSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnThemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbTrangThaiSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnKhoiPhucSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scpStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addComponent(scpStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnMoreInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1449,7 +1482,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -1668,8 +1701,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.add(studentinfo);
         SinhVienBUS.showStudentList(tblStudentList); // dòng này bị lag nè
         closeMenuActionPerformed(null); //tắt cái menu khu bấm zo nút
-        this.setCbNganhSinhVien(SinhVienBUS.dsTenNganh);
-        btnDongSinhVienActionPerformed(null);
+        this.setCbNganhSinhVien(SinhVienBUS.dsTenNganh); // cái này nó thêm mấy cái lựa chọn cho cái ngành sinh viên
+        btnDongSinhVienActionPerformed(null); // đóng cái menu left lại
+        btnKhoiPhucSinhVien.setVisible(false); // ẩn cái nút khôi phục sinh viên
         mainPanel.repaint();
         mainPanel.revalidate();
 
@@ -1690,8 +1724,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             } else {           // cái này lưu khi sinh viên được thêm
                 SinhVienBUS.addSinhVienToServer(this, svMoi);
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Thông tin không hợp lệ !");
         }
     }//GEN-LAST:event_btnLuuSinhVienActionPerformed
@@ -1703,18 +1736,17 @@ public class Table extends javax.swing.JFrame implements Runnable {
             new SinhVienDAO().delete(SinhVienBUS.StudentinTable(tblStudentList, tblStudentList.getSelectedRow()).getMaSV());
             btnDongSinhVienActionPerformed(null);
         }
-
     }//GEN-LAST:event_btnXoaSinhVienActionPerformed
 
     private void tblStudentListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudentListMouseClicked
-
         btnDongSinhVienActionPerformed(null);
+
         pnMoreInfo.setVisible(true);
         SinhVienBUS.showMoreInfoStudent(this, SinhVienBUS.StudentinTable(tblStudentList, tblStudentList.getSelectedRow()));
     }//GEN-LAST:event_tblStudentListMouseClicked
 
     private void btnDongSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongSinhVienActionPerformed
-        SinhVienBUS.resetJPanelMoreInfo(this);
+            SinhVienBUS.resetJPanelMoreInfo(this);
     }//GEN-LAST:event_btnDongSinhVienActionPerformed
 
     private void txtNienKhoaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNienKhoaSinhVienActionPerformed
@@ -1856,8 +1888,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     private void btnTimKiemSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemSinhVienActionPerformed
         String condition = txtTimKiemSinhVien.getText();
+        String conditionName = cbTimKiemSinhVien.getSelectedItem().toString(); // cái này lấy thuộc tính tìm kiếm theo gì nè
         if (!condition.equals("") && !condition.equals("vd: 312141, Anh, Sư Phạm, ...")) {
-            SinhVienBUS.showStudentListWithCondition(tblStudentList, condition);
+            SinhVienBUS.showStudentListWithCondition(tblStudentList, condition, conditionName);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập nội dung tìm kiếm\n Tên, Ngành, MSSV");
         }
@@ -1886,6 +1919,32 @@ public class Table extends javax.swing.JFrame implements Runnable {
             cbNganhSinhVien.setBorder(new LineBorder(Color.gray, 1));
         }
     }//GEN-LAST:event_cbNganhSinhVienItemStateChanged
+
+    private void cbTrangThaiSinhVienItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTrangThaiSinhVienItemStateChanged
+        if (cbTrangThaiSinhVien.getSelectedIndex() == 1) { // trạng thái bị khóa
+            SinhVienBUS.showDeletedStudent(tblStudentList);
+            SinhVienBUS.changeBtnForTrangThai(this);
+            SinhVienBUS.resetDssvWhenChangeTrangThai(this);
+            btnDongSinhVienActionPerformed(null);
+        } else {
+            SinhVienBUS.showStudentList(tblStudentList);
+            SinhVienBUS.resetBtnForTrangThai(this);
+            SinhVienBUS.resetDssvWhenChangeTrangThai(this);
+        }
+    }//GEN-LAST:event_cbTrangThaiSinhVienItemStateChanged
+
+    private void btnKhoiPhucSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucSinhVienActionPerformed
+        if(tblStudentList.getSelectedRow() != -1){ // chọn vào 1 dòng rồi mới khôi phục được
+            int a = JOptionPane.showConfirmDialog(rootPane, "Khôi Phục Sinh Viên Này ?");
+            if(a == JOptionPane.YES_OPTION){ // lấy mã sinh viên của dòng đang chọn rồi khôi phục nó
+                new SinhVienDAO().restore(SinhVienBUS.StudentinTable(tblStudentList, tblStudentList.getSelectedRow()).getMaSV());
+                JOptionPane.showMessageDialog(rootPane, "Khôi phục thành công");
+                SinhVienBUS.showDeletedStudent(tblStudentList);
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Chọn Sinh Viên Muốn Khôi Phục !");
+        }
+    }//GEN-LAST:event_btnKhoiPhucSinhVienActionPerformed
     // ------------------------------------------------------------------------------------------------------------------------------
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
@@ -1950,10 +2009,27 @@ public class Table extends javax.swing.JFrame implements Runnable {
         new Table().setVisible(true);
     }
 
+    public JComboBox<String> getCbTrangThaiSinhVien() {
+        return cbTrangThaiSinhVien;
+    }
+
+    public void setCbTrangThaiSinhVien(JComboBox<String> cbTrangThaiSinhVien) {
+        this.cbTrangThaiSinhVien = cbTrangThaiSinhVien;
+    }
+
     public JPanel getPnMoreInfo() {
         return pnMoreInfo;
     }
 
+    public JTable getTblStudentList() {
+        return tblStudentList;
+    }
+
+    public void setTblStudentList(JTable tblStudentList) {
+        this.tblStudentList = tblStudentList;
+    }
+    
+    
     public void setPnMoreInfo(JPanel pnMoreInfo) {
         this.pnMoreInfo = pnMoreInfo;
     }
@@ -2053,7 +2129,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
         cbNganhSinhVien.removeAllItems();
-        for(String i : dsTenNganh){
+        for (String i : dsTenNganh) {
             cbNganhSinhVien.addItem(i);
         }
     }
@@ -2140,6 +2216,23 @@ public class Table extends javax.swing.JFrame implements Runnable {
         return studentList;
     }
 
+    public JComboBox<String> getCbTimKiemSinhVien() {
+        return cbTimKiemSinhVien;
+    }
+
+    public void setCbTimKiemSinhVien(JComboBox<String> cbTimKiemSinhVien) {
+        this.cbTimKiemSinhVien = cbTimKiemSinhVien;
+    }
+
+    public JButton getBtnKhoiPhucSinhVien() {
+        return btnKhoiPhucSinhVien;
+    }
+
+    public void setBtnKhoiPhucSinhVien(JButton btnKhoiPhucSinhVien) {
+        this.btnKhoiPhucSinhVien = btnKhoiPhucSinhVien;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel address;
     private javax.swing.JButton btnAccountList;
@@ -2147,6 +2240,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnDongSinhVien;
     private javax.swing.JPanel btnHeader;
     private javax.swing.JButton btnInformation;
+    private javax.swing.JButton btnKhoiPhucSinhVien;
     private javax.swing.JButton btnLuuSinhVien;
     private javax.swing.JRadioButton btnMetal;
     private javax.swing.JRadioButton btnMotif;
@@ -2164,6 +2258,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JRadioButton btnWindowClassic;
     private javax.swing.JButton btnXoaSinhVien;
     private javax.swing.JComboBox<String> cbNganhSinhVien;
+    private javax.swing.JComboBox<String> cbTimKiemSinhVien;
+    private javax.swing.JComboBox<String> cbTrangThaiSinhVien;
     private javax.swing.JPanel changeFrame;
     private javax.swing.JPanel classID;
     private javax.swing.JButton closeMenu;
