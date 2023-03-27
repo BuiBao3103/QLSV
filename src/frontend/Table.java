@@ -40,6 +40,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         Thread t = new Thread(this);
         t.start();
         initComponents();
+        leftBar.setPreferredSize(new Dimension(0,heightBar));
 
     }
 
@@ -179,7 +180,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         leftBar.setBackground(new java.awt.Color(204, 153, 255));
         leftBar.setMaximumSize(new java.awt.Dimension(32767, 600));
         leftBar.setOpaque(false);
-        leftBar.setPreferredSize(new java.awt.Dimension(220, 450));
+        leftBar.setPreferredSize(new java.awt.Dimension(0, 450));
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setColumnHeaderView(null);
@@ -385,7 +386,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addComponent(btnTool, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 591, Short.MAX_VALUE))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -440,13 +441,13 @@ public class Table extends javax.swing.JFrame implements Runnable {
         leftBar.setLayout(leftBarLayout);
         leftBarLayout.setHorizontalGroup(
             leftBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
         );
         leftBarLayout.setVerticalGroup(
             leftBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftBarLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE))
         );
 
         getContentPane().add(leftBar, java.awt.BorderLayout.LINE_START);
@@ -568,7 +569,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         schedule.setLayout(scheduleLayout);
         scheduleLayout.setHorizontalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1133, Short.MAX_VALUE)
         );
         scheduleLayout.setVerticalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -627,7 +628,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         score.setLayout(scoreLayout);
         scoreLayout.setHorizontalGroup(
             scoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1133, Short.MAX_VALUE)
         );
         scoreLayout.setVerticalGroup(
             scoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -667,7 +668,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
         );
         fullNameLayout.setVerticalGroup(
             fullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -702,7 +703,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
         );
         idUniversityLayout.setVerticalGroup(
             idUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -732,7 +733,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
         );
         addressLayout.setVerticalGroup(
             addressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -762,7 +763,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
         );
         classIDLayout.setVerticalGroup(
             classIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -797,7 +798,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
         );
         majorLayout.setVerticalGroup(
             majorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -832,7 +833,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
         );
         major1Layout.setVerticalGroup(
             major1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -854,7 +855,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(62, 62, 62)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(detailInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                .addComponent(detailInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
                 .addGap(284, 284, 284))
         );
         personalInfoLayout.setVerticalGroup(
@@ -875,7 +876,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         subjectRegistration.setLayout(subjectRegistrationLayout);
         subjectRegistrationLayout.setHorizontalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 913, Short.MAX_VALUE)
+            .addGap(0, 1133, Short.MAX_VALUE)
         );
         subjectRegistrationLayout.setVerticalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1322,12 +1323,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(18, 18, 18)
                 .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(cbTimKiemSinhVien, 0, 70, Short.MAX_VALUE)
+                .addComponent(cbTimKiemSinhVien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
             .addComponent(scpStudentList, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(pnMoreInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 907, Short.MAX_VALUE)
+            .addComponent(pnMoreInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pninfoLayout.setVerticalGroup(
             pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1474,7 +1475,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 63, Short.MAX_VALUE))
+                .addGap(0, 173, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1555,7 +1556,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel23)
-            .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+            .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
