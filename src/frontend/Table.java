@@ -25,6 +25,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class Table extends javax.swing.JFrame implements Runnable {
 
+    private Schedule schedule = new Schedule();
+    private Score score = new Score();
+    
     private int widthBar = 221;
     private int heightBar = this.getHeight();
     private String[] arrays = {"javax.swing.plaf.metal.MetalLookAndFeel",
@@ -40,7 +43,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         Thread t = new Thread(this);
         t.start();
         initComponents();
-        leftBar.setPreferredSize(new Dimension(0,heightBar));
+        leftBar.setPreferredSize(new Dimension(0, heightBar));
 
     }
 
@@ -80,12 +83,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         openMenu = new javax.swing.JButton();
         closeMenu = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
-        schedule = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        score = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         personalInfo = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         detailInformation = new javax.swing.JPanel();
@@ -505,137 +502,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         mainPanel.setPreferredSize(new java.awt.Dimension(873, 606));
         mainPanel.setLayout(new java.awt.CardLayout());
-
-        schedule.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                { new Integer(841107), "Lập Trình Java", "09",  new Integer(4),  new Integer(4), "Hai",  new Integer(1),  new Integer(3), "C.A105", "DSSV"},
-                { new Integer(841048), "	P/tích thiết kế hệ thống thông tin", "04",  new Integer(4),  new Integer(4), "Sáu",  new Integer(1),  new Integer(5), "C.A106", "DSSV"},
-                { new Integer(841058), "	Hệ điều hành mã nguồn mở", "02",  new Integer(3),  new Integer(3), "Tư",  new Integer(3),  new Integer(4), "C.E403", "DSSV"},
-                { new Integer(861303), "Chủ nghĩa xã hội khoa học", "07",  new Integer(2),  new Integer(2), "Tư",  new Integer(1),  new Integer(2), "C.B107", "DSSV"},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Mã MH", "Tên Môn Học", "NMH", "STC", "STCHP", "Thứ", "Tiết BĐ", "Tiết KT", "Phòng", "DSSV"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setRowHeight(35);
-        jTable1.setRowMargin(10);
-        jTable1.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
-        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
-        leftRenderer.setHorizontalAlignment(JLabel.CENTER);
-        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        for (int i = 0; i < jTable1.getColumnCount(); i++)
-        {
-
-            if(i != 1){
-                jTable1.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
-            }else{
-                continue;
-            }
-        }
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(300);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(30);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(30);
-            jTable1.getColumnModel().getColumn(4).setMinWidth(30);
-            jTable1.getColumnModel().getColumn(5).setMinWidth(40);
-            jTable1.getColumnModel().getColumn(6).setMinWidth(30);
-            jTable1.getColumnModel().getColumn(7).setMinWidth(30);
-            jTable1.getColumnModel().getColumn(8).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(9).setMinWidth(50);
-        }
-
-        javax.swing.GroupLayout scheduleLayout = new javax.swing.GroupLayout(schedule);
-        schedule.setLayout(scheduleLayout);
-        scheduleLayout.setHorizontalGroup(
-            scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1133, Short.MAX_VALUE)
-        );
-        scheduleLayout.setVerticalGroup(
-            scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
-        );
-
-        mainPanel.add(schedule, "card4");
-
-        score.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTable2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "STT", "Mã Môn", "Tên Môn", "TC", "% KT", "% Thi", "Kiểm Tra", "Điểm thi", "Điểm TK", "ĐTK(4)"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.Float.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable2.setRowHeight(35);
-        jTable2.setRowMargin(10);
-        jTable2.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
-        leftRenderer.setHorizontalAlignment(JLabel.CENTER);
-        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        for (int i = 0; i < jTable2.getColumnCount(); i++)
-        {
-
-            if(i != 2){
-                jTable2.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
-            }else{
-                continue;
-            }
-        }
-        jScrollPane3.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setMinWidth(3);
-            jTable2.getColumnModel().getColumn(1).setMinWidth(40);
-            jTable2.getColumnModel().getColumn(2).setMinWidth(250);
-            jTable2.getColumnModel().getColumn(3).setMinWidth(30);
-            jTable2.getColumnModel().getColumn(4).setMinWidth(30);
-            jTable2.getColumnModel().getColumn(5).setMinWidth(30);
-            jTable2.getColumnModel().getColumn(6).setMinWidth(30);
-            jTable2.getColumnModel().getColumn(7).setMinWidth(30);
-            jTable2.getColumnModel().getColumn(8).setMinWidth(30);
-        }
-
-        javax.swing.GroupLayout scoreLayout = new javax.swing.GroupLayout(score);
-        score.setLayout(scoreLayout);
-        scoreLayout.setHorizontalGroup(
-            scoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1133, Short.MAX_VALUE)
-        );
-        scoreLayout.setVerticalGroup(
-            scoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
-        );
-
-        mainPanel.add(score, "card5");
 
         personalInfo.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1664,7 +1530,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // Có lẽ sẽ phù hợp cho responsive
 
         mainPanel.revalidate();
-        new KetQuaBUS().addRowData(jTable2);
+        new KetQuaBUS().addRowData(score.getjTable2());
 
     }// GEN-LAST:event_btnScoreActionPerformed
 
@@ -1747,7 +1613,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_tblStudentListMouseClicked
 
     private void btnDongSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongSinhVienActionPerformed
-            SinhVienBUS.resetJPanelMoreInfo(this);
+        SinhVienBUS.resetJPanelMoreInfo(this);
     }//GEN-LAST:event_btnDongSinhVienActionPerformed
 
     private void txtNienKhoaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNienKhoaSinhVienActionPerformed
@@ -1935,14 +1801,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_cbTrangThaiSinhVienItemStateChanged
 
     private void btnKhoiPhucSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucSinhVienActionPerformed
-        if(tblStudentList.getSelectedRow() != -1){ // chọn vào 1 dòng rồi mới khôi phục được
+        if (tblStudentList.getSelectedRow() != -1) { // chọn vào 1 dòng rồi mới khôi phục được
             int a = JOptionPane.showConfirmDialog(rootPane, "Khôi Phục Sinh Viên Này ?");
-            if(a == JOptionPane.YES_OPTION){ // lấy mã sinh viên của dòng đang chọn rồi khôi phục nó
+            if (a == JOptionPane.YES_OPTION) { // lấy mã sinh viên của dòng đang chọn rồi khôi phục nó
                 new SinhVienDAO().restore(SinhVienBUS.StudentinTable(tblStudentList, tblStudentList.getSelectedRow()).getMaSV());
                 JOptionPane.showMessageDialog(rootPane, "Khôi phục thành công");
                 SinhVienBUS.showDeletedStudent(tblStudentList);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Chọn Sinh Viên Muốn Khôi Phục !");
         }
     }//GEN-LAST:event_btnKhoiPhucSinhVienActionPerformed
@@ -2029,8 +1895,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     public void setTblStudentList(JTable tblStudentList) {
         this.tblStudentList = tblStudentList;
     }
-    
-    
+
     public void setPnMoreInfo(JPanel pnMoreInfo) {
         this.pnMoreInfo = pnMoreInfo;
     }
@@ -2309,14 +2174,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -2335,8 +2196,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel pnMoreInfo;
     private javax.swing.JPanel pninfo;
     private javax.swing.JLabel realTime;
-    private javax.swing.JPanel schedule;
-    private javax.swing.JPanel score;
     private javax.swing.JScrollPane scpStudentList;
     private javax.swing.JPanel settings;
     private javax.swing.JButton studentList;
