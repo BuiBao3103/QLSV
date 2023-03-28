@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import frontend.StudentInfo;
+import frontend.StudentInfor;
 import frontend.Table;
 import java.awt.Font;
 import java.text.ParseException;
@@ -105,19 +106,18 @@ public class SinhVienBUS {
         table.setModel(tblSinhVien);
     }
 
-    public static void resetDssvWhenChangeTrangThai(Table table) { // cái hàm này thay đổi dssv khi chọn giá trị cho cbTrangThai
+    public static void resetDssvWhenChangeTrangThai(StudentInfor table) { // cái hàm này thay đổi dssv khi chọn giá trị cho cbTrangThai
         ArrayList<SinhVien> dssvNew = new ArrayList();
         dssv = svDAO.get();
-        if (table.getCbTrangThaiSinhVien().getSelectedIndex() == 0){ // đang hoạt động
-            for (SinhVien i : dssv){
-                if(i.getTrangThai() == 1){
+        if (table.getCbTrangThaiSinhVien().getSelectedIndex() == 0) { // đang hoạt động
+            for (SinhVien i : dssv) {
+                if (i.getTrangThai() == 1) {
                     dssvNew.add(i);
                 }
             }
-        }
-        else{
-            for (SinhVien i : dssv){
-                if(i.getTrangThai() == 0){
+        } else {
+            for (SinhVien i : dssv) {
+                if (i.getTrangThai() == 0) {
                     dssvNew.add(i);
                 }
             }
@@ -130,7 +130,6 @@ public class SinhVienBUS {
         DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
         tblSinhVien.setRowCount(0);
 //        System.out.println(conditionName);
-
 
         ArrayList<SinhVien> dssvNew = new ArrayList();
         if (conditionName.equals("MSSV")) {
@@ -177,7 +176,7 @@ public class SinhVienBUS {
         return null;
     }
 
-    public static void showMoreInfoStudent(Table table, SinhVien sv) {
+    public static void showMoreInfoStudent(StudentInfor table, SinhVien sv) {
         table.setTxtHoTenSinhVien(sv.getHoTen());
         table.setTxtMSSinhVien(sv.getMaSV());
         table.setTxtCMNDSinhVien(sv.getCmnd());
@@ -248,7 +247,7 @@ public class SinhVienBUS {
         return errorMessage;
     }
 
-    public static void resetJPanelMoreInfo(Table table) {
+    public static void resetJPanelMoreInfo(StudentInfor table) {
         if (table.getCbTrangThaiSinhVien().getSelectedIndex() != 1) {   // cái này nó bật lại mấy cái nút nên chỉ bật cho bên trạng thái chưa xóa thôi
             table.getBtnSuaSinhVien().setEnabled(true);
         }
@@ -269,31 +268,32 @@ public class SinhVienBUS {
         table.getTxtNienKhoaSinhVien().setEnabled(false);
         table.getTxtTonGiaoSinhVien().setEnabled(false);
         table.getTxtMaTKSinhVien().setEnabled(false);
-        table.setTxtCMNDSinhVien("");
-        table.setTxtDanTocSinhVien("");
-        table.setTxtDiaChiSinhVien("");
-        table.setTxtGioiTinhSinhVien("");
-        table.setTxtHoTenSinhVien("");
-        table.setTxtMSSinhVien("");
-        table.setTxtMaTKSinhVien("");
-//        table.setTxtNganhSinhVien("");
+        String blank = "";
+        table.setTxtCMNDSinhVien(blank);
+        table.setTxtDanTocSinhVien(blank);
+        table.setTxtDiaChiSinhVien(blank);
+        table.setTxtGioiTinhSinhVien(blank);
+        table.setTxtHoTenSinhVien(blank);
+        table.setTxtMSSinhVien(blank);
+        table.setTxtMaTKSinhVien(blank);
+//        table.setTxtNganhSinhVien(blank);
         table.getCbNganhSinhVien().setSelectedIndex(0); // cái này để cái combobox ngành sinh viên nó không chứa ngành nào
 
-        table.setTxtNgaySinhSinhVien("");
-        table.setTxtNienKhoaSinhVien("");
-        table.setTxtSoDTSinhVien("");
-        table.setTxtTonGiaoSinhVien("");
+        table.setTxtNgaySinhSinhVien(blank);
+        table.setTxtNienKhoaSinhVien(blank);
+        table.setTxtSoDTSinhVien(blank);
+        table.setTxtTonGiaoSinhVien(blank);
         table.getPnMoreInfo().setVisible(false);
     }
 
-    public static void changeBtnForTrangThai(Table table) {
+    public static void changeBtnForTrangThai(StudentInfor table) {
         table.getBtnThemSinhVien().setEnabled(false);
         table.getBtnSuaSinhVien().setEnabled(false);
         table.getBtnXoaSinhVien().setEnabled(false);
         table.getBtnKhoiPhucSinhVien().setVisible(true);
     }
 
-    public static void resetBtnForTrangThai(Table table) {
+    public static void resetBtnForTrangThai(StudentInfor table) {
         table.getBtnThemSinhVien().setEnabled(true);
         table.getBtnSuaSinhVien().setEnabled(true);
         table.getBtnXoaSinhVien().setEnabled(true);
@@ -338,7 +338,7 @@ public class SinhVienBUS {
         return result;
     }
 
-    public static SinhVien getSinhVienFromMoreInfo(Table table) {   // cái hàm này lấy thông tin từ panel Moreinfo tạo ra svien mới
+    public static SinhVien getSinhVienFromMoreInfo(StudentInfor table) {   // cái hàm này lấy thông tin từ panel Moreinfo tạo ra svien mới
         String HoTen = table.getTxtHoTenSinhVien().getText();
         String MSSV = table.getTxtMSSinhVien().getText();
         String CMND = table.getTxtCMNDSinhVien().getText();
@@ -364,7 +364,7 @@ public class SinhVienBUS {
         return sv;
     }
 
-    public static void updateSinhVien(Table table) { // cái hàm nàỳ sẽ bật những component cho mình sửa sinh viên
+    public static void updateSinhVien(StudentInfor table) { // cái hàm nàỳ sẽ bật những component cho mình sửa sinh viên
         table.getBtnSuaSinhVien().setEnabled(false);
         table.getBtnLuuSinhVien().setEnabled(true);
         table.getTxtHoTenSinhVien().setEnabled(true);
@@ -381,7 +381,7 @@ public class SinhVienBUS {
 
     }
 
-    public static void updateSinhVienToServer(Table table, SinhVien svCu, SinhVien svMoi) {
+    public static void updateSinhVienToServer(StudentInfor table, SinhVien svCu, SinhVien svMoi) {
         String errorMessage = "Một số thông tin đã tồn tại rồi: \n";
         int a = JOptionPane.showConfirmDialog(table, "Bạn Muốn Lưu Sinh Viên Này ?\n" + SinhVienBUS.compare2SinhVien(svCu, svMoi));
         if (a == JOptionPane.YES_OPTION) {
@@ -397,7 +397,7 @@ public class SinhVienBUS {
         }
     }
 
-    public static void addSinhVien(Table table) {
+    public static void addSinhVien(StudentInfor table) {
         resetJPanelMoreInfo(table);
         table.getPnMoreInfo().setVisible(true);
         table.getBtnSuaSinhVien().setVisible(false);
@@ -420,7 +420,7 @@ public class SinhVienBUS {
         table.getTxtMaTKSinhVien().setEnabled(true);
     }
 
-    public static void addSinhVienToServer(Table table, SinhVien svMoi) {
+    public static void addSinhVienToServer(StudentInfor table, SinhVien svMoi) {
         String errorMessage = "Một số thông tin đã tồn tại rồi: \n";
         int a = JOptionPane.showConfirmDialog(table, "Bạn muốn thêm sinh viên này ?");
         if (a == JOptionPane.YES_OPTION) {
