@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import frontend.StudentInfo;
 import frontend.StudentInfor;
 import frontend.Table;
 import java.awt.Font;
@@ -181,6 +180,7 @@ public class SinhVienBUS {
         table.setTxtMSSinhVien(sv.getMaSV());
         table.setTxtCMNDSinhVien(sv.getCmnd());
         table.setTxtSoDTSinhVien(sv.getSoDienThoai());
+        table.setTxtLopSinhVien(sv.getMaLop());
         table.setTxtNgaySinhSinhVien(dateFormat.format(sv.getNgaySinh()));
         table.setTxtGioiTinhSinhVien(sv.getGioiTinh());
         table.setTxtDiaChiSinhVien(sv.getDiaChi());
@@ -343,6 +343,7 @@ public class SinhVienBUS {
         String MSSV = table.getTxtMSSinhVien().getText();
         String CMND = table.getTxtCMNDSinhVien().getText();
         String SoDT = table.getTxtSoDTSinhVien().getText();
+        String MaLop = table.getTxtLopSinhVien().getText();
         Date NgaySinh = new Date();
         String Nganh;
         try {
@@ -351,7 +352,7 @@ public class SinhVienBUS {
 
         } catch (ParseException ex) {
             // có ngoại lệ nên return về 1 sinh viên bị lỗi
-            return new SinhVien(1, "", "", "", "", NgaySinh, "", "", "", "", "", "", -1);
+            return new SinhVien(1, "", "", "","", "", NgaySinh, "", "", "", "", "", "", -1);
         }
         String GioiTinh = table.getTxtGioiTinhSinhVien().getText();
         String DiaChi = table.getTxtDiaChiSinhVien().getText();
@@ -360,7 +361,7 @@ public class SinhVienBUS {
         String NienKhoa = table.getTxtNienKhoaSinhVien().getText();
 //        String Nganh = SinhVienBUS.tenNganhToMaNganh(table.getTxtNganhSinhVien().getText());
         int MaTK = Integer.parseInt(table.getTxtMaTKSinhVien().getText());
-        SinhVien sv = new SinhVien(1, MSSV, CMND, SoDT, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
+        SinhVien sv = new SinhVien(1, MSSV, CMND, SoDT,MaLop, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
         return sv;
     }
 
@@ -373,10 +374,10 @@ public class SinhVienBUS {
         table.getTxtDiaChiSinhVien().setEnabled(true);
         table.getTxtGioiTinhSinhVien().setEnabled(true);
 //        JTextField txtNganh = table.getTxtNganhSinhVien();
-        table.getCbNganhSinhVien().setEnabled(true);
+//        table.getCbNganhSinhVien().setEnabled(true);
         table.getTxtNgaySinhSinhVien().setEnabled(true);
         table.getTxtSoDTSinhVien().setEnabled(true);
-        table.getTxtNienKhoaSinhVien().setEnabled(true);
+//        table.getTxtNienKhoaSinhVien().setEnabled(true);
         table.getTxtTonGiaoSinhVien().setEnabled(true);
 
     }
@@ -392,20 +393,20 @@ public class SinhVienBUS {
                 resetJPanelMoreInfo(table);
                 dssv = svDAO.get();
             } else {    // có thông tin khóa bị trùng
-                JOptionPane.showMessageDialog(table, errorMessage + checkUpdateInfo(svCu, svMoi));
+                JOptionPane.showMessageDialog(table, errorMessage + checkUpdateInfo(svCu, svMoi)); // cái này phát thông báo thông tin trùng
             }
         }
     }
 
     public static void addSinhVien(StudentInfor table) {
-        resetJPanelMoreInfo(table);
+        resetJPanelMoreInfo(table); // cái này xóa hết thông tin trong pnMoreInfo
         table.getPnMoreInfo().setVisible(true);
         table.getBtnSuaSinhVien().setVisible(false);
         table.getBtnLuuSinhVien().setVisible(true);
         table.getBtnLuuSinhVien().setEnabled(true);
         table.getBtnXoaSinhVien().setVisible(false);
 
-        table.getTxtMSSinhVien().setEnabled(true);
+//      table.getTxtMSSinhVien().setEnabled(true);
         table.getTxtHoTenSinhVien().setEnabled(true);
         table.getTxtCMNDSinhVien().setEnabled(true);
         table.getTxtDanTocSinhVien().setEnabled(true);
@@ -415,9 +416,9 @@ public class SinhVienBUS {
         table.getCbNganhSinhVien().setEnabled(true);
         table.getTxtNgaySinhSinhVien().setEnabled(true);
         table.getTxtSoDTSinhVien().setEnabled(true);
-        table.getTxtNienKhoaSinhVien().setEnabled(true);
+//        table.getTxtNienKhoaSinhVien().setEnabled(true);
         table.getTxtTonGiaoSinhVien().setEnabled(true);
-        table.getTxtMaTKSinhVien().setEnabled(true);
+//        table.getTxtMaTKSinhVien().setEnabled(true);
     }
 
     public static void addSinhVienToServer(StudentInfor table, SinhVien svMoi) {
@@ -438,7 +439,13 @@ public class SinhVienBUS {
     public int getTrangThai(int MaTK) {
         return svDAO.getTrangThaiByMaTk(MaTK);
     }
-
+    public static void setCbNganhSinhVien(StudentInfor studentInfor) {
+        studentInfor.getCbNganhSinhVien().removeAllItems();
+        for (String i : dsTenNganh) {
+            studentInfor.getCbNganhSinhVien().addItem(i);
+        }
+    }
+//---------------------------------------------------- Khúc này toàn hàm kiểm tra thông tin thôi ---------------------------------------------------
     public static boolean checkHoTen(String hoTen) { // Kiểm tra tên hợp lệ không
         if (hoTen.equals("")) {
             return false;
@@ -454,7 +461,9 @@ public class SinhVienBUS {
     }
 
     public static boolean checkNguyenAm(char kiTu) { // cái hàm check các kí tự trong tên có dấu
-        char dsNguyenAm[] = {'à', 'á', 'ả', 'ã', 'ạ', 'ă', 'Ă', 'â', 'Â', 'ằ', 'ắ', 'ẳ', 'ẵ', 'ặ', 'ầ', 'ấ', 'ẩ', 'ẫ', 'ậ',
+        char dsNguyenAm[] = {'à', 'á', 'ả', 'ã', 'ạ','Á','À','Ả','Ã','Ạ',
+            'ă', 'Ă', 'â', 'Â', 'ằ', 'ắ', 'ẳ', 'ẵ', 'ặ','Ấ','Ầ','Ẩ','Ẫ','Ậ', 
+            'ầ', 'ấ', 'ẩ', 'ẫ', 'ậ','Ắ','Ằ','Ẳ','Ẵ','Ặ',
             'ê', 'è', 'é', 'ẻ', 'ẽ', 'ẹ', 'ề', 'ế', 'ể', 'ễ', 'ệ',
             'ô', 'ơ', 'ò', 'ó', 'ỏ', 'õ', 'ọ', 'ồ', 'ố', 'ổ', 'ỗ', 'ộ', 'ờ', 'ớ', 'ở', 'ỡ', 'ợ',
             'ư', 'Ư', 'ù', 'ú', 'ủ', 'ũ', 'ụ', 'ừ', 'ứ', 'ử', 'ữ', 'ự',
@@ -747,7 +756,7 @@ public class SinhVienBUS {
         return true;
     }
 
-    //-----------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------Kết thúc phần kiểm tra thông tin-------------------------------------------------------------------------------------------
     public static void main(String[] args) {
 //        svDAO.get().forEach(sv -> {
 //            System.out.println(sv.toString());

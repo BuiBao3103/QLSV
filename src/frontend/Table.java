@@ -731,7 +731,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.add(studentInfor);
         SinhVienBUS.showStudentList(studentInfor.getTblStudentList()); // dòng này bị lag nè
         closeMenuActionPerformed(null); //tắt cái menu khu bấm zo nút
-        studentInfor.setCbNganhSinhVien(SinhVienBUS.dsTenNganh); // cái này nó thêm mấy cái lựa chọn cho cái ngành sinh viên
+        SinhVienBUS.setCbNganhSinhVien(studentInfor); // cái này nó thêm mấy cái lựa chọn cho cái ngành sinh viên
         studentInfor.btnDongSinhVienActionPerformed(null); // đóng cái menu left lại
         studentInfor.getBtnKhoiPhucSinhVien().setVisible(false); // ẩn cái nút khôi phục sinh viên
         mainPanel.repaint();

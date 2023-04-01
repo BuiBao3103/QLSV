@@ -13,6 +13,7 @@ public class SinhVien {
     private String maSV;
     private String cmnd;
     private String soDienThoai;
+    private String maLop;
     private String hoTen;
     private Date ngaySinh;
     private String gioiTinh;
@@ -25,7 +26,7 @@ public class SinhVien {
 
     @Override
     public String toString() {
-        return "SinhVien{" + "maSV=" + maSV + ", cmnd=" + cmnd + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", danToc=" + danToc + ", tonGiao=" + tonGiao + ", nienKhoa=" + nienKhoa + ", maNganh=" + maNganh + ", maTK=" + maTK + '}';
+        return "SinhVien{" + "trangThai=" + trangThai + ", maSV=" + maSV + ", cmnd=" + cmnd + ", soDienThoai=" + soDienThoai + ", maLop=" + maLop + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", danToc=" + danToc + ", tonGiao=" + tonGiao + ", nienKhoa=" + nienKhoa + ", maNganh=" + maNganh + ", maTK=" + maTK + '}';
     }
 
     public SinhVien() {
@@ -49,6 +50,14 @@ public class SinhVien {
 
     public void setCmnd(String cmnd) {
         this.cmnd = cmnd;
+    }
+
+    public String getMaLop() {
+        return maLop;
+    }
+
+    public void setMaLop(String maLop) {
+        this.maLop = maLop;
     }
 
     public String getHoTen() {
@@ -138,12 +147,29 @@ public class SinhVien {
     public void setMaTK(int maTK) {
         this.maTK = maTK;
     }
+//
+//    public SinhVien(int trangThai, String maSV, String cmnd, String soDienThoai, String hoTen, Date ngaySinh, String gioiTinh, String diaChi, String danToc, String tonGiao, String nienKhoa, String maNganh, int maTK) {
+//        this.trangThai = trangThai;
+//        this.maSV = maSV;
+//        this.cmnd = cmnd;
+//        this.soDienThoai = soDienThoai;
+//        this.hoTen = hoTen;
+//        this.ngaySinh = ngaySinh;
+//        this.gioiTinh = gioiTinh;
+//        this.diaChi = diaChi;
+//        this.danToc = danToc;
+//        this.tonGiao = tonGiao;
+//        this.nienKhoa = nienKhoa;
+//        this.maNganh = maNganh;
+//        this.maTK = maTK;
+//    }
 
-    public SinhVien(int trangThai, String maSV, String cmnd, String soDienThoai, String hoTen, Date ngaySinh, String gioiTinh, String diaChi, String danToc, String tonGiao, String nienKhoa, String maNganh, int maTK) {
+    public SinhVien(int trangThai, String maSV, String cmnd, String soDienThoai, String maLop, String hoTen, Date ngaySinh, String gioiTinh, String diaChi, String danToc, String tonGiao, String nienKhoa, String maNganh, int maTK) {
         this.trangThai = trangThai;
         this.maSV = maSV;
         this.cmnd = cmnd;
         this.soDienThoai = soDienThoai;
+        this.maLop = maLop;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
@@ -154,5 +180,6 @@ public class SinhVien {
         this.maNganh = maNganh;
         this.maTK = maTK;
     }
+    
 
 }
