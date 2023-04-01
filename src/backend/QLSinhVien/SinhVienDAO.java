@@ -200,7 +200,7 @@ public class SinhVienDAO {
         }
     }
 
-    public void restore(String maSV) {
+    public void restore(String maSV) { // hàm này khôi phục sinh viên đã xóa
         con = ConnectionDB.getConnection();
         try {
 //            String query = "DELETE FROM SinhVien WHERE MaSV=?;";//+
@@ -212,5 +212,58 @@ public class SinhVienDAO {
         } finally {
             ConnectionDB.closeConnection(con, pstm);
         }
+    }
+
+    public String maxMaSV(String year) { // cái hàm này lấy ra mã sv lớn nhất của năm hiện tại
+        con = ConnectionDB.getConnection();
+        try {
+//            String query = "DELETE FROM SinhVien WHERE MaSV=?;";//+
+            String query = "SELECT max(MaSV) FROM SinhVien WHERE MaSV like '31" + year + "%'"; // chèn cái năm vào '?'
+            pstm = con.prepareStatement(query);
+//            pstm.setString(1, year);//+
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return rs.getString("");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return "";
+    }
+
+    public int maxMaTK() { // hàm này lấy ra mã tài khoản lớn nhất
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "SELECT max(MaTK) FROM TaiKhoan"; //
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return -1;
+    }
+
+    public String maxLopWithMaNganh(String maNganh, String year) { // hàm này lấy các lớp cuối theo từng ngành trong từng năm
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "SELECT max(MaLop) FROM Lop WHERE MaLop like '" + maNganh + "1" + year + "%'"; // chèn cái mã ngành và năm vào vd: DCT123%
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return rs.getString("");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return "";
     }
 }

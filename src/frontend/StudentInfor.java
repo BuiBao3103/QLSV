@@ -20,9 +20,10 @@ import javax.swing.plaf.ComponentUI;
 public class StudentInfor extends javax.swing.JPanel {
 
     SinhVien svCu = new SinhVien();
+
     public StudentInfor() {
         initComponents();
-        
+
     }
 
     public SinhVien getSvCu() {
@@ -44,7 +45,6 @@ public class StudentInfor extends javax.swing.JPanel {
     public void setTxtLopSinhVien(String txtLopSinhVien) {
         this.txtLopSinhVien.setText(txtLopSinhVien);
     }
-    
 
     public void setBtnDongSinhVien(JButton btnDongSinhVien) {
         this.btnDongSinhVien = btnDongSinhVien;
@@ -377,7 +377,6 @@ public class StudentInfor extends javax.swing.JPanel {
     public void setAccessibleContext(AccessibleContext accessibleContext) {
         this.accessibleContext = accessibleContext;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -555,11 +554,6 @@ public class StudentInfor extends javax.swing.JPanel {
                 txtTonGiaoSinhVienCaretUpdate(evt);
             }
         });
-        txtTonGiaoSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTonGiaoSinhVienActionPerformed(evt);
-            }
-        });
 
         txtDanTocSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDanTocSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -694,11 +688,6 @@ public class StudentInfor extends javax.swing.JPanel {
         txtLopSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtLopSinhVienCaretUpdate(evt);
-            }
-        });
-        txtLopSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLopSinhVienActionPerformed(evt);
             }
         });
 
@@ -1068,8 +1057,12 @@ public class StudentInfor extends javax.swing.JPanel {
     private void cbNganhSinhVienItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbNganhSinhVienItemStateChanged
         if (!SinhVienBUS.checkNganh(cbNganhSinhVien.getSelectedItem().toString())) {
             cbNganhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+            String maLop = SinhVienBUS.autoCompleteLop(SinhVienBUS.tenNganhToMaNganh(cbNganhSinhVien.getSelectedItem().toString())); // cái này sẽ cập nhật lại lớp mỗi lần thay đổi ngành
+            txtLopSinhVien.setText(maLop);
         } else {
             cbNganhSinhVien.setBorder(new LineBorder(Color.gray, 1));
+            String maLop = SinhVienBUS.autoCompleteLop(SinhVienBUS.tenNganhToMaNganh(cbNganhSinhVien.getSelectedItem().toString())); // cái này sẽ cập nhật lại lớp mỗi lần thay đổi ngành
+            txtLopSinhVien.setText(maLop);
         }
     }//GEN-LAST:event_cbNganhSinhVienItemStateChanged
 
@@ -1104,17 +1097,13 @@ public class StudentInfor extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnKhoiPhucSinhVienActionPerformed
 
-    private void txtTonGiaoSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTonGiaoSinhVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTonGiaoSinhVienActionPerformed
-
     private void txtLopSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtLopSinhVienCaretUpdate
-        // TODO add your handling code here:
+        if (!SinhVienBUS.checkMaLop(txtLopSinhVien.getText())) {
+            txtLopSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+        } else {
+            txtLopSinhVien.setBorder(new LineBorder(Color.gray, 1));
+        }
     }//GEN-LAST:event_txtLopSinhVienCaretUpdate
-
-    private void txtLopSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLopSinhVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLopSinhVienActionPerformed
 //    public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
 //        cbNganhSinhVien.removeAllItems();
 //        for (String i : dsTenNganh) {

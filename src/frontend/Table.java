@@ -846,17 +846,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
         new Table().setVisible(true);
     }
 
-
 //    public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
 //        cbNganhSinhVien.removeAllItems();
 //        for (String i : dsTenNganh) {
 //            cbNganhSinhVien.addItem(i);
 //        }
 //    }
-
-
-
-
     public JButton getBtnInformation() {
         return btnInformation;
     }
@@ -888,6 +883,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     public JButton getjButton13() {
         return jButton13;
     }
+
     public JButton getStudentList() {
         return studentList;
     }

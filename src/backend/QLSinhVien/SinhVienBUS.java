@@ -5,6 +5,7 @@
 package backend.QLSinhVien;
 
 import backend.Nganh.*;
+import backend.QLLop.*;
 import backend.QLTaiKhoan.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -15,6 +16,7 @@ import frontend.Table;
 import java.awt.Font;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -204,7 +206,10 @@ public class SinhVienBUS {
 
     }
 
-    public static String tenNganhToMaNganh(String tenNganh) {
+    public static String tenNganhToMaNganh(String tenNganh) { // hàm này sẽ từ 'Công Nghệ Thông Tin (DCT)' trả về 'DCT'
+        if (tenNganh.equals("")) {
+            return "";
+        }
         String maNganh = tenNganh.split("[()]")[1]; // cái "[()]" là cắt chuỗi khi gặp 2 dấu hiệu là ')' và '('
         return maNganh;
     }
@@ -278,7 +283,7 @@ public class SinhVienBUS {
         table.setTxtMaTKSinhVien(blank);
 //        table.setTxtNganhSinhVien(blank);
         table.getCbNganhSinhVien().setSelectedIndex(0); // cái này để cái combobox ngành sinh viên nó không chứa ngành nào
-
+        table.setTxtLopSinhVien(blank);
         table.setTxtNgaySinhSinhVien(blank);
         table.setTxtNienKhoaSinhVien(blank);
         table.setTxtSoDTSinhVien(blank);
@@ -352,7 +357,7 @@ public class SinhVienBUS {
 
         } catch (ParseException ex) {
             // có ngoại lệ nên return về 1 sinh viên bị lỗi
-            return new SinhVien(1, "", "", "","", "", NgaySinh, "", "", "", "", "", "", -1);
+            return new SinhVien(1, "", "", "", "", "", NgaySinh, "", "", "", "", "", "", -1);
         }
         String GioiTinh = table.getTxtGioiTinhSinhVien().getText();
         String DiaChi = table.getTxtDiaChiSinhVien().getText();
@@ -361,7 +366,7 @@ public class SinhVienBUS {
         String NienKhoa = table.getTxtNienKhoaSinhVien().getText();
 //        String Nganh = SinhVienBUS.tenNganhToMaNganh(table.getTxtNganhSinhVien().getText());
         int MaTK = Integer.parseInt(table.getTxtMaTKSinhVien().getText());
-        SinhVien sv = new SinhVien(1, MSSV, CMND, SoDT,MaLop, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
+        SinhVien sv = new SinhVien(1, MSSV, CMND, SoDT, MaLop, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
         return sv;
     }
 
@@ -398,7 +403,7 @@ public class SinhVienBUS {
         }
     }
 
-    public static void addSinhVien(StudentInfor table) {
+    public static void addSinhVien(StudentInfor table) { // Cái hàm này chạy mỗi khi ấn nút thêm
         resetJPanelMoreInfo(table); // cái này xóa hết thông tin trong pnMoreInfo
         table.getPnMoreInfo().setVisible(true);
         table.getBtnSuaSinhVien().setVisible(false);
@@ -419,6 +424,61 @@ public class SinhVienBUS {
 //        table.getTxtNienKhoaSinhVien().setEnabled(true);
         table.getTxtTonGiaoSinhVien().setEnabled(true);
 //        table.getTxtMaTKSinhVien().setEnabled(true);
+
+        // ------------- khúc này tự động điền mấy cái ô dữ liệu ---------------
+        table.getTxtMSSinhVien().setText(autoCompleteMSSV());
+        table.getTxtMaTKSinhVien().setText(autoCompleteMaTK() + "");
+        table.getTxtNienKhoaSinhVien().setText(autoCompleteNienKhoa());
+    }
+
+    public static String autoCompleteMSSV() {
+        String mssv = "31"; // 2 số đầu là cố định
+//        int year = new Date().getYear(); cái này trả về năm hiện tại trừ đi 1900 vd: hiện tại là 2023 nó sẽ ra 123
+        int year = LocalDate.now().getYear() % 100; // hàm này trả về năm hiện tại rồi chia dư 100 lấy 2 số cuối
+        mssv += year + ""; // mssv được 4 số rồi nè
+        String maxMaSV = svDAO.maxMaSV(year + "");
+        if (maxMaSV == null) { // chưa có sinh viên nào trong năm đó
+            return mssv + "000001";
+        }
+        int newMSSV = Integer.parseInt(maxMaSV) + 1; // nếu có sinh viên cùng năm rồi
+        return newMSSV + "";
+    }
+
+    public static int autoCompleteMaTK() { // hàm này trả về mã tài khoản cho sv cần tạo nè
+        return svDAO.maxMaTK() + 1;
+    }
+
+    public static String autoCompleteNienKhoa() {
+        int entryYear = LocalDate.now().getYear(); // năm vào trường
+        int graduateYear = entryYear + 4; // năm tốt nghiệp sau 4 năm
+        return entryYear + "-" + graduateYear;
+    }
+
+    public static String autoCompleteLop(String maNganh) {
+        if (maNganh.equals("")) {
+            return ""; // cái này chưa chọn ngành 
+        }
+        int year = LocalDate.now().getYear() % 100;                             // hàm này trả về năm hiện tại rồi chia dư 100 lấy 2 số cuối
+        String maLop = svDAO.maxLopWithMaNganh(maNganh, year + "");
+        Lop lop = new LopDAO().getLopByMaLop(maLop);
+        if (lop == null) {                                                      // chưa có lớp nào của ngành đó trong năm hiện tại
+            String maCoVanMoi = new LopDAO().GiangVienForNewLop();
+            String maLopMoi = maNganh + "1" + year + "1";                       // vd tạo lớp đầu của 1 khóa là DCT1231 hoặc DKP1211
+            lop = new Lop(maLopMoi, maNganh, maCoVanMoi, 0);
+            new LopDAO().add(lop); // tạo lớp mới
+            return lop.getMaLop();
+        } else if (lop.getSoLuong() < 20) {                                     // số lượng svien của lớp chưa đầy 20 bạn
+            return maLop;
+        } else if (lop.getMaLop().endsWith("9")) {                        // đã đầy 9 lớp của 1 ngành của 1 khóa hiện tại
+            return "Đã Đầy";
+        } else {                                                                // trường hợp các lớp cùng ngành cùng khóa đã đầy cần tạo lớp tiếp theo
+            int LopMoi = Integer.parseInt(maLop.substring(3)) + 1;  // hàm này sẽ ra được cái mã lớp tiếp theo nếu chưa đầy 9 lớp
+            String maCoVanMoi = new LopDAO().GiangVienForNewLop();
+            String maLopMoi = maNganh + LopMoi;
+            lop = new Lop(maLopMoi, maNganh, maCoVanMoi, 0);    // số lượng sẽ tăng khi add sinh viên thành công
+            new LopDAO().add(lop);
+            return maLopMoi;
+        }
     }
 
     public static void addSinhVienToServer(StudentInfor table, SinhVien svMoi) {
@@ -426,7 +486,9 @@ public class SinhVienBUS {
         int a = JOptionPane.showConfirmDialog(table, "Bạn muốn thêm sinh viên này ?");
         if (a == JOptionPane.YES_OPTION) {
             if (SinhVienBUS.checkAddInfo(svMoi).equals("")) { // kiểm tra xem có bị trùng thông tin không
+                createTaiKhoanForSinhVien(svMoi);
                 svDAO.add(svMoi);
+                new LopDAO().updateSoLuong(svMoi.getMaLop()); // tăng số sinh viên trong lớp lên
                 JOptionPane.showMessageDialog(table, "Thêm Thành Công");
                 resetJPanelMoreInfo(table);
                 dssv = svDAO.get();
@@ -436,9 +498,21 @@ public class SinhVienBUS {
         }
     }
 
+    public static void createTaiKhoanForSinhVien(SinhVien sv) { // hàm này tạo tài khoản cho sinh viên
+        int maTK = sv.getMaTK();
+        String tenTK = sv.getMaSV();
+        SimpleDateFormat dateForMatKhau = new SimpleDateFormat("yyyyMMdd"); // Cái này chuyển ngày sinh (2003-07-21) về chuỗi mật khẩu phù hợp (20030721)
+        String matKhau = dateForMatKhau.format(sv.getNgaySinh());
+        String maNhomQuyen = "Q4"; // tạo tài khoản cho sinh viên nên Q4
+
+        TaiKhoan tk = new TaiKhoan(maTK, tenTK, matKhau, maNhomQuyen);
+        new TaiKhoanDAO().add(tk);
+    }
+
     public int getTrangThai(int MaTK) {
         return svDAO.getTrangThaiByMaTk(MaTK);
     }
+
     public static void setCbNganhSinhVien(StudentInfor studentInfor) {
         studentInfor.getCbNganhSinhVien().removeAllItems();
         for (String i : dsTenNganh) {
@@ -446,6 +520,7 @@ public class SinhVienBUS {
         }
     }
 //---------------------------------------------------- Khúc này toàn hàm kiểm tra thông tin thôi ---------------------------------------------------
+
     public static boolean checkHoTen(String hoTen) { // Kiểm tra tên hợp lệ không
         if (hoTen.equals("")) {
             return false;
@@ -461,9 +536,9 @@ public class SinhVienBUS {
     }
 
     public static boolean checkNguyenAm(char kiTu) { // cái hàm check các kí tự trong tên có dấu
-        char dsNguyenAm[] = {'à', 'á', 'ả', 'ã', 'ạ','Á','À','Ả','Ã','Ạ',
-            'ă', 'Ă', 'â', 'Â', 'ằ', 'ắ', 'ẳ', 'ẵ', 'ặ','Ấ','Ầ','Ẩ','Ẫ','Ậ', 
-            'ầ', 'ấ', 'ẩ', 'ẫ', 'ậ','Ắ','Ằ','Ẳ','Ẵ','Ặ',
+        char dsNguyenAm[] = {'à', 'á', 'ả', 'ã', 'ạ', 'Á', 'À', 'Ả', 'Ã', 'Ạ',
+            'ă', 'Ă', 'â', 'Â', 'ằ', 'ắ', 'ẳ', 'ẵ', 'ặ', 'Ấ', 'Ầ', 'Ẩ', 'Ẫ', 'Ậ',
+            'ầ', 'ấ', 'ẩ', 'ẫ', 'ậ', 'Ắ', 'Ằ', 'Ẳ', 'Ẵ', 'Ặ',
             'ê', 'è', 'é', 'ẻ', 'ẽ', 'ẹ', 'ề', 'ế', 'ể', 'ễ', 'ệ',
             'ô', 'ơ', 'ò', 'ó', 'ỏ', 'õ', 'ọ', 'ồ', 'ố', 'ổ', 'ỗ', 'ộ', 'ờ', 'ớ', 'ở', 'ỡ', 'ợ',
             'ư', 'Ư', 'ù', 'ú', 'ủ', 'ũ', 'ụ', 'ừ', 'ứ', 'ử', 'ữ', 'ự',
@@ -524,6 +599,28 @@ public class SinhVienBUS {
             }
         }
         return false;
+    }
+
+    public static boolean checkMaLop(String maLop) {
+        if (maLop.equals("")) {
+            return false;
+        }
+        int flag = 0;
+        String maNganh = maLop.substring(0, 3); // lấy 3 chữ đầu trong mã lớp
+        for (Nganh n : dsNganh) {
+            if (n.getMaNganh().equals(maNganh)) {
+                flag = 1;
+            }
+        }
+        if (flag == 0) { // mã ngành k có trong danh sách ngành
+            return false;
+        }
+        int year = LocalDate.now().getYear() % 100;
+        int nam = Integer.parseInt(maLop.substring(4, 6));
+        if (nam != year) { // năm k trùng năm hiện tại
+            return false;
+        }
+        return true;
     }
 
     public static boolean checkGioiTinh(String gioiTinh) {
@@ -746,7 +843,7 @@ public class SinhVienBUS {
 // ---------------------------------------------------------------------------------------------------------------
 
     public static boolean checkAllInfo(SinhVien sv) {
-        if (!checkCMND(sv.getCmnd()) || !checkDanToc(sv.getDanToc()) || !checkDiaChi(sv.getDiaChi())
+        if (!checkCMND(sv.getCmnd()) || !checkDanToc(sv.getDanToc()) || !checkDiaChi(sv.getDiaChi()) || !checkMaLop(sv.getMaLop())
                 || !checkGioiTinh(sv.getGioiTinh()) || !checkHoTen(sv.getHoTen()) || !checkMSSV(sv.getMaSV())
                 || !checkMaTaiKhoan(sv.getMaTK() + "") || !checkNganh(maNganhToTenNganh(sv.getMaNganh())) || !checkNgaySinh(dateFormat.format(sv.getNgaySinh()))
                 || !checkNienKhoa(sv.getNienKhoa()) || !checkSoDienThoai(sv.getSoDienThoai()) || !checkTonGiao(sv.getTonGiao())) {
@@ -761,10 +858,15 @@ public class SinhVienBUS {
 //        svDAO.get().forEach(sv -> {
 //            System.out.println(sv.toString());
 //        });
+//                SimpleDateFormat dateForMatKhau = new SimpleDateFormat("yyyyMMdd");
 //        for (SinhVien sv : svDAO.get()) {
-//
+//            System.out.println(dateForMatKhau.format(sv.getNgaySinh()));
 //        }
-//        svDAO.get();
+////        svDAO.get();
+//    String x = "DCT1234";
+//    System.out.println(x.substring(4, 6));
+//        System.out.println(x.endsWith("9"));
+//        System.out.println(new LopDAO().GiangVienForNewLop());
 
     }
 }
