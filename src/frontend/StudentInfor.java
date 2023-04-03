@@ -493,6 +493,7 @@ public class StudentInfor extends javax.swing.JPanel {
         txtHoTenSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtHoTenSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtHoTenSinhVien.setEnabled(false);
+        txtHoTenSinhVien.setNextFocusableComponent(txtCMNDSinhVien);
         txtHoTenSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtHoTenSinhVienCaretUpdate(evt);
@@ -549,6 +550,7 @@ public class StudentInfor extends javax.swing.JPanel {
         txtTonGiaoSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTonGiaoSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTonGiaoSinhVien.setEnabled(false);
+        txtTonGiaoSinhVien.setNextFocusableComponent(cbNganhSinhVien);
         txtTonGiaoSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtTonGiaoSinhVienCaretUpdate(evt);
@@ -559,6 +561,7 @@ public class StudentInfor extends javax.swing.JPanel {
         txtDanTocSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDanTocSinhVien.setEnabled(false);
         txtDanTocSinhVien.setMaximumSize(new java.awt.Dimension(64, 26));
+        txtDanTocSinhVien.setNextFocusableComponent(txtTonGiaoSinhVien);
         txtDanTocSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtDanTocSinhVienCaretUpdate(evt);
@@ -572,6 +575,7 @@ public class StudentInfor extends javax.swing.JPanel {
         txtGioiTinhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtGioiTinhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtGioiTinhSinhVien.setEnabled(false);
+        txtGioiTinhSinhVien.setNextFocusableComponent(txtDanTocSinhVien);
         txtGioiTinhSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtGioiTinhSinhVienCaretUpdate(evt);
@@ -591,6 +595,7 @@ public class StudentInfor extends javax.swing.JPanel {
         btnLuuSinhVien.setText("Lưu");
         btnLuuSinhVien.setDefaultCapable(false);
         btnLuuSinhVien.setEnabled(false);
+        btnLuuSinhVien.setNextFocusableComponent(txtHoTenSinhVien);
         btnLuuSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLuuSinhVienActionPerformed(evt);
@@ -633,6 +638,7 @@ public class StudentInfor extends javax.swing.JPanel {
 
         cbNganhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbNganhSinhVien.setEnabled(false);
+        cbNganhSinhVien.setNextFocusableComponent(btnLuuSinhVien);
         cbNganhSinhVien.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbNganhSinhVienItemStateChanged(evt);
@@ -646,6 +652,7 @@ public class StudentInfor extends javax.swing.JPanel {
         txtNgaySinhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNgaySinhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNgaySinhSinhVien.setEnabled(false);
+        txtNgaySinhSinhVien.setNextFocusableComponent(txtGioiTinhSinhVien);
         txtNgaySinhSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtNgaySinhSinhVienCaretUpdate(evt);
@@ -672,6 +679,7 @@ public class StudentInfor extends javax.swing.JPanel {
         txtDiaChiSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDiaChiSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDiaChiSinhVien.setEnabled(false);
+        txtDiaChiSinhVien.setNextFocusableComponent(txtNgaySinhSinhVien);
         txtDiaChiSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtDiaChiSinhVienCaretUpdate(evt);

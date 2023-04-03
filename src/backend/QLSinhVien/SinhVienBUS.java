@@ -522,7 +522,7 @@ public class SinhVienBUS {
 //---------------------------------------------------- Khúc này toàn hàm kiểm tra thông tin thôi ---------------------------------------------------
 
     public static boolean checkHoTen(String hoTen) { // Kiểm tra tên hợp lệ không
-        if (hoTen.equals("")) {
+        if (hoTen.equals("")|| hoTen.length() > 50) {
             return false;
         }
 
@@ -540,11 +540,16 @@ public class SinhVienBUS {
             'ă', 'Ă', 'â', 'Â', 'ằ', 'ắ', 'ẳ', 'ẵ', 'ặ', 'Ấ', 'Ầ', 'Ẩ', 'Ẫ', 'Ậ',
             'ầ', 'ấ', 'ẩ', 'ẫ', 'ậ', 'Ắ', 'Ằ', 'Ẳ', 'Ẵ', 'Ặ',
             'ê', 'è', 'é', 'ẻ', 'ẽ', 'ẹ', 'ề', 'ế', 'ể', 'ễ', 'ệ',
+            'Ê', 'È', 'É', 'Ẻ', 'Ẽ', 'Ẹ', 'Ề', 'Ế', 'Ể', 'Ễ', 'Ệ',
             'ô', 'ơ', 'ò', 'ó', 'ỏ', 'õ', 'ọ', 'ồ', 'ố', 'ổ', 'ỗ', 'ộ', 'ờ', 'ớ', 'ở', 'ỡ', 'ợ',
+            'Ô', 'Ơ', 'Ò', 'Ó', 'Ỏ', 'Õ', 'Ọ', 'Ồ', 'Ố', 'Ổ', 'Ỗ', 'Ộ', 'Ờ', 'Ớ', 'Ở', 'Ỡ', 'Ợ',
             'ư', 'Ư', 'ù', 'ú', 'ủ', 'ũ', 'ụ', 'ừ', 'ứ', 'ử', 'ữ', 'ự',
+            'Ù', 'Ú', 'Ủ', 'Ũ', 'Ụ', 'Ừ', 'Ứ', 'Ử', 'Ữ', 'Ự',
             'ì', 'í', 'ỉ', 'ĩ', 'ị',
+            'Ì', 'Í', 'Ỉ', 'Ĩ', 'Ị',
             'đ', 'Đ',
-            'ỳ', 'ý', 'ỷ', 'ỹ', 'ỵ'};
+            'ỳ', 'ý', 'ỷ', 'ỹ', 'ỵ',
+            'Ỳ', 'Ý', 'Ỷ', 'Ỹ', 'Ỵ'};
         for (char nguyenAm : dsNguyenAm) {
             if (kiTu == nguyenAm) {
                 return true;
@@ -691,7 +696,7 @@ public class SinhVienBUS {
     }
 
     public static boolean checkDiaChi(String diaChi) {
-        if (diaChi.length() == 0) {
+        if (diaChi.length() <= 0 || diaChi.length() > 50) {
             return false;
         }
         for (int i = 0; i < diaChi.length(); i++) {
