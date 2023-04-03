@@ -77,9 +77,6 @@ public class TaiKhoanBUS {
         table.getBtnSchedule().setVisible(false);
         table.getBtnScore().setVisible(false);
         table.getInputPoint().setVisible(false);
-        table.getjButton7().setVisible(false);
-        table.getjButton8().setVisible(false);
-        table.getjButton9().setVisible(false);
         table.getStudentList().setVisible(false);
         table.getjButton12().setVisible(false);
         table.getjButton13().setVisible(false);
@@ -105,15 +102,6 @@ public class TaiKhoanBUS {
                 }
                 case "CTQ6" -> {
                     table.getBtnInformation().setVisible(true);
-                }
-                case "CTQ7" -> {
-                    table.getjButton7().setVisible(true);
-                }
-                case "CTQ8" -> {
-                    table.getjButton8().setVisible(true);
-                }
-                case "CTQ9" -> {
-                    table.getjButton9().setVisible(true);
                 }
                
             }

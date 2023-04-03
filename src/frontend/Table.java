@@ -7,6 +7,7 @@ package frontend;
 import backend.KetQua.KetQuaBUS;
 import backend.QLSinhVien.*;
 import backend.QLTaiKhoan.TaiKhoanBUS;
+import frontend.mainPanel.SubjectRegistration;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,6 +21,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private Score score = new Score();
     private StudentInfor studentInfor = new StudentInfor();
     private PersonalInfo personalInfo = new PersonalInfo();
+    private SubjectRegistration subjectRegistration = new SubjectRegistration();
     private int widthBar = 221;
     private int heightBar = this.getHeight();
     private String[] arrays = {"javax.swing.plaf.metal.MetalLookAndFeel",
@@ -70,7 +72,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         openMenu = new javax.swing.JButton();
         closeMenu = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
-        subjectRegistration = new javax.swing.JPanel();
         settings = new javax.swing.JPanel();
         changeFrame = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -208,7 +209,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 245, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         inputPoint.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -302,7 +303,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addComponent(btnSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -319,7 +319,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             leftBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftBarLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
         );
 
         getContentPane().add(leftBar, java.awt.BorderLayout.LINE_START);
@@ -336,7 +336,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnChangePassword.setMaximumSize(new java.awt.Dimension(150, 40));
         btnChangePassword.setMinimumSize(new java.awt.Dimension(80, 60));
         btnChangePassword.setName(""); // NOI18N
-        btnChangePassword.setPreferredSize(new java.awt.Dimension(100, 50));
+        btnChangePassword.setPreferredSize(new java.awt.Dimension(150, 50));
         btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChangePasswordActionPerformed(evt);
@@ -377,21 +377,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         mainPanel.setPreferredSize(new java.awt.Dimension(873, 606));
         mainPanel.setLayout(new java.awt.CardLayout());
-
-        subjectRegistration.setBackground(new java.awt.Color(204, 102, 255));
-
-        javax.swing.GroupLayout subjectRegistrationLayout = new javax.swing.GroupLayout(subjectRegistration);
-        subjectRegistration.setLayout(subjectRegistrationLayout);
-        subjectRegistrationLayout.setHorizontalGroup(
-            subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 911, Short.MAX_VALUE)
-        );
-        subjectRegistrationLayout.setVerticalGroup(
-            subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
-        );
-
-        mainPanel.add(subjectRegistration, "card3");
 
         changeFrame.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -512,7 +497,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -938,7 +923,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel realTime;
     private javax.swing.JPanel settings;
     private javax.swing.JButton studentList;
-    private javax.swing.JPanel subjectRegistration;
     // End of variables declaration//GEN-END:variables
 
     @Override
