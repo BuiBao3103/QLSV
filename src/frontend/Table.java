@@ -35,8 +35,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
      */
     public Table() {
         Thread t = new Thread(this);
-        t.start();
         initComponents();
+        t.start();
         leftBar.setPreferredSize(new Dimension(0, heightBar));
 
     }

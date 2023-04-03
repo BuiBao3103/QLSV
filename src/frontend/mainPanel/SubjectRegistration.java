@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package frontend.mainPanel;
-
+import  javax.swing.table.*;
+import  javax.swing.*;
+import java.awt.*;
 /**
  *
  * @author ASUS
@@ -34,6 +36,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
         filter_combox = new javax.swing.JComboBox<>();
         filter_txt = new javax.swing.JTextField();
         filter_btn = new javax.swing.JButton();
+        add_btn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -55,6 +58,8 @@ public class SubjectRegistration extends javax.swing.JPanel {
             }
         });
 
+        add_btn.setText("Thêm");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -68,7 +73,9 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 .addComponent(filter_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(filter_btn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(add_btn)
+                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,19 +85,62 @@ public class SubjectRegistration extends javax.swing.JPanel {
                     .addComponent(filter_pal)
                     .addComponent(filter_combox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filter_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filter_btn))
+                    .addComponent(filter_btn)
+                    .addComponent(add_btn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(JLabel.CENTER);
+        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < jTable1.getColumnCount(); i++)
+        {
+
+            if(i != 2){
+                jTable1.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+            }else{
+                continue;
+            }
+        }
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã", "Tên môn", "Nhóm", "TChỉ", "SL", "CLại", "Thứ", "Tiết bd", "Số tiết", "Phòng", "GViên"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(40);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(40);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(300);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(60);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(50);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(30);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(40);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(50);
+            jTable1.getColumnModel().getColumn(8).setMaxWidth(50);
+            jTable1.getColumnModel().getColumn(9).setMaxWidth(60);
+            jTable1.getColumnModel().getColumn(10).setMaxWidth(70);
+            jTable1.getColumnModel().getColumn(11).setMaxWidth(300);
+        }
+
+        jTable2.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+        leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(JLabel.CENTER);
+        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < jTable2.getColumnCount(); i++)
+        {
+
+            if(i != 2){
+                jTable2.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+            }else{
+                continue;
+            }
+        }
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,7 +160,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
                     .addComponent(jScrollPane3))
                 .addGap(24, 24, 24))
         );
@@ -119,10 +169,10 @@ public class SubjectRegistration extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         jScrollPane1.setViewportView(jPanel2);
@@ -131,13 +181,13 @@ public class SubjectRegistration extends javax.swing.JPanel {
         subjectRegistration.setLayout(subjectRegistrationLayout);
         subjectRegistrationLayout.setHorizontalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 973, Short.MAX_VALUE)
+            .addGap(0, 985, Short.MAX_VALUE)
             .addGroup(subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane1))
         );
         subjectRegistrationLayout.setVerticalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGap(0, 785, Short.MAX_VALUE)
             .addGroup(subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane1))
         );
@@ -152,7 +202,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGap(0, 785, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(subjectRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -166,8 +216,8 @@ public class SubjectRegistration extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_filter_comboxActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add_btn;
     private javax.swing.JButton filter_btn;
     private javax.swing.JComboBox<String> filter_combox;
     private javax.swing.JLabel filter_pal;
