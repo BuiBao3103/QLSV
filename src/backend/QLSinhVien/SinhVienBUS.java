@@ -74,7 +74,6 @@ public class SinhVienBUS {
         table.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setAutoCreateRowSorter(true);
-
     }
 
     public static void showStudentList(JTable table) {

@@ -5,14 +5,13 @@
 package frontend;
 
 import backend.KetQua.KetQuaBUS;
+import backend.Nhom.NhomBUS;
 import backend.QLSinhVien.*;
-import backend.QLTaiKhoan.TaiKhoanBUS;
 import frontend.mainPanel.SubjectRegistration;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.*;
-import java.util.*;
 import java.awt.*;
 
 public class Table extends javax.swing.JFrame implements Runnable {
@@ -653,6 +652,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.add(subjectRegistration);
         mainPanel.repaint();
         mainPanel.revalidate();
+        NhomBUS.showGroupSuggestions(subjectRegistration.getTblNhomMonHoc());
     }// GEN-LAST:event_btnSubjectRegistrationActionPerformed
 
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnScheduleActionPerformed

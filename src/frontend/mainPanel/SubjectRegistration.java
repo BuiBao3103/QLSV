@@ -12,6 +12,14 @@ import java.awt.*;
  */
 public class SubjectRegistration extends javax.swing.JPanel {
 
+    public JTable getTblNhomMonHoc() {
+        return tblNhomMonHoc;
+    }
+
+    public void setTblNhomMonHoc(JTable tblNhomMonHoc) {
+        this.tblNhomMonHoc = tblNhomMonHoc;
+    }
+
     /**
      * Creates new form SubjectRegistration
      */
@@ -38,7 +46,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
         filter_btn = new javax.swing.JButton();
         add_btn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblNhomMonHoc = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
@@ -90,21 +98,21 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+        tblNhomMonHoc.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
         DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
         leftRenderer.setHorizontalAlignment(JLabel.CENTER);
-        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        for (int i = 0; i < jTable1.getColumnCount(); i++)
+        ((DefaultTableCellRenderer)tblNhomMonHoc.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < tblNhomMonHoc.getColumnCount(); i++)
         {
 
             if(i != 2){
-                jTable1.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+                tblNhomMonHoc.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
             }else{
                 continue;
             }
         }
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblNhomMonHoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -112,20 +120,20 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 "STT", "Mã", "Tên môn", "Nh", "TC", "SL", "CL", "T", "TBD", "ST", "P", "GV"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(40);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(40);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(40);
-            jTable1.getColumnModel().getColumn(4).setMaxWidth(40);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(40);
-            jTable1.getColumnModel().getColumn(6).setMaxWidth(40);
-            jTable1.getColumnModel().getColumn(7).setMaxWidth(40);
-            jTable1.getColumnModel().getColumn(8).setMaxWidth(40);
-            jTable1.getColumnModel().getColumn(9).setMaxWidth(40);
-            jTable1.getColumnModel().getColumn(10).setMaxWidth(50);
-            jTable1.getColumnModel().getColumn(11).setMinWidth(150);
-            jTable1.getColumnModel().getColumn(11).setMaxWidth(200);
+        jScrollPane2.setViewportView(tblNhomMonHoc);
+        if (tblNhomMonHoc.getColumnModel().getColumnCount() > 0) {
+            tblNhomMonHoc.getColumnModel().getColumn(0).setMaxWidth(40);
+            tblNhomMonHoc.getColumnModel().getColumn(1).setMaxWidth(40);
+            tblNhomMonHoc.getColumnModel().getColumn(3).setMaxWidth(40);
+            tblNhomMonHoc.getColumnModel().getColumn(4).setMaxWidth(40);
+            tblNhomMonHoc.getColumnModel().getColumn(5).setMaxWidth(40);
+            tblNhomMonHoc.getColumnModel().getColumn(6).setMaxWidth(40);
+            tblNhomMonHoc.getColumnModel().getColumn(7).setMaxWidth(40);
+            tblNhomMonHoc.getColumnModel().getColumn(8).setMaxWidth(40);
+            tblNhomMonHoc.getColumnModel().getColumn(9).setMaxWidth(40);
+            tblNhomMonHoc.getColumnModel().getColumn(10).setMaxWidth(50);
+            tblNhomMonHoc.getColumnModel().getColumn(11).setMinWidth(150);
+            tblNhomMonHoc.getColumnModel().getColumn(11).setMaxWidth(200);
         }
 
         jTable2.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
@@ -223,8 +231,8 @@ public class SubjectRegistration extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JPanel subjectRegistration;
+    private javax.swing.JTable tblNhomMonHoc;
     // End of variables declaration//GEN-END:variables
 }
