@@ -4,7 +4,10 @@
  */
 package backend.Nhom;
 
+import backend.KetQua.KetQua;
+import backend.KetQua.KetQuaDAO;
 import backend.QLGiangVien.GiangVienBUS;
+import backend.QLHocPhan.HocPhanBUS;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,23 +23,35 @@ public class NhomBUS {
 
 
     public static void showGroupSuggestions(JTable table) {
+        ArrayList<KetQua> dskq = (new KetQuaDAO()).get(2, 2022);
         DefaultTableModel tblNhom = (DefaultTableModel) table.getModel();
         tblNhom.setRowCount(0);
         int i = 1;
         for (Nhom nhom : dsNhom) {
+            //Get data GiangVien
             String fullnameGV = GiangVienBUS.getGVnameByGVid(nhom.getMaGV());
             String formattedName = GiangVienBUS.formatGVName(fullnameGV);//Trương Tấn Khoa -> T.T.Khoa
-            Object[] rowData = {i++, nhom.getMaHP(), "abc", nhom.getSoNhom(), 1,
-                nhom.getSoLuongSV(), 10, nhom.getThu().substring(4), nhom.getTietBD(),
-                nhom.getSoTiet(), nhom.getPhong(), formattedName};
+            //Get data HocPhan
+            String nameHP = HocPhanBUS.getHPnameByHPid(nhom.getMaHP());
+            String tcHP = HocPhanBUS.getHPtcByHPid(nhom.getMaHP());
+            //handle remaining slot 
+            int remainSlot = nhom.getSoLuongSV()
+                    - countGroupRegistered(dskq, nhom.getMaHP(), nhom.getSoNhom());
+            //Create row data
+            Object[] rowData = {i++, nhom.getMaHP(), nameHP, nhom.getSoNhom(), tcHP,
+                nhom.getSoLuongSV(), remainSlot, nhom.getThu().substring(4),
+                nhom.getTietBD(), nhom.getSoTiet(), nhom.getPhong(), formattedName};
             tblNhom.addRow(rowData);
         }
     }
 
-    public static void main(String[] args) {
-        String fullName = "Aaa Bbb Ccc";
-        String formattedName = fullName.replaceAll("(\\B\\w)\\w*\\s?", "$1.");
-
-        System.out.println(formattedName);
+    public static int countGroupRegistered(ArrayList<KetQua> dskq, String maHP, int soNhom) {
+        int cnt = 0;
+        for (KetQua kq : dskq) {
+            if (kq.getMaHP().equals(maHP) && kq.getSoNhom() == soNhom) {
+                cnt++;
+            }
+        }
+        return cnt;
     }
 }

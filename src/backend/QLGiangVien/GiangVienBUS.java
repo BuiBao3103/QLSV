@@ -36,6 +36,6 @@ public class GiangVienBUS {
         }
         formatName += words[words.length - 1];
         return formatName;
-
     }
+
 }

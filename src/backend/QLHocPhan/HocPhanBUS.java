@@ -12,5 +12,24 @@ import java.util.ArrayList;
  */
 public class HocPhanBUS {
 
-    
+    static HocPhanDAO hpDAO = new HocPhanDAO();
+    static ArrayList<HocPhan> dshp = hpDAO.get();
+
+    public static String getHPnameByHPid(String id) {
+        for (HocPhan hp : dshp) {
+            if (hp.getMaHP().equals(id)) {
+                return hp.getTenHP();
+            }
+        }
+        return null;
+    }
+
+    public static String getHPtcByHPid(String id) {
+        for (HocPhan hp : dshp) {
+            if (hp.getMaHP().equals(id)) {
+                return hp.getTinChi() + "";
+            }
+        }
+        return null;
+    }
 }
