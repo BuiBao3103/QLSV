@@ -12,7 +12,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import frontend.StudentInfor;
-import frontend.Table;
 import java.awt.Font;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -521,7 +520,7 @@ public class SinhVienBUS {
 //---------------------------------------------------- Khúc này toàn hàm kiểm tra thông tin thôi ---------------------------------------------------
 
     public static boolean checkHoTen(String hoTen) { // Kiểm tra tên hợp lệ không
-        if (hoTen.equals("")|| hoTen.length() > 50) {
+        if (hoTen.equals("") || hoTen.length() > 50) {
             return false;
         }
 
