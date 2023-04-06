@@ -28,7 +28,7 @@ public class NhomBUS {
         int i = 1;
         for (Nhom nhom : dsNhom) {
             Object[] rowData = {i++, nhom.getMaHP(), "abc", nhom.getSoNhom(), 1,
-                nhom.getSoLuongSV(), 10, nhom.getThu(), nhom.getTietBD(), 
+                nhom.getSoLuongSV(), 10, nhom.getThu().substring(4), nhom.getTietBD(), 
                 nhom.getSoTiet(),nhom.getPhong(), nhom.getMaGV()};
             tblNhom.addRow(rowData);
         }

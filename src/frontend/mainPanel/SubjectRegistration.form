@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="855" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="908" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Component id="subjectRegistration" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -37,7 +37,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="1" pref="855" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -95,7 +95,7 @@
                               <Component id="filter_txt" min="-2" pref="171" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="filter_btn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="331" max="32767" attributes="0"/>
+                              <EmptySpace pref="342" max="32767" attributes="0"/>
                               <Component id="add_btn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
@@ -159,9 +159,6 @@
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tblNhomMonHoc.getTableHeader().setFont(new Font(&quot;Segoe UI&quot;, 0, 16));&#xd;&#xa;DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();&#xd;&#xa;leftRenderer.setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;((DefaultTableCellRenderer)tblNhomMonHoc.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;        for (int i = 0; i &lt; tblNhomMonHoc.getColumnCount(); i++)&#xd;&#xa;        {&#xd;&#xa;            &#xd;&#xa;            if(i != 2){&#xd;&#xa;                tblNhomMonHoc.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);&#xd;&#xa;            }else{&#xd;&#xa;                continue;&#xd;&#xa;            }&#xd;&#xa;        }&#xd;&#xa;"/>
-                  </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
@@ -169,18 +166,18 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="12" rowCount="0">
-                            <Column editable="true" title="STT" type="java.lang.Object"/>
-                            <Column editable="true" title="M&#xe3;" type="java.lang.Object"/>
-                            <Column editable="true" title="T&#xea;n m&#xf4;n" type="java.lang.Object"/>
-                            <Column editable="true" title="Nh" type="java.lang.Object"/>
-                            <Column editable="true" title="TC" type="java.lang.Object"/>
-                            <Column editable="true" title="SL" type="java.lang.Object"/>
-                            <Column editable="true" title="CL" type="java.lang.Object"/>
-                            <Column editable="true" title="T" type="java.lang.Object"/>
-                            <Column editable="true" title="TBD" type="java.lang.Object"/>
-                            <Column editable="true" title="ST" type="java.lang.Object"/>
-                            <Column editable="true" title="P" type="java.lang.Object"/>
-                            <Column editable="true" title="GV" type="java.lang.Object"/>
+                            <Column editable="false" title="STT" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3;" type="java.lang.Object"/>
+                            <Column editable="false" title="T&#xea;n m&#xf4;n" type="java.lang.Object"/>
+                            <Column editable="false" title="Nh" type="java.lang.Object"/>
+                            <Column editable="false" title="TC" type="java.lang.Object"/>
+                            <Column editable="false" title="SL" type="java.lang.Object"/>
+                            <Column editable="false" title="CL" type="java.lang.Object"/>
+                            <Column editable="false" title="T" type="java.lang.Object"/>
+                            <Column editable="false" title="TBD" type="java.lang.Object"/>
+                            <Column editable="false" title="ST" type="java.lang.Object"/>
+                            <Column editable="false" title="P" type="java.lang.Object"/>
+                            <Column editable="false" title="GV" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -190,7 +187,7 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="40" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="60" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -251,6 +248,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tblNhomMonHoc.setFont(new Font(&quot;Segoe UI&quot;, 0, 14));&#xd;&#xa;tblNhomMonHoc.getTableHeader().setFont(new Font(&quot;Segoe UI&quot;, 0, 16));&#xd;&#xa;tblNhomMonHoc.setRowHeight(35);&#xd;&#xa;tblNhomMonHoc.setRowMargin(10);&#xd;&#xa;DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();&#xd;&#xa;leftRenderer.setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;((DefaultTableCellRenderer)tblNhomMonHoc.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;        for (int i = 0; i &lt; tblNhomMonHoc.getColumnCount(); i++)&#xd;&#xa;        {&#xd;&#xa;            &#xd;&#xa;            if(i != 1){&#xd;&#xa;                tblNhomMonHoc.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);&#xd;&#xa;            }else{&#xd;&#xa;                continue;&#xd;&#xa;            }&#xd;&#xa;        }&#xd;&#xa;"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>

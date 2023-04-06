@@ -81,7 +81,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 .addComponent(filter_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(filter_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 342, Short.MAX_VALUE)
                 .addComponent(add_btn)
                 .addGap(21, 21, 21))
         );
@@ -98,20 +98,6 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblNhomMonHoc.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
-        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
-        leftRenderer.setHorizontalAlignment(JLabel.CENTER);
-        ((DefaultTableCellRenderer)tblNhomMonHoc.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        for (int i = 0; i < tblNhomMonHoc.getColumnCount(); i++)
-        {
-
-            if(i != 2){
-                tblNhomMonHoc.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
-            }else{
-                continue;
-            }
-        }
-
         tblNhomMonHoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -119,11 +105,35 @@ public class SubjectRegistration extends javax.swing.JPanel {
             new String [] {
                 "STT", "Mã", "Tên môn", "Nh", "TC", "SL", "CL", "T", "TBD", "ST", "P", "GV"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblNhomMonHoc.setFont(new Font("Segoe UI", 0, 14));
+        tblNhomMonHoc.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+        tblNhomMonHoc.setRowHeight(35);
+        tblNhomMonHoc.setRowMargin(10);
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(JLabel.CENTER);
+        ((DefaultTableCellRenderer)tblNhomMonHoc.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < tblNhomMonHoc.getColumnCount(); i++)
+        {
+
+            if(i != 1){
+                tblNhomMonHoc.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+            }else{
+                continue;
+            }
+        }
         jScrollPane2.setViewportView(tblNhomMonHoc);
         if (tblNhomMonHoc.getColumnModel().getColumnCount() > 0) {
             tblNhomMonHoc.getColumnModel().getColumn(0).setMaxWidth(40);
-            tblNhomMonHoc.getColumnModel().getColumn(1).setMaxWidth(40);
+            tblNhomMonHoc.getColumnModel().getColumn(1).setMaxWidth(60);
             tblNhomMonHoc.getColumnModel().getColumn(3).setMaxWidth(40);
             tblNhomMonHoc.getColumnModel().getColumn(4).setMaxWidth(40);
             tblNhomMonHoc.getColumnModel().getColumn(5).setMaxWidth(40);
@@ -189,7 +199,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
         subjectRegistration.setLayout(subjectRegistrationLayout);
         subjectRegistrationLayout.setHorizontalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         subjectRegistrationLayout.setVerticalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +210,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 855, Short.MAX_VALUE)
+            .addGap(0, 908, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(subjectRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
