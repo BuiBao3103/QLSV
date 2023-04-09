@@ -61,7 +61,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="scpStudentList" max="32767" attributes="0"/>
@@ -71,12 +71,18 @@
                               <Component id="cbTrangThaiSinhVien" min="-2" pref="125" max="-2" attributes="0"/>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                               <Component id="btnKhoiPhucSinhVien" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
-                              <Component id="btnThemSinhVien" pref="118" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="btnPrevPage" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPresentPage" min="-2" pref="35" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="btnNextPage" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="btnThemSinhVien" pref="121" max="32767" attributes="0"/>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnTimKiemSinhVien" pref="107" max="32767" attributes="0"/>
+                              <Component id="btnTimKiemSinhVien" pref="110" max="32767" attributes="0"/>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbTimKiemSinhVien" pref="121" max="32767" attributes="0"/>
+                              <Component id="cbTimKiemSinhVien" pref="122" max="32767" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="txtTimKiemSinhVien" min="-2" pref="143" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -96,7 +102,12 @@
                               <Component id="cbTimKiemSinhVien" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <Component id="cbTrangThaiSinhVien" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="btnKhoiPhucSinhVien" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="btnKhoiPhucSinhVien" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="txtPresentPage" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnNextPage" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnPrevPage" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="txtTimKiemSinhVien" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
@@ -712,6 +723,32 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKhoiPhucSinhVienActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtPresentPage">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="1"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtPresentPageCaretUpdate"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnNextPage">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextPageActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnPrevPage">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrevPageActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
