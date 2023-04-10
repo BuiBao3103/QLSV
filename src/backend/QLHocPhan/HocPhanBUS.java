@@ -32,4 +32,10 @@ public class HocPhanBUS {
         }
         return null;
     }
+
+    public static ArrayList<HocPhan> getMonHocTruoc(String maHP) {
+        ArrayList<HocPhan> dsMonHocTruoc = new ArrayList<>();
+       
+        return null;
+    }
 }

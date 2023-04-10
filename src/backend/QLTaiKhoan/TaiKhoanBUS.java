@@ -19,33 +19,29 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class TaiKhoanBUS {
 
-    private static String tenTK = "";
-
-    public static String getTenTK() {
-        return tenTK;
-    }
+    public static TaiKhoan curentLogin;
 
     public static void login(Login lg) {
-        tenTK = lg.getUsername().getText();
+        String tenTK = lg.getUsername().getText();
         String matkhau = lg.getPassword().getText();
         TaiKhoanBUS qltk = new TaiKhoanBUS();
-        TaiKhoan tk = qltk.getByUsername(tenTK);
-        if (tk != null) {
-            int trangThai = qltk.getTrangThai(tk);
+        curentLogin = qltk.getByUsername(tenTK);
+        if (curentLogin != null) {
+            int trangThai = qltk.getTrangThai(curentLogin);
             if (trangThai == 0) {
                 JOptionPane.showMessageDialog(null, "Tài khoản bị vô hiệu hóa ");
                 return;
             }
-            if (tk.getMatKhau().equals(matkhau)) {
-                ArrayList<String> dsq = new NQ_CTQBUS().getListCTQByNQuyen(tk.getMaNhomQuyen());
+            if (curentLogin.getMatKhau().equals(matkhau)) {
+                ArrayList<String> dsq = new NQ_CTQBUS().getListCTQByNQuyen(curentLogin.getMaNhomQuyen());
                 try {
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ignored) {
 
                 }
-                
+
                 new TaiKhoanBUS().phanQuyen(dsq);
-               
+
             } else {
                 JOptionPane.showMessageDialog(null, "Sai mật khẩu");
             }
@@ -81,7 +77,6 @@ public class TaiKhoanBUS {
         table.getjButton12().setVisible(false);
         table.getjButton13().setVisible(false);
         table.getGroup().setVisible(false);
-      
 
         for (String q : dsq) {
             switch (q) {
@@ -103,7 +98,7 @@ public class TaiKhoanBUS {
                 case "CTQ6" -> {
                     table.getBtnInformation().setVisible(true);
                 }
-               
+
             }
         }
     }

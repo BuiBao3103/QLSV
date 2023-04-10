@@ -5,15 +5,10 @@
 //Hello world
 package frontend;
 
-import backend.QLTaiKhoan.TaiKhoan;
 import backend.QLTaiKhoan.TaiKhoanBUS;
 import component.PasswordField;
 import javax.swing.*;
 import java.awt.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jdesktop.animation.timing.Animator;
 
 /**
