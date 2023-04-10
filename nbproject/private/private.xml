@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/backend/KetQua/KetQuaBUS.java</file>
-            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/backend/DIEUKIEN/DieuKien.java</file>
-            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/backend/DIEUKIEN/DieuKienDAO.java</file>
-            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/backend/QLGiangVien/GiangVienBUS.java</file>
+            <file>file:/P:/Java/StudentManager/src/backend/KetQua/KetQua.java</file>
+            <file>file:/P:/Java/StudentManager/src/frontend/Table.java</file>
+            <file>file:/P:/Java/StudentManager/src/frontend/StudentInfor.java</file>
+            <file>file:/P:/Java/StudentManager/src/frontend/Login.java</file>
+            <file>file:/P:/Java/StudentManager/src/backend/KetQua/KetQuaBUS.java</file>
+            <file>file:/P:/Java/StudentManager/src/backend/KetQua/KetQuaDAO.java</file>
+            <file>file:/P:/Java/StudentManager/src/backend/QLSinhVien/SinhVienBUS.java</file>
+            <file>file:/P:/Java/StudentManager/src/connectDB/ConnectionDB.java</file>
+            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/frontend/Login.java</file>
+            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/frontend/AccountManager.java</file>
         </group>
     </open-files>
 </project-private>

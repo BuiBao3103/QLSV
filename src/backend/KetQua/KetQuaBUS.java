@@ -18,9 +18,27 @@ public class KetQuaBUS {
 
     static KetQuaDAO kqDAO = new KetQuaDAO();
 
+    private ArrayList<KetQua> dsKQSV = getListKQsvFromDB();
+
+    public ArrayList<KetQua> getListKQsvFromDB() {
+        if (TaiKhoanBUS.curentLogin.getMaNhomQuyen().equals("Q4")) {
+            return kqDAO.get(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
+        }
+        return null;
+    }
+
+    public boolean isLearned(String maHP) {
+        for (KetQua kq : dsKQSV) {
+            if (kq.getMaHP().equals(maHP)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addRowData(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        ArrayList<KetQua> list = new KetQuaDAO().get(new TaiKhoanBUS().getTenTK());
+        ArrayList<KetQua> list = new KetQuaDAO().get(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
 
         int stt = 1;
         for (KetQua i : list) {
@@ -62,4 +80,13 @@ public class KetQuaBUS {
     public static void main(String[] args) {
         kqDAO.get("3121410066");
     }
+
+    public ArrayList<KetQua> getDsKQSV() {
+        return dsKQSV;
+    }
+
+    public void setDsKQSV(ArrayList<KetQua> dsKQSV) {
+        this.dsKQSV = dsKQSV;
+    }
+
 }

@@ -15,15 +15,24 @@ import javax.swing.JTable;
 public class DieuKienBUS {
 
     static DieuKienDAO dkDAO = new DieuKienDAO();
-    static ArrayList<DieuKien> list = dkDAO.get();
+    static ArrayList<DieuKien> dsDK = dkDAO.get();
 
     public static String getMaHP(String maHP_truoc) {
-        for (DieuKien dk : list) {
+        for (DieuKien dk : dsDK) {
             if (dk.getMaHP_truoc().equals(maHP_truoc)) {
                 return dk.getMaHP();
             }
         }
         return null;
     }
+
+    public static ArrayList<DieuKien> getDsDK() {
+        return dsDK;
+    }
+
+    public static void setDsDK(ArrayList<DieuKien> dsDK) {
+        DieuKienBUS.dsDK = dsDK;
+    }
+    
 }
   

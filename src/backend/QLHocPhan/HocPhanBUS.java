@@ -4,6 +4,8 @@
  */
 package backend.QLHocPhan;
 
+import backend.DIEUKIEN.DieuKien;
+import backend.DIEUKIEN.DieuKienBUS;
 import java.util.ArrayList;
 
 /**
@@ -31,5 +33,15 @@ public class HocPhanBUS {
             }
         }
         return null;
+    }
+
+    public static ArrayList<String> getMonHocTruoc(String maHP) {
+        ArrayList<String> dsMonHocTruoc = new ArrayList<>();
+        for (DieuKien dk : DieuKienBUS.getDsDK()) {
+            if (dk.getMaHP().equals(maHP)) {
+                dsMonHocTruoc.add(dk.getMaHP_truoc());
+            }
+        }
+        return dsMonHocTruoc;
     }
 }

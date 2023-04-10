@@ -5,8 +5,10 @@
 package backend.Nhom;
 
 import backend.KetQua.KetQua;
+import backend.KetQua.KetQuaBUS;
 import backend.KetQua.KetQuaDAO;
 import backend.QLGiangVien.GiangVienBUS;
+import backend.QLHocPhan.HocPhan;
 import backend.QLHocPhan.HocPhanBUS;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -21,13 +23,16 @@ public class NhomBUS {
     private static NhomDAO nhomDAO = new NhomDAO();
     private static ArrayList<Nhom> dsNhom = nhomDAO.get();
 
-
     public static void showGroupSuggestions(JTable table) {
         ArrayList<KetQua> dskq = (new KetQuaDAO()).get(2, 2022);
         DefaultTableModel tblNhom = (DefaultTableModel) table.getModel();
         tblNhom.setRowCount(0);
         int i = 1;
         for (Nhom nhom : dsNhom) {
+            //Check Nhom Valid
+            if (!isValidNhom(nhom)) {
+                continue;
+            }
             //Get data GiangVien
             String fullnameGV = GiangVienBUS.getGVnameByGVid(nhom.getMaGV());
             String formattedName = GiangVienBUS.formatGVName(fullnameGV);//Trương Tấn Khoa -> T.T.Khoa
@@ -53,5 +58,18 @@ public class NhomBUS {
             }
         }
         return cnt;
+    }
+
+    private static boolean isValidNhom(Nhom nhom) {
+        ArrayList<String> dsMonHocTruoc = HocPhanBUS.getMonHocTruoc(nhom.getMaHP());
+        KetQuaBUS kqBUS = new KetQuaBUS();
+        for (String hpt : dsMonHocTruoc) {
+            if (kqBUS.isLearned(hpt)) {
+                continue;
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 }
