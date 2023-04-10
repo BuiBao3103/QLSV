@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/frontend/Login.java</file>
-            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/frontend/AccountManager.java</file>
+            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/backend/KetQua/KetQuaBUS.java</file>
+            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/backend/DIEUKIEN/DieuKien.java</file>
+            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/backend/DIEUKIEN/DieuKienDAO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/DoAnJava-Nam2-HK2/QLSV/StudentManager/src/backend/QLGiangVien/GiangVienBUS.java</file>
         </group>
     </open-files>
 </project-private>
