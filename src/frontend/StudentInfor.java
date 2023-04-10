@@ -27,6 +27,31 @@ public class StudentInfor extends javax.swing.JPanel {
         initComponents();
     }
 
+    public JButton getBtnNextPage() {
+        return btnNextPage;
+    }
+
+    public void setBtnNextPage(JButton btnNextPage) {
+        this.btnNextPage = btnNextPage;
+    }
+
+    public JButton getBtnPrevPage() {
+        return btnPrevPage;
+    }
+
+    public void setBtnPrevPage(JButton btnPrevPage) {
+        this.btnPrevPage = btnPrevPage;
+    }
+
+    public JButton getBtnXoaLoc() {
+        return btnXoaLoc;
+    }
+
+    public void setBtnXoaLoc(JButton btnXoaLoc) {
+        this.btnXoaLoc = btnXoaLoc;
+    }
+    
+    
     public int getNumberOfSinhVienPage() {
         return numberOfSinhVienPage;
     }
@@ -45,6 +70,10 @@ public class StudentInfor extends javax.swing.JPanel {
 
     public String getTxtPresentPage() {
         return txtPresentPage.getText();
+    }
+    
+    public JTextField getObTxtPresentPage(){
+        return txtPresentPage;
     }
 
     public void setTxtPresentPage(JTextField txtPresentPage) {
@@ -460,6 +489,7 @@ public class StudentInfor extends javax.swing.JPanel {
         txtPresentPage = new javax.swing.JTextField();
         btnNextPage = new javax.swing.JButton();
         btnPrevPage = new javax.swing.JButton();
+        btnXoaLoc = new javax.swing.JButton();
 
         btnThemSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThemSinhVien.setText("Thêm");
@@ -877,6 +907,11 @@ public class StudentInfor extends javax.swing.JPanel {
                 txtPresentPageCaretUpdate(evt);
             }
         });
+        txtPresentPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPresentPageActionPerformed(evt);
+            }
+        });
 
         btnNextPage.setText(">>");
         btnNextPage.addActionListener(new java.awt.event.ActionListener() {
@@ -889,6 +924,13 @@ public class StudentInfor extends javax.swing.JPanel {
         btnPrevPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrevPageActionPerformed(evt);
+            }
+        });
+
+        btnXoaLoc.setText("Xóa Lọc");
+        btnXoaLoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaLocActionPerformed(evt);
             }
         });
 
@@ -915,32 +957,35 @@ public class StudentInfor extends javax.swing.JPanel {
                         .addComponent(txtPresentPage, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNextPage)
-                        .addGap(80, 80, 80)
-                        .addComponent(btnThemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbTimKiemSinhVien, 0, 122, Short.MAX_VALUE)
+                        .addGap(42, 42, 42)
+                        .addComponent(btnThemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbTimKiemSinhVien, 0, 123, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnXoaLoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(9, 9, 9))))
         );
         pninfoLayout.setVerticalGroup(
             pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pninfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnThemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cbTrangThaiSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnKhoiPhucSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPresentPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnNextPage)
-                        .addComponent(btnPrevPage))
-                    .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cbTrangThaiSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnKhoiPhucSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPresentPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNextPage)
+                            .addComponent(btnPrevPage)
+                            .addComponent(btnThemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnXoaLoc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scpStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -987,6 +1032,9 @@ public class StudentInfor extends javax.swing.JPanel {
         String conditionName = cbTimKiemSinhVien.getSelectedItem().toString(); // cái này lấy thuộc tính tìm kiếm theo gì nè
         if (!condition.equals("") && !condition.equals("vd: 312141, Anh, Sư Phạm, ...")) {
             SinhVienBUS.showStudentListWithCondition(this, condition, conditionName);
+            btnNextPage.setVisible(false);
+            btnPrevPage.setVisible(false);
+            txtPresentPage.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập nội dung tìm kiếm\n Tên, Ngành, MSSV");
         }
@@ -1090,6 +1138,7 @@ public class StudentInfor extends javax.swing.JPanel {
         if (SinhVienBUS.checkAllInfo(svMoi)) {
             if (btnSuaSinhVien.isVisible()) {   // cái này là lưu khi sinh viên được sửa
                 SinhVienBUS.updateSinhVienToServer(this, svCu, svMoi);
+                
             } else {           // cái này lưu khi sinh viên được thêm
                 SinhVienBUS.addSinhVienToServer(this, svMoi);
             }
@@ -1200,6 +1249,7 @@ public class StudentInfor extends javax.swing.JPanel {
         }
         int prevPage = presentPage - 1;
         txtPresentPage.setText(prevPage + "");
+        btnDongSinhVienActionPerformed(null);
     }//GEN-LAST:event_btnPrevPageActionPerformed
 
     private void btnNextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextPageActionPerformed
@@ -1212,7 +1262,18 @@ public class StudentInfor extends javax.swing.JPanel {
         }
         int nextPage = presentPage + 1;
         txtPresentPage.setText(nextPage + "");
+        btnDongSinhVienActionPerformed(null);
     }//GEN-LAST:event_btnNextPageActionPerformed
+
+    private void btnXoaLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLocActionPerformed
+        SinhVienBUS.showStudentList(this,1); //hiện 20 sinh viên trang 1
+        txtPresentPage.setText("1");
+        SinhVienBUS.btnXoaLocOnClick(this);
+    }//GEN-LAST:event_btnXoaLocActionPerformed
+
+    private void txtPresentPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPresentPageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPresentPageActionPerformed
 //    public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
 //        cbNganhSinhVien.removeAllItems();
 //        for (String i : dsTenNganh) {
@@ -1229,6 +1290,7 @@ public class StudentInfor extends javax.swing.JPanel {
     private javax.swing.JButton btnSuaSinhVien;
     private javax.swing.JButton btnThemSinhVien;
     private javax.swing.JButton btnTimKiemSinhVien;
+    private javax.swing.JButton btnXoaLoc;
     private javax.swing.JButton btnXoaSinhVien;
     private javax.swing.JComboBox<String> cbNganhSinhVien;
     private javax.swing.JComboBox<String> cbTimKiemSinhVien;
