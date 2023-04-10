@@ -19,7 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class TaiKhoanBUS {
 
-    public static TaiKhoan curentLogin;
+    public static TaiKhoan curentLogin = new TaiKhoanBUS().getByUsername("3121410482");
 
     public static void login(Login lg) {
         String tenTK = lg.getUsername().getText();

@@ -6,7 +6,6 @@ package frontend;
 
 import backend.QLSinhVien.*;
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.accessibility.AccessibleContext;
 import javax.swing.*;
 import javax.swing.border.LineBorder;

@@ -61,10 +61,10 @@ public class NhomBUS {
     }
 
     private static boolean isValidNhom(Nhom nhom) {
-        ArrayList<HocPhan> dsMonHocTruoc = HocPhanBUS.getMonHocTruoc(nhom.getMaHP());
+        ArrayList<String> dsMonHocTruoc = HocPhanBUS.getMonHocTruoc(nhom.getMaHP());
         KetQuaBUS kqBUS = new KetQuaBUS();
-        for (HocPhan hpt : dsMonHocTruoc) {
-            if (kqBUS.isLearned(hpt.getMaHP())) {
+        for (String hpt : dsMonHocTruoc) {
+            if (kqBUS.isLearned(hpt)) {
                 continue;
             } else {
                 return false;
