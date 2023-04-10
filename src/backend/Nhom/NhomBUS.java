@@ -7,9 +7,14 @@ package backend.Nhom;
 import backend.KetQua.KetQua;
 import backend.KetQua.KetQuaBUS;
 import backend.KetQua.KetQuaDAO;
+import backend.Nganh.Nganh;
+import backend.Nganh.NganhBUS;
 import backend.QLGiangVien.GiangVienBUS;
 import backend.QLHocPhan.HocPhan;
 import backend.QLHocPhan.HocPhanBUS;
+import backend.QLSinhVien.SinhVien;
+import backend.QLSinhVien.SinhVienDAO;
+import backend.QLTaiKhoan.TaiKhoanBUS;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -29,8 +34,12 @@ public class NhomBUS {
         tblNhom.setRowCount(0);
         int i = 1;
         for (Nhom nhom : dsNhom) {
-            //Check Nhom Valid
-            if (!isValidNhom(nhom)) {
+            //Check condition Khoa, Nganh
+            if (!checkSvKhoaNganh(nhom.getMaHP())) {
+                continue;
+            }
+            //Check condition hocphan previous
+            if (!checkPreviousHocPhan(nhom.getMaHP())) {
                 continue;
             }
             //Get data GiangVien
@@ -60,8 +69,8 @@ public class NhomBUS {
         return cnt;
     }
 
-    private static boolean isValidNhom(Nhom nhom) {
-        ArrayList<String> dsMonHocTruoc = HocPhanBUS.getMonHocTruoc(nhom.getMaHP());
+    private static boolean checkPreviousHocPhan(String maHP) {
+        ArrayList<String> dsMonHocTruoc = HocPhanBUS.getMonHocTruoc(maHP);
         KetQuaBUS kqBUS = new KetQuaBUS();
         for (String hpt : dsMonHocTruoc) {
             if (kqBUS.isLearned(hpt)) {
@@ -71,5 +80,29 @@ public class NhomBUS {
             }
         }
         return true;
+    }
+
+    private static boolean checkSvKhoaNganh(String maHP) {
+        HocPhan hp = HocPhanBUS.getHocPhanByID(maHP);
+        SinhVien sv = (new SinhVienDAO()).getByMaSV(TaiKhoanBUS.curentLogin.getTenTaiKhoan()).get(0);
+        switch (hp.getChuyenBiet()) {
+            case 0 -> {//mon chung cua toan truong
+                return true;
+            }
+            case 1 -> {//mon chung cua khoa
+                Nganh nganhSV = NganhBUS.getNganhByID(sv.getMaNganh());
+                if (hp.getMaKhoa().equals(nganhSV.getMaKhoa())) {
+                    return true;
+                }
+                return false;
+            }
+            case 2 -> {//mon rieng cua nganh
+                if (hp.getMaNganh().equals(sv.getMaNganh())) {
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
     }
 }
