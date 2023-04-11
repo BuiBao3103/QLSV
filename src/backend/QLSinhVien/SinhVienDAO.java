@@ -325,6 +325,7 @@ public class SinhVienDAO {
         }
         return dssv;//+
     }
+
     public ArrayList<SinhVien> getDeletedStudentByNumberOfPage(int page) { // hàm này lấy dssv theo số trang đang xét
         con = ConnectionDB.getConnection();
         int nextStudent = (page - 1) * 20; // page 1 sẽ lấy từ 1->100 svien, page 2 sẽ lấy từ 101->200 svien
@@ -364,12 +365,13 @@ public class SinhVienDAO {
         }
         return dssv;//+
     }
+
     public ArrayList<SinhVien> getByHoTen(String HoTen) { // hàm này lấy dssv theo họ tên truyền vào
         con = ConnectionDB.getConnection();
         ArrayList<SinhVien> dssv = new ArrayList<>();//+
         try {
 //            String query = "select * from SinhVien where MaKhoa=?";//+
-            String query = "SELECT * FROM SinhVien WHERE HoTen like N'%"+HoTen+"%'";
+            String query = "SELECT * FROM SinhVien WHERE HoTen like N'%" + HoTen + "%'";
             pstm = con.prepareStatement(query);
 //            pstm.setString(1, HoTen);//+
 //            System.out.println(query);
@@ -399,15 +401,16 @@ public class SinhVienDAO {
         }
         return dssv;//+
     }
+
     public ArrayList<SinhVien> getByMaSV(String MaSV) { // hàm này lấy dssv theo Mã SV truyền vào
         con = ConnectionDB.getConnection();
         ArrayList<SinhVien> dssv = new ArrayList<>();//+
         try {
 //            String query = "select * from SinhVien where MaKhoa=?";//+
-            String query = "SELECT * FROM SinhVien WHERE MaSV like '%"+MaSV+"%'";
+            String query = "SELECT * FROM SinhVien WHERE MaSV like '%" + MaSV + "%'";
             pstm = con.prepareStatement(query);
 //            pstm.setString(1, HoTen);//+
-            System.out.println(query);
+//            System.out.println(query);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 int trangThai = rs.getInt("TrangThai");
@@ -434,12 +437,13 @@ public class SinhVienDAO {
         }
         return dssv;//+
     }
+
     public ArrayList<SinhVien> getByNganh(String TenNganh) { // hàm này lấy dssv theo Mã SV truyền vào
         con = ConnectionDB.getConnection();
         ArrayList<SinhVien> dssv = new ArrayList<>();//+
         try {
 //            String query = "select * from SinhVien where MaKhoa=?";//+
-            String query = "SELECT * FROM SINHVIEN sv join NGANH n on sv.MaNganh = n.MaNganh WHERE n.MaNganh like '%"+TenNganh+"%' or n.TenNganh like N'%"+TenNganh+"%'";
+            String query = "SELECT * FROM SINHVIEN sv join NGANH n on sv.MaNganh = n.MaNganh WHERE n.MaNganh like '%" + TenNganh + "%' or n.TenNganh like N'%" + TenNganh + "%'";
             pstm = con.prepareStatement(query);
 //            pstm.setString(1, TenNganh);//+
 //            pstm.setString(2, TenNganh);
@@ -470,16 +474,15 @@ public class SinhVienDAO {
         }
         return dssv;//+
     }
+
     public ArrayList<SinhVien> getByCondition(String CondiTion, String conditionName) { // hàm này lấy dssv theo mã khoa truyền vào
         con = ConnectionDB.getConnection();
         ArrayList<SinhVien> dssv = new ArrayList<>();//+
-        if (conditionName.equals("Tên")){
+        if (conditionName.equals("Tên")) {
             dssv = getByHoTen(CondiTion);
-        }
-        else if (conditionName.equals("MSSV")){
+        } else if (conditionName.equals("MSSV")) {
             dssv = getByMaSV(CondiTion);
-        }
-        else {
+        } else {
             dssv = getByNganh(CondiTion);
         }
         return dssv;//+

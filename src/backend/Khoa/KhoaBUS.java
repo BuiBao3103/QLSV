@@ -4,10 +4,30 @@
  */
 package backend.Khoa;
 
+import backend.Nganh.Nganh;
+import backend.Nganh.NganhBUS;
+import java.util.ArrayList;
+
 /**
  *
  * @author ASUS
  */
 public class KhoaBUS {
     
+    static KhoaDAO khoaDAO = new KhoaDAO();
+    static ArrayList<Khoa> dsKhoa = khoaDAO.get();
+    
+    public static Khoa getKhoaByID(String maKhoa) {
+        for (Khoa k : dsKhoa) {
+            if (k.getMaKhoa().equals(maKhoa)) {
+                return k;
+            }
+        }
+        return null;
+    }
+    
+    public static Khoa getKhoaByNganhID(String maNganh) {
+        Nganh nganhSV = NganhBUS.getNganhByID(maNganh);
+        return getKhoaByID(nganhSV.getMaKhoa());
+    }
 }

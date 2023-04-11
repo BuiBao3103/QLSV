@@ -18,10 +18,10 @@ public class GiangVienBUS {
     public GiangVienBUS() {
     }
 
-    public static String getGVnameByGVid(String id) {
+    public static GiangVien getGVnameByGVid(String id) {
         for (GiangVien gv : dsgv) {
             if (gv.getMaGV().equals(id)) {
-                return gv.getTenGV();
+                return gv;
             }
         }
         return null;

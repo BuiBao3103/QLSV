@@ -26,6 +26,15 @@ public class HocPhanBUS {
         return null;
     }
 
+    public static HocPhan getHocPhanByID(String maHP) {
+        for (HocPhan hp : dshp) {
+            if (hp.getMaHP().equals(maHP)) {
+                return hp;
+            }
+        }
+        return null;
+    }
+
     public static String getHPtcByHPid(String id) {
         for (HocPhan hp : dshp) {
             if (hp.getMaHP().equals(id)) {
