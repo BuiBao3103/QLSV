@@ -43,7 +43,7 @@ public class NhomBUS {
                 continue;
             }
             //Get data GiangVien
-            String fullnameGV = GiangVienBUS.getGVnameByGVid(nhom.getMaGV());
+            String fullnameGV = GiangVienBUS.getGVnameByGVid(nhom.getMaGV()).getTenGV();
             String formattedName = GiangVienBUS.formatGVName(fullnameGV);//Trương Tấn Khoa -> T.T.Khoa
             //Get data HocPhan
             String nameHP = HocPhanBUS.getHPnameByHPid(nhom.getMaHP());

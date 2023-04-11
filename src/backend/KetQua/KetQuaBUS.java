@@ -4,6 +4,8 @@
  */
 package backend.KetQua;
 
+import backend.QLHocPhan.HocPhan;
+import backend.QLHocPhan.HocPhanBUS;
 import backend.QLTaiKhoan.TaiKhoanBUS;
 import frontend.Login;
 import java.util.ArrayList;
@@ -38,25 +40,29 @@ public class KetQuaBUS {
 
     public void addRowData(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        ArrayList<KetQua> list = new KetQuaDAO().get(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
 
         int stt = 1;
-        for (KetQua i : list) {
-            double diemHe10 = DiemHe10(i.getPhanTramQuaTrinh(), i.getDiemQT(), i.getDiemCK());
+        model.setRowCount(0);
+        for (KetQua kq : dsKQSV) {
+            HocPhan hp = HocPhanBUS.getHocPhanByID(kq.getMaHP());
+            String tenHP = hp.getTenHP();
+            int soTC = hp.getTinChi();
+            String phanTramQuaTrinh = hp.getPhanTramQuaTrinh() + "%";
+            String phanTramThi = (100 - hp.getPhanTramQuaTrinh()) + "%"; // % điểm thi = 100% - %điểm quá trình
+            double diemQuaTrinh = kq.getDiemQT();
+            double diemCuoiKy = kq.getDiemCK();
+            double diemHe10 = DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy);
             String diemChu = DiemChuHe4(diemHe10);
-
             model.addRow(new Object[]{
-                stt++, i.getMaHP(), i.getTenHP(), i.getSoTinChi(), i.getPhanTramQuaTrinh() + "%",
-                100 - i.getPhanTramQuaTrinh() + "%", i.getDiemQT(), i.getDiemCK(),
+                stt++, kq.getMaHP(), tenHP, soTC, phanTramQuaTrinh,
+                phanTramThi, diemQuaTrinh, diemCuoiKy,
                 diemHe10, diemChu
-
             });
         }
-
     }
 
-    public double DiemHe10(int PhanTramQuaTrinh, double diemQuaTrinh, double diemThi) {
-        if (PhanTramQuaTrinh == 40) {
+    public double DiemHe10(String PhanTramQuaTrinh, double diemQuaTrinh, double diemThi) {
+        if (PhanTramQuaTrinh.equals("40%")) {
             return diemQuaTrinh * 0.4 + diemThi * 0.6;
         } else {
             return diemQuaTrinh * 0.5 + diemThi * 0.5;

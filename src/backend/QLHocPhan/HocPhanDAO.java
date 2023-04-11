@@ -35,7 +35,7 @@ public class HocPhanDAO {
                 String tenHP = rs.getString("TenMon");//+
                 int tinChi = rs.getInt("TinChi");//+
                 int chuyenBiet = rs.getInt("ChuyenBiet");
-                String phanTramQuaTrinh = rs.getString("PhanTramQuaTrinh");
+                int phanTramQuaTrinh = rs.getInt("PhanTramQuaTrinh");
                 String maKhoa = rs.getString("MaKhoa");
                 String maNganh = rs.getString("maNganh");
                 HocPhan hp = new HocPhan(maHP, tenHP, tinChi, chuyenBiet, phanTramQuaTrinh, maKhoa, maNganh);
@@ -57,7 +57,7 @@ public class HocPhanDAO {
             pstm.setString(2, hp.getTenHP());//+
             pstm.setInt(3, hp.getTinChi());//+
             pstm.setInt(4, hp.getChuyenBiet());//+
-            pstm.setString(5, hp.getPhanTramQuaTrinh());//+
+            pstm.setInt(5, hp.getPhanTramQuaTrinh());//+
             pstm.setString(6, hp.getMaKhoa());//+
             pstm.setString(7, hp.getMaNganh());//+
 
@@ -78,11 +78,10 @@ public class HocPhanDAO {
             pstm.setString(2, hp.getTenHP());//+
             pstm.setInt(3, hp.getTinChi());//+
             pstm.setInt(4, hp.getChuyenBiet());//+
-            pstm.setString(5, hp.getPhanTramQuaTrinh());//+
+            pstm.setInt(5, hp.getPhanTramQuaTrinh());//+
             pstm.setString(6, hp.getMaKhoa());//+
             pstm.setString(7, hp.getMaNganh());//+
             pstm.setString(8, maHP);//+
-
             ResultSet rs = pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
