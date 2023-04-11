@@ -6,7 +6,6 @@ package frontend;
 
 import backend.QLSinhVien.*;
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.accessibility.AccessibleContext;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -19,11 +18,65 @@ import javax.swing.plaf.ComponentUI;
  */
 public class StudentInfor extends javax.swing.JPanel {
 
-    SinhVien svCu = new SinhVien();
+    private SinhVien svCu = new SinhVien();
+    private int numberOfSinhVienPage = (int) Math.ceil(SinhVienBUS.soLuongSinhVien / SinhVienBUS.soLuongSinhVienMotTrang); // làm tròn lên để có số trang cần
+    private int numberOfDeletedSinhVienPage = (int) Math.ceil(SinhVienBUS.soLuongSinhVienBiXoa / SinhVienBUS.soLuongSinhVienMotTrang); // làm tròn lên để có số trang cần
 
     public StudentInfor() {
         initComponents();
+    }
 
+    public JButton getBtnNextPage() {
+        return btnNextPage;
+    }
+
+    public void setBtnNextPage(JButton btnNextPage) {
+        this.btnNextPage = btnNextPage;
+    }
+
+    public JButton getBtnPrevPage() {
+        return btnPrevPage;
+    }
+
+    public void setBtnPrevPage(JButton btnPrevPage) {
+        this.btnPrevPage = btnPrevPage;
+    }
+
+    public JButton getBtnXoaLoc() {
+        return btnXoaLoc;
+    }
+
+    public void setBtnXoaLoc(JButton btnXoaLoc) {
+        this.btnXoaLoc = btnXoaLoc;
+    }
+    
+    
+    public int getNumberOfSinhVienPage() {
+        return numberOfSinhVienPage;
+    }
+
+    public void setNumberOfSinhVienPage(int numberOfSinhVienPage) {
+        this.numberOfSinhVienPage = numberOfSinhVienPage;
+    }
+
+    public int getNumberOfDeletedSinhVienPage() {
+        return numberOfDeletedSinhVienPage;
+    }
+
+    public void setNumberOfDeletedSinhVienPage(int numberOfDeletedSinhVienPage) {
+        this.numberOfDeletedSinhVienPage = numberOfDeletedSinhVienPage;
+    }
+
+    public String getTxtPresentPage() {
+        return txtPresentPage.getText();
+    }
+    
+    public JTextField getObTxtPresentPage(){
+        return txtPresentPage;
+    }
+
+    public void setTxtPresentPage(JTextField txtPresentPage) {
+        this.txtPresentPage = txtPresentPage;
     }
 
     public SinhVien getSvCu() {
@@ -432,6 +485,10 @@ public class StudentInfor extends javax.swing.JPanel {
         cbTimKiemSinhVien = new javax.swing.JComboBox<>();
         cbTrangThaiSinhVien = new javax.swing.JComboBox<>();
         btnKhoiPhucSinhVien = new javax.swing.JButton();
+        txtPresentPage = new javax.swing.JTextField();
+        btnNextPage = new javax.swing.JButton();
+        btnPrevPage = new javax.swing.JButton();
+        btnXoaLoc = new javax.swing.JButton();
 
         btnThemSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThemSinhVien.setText("Thêm");
@@ -841,6 +898,41 @@ public class StudentInfor extends javax.swing.JPanel {
             }
         });
 
+        txtPresentPage.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPresentPage.setText("1");
+        txtPresentPage.setEnabled(false);
+        txtPresentPage.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtPresentPageCaretUpdate(evt);
+            }
+        });
+        txtPresentPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPresentPageActionPerformed(evt);
+            }
+        });
+
+        btnNextPage.setText(">>");
+        btnNextPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextPageActionPerformed(evt);
+            }
+        });
+
+        btnPrevPage.setText("<<");
+        btnPrevPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevPageActionPerformed(evt);
+            }
+        });
+
+        btnXoaLoc.setText("Xóa Lọc");
+        btnXoaLoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaLocActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pninfoLayout = new javax.swing.GroupLayout(pninfo);
         pninfo.setLayout(pninfoLayout);
         pninfoLayout.setHorizontalGroup(
@@ -858,28 +950,41 @@ public class StudentInfor extends javax.swing.JPanel {
                         .addComponent(cbTrangThaiSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnKhoiPhucSinhVien)
-                        .addGap(267, 267, 267)
-                        .addComponent(btnThemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbTimKiemSinhVien, 0, 121, Short.MAX_VALUE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnPrevPage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPresentPage, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnNextPage)
+                        .addGap(42, 42, 42)
+                        .addComponent(btnThemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbTimKiemSinhVien, 0, 123, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnXoaLoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(9, 9, 9))))
         );
         pninfoLayout.setVerticalGroup(
             pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pninfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnThemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cbTrangThaiSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnKhoiPhucSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cbTrangThaiSinhVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pninfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnKhoiPhucSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPresentPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNextPage)
+                            .addComponent(btnPrevPage)
+                            .addComponent(btnThemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTimKiemSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnXoaLoc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scpStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -925,7 +1030,10 @@ public class StudentInfor extends javax.swing.JPanel {
         String condition = txtTimKiemSinhVien.getText();
         String conditionName = cbTimKiemSinhVien.getSelectedItem().toString(); // cái này lấy thuộc tính tìm kiếm theo gì nè
         if (!condition.equals("") && !condition.equals("vd: 312141, Anh, Sư Phạm, ...")) {
-            SinhVienBUS.showStudentListWithCondition(tblStudentList, condition, conditionName);
+            SinhVienBUS.showStudentListWithCondition(this, condition, conditionName);
+            btnNextPage.setVisible(false);
+            btnPrevPage.setVisible(false);
+            txtPresentPage.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập nội dung tìm kiếm\n Tên, Ngành, MSSV");
         }
@@ -1029,6 +1137,7 @@ public class StudentInfor extends javax.swing.JPanel {
         if (SinhVienBUS.checkAllInfo(svMoi)) {
             if (btnSuaSinhVien.isVisible()) {   // cái này là lưu khi sinh viên được sửa
                 SinhVienBUS.updateSinhVienToServer(this, svCu, svMoi);
+                
             } else {           // cái này lưu khi sinh viên được thêm
                 SinhVienBUS.addSinhVienToServer(this, svMoi);
             }
@@ -1063,9 +1172,12 @@ public class StudentInfor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDongSinhVienActionPerformed
 
     private void cbNganhSinhVienItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbNganhSinhVienItemStateChanged
+        if (cbNganhSinhVien.getSelectedIndex() == -1) {
+            return;
+        }
         if (!SinhVienBUS.checkNganh(cbNganhSinhVien.getSelectedItem().toString())) {
             cbNganhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-            String maLop = SinhVienBUS.autoCompleteLop(SinhVienBUS.tenNganhToMaNganh(cbNganhSinhVien.getSelectedItem().toString())); // cái này sẽ cập nhật lại lớp mỗi lần thay đổi ngành
+            String maLop = SinhVienBUS.autoCompleteLop(SinhVienBUS.tenNganhToMaNganh("")); // cái này sẽ cập nhật lại lớp mỗi lần thay đổi ngành
             txtLopSinhVien.setText(maLop);
         } else {
             cbNganhSinhVien.setBorder(new LineBorder(Color.gray, 1));
@@ -1080,14 +1192,17 @@ public class StudentInfor extends javax.swing.JPanel {
 
     private void cbTrangThaiSinhVienItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTrangThaiSinhVienItemStateChanged
         if (cbTrangThaiSinhVien.getSelectedIndex() == 1) { // trạng thái bị khóa
-            SinhVienBUS.showDeletedStudent(tblStudentList);
+            txtPresentPage.setText("1");
+            SinhVienBUS.showDeletedStudent(this, 1); // hiện lại dssv từ đầu
             SinhVienBUS.changeBtnForTrangThai(this);
-            SinhVienBUS.resetDssvWhenChangeTrangThai(this);
+//            SinhVienBUS.resetDssvWhenChangeTrangThai(this);
             btnDongSinhVienActionPerformed(null);
-        } else {
-            SinhVienBUS.showStudentList(tblStudentList);
+
+        } else { // đang hoạt động
+            txtPresentPage.setText("1");
+            SinhVienBUS.showStudentList(this, 1); // hiện lại dssv từ đầu
             SinhVienBUS.resetBtnForTrangThai(this);
-            SinhVienBUS.resetDssvWhenChangeTrangThai(this);
+//            SinhVienBUS.resetDssvWhenChangeTrangThai(this);
             btnDongSinhVienActionPerformed(null);
         }
     }//GEN-LAST:event_cbTrangThaiSinhVienItemStateChanged
@@ -1098,7 +1213,7 @@ public class StudentInfor extends javax.swing.JPanel {
             if (a == JOptionPane.YES_OPTION) { // lấy mã sinh viên của dòng đang chọn rồi khôi phục nó
                 new SinhVienDAO().restore(SinhVienBUS.StudentinTable(tblStudentList, tblStudentList.getSelectedRow()).getMaSV());
                 JOptionPane.showMessageDialog(null, "Khôi phục thành công");
-                SinhVienBUS.showDeletedStudent(tblStudentList);
+                SinhVienBUS.showDeletedStudent(this, Integer.parseInt(txtPresentPage.getText())); // khôi phục xong refresh cái table
             }
         } else {
             JOptionPane.showMessageDialog(null, "Chọn Sinh Viên Muốn Khôi Phục !");
@@ -1112,6 +1227,52 @@ public class StudentInfor extends javax.swing.JPanel {
             txtLopSinhVien.setBorder(new LineBorder(Color.gray, 1));
         }
     }//GEN-LAST:event_txtLopSinhVienCaretUpdate
+
+    private void txtPresentPageCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtPresentPageCaretUpdate
+        try{
+            Integer.valueOf(txtPresentPage.getText());
+        }catch(Exception e){
+            return;
+        }
+        if (cbTrangThaiSinhVien.getSelectedIndex() == 0) { // trạng thái hoạt động
+            SinhVienBUS.showStudentList(this, Integer.parseInt(txtPresentPage.getText()));
+        } else { // trạng thái khóa
+            SinhVienBUS.showDeletedStudent(this, Integer.parseInt(txtPresentPage.getText()));
+        }
+    }//GEN-LAST:event_txtPresentPageCaretUpdate
+
+    private void btnPrevPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevPageActionPerformed
+        int presentPage = Integer.parseInt(txtPresentPage.getText()); // lấy trang hiện tại là bao nhiêu
+        if (presentPage == 1) {
+            return; // trang số 1 là trang đầu tiên nên không giảm nữa
+        }
+        int prevPage = presentPage - 1;
+        txtPresentPage.setText(prevPage + "");
+        btnDongSinhVienActionPerformed(null);
+    }//GEN-LAST:event_btnPrevPageActionPerformed
+
+    private void btnNextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextPageActionPerformed
+        int presentPage = Integer.parseInt(txtPresentPage.getText());// lấy trang hiện tại là bao nhiêu
+        if (presentPage == numberOfSinhVienPage && cbTrangThaiSinhVien.getSelectedIndex() == 0) { // đang xem trang cuối của sinh viên đang hoạt động
+            return;
+        }
+        if (presentPage == numberOfDeletedSinhVienPage && cbTrangThaiSinhVien.getSelectedIndex() == 1) { // đang xem trang cuối của sinh viên bị xóa
+            return;
+        }
+        int nextPage = presentPage + 1;
+        txtPresentPage.setText(nextPage + "");
+        btnDongSinhVienActionPerformed(null);
+    }//GEN-LAST:event_btnNextPageActionPerformed
+
+    private void btnXoaLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLocActionPerformed
+        SinhVienBUS.showStudentList(this,1); //hiện 20 sinh viên trang 1
+        txtPresentPage.setText("1");
+        SinhVienBUS.btnXoaLocOnClick(this);
+    }//GEN-LAST:event_btnXoaLocActionPerformed
+
+    private void txtPresentPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPresentPageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPresentPageActionPerformed
 //    public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
 //        cbNganhSinhVien.removeAllItems();
 //        for (String i : dsTenNganh) {
@@ -1123,9 +1284,12 @@ public class StudentInfor extends javax.swing.JPanel {
     public javax.swing.JButton btnDongSinhVien;
     private javax.swing.JButton btnKhoiPhucSinhVien;
     private javax.swing.JButton btnLuuSinhVien;
+    private javax.swing.JButton btnNextPage;
+    private javax.swing.JButton btnPrevPage;
     private javax.swing.JButton btnSuaSinhVien;
     private javax.swing.JButton btnThemSinhVien;
     private javax.swing.JButton btnTimKiemSinhVien;
+    private javax.swing.JButton btnXoaLoc;
     private javax.swing.JButton btnXoaSinhVien;
     private javax.swing.JComboBox<String> cbNganhSinhVien;
     private javax.swing.JComboBox<String> cbTimKiemSinhVien;
@@ -1158,6 +1322,7 @@ public class StudentInfor extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaTKSinhVien;
     private javax.swing.JTextField txtNgaySinhSinhVien;
     private javax.swing.JTextField txtNienKhoaSinhVien;
+    private javax.swing.JTextField txtPresentPage;
     private javax.swing.JTextField txtSoDTSinhVien;
     private javax.swing.JTextField txtTimKiemSinhVien;
     private javax.swing.JTextField txtTonGiaoSinhVien;

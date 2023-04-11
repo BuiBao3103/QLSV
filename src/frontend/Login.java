@@ -5,15 +5,10 @@
 //Hello world
 package frontend;
 
-import backend.QLTaiKhoan.TaiKhoan;
 import backend.QLTaiKhoan.TaiKhoanBUS;
 import component.PasswordField;
 import javax.swing.*;
 import java.awt.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jdesktop.animation.timing.Animator;
 
 /**
@@ -28,6 +23,7 @@ public class Login extends javax.swing.JFrame {
 //        password.setEchoChar('•');
         this.getContentPane().setBackground(Color.white);
         initComponents();
+        setIcon();
     }
 
     public void scaleImage(JLabel label, String file) {
@@ -52,18 +48,16 @@ public class Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        eyeHide = new component.Button();
         eye = new component.Button();
+        eyeHide = new component.Button();
         password = new component.PasswordField();
         jPanel7 = new javax.swing.JPanel();
         username = new component.TextField();
         button1 = new component.Button();
-        background1 = new component.Background();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Responsive");
+        setTitle("Login");
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1200, 630));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
@@ -133,15 +127,6 @@ public class Login extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(47, 47));
         jPanel4.setLayout(new java.awt.CardLayout());
 
-        eyeHide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-hide-20.png"))); // NOI18N
-        eyeHide.setPreferredSize(new java.awt.Dimension(47, 47));
-        eyeHide.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eyeHideActionPerformed(evt);
-            }
-        });
-        jPanel4.add(eyeHide, "card3");
-
         eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-eye-20.png"))); // NOI18N
         eye.setPreferredSize(new java.awt.Dimension(47, 47));
         eye.addActionListener(new java.awt.event.ActionListener() {
@@ -150,6 +135,15 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel4.add(eye, "card3");
+
+        eyeHide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-hide-20.png"))); // NOI18N
+        eyeHide.setPreferredSize(new java.awt.Dimension(47, 47));
+        eyeHide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eyeHideActionPerformed(evt);
+            }
+        });
+        jPanel4.add(eyeHide, "card3");
 
         password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         password.setLabelText("Password");
@@ -273,22 +267,6 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(jPanel6);
 
-        background1.setPreferredSize(new java.awt.Dimension(1200, 100));
-        repaint();
-
-        javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
-        background1.setLayout(background1Layout);
-        background1Layout.setHorizontalGroup(
-            background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
-        );
-        background1Layout.setVerticalGroup(
-            background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(background1);
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -340,7 +318,9 @@ public class Login extends javax.swing.JFrame {
         cardLayout.previous(jPanel4);
         password.setEchoChar('\u25CF');
     }//GEN-LAST:event_eyeHideActionPerformed
-
+    public void setIcon(){
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logologinsmaller.png")));
+    }
     /**
      * @param args the command line arguments
      */
@@ -402,7 +382,6 @@ public class Login extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private component.Background background1;
     private component.Button button1;
     private component.Button eye;
     private component.Button eyeHide;

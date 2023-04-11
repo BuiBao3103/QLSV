@@ -11,21 +11,31 @@ import java.util.ArrayList;
  * @author ASUS
  */
 public class GiangVienBUS {
-    
-    static ArrayList<GiangVien> dsgv = new ArrayList<>();
-    static GiangVienDAO gvDao = new GiangVienDAO();
-    
+
+    static GiangVienDAO gvDAO = new GiangVienDAO();
+    static ArrayList<GiangVien> dsgv = gvDAO.get();
+
     public GiangVienBUS() {
     }
-    
-    public static void main(String[] args) {
-        dsgv = gvDao.get();
-        dsgv.forEach(gv -> {
-            System.out.println(gv.toString());
-        });
-//        GiangVien gvMoi = new GiangVien("11556", "Pham Nguyễn Khắc Huy", "12");
-//        gvDao.update("11556", gvMoi);
-//        gvDao.delete("11556");
-//        gvDao.add(gvMoi);
+
+    public static String getGVnameByGVid(String id) {
+        for (GiangVien gv : dsgv) {
+            if (gv.getMaGV().equals(id)) {
+                return gv.getTenGV();
+            }
+        }
+        return null;
     }
+
+    public static String formatGVName(String name) {
+        //Trương Tấn Khoa -> T.T.Khoa
+        String[] words = name.split(" ");
+        String formatName = "";
+        for (int i = 0; i < words.length - 1; i++) {
+            formatName += words[i].substring(0, 1) + ".";
+        }
+        formatName += words[words.length - 1];
+        return formatName;
+    }
+
 }

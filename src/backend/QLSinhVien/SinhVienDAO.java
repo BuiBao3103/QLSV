@@ -112,21 +112,6 @@ public class SinhVienDAO {
         return -1;
     }
 
-    public static void main(String[] args) {
-        ArrayList<SinhVien> dssv = new SinhVienDAO().get();
-        Date ngay = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-        System.out.println(ngay.toString());
-        System.out.println();
-        try {
-            System.out.println(java.sql.Date.valueOf(format.format(ngay)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(dssv.get(5).getNgaySinh().toString());
-    }
-
     public void add(SinhVien sv) {
         con = ConnectionDB.getConnection();
         try {
@@ -265,5 +250,261 @@ public class SinhVienDAO {
             ConnectionDB.closeConnection(con, pstm);
         }
         return "";
+    }
+
+    public int getNumberOfStudent() { // hàm này trả về số lượng sinh viên đang hoạt động
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "SELECT Count(MaSV) FROM SinhVien WHERE TrangThai = 1";
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return -1;
+    }
+
+    public int getNumberOfDeletedStudent() { // hàm này trả về số lượng sinh viên đã xóa
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "SELECT Count(MaSV) FROM SinhVien WHERE TrangThai = 0";
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return -1;
+    }
+
+    public ArrayList<SinhVien> getByNumberOfPage(int page) { // hàm này lấy dssv theo số trang đang xét
+        con = ConnectionDB.getConnection();
+        int nextStudent = (page - 1) * 20; // page 1 sẽ lấy từ 1->100 svien, page 2 sẽ lấy từ 101->200 svien
+        ArrayList<SinhVien> dssv = new ArrayList<>();//+
+        try {
+//            String query = "select * from SinhVien where MaKhoa=?";//+
+            String query = "SELECT *\n"
+                    + "FROM SINHVIEN \n"
+                    + "WHERE TrangThai = 1\n"
+                    + "ORDER BY MaSV\n"
+                    + "OFFSET ?  rows\n" // offset là tính từ Svien nào, offset 0 thì lấy từ 1->100 , trong sql tính từ dòng 1
+                    + "FETCH NEXT 20 ROWS ONLY;";
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, nextStudent);//+
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
+                String maSV = rs.getString("MaSV");//+
+                String cmnd = rs.getString("Cmnd");//+
+                String soDienThoai = rs.getString("SoDienThoai");
+                String maLop = rs.getString("MaLop");
+                String hoTen = rs.getString("HoTen");//+
+                Date ngaySinh = rs.getDate("NgaySinh");//+
+                String gioiTinh = rs.getString("GioiTinh");//+
+                String diaChi = rs.getString("DiaChi");//+
+                String danToc = rs.getString("DanToc");//+
+                String tonGiao = rs.getString("TonGiao");//+
+                String nienKhoa = rs.getString("NienKhoa");//+
+                String maNganh = rs.getString("MaNganh");//+
+                int maTK = rs.getInt("MaTK");
+                SinhVien sv = new SinhVien(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+                dssv.add(sv);//+
+            }
+        } catch (SQLException e) {
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dssv;//+
+    }
+
+    public ArrayList<SinhVien> getDeletedStudentByNumberOfPage(int page) { // hàm này lấy dssv theo số trang đang xét
+        con = ConnectionDB.getConnection();
+        int nextStudent = (page - 1) * 20; // page 1 sẽ lấy từ 1->100 svien, page 2 sẽ lấy từ 101->200 svien
+        ArrayList<SinhVien> dssv = new ArrayList<>();//+
+        try {
+//            String query = "select * from SinhVien where MaKhoa=?";//+
+            String query = "SELECT *\n"
+                    + "FROM SINHVIEN \n"
+                    + "WHERE TrangThai = 0\n"
+                    + "ORDER BY MaSV\n"
+                    + "OFFSET ?  rows\n" // offset là tính từ Svien nào, offset 0 thì lấy từ 1->100 , trong sql tính từ dòng 1
+                    + "FETCH NEXT 20 ROWS ONLY;";
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, nextStudent);//+
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
+                String maSV = rs.getString("MaSV");//+
+                String cmnd = rs.getString("Cmnd");//+
+                String soDienThoai = rs.getString("SoDienThoai");
+                String maLop = rs.getString("MaLop");
+                String hoTen = rs.getString("HoTen");//+
+                Date ngaySinh = rs.getDate("NgaySinh");//+
+                String gioiTinh = rs.getString("GioiTinh");//+
+                String diaChi = rs.getString("DiaChi");//+
+                String danToc = rs.getString("DanToc");//+
+                String tonGiao = rs.getString("TonGiao");//+
+                String nienKhoa = rs.getString("NienKhoa");//+
+                String maNganh = rs.getString("MaNganh");//+
+                int maTK = rs.getInt("MaTK");
+                SinhVien sv = new SinhVien(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+                dssv.add(sv);//+
+            }
+        } catch (SQLException e) {
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dssv;//+
+    }
+
+    public ArrayList<SinhVien> getByHoTen(String HoTen) { // hàm này lấy dssv theo họ tên truyền vào
+        con = ConnectionDB.getConnection();
+        ArrayList<SinhVien> dssv = new ArrayList<>();//+
+        try {
+//            String query = "select * from SinhVien where MaKhoa=?";//+
+            String query = "SELECT * FROM SinhVien WHERE HoTen like N'%" + HoTen + "%'";
+            pstm = con.prepareStatement(query);
+//            pstm.setString(1, HoTen);//+
+//            System.out.println(query);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
+                String maSV = rs.getString("MaSV");//+
+                String cmnd = rs.getString("Cmnd");//+
+                String soDienThoai = rs.getString("SoDienThoai");
+                String maLop = rs.getString("MaLop");
+                String hoTen = rs.getString("HoTen");//+
+                Date ngaySinh = rs.getDate("NgaySinh");//+
+                String gioiTinh = rs.getString("GioiTinh");//+
+                String diaChi = rs.getString("DiaChi");//+
+                String danToc = rs.getString("DanToc");//+
+                String tonGiao = rs.getString("TonGiao");//+
+                String nienKhoa = rs.getString("NienKhoa");//+
+                String maNganh = rs.getString("MaNganh");//+
+                int maTK = rs.getInt("MaTK");
+                SinhVien sv = new SinhVien(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+                dssv.add(sv);//+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dssv;//+
+    }
+
+    public ArrayList<SinhVien> getByMaSV(String MaSV) { // hàm này lấy dssv theo Mã SV truyền vào
+        con = ConnectionDB.getConnection();
+        ArrayList<SinhVien> dssv = new ArrayList<>();//+
+        try {
+//            String query = "select * from SinhVien where MaKhoa=?";//+
+            String query = "SELECT * FROM SinhVien WHERE MaSV like '%" + MaSV + "%'";
+            pstm = con.prepareStatement(query);
+//            pstm.setString(1, HoTen);//+
+//            System.out.println(query);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
+                String maSV = rs.getString("MaSV");//+
+                String cmnd = rs.getString("Cmnd");//+
+                String soDienThoai = rs.getString("SoDienThoai");
+                String maLop = rs.getString("MaLop");
+                String hoTen = rs.getString("HoTen");//+
+                Date ngaySinh = rs.getDate("NgaySinh");//+
+                String gioiTinh = rs.getString("GioiTinh");//+
+                String diaChi = rs.getString("DiaChi");//+
+                String danToc = rs.getString("DanToc");//+
+                String tonGiao = rs.getString("TonGiao");//+
+                String nienKhoa = rs.getString("NienKhoa");//+
+                String maNganh = rs.getString("MaNganh");//+
+                int maTK = rs.getInt("MaTK");
+                SinhVien sv = new SinhVien(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+                dssv.add(sv);//+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dssv;//+
+    }
+
+    public ArrayList<SinhVien> getByNganh(String TenNganh) { // hàm này lấy dssv theo Mã SV truyền vào
+        con = ConnectionDB.getConnection();
+        ArrayList<SinhVien> dssv = new ArrayList<>();//+
+        try {
+//            String query = "select * from SinhVien where MaKhoa=?";//+
+            String query = "SELECT * FROM SINHVIEN sv join NGANH n on sv.MaNganh = n.MaNganh WHERE n.MaNganh like '%" + TenNganh + "%' or n.TenNganh like N'%" + TenNganh + "%'";
+            pstm = con.prepareStatement(query);
+//            pstm.setString(1, TenNganh);//+
+//            pstm.setString(2, TenNganh);
+//            System.out.println(query);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
+                String maSV = rs.getString("MaSV");//+
+                String cmnd = rs.getString("Cmnd");//+
+                String soDienThoai = rs.getString("SoDienThoai");
+                String maLop = rs.getString("MaLop");
+                String hoTen = rs.getString("HoTen");//+
+                Date ngaySinh = rs.getDate("NgaySinh");//+
+                String gioiTinh = rs.getString("GioiTinh");//+
+                String diaChi = rs.getString("DiaChi");//+
+                String danToc = rs.getString("DanToc");//+
+                String tonGiao = rs.getString("TonGiao");//+
+                String nienKhoa = rs.getString("NienKhoa");//+
+                String maNganh = rs.getString("MaNganh");//+
+                int maTK = rs.getInt("MaTK");
+                SinhVien sv = new SinhVien(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+                dssv.add(sv);//+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dssv;//+
+    }
+
+    public ArrayList<SinhVien> getByCondition(String CondiTion, String conditionName) { // hàm này lấy dssv theo mã khoa truyền vào
+        con = ConnectionDB.getConnection();
+        ArrayList<SinhVien> dssv = new ArrayList<>();//+
+        if (conditionName.equals("Tên")) {
+            dssv = getByHoTen(CondiTion);
+        } else if (conditionName.equals("MSSV")) {
+            dssv = getByMaSV(CondiTion);
+        } else {
+            dssv = getByNganh(CondiTion);
+        }
+        return dssv;//+
+    }
+
+    public static void main(String[] args) {
+//        ArrayList<SinhVien> dssv = new SinhVienDAO().getByNganh("Công");
+//        Date ngay = new Date();
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//
+//        System.out.println(ngay.toString());
+//        System.out.println();
+//        try {
+//            System.out.println(java.sql.Date.valueOf(format.format(ngay)));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(dssv.get(5).getNgaySinh().toString());
+//            System.out.println(new SinhVienDAO().getNumberOfDeletedStudent());
+//            System.out.println((int)Math.ceil(1067/100.0));
+//        for(SinhVien sv: dssv){
+//            System.out.println(sv.toString());
+//        }
     }
 }
