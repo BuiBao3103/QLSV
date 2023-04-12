@@ -74,8 +74,6 @@ public class TaiKhoanBUS {
         table.getBtnScore().setVisible(false);
         table.getInputPoint().setVisible(false);
         table.getStudentList().setVisible(false);
-        table.getjButton12().setVisible(false);
-        table.getjButton13().setVisible(false);
         table.getGroup().setVisible(false);
 
         for (String q : dsq) {
