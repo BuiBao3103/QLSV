@@ -15,9 +15,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Table extends javax.swing.JFrame implements Runnable {
 
+    private Color yellow = new Color(255, 188, 0);
+    private Color lightBlue = new Color(0, 158, 248);
+    private Color darkBlue = new Color(0, 158, 248);
+    private ArrayList<JButton> allBtnLeftBar = new ArrayList<>();
+    private JButton currentBtn = null;
     private Schedule schedule = new Schedule();
     private Score score = new Score();
     private StudentInfor studentInfor = new StudentInfor();
@@ -40,7 +47,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logologinsmaller.png")));
         t.start();
         leftBar.setPreferredSize(new Dimension(0, heightBar));
-
+        allBtnLeftBar.addAll(Arrays.asList(btnInformation, btnSubjectRegistration, btnSchedule, btnScore,
+                btnInputPoint, btnStudentList, btnGroup, btnSetting, btnAccountList, btnScholastic, btnTool));
     }
 
     @SuppressWarnings("unchecked")
@@ -54,9 +62,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnSubjectRegistration = new javax.swing.JButton();
         btnSchedule = new javax.swing.JButton();
         btnScore = new javax.swing.JButton();
-        inputPoint = new javax.swing.JButton();
-        studentList = new javax.swing.JButton();
-        group = new javax.swing.JButton();
+        btnInputPoint = new javax.swing.JButton();
+        btnStudentList = new javax.swing.JButton();
+        btnGroup = new javax.swing.JButton();
         btnSetting = new javax.swing.JButton();
         btnAccountList = new javax.swing.JButton();
         btnScholastic = new javax.swing.JButton();
@@ -151,6 +159,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnSubjectRegistration.setOpaque(true);
         btnSubjectRegistration.setPreferredSize(new java.awt.Dimension(190, 50));
         btnSubjectRegistration.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSubjectRegistrationMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnSubjectRegistrationMouseEntered(evt);
             }
@@ -176,6 +187,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnSchedule.setOpaque(true);
         btnSchedule.setPreferredSize(new java.awt.Dimension(190, 50));
         btnSchedule.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnScheduleMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnScheduleMouseEntered(evt);
             }
@@ -201,6 +215,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnScore.setOpaque(true);
         btnScore.setPreferredSize(new java.awt.Dimension(190, 50));
         btnScore.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnScoreMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnScoreMouseEntered(evt);
             }
@@ -214,67 +231,77 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        inputPoint.setBackground(new java.awt.Color(0, 158, 248));
-        inputPoint.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        inputPoint.setForeground(new java.awt.Color(255, 255, 255));
-        inputPoint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-database-import-30.png"))); // NOI18N
-        inputPoint.setText("Nhập điểm");
-        inputPoint.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
-        inputPoint.setContentAreaFilled(false);
-        inputPoint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        inputPoint.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        inputPoint.setOpaque(true);
-        inputPoint.setPreferredSize(new java.awt.Dimension(200, 50));
-        inputPoint.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnInputPoint.setBackground(new java.awt.Color(0, 158, 248));
+        btnInputPoint.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnInputPoint.setForeground(new java.awt.Color(255, 255, 255));
+        btnInputPoint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-database-import-30.png"))); // NOI18N
+        btnInputPoint.setText("Nhập điểm");
+        btnInputPoint.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnInputPoint.setContentAreaFilled(false);
+        btnInputPoint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInputPoint.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnInputPoint.setOpaque(true);
+        btnInputPoint.setPreferredSize(new java.awt.Dimension(200, 50));
+        btnInputPoint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInputPointMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                inputPointMouseEntered(evt);
+                btnInputPointMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                inputPointMouseExited(evt);
+                btnInputPointMouseExited(evt);
             }
         });
 
-        studentList.setBackground(new java.awt.Color(0, 158, 248));
-        studentList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        studentList.setForeground(new java.awt.Color(255, 255, 255));
-        studentList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-user-groups-30.png"))); // NOI18N
-        studentList.setText("Danh sách sinh viên");
-        studentList.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
-        studentList.setContentAreaFilled(false);
-        studentList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        studentList.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        studentList.setOpaque(true);
-        studentList.setPreferredSize(new java.awt.Dimension(190, 50));
-        studentList.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnStudentList.setBackground(new java.awt.Color(0, 158, 248));
+        btnStudentList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnStudentList.setForeground(new java.awt.Color(255, 255, 255));
+        btnStudentList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-user-groups-30.png"))); // NOI18N
+        btnStudentList.setText("Danh sách sinh viên");
+        btnStudentList.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnStudentList.setContentAreaFilled(false);
+        btnStudentList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnStudentList.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnStudentList.setOpaque(true);
+        btnStudentList.setPreferredSize(new java.awt.Dimension(190, 50));
+        btnStudentList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnStudentListMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                studentListMouseEntered(evt);
+                btnStudentListMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                studentListMouseExited(evt);
+                btnStudentListMouseExited(evt);
             }
         });
-        studentList.addActionListener(new java.awt.event.ActionListener() {
+        btnStudentList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentListActionPerformed(evt);
+                btnStudentListActionPerformed(evt);
             }
         });
 
-        group.setBackground(new java.awt.Color(0, 158, 248));
-        group.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        group.setForeground(new java.awt.Color(255, 255, 255));
-        group.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-google-classroom-30.png"))); // NOI18N
-        group.setText("Nhóm môn học");
-        group.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
-        group.setContentAreaFilled(false);
-        group.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        group.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        group.setPreferredSize(new java.awt.Dimension(190, 50));
-        group.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnGroup.setBackground(new java.awt.Color(0, 158, 248));
+        btnGroup.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnGroup.setForeground(new java.awt.Color(255, 255, 255));
+        btnGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-google-classroom-30.png"))); // NOI18N
+        btnGroup.setText("Nhóm môn học");
+        btnGroup.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnGroup.setContentAreaFilled(false);
+        btnGroup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGroup.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnGroup.setOpaque(true);
+        btnGroup.setPreferredSize(new java.awt.Dimension(190, 50));
+        btnGroup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGroupMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                groupMouseEntered(evt);
+                btnGroupMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                groupMouseExited(evt);
+                btnGroupMouseExited(evt);
             }
         });
 
@@ -290,6 +317,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnSetting.setOpaque(true);
         btnSetting.setPreferredSize(new java.awt.Dimension(202, 50));
         btnSetting.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSettingMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnSettingMouseEntered(evt);
             }
@@ -316,6 +346,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnAccountList.setOpaque(true);
         btnAccountList.setPreferredSize(new java.awt.Dimension(202, 50));
         btnAccountList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAccountListMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAccountListMouseEntered(evt);
             }
@@ -341,6 +374,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnScholastic.setOpaque(true);
         btnScholastic.setPreferredSize(new java.awt.Dimension(202, 50));
         btnScholastic.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnScholasticMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnScholasticMouseEntered(evt);
             }
@@ -361,6 +397,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnTool.setOpaque(true);
         btnTool.setPreferredSize(new java.awt.Dimension(202, 50));
         btnTool.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnToolMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnToolMouseEntered(evt);
             }
@@ -379,9 +418,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
             .addComponent(btnSubjectRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnScore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(inputPoint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(studentList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(group, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnInputPoint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnTool, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSetting, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -397,11 +436,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(0, 0, 0)
                 .addComponent(btnScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(inputPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInputPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(studentList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnStudentList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(group, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnAccountList, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -826,7 +865,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.revalidate();
         SinhVienBUS sv = new SinhVienBUS();
         sv.pesronnalInfor(personalInfo);
-
     }// GEN-LAST:event_btnInformationActionPerformed
 
     private void btnSubjectRegistrationActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSubjectRegistrationActionPerformed
@@ -863,10 +901,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     }// GEN-LAST:event_btnScoreActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jButton7ActionPerformed
-
     private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnChangePasswordActionPerformed
         // TODO add your handling code here:
         int choice = JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc chắn muốn đăng xuất không", "Đăng xuất", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -876,20 +910,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
         }
     }// GEN-LAST:event_btnChangePasswordActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTextField6ActionPerformed
-
-
-    private void studentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentListActionPerformed
+    private void btnStudentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentListActionPerformed
 
         mainPanel.removeAll(); // xóa hết nội dung vùng content
         mainPanel.repaint();
@@ -902,8 +924,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         studentInfor.getBtnKhoiPhucSinhVien().setVisible(false); // ẩn cái nút khôi phục sinh viên
         mainPanel.repaint();
         mainPanel.revalidate();
-
-    }//GEN-LAST:event_studentListActionPerformed
+    }//GEN-LAST:event_btnStudentListActionPerformed
 
     private void btnMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetalActionPerformed
         changeTheme(btnMetal, arrays[0]);
@@ -946,135 +967,205 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.add(settings);
         mainPanel.repaint();
         mainPanel.validate();
+        btnSetting.setBackground(yellow);
+        currentBtn = btnSetting;
     }//GEN-LAST:event_btnSettingActionPerformed
 
     private void btnSubjectRegistrationMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubjectRegistrationMouseEntered
-        hoverButton(btnSubjectRegistration, new Color(255, 188, 0));
+        hoverButton(btnSubjectRegistration, yellow);
     }//GEN-LAST:event_btnSubjectRegistrationMouseEntered
 
     private void btnScheduleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScheduleMouseEntered
-        hoverButton(btnSchedule, new Color(255, 188, 0));
+        hoverButton(btnSchedule, yellow);
 
     }//GEN-LAST:event_btnScheduleMouseEntered
 
     private void btnScoreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScoreMouseEntered
-        hoverButton(btnScore, new Color(255, 188, 0));
+        hoverButton(btnScore, yellow);
 
     }//GEN-LAST:event_btnScoreMouseEntered
 
-    private void studentListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentListMouseEntered
-        hoverButton(studentList, new Color(255, 188, 0));
+    private void btnStudentListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStudentListMouseEntered
+        hoverButton(btnStudentList, yellow);
 
-    }//GEN-LAST:event_studentListMouseEntered
+    }//GEN-LAST:event_btnStudentListMouseEntered
 
     private void btnAccountListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountListMouseEntered
-        hoverButton(btnAccountList, new Color(255, 188, 0));
+        hoverButton(btnAccountList, yellow);
 
     }//GEN-LAST:event_btnAccountListMouseEntered
 
     private void btnScholasticMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScholasticMouseEntered
-        hoverButton(btnScholastic, new Color(255, 188, 0));
+        hoverButton(btnScholastic, yellow);
 
     }//GEN-LAST:event_btnScholasticMouseEntered
 
     private void btnToolMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseEntered
-        hoverButton(btnTool, new Color(255, 188, 0));
+        hoverButton(btnTool, yellow);
 
     }//GEN-LAST:event_btnToolMouseEntered
 
     private void btnSettingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseEntered
-        hoverButton(btnSetting, new Color(255, 188, 0));
+        hoverButton(btnSetting, yellow);
 
     }//GEN-LAST:event_btnSettingMouseEntered
 
     private void btnSubjectRegistrationMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubjectRegistrationMouseExited
-        hoverButton(btnSubjectRegistration, new Color(0, 158, 248));
+        if (btnSubjectRegistration != currentBtn) {
+            hoverButton(btnSubjectRegistration, lightBlue);
+        }
 
     }//GEN-LAST:event_btnSubjectRegistrationMouseExited
 
     private void btnScheduleMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScheduleMouseExited
-        hoverButton(btnSchedule, new Color(0, 158, 248));
+        if (btnSchedule != currentBtn) {
+            hoverButton(btnSchedule, lightBlue);
+        }
 
     }//GEN-LAST:event_btnScheduleMouseExited
 
     private void btnScoreMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScoreMouseExited
-        hoverButton(btnScore, new Color(0, 158, 248));
+        if (btnScore != currentBtn) {
+            hoverButton(btnScore, lightBlue);
+        }
 
     }//GEN-LAST:event_btnScoreMouseExited
 
-    private void studentListMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentListMouseExited
-        hoverButton(studentList, new Color(0, 158, 248));
+    private void btnStudentListMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStudentListMouseExited
+        if (btnStudentList != currentBtn) {
+            hoverButton(btnStudentList, lightBlue);
+        }
 
-    }//GEN-LAST:event_studentListMouseExited
+    }//GEN-LAST:event_btnStudentListMouseExited
 
-    private void groupMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_groupMouseEntered
-        hoverButton(group, new Color(255, 188, 0));
+    private void btnGroupMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroupMouseEntered
+        hoverButton(btnGroup, yellow);
 
-    }//GEN-LAST:event_groupMouseEntered
+    }//GEN-LAST:event_btnGroupMouseEntered
 
-    private void groupMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_groupMouseExited
-        hoverButton(group, new Color(0, 158, 248));
+    private void btnGroupMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroupMouseExited
+        if (btnGroup != currentBtn) {
+            hoverButton(btnGroup, lightBlue);
+        }
 
-    }//GEN-LAST:event_groupMouseExited
+    }//GEN-LAST:event_btnGroupMouseExited
 
     private void btnAccountListMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountListMouseExited
-        hoverButton(btnAccountList, new Color(0, 158, 248));
+        if (btnAccountList != currentBtn) {
+            hoverButton(btnAccountList, lightBlue);
+        }
 
     }//GEN-LAST:event_btnAccountListMouseExited
 
     private void btnScholasticMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScholasticMouseExited
-        // TODO add your handling code here:
-        hoverButton(btnScholastic, new Color(0, 158, 248));
+        if (btnScholastic != currentBtn) {
+            hoverButton(btnScholastic, lightBlue);
+        }
 
     }//GEN-LAST:event_btnScholasticMouseExited
 
     private void btnToolMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseExited
-        // TODO add your handling code here:
-        hoverButton(btnTool, new Color(0, 158, 248));
+        if (btnTool != currentBtn) {
+            hoverButton(btnTool, lightBlue);
+        }
 
     }//GEN-LAST:event_btnToolMouseExited
 
     private void btnSettingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseExited
-        // TODO add your handling code here:
-        hoverButton(btnSetting, new Color(0, 158, 248));
-
+        if (btnSetting != currentBtn) {
+            hoverButton(btnSetting, lightBlue);
+        }
     }//GEN-LAST:event_btnSettingMouseExited
 
-    private void btnInformationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformationMouseClicked
-        clickBgButton(btnInformation, jPanel3);
-    }//GEN-LAST:event_btnInformationMouseClicked
+    private void btnInputPointMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInputPointMouseEntered
+        hoverButton(btnInputPoint, yellow);
 
-    private void inputPointMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputPointMouseEntered
-        hoverButton(inputPoint, new Color(255, 188, 0));
+    }//GEN-LAST:event_btnInputPointMouseEntered
 
-    }//GEN-LAST:event_inputPointMouseEntered
-
-    private void inputPointMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputPointMouseExited
-        // TODO add your handling code here:
-        hoverButton(inputPoint, new Color(0, 158, 248));
-
-    }//GEN-LAST:event_inputPointMouseExited
+    private void btnInputPointMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInputPointMouseExited
+        if (btnInputPoint != currentBtn) {
+            hoverButton(btnInputPoint, lightBlue);
+        }
+    }//GEN-LAST:event_btnInputPointMouseExited
 
     private void btnInformationMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformationMouseExited
-        // TODO add your handling code here:
-        hoverButton(btnInformation, new Color(0, 158, 248));
-
+        if (currentBtn != btnInformation) {
+            hoverButton(btnInformation, lightBlue);
+        }
     }//GEN-LAST:event_btnInformationMouseExited
 
     private void btnInformationMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformationMouseEntered
         // TODO add your handling code here:        
-        hoverButton(btnInformation, new Color(255, 188, 0));
+        hoverButton(btnInformation, yellow);
 
     }//GEN-LAST:event_btnInformationMouseEntered
+
+    private void btnInformationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformationMouseClicked
+        setBackgroundDefaultAllButton();
+        btnInformation.setBackground(yellow);
+        currentBtn = btnInformation;
+    }//GEN-LAST:event_btnInformationMouseClicked
+
+    private void btnSubjectRegistrationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubjectRegistrationMouseClicked
+        setBackgroundDefaultAllButton();
+        btnSubjectRegistration.setBackground(yellow);
+        currentBtn = btnSubjectRegistration;
+    }//GEN-LAST:event_btnSubjectRegistrationMouseClicked
+
+    private void btnScheduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScheduleMouseClicked
+        setBackgroundDefaultAllButton();
+        btnSchedule.setBackground(yellow);
+        currentBtn = btnSchedule;
+    }//GEN-LAST:event_btnScheduleMouseClicked
+
+    private void btnScoreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScoreMouseClicked
+        setBackgroundDefaultAllButton();
+        btnScore.setBackground(yellow);
+        currentBtn = btnScore;
+    }//GEN-LAST:event_btnScoreMouseClicked
+
+    private void btnInputPointMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInputPointMouseClicked
+        setBackgroundDefaultAllButton();
+        btnInputPoint.setBackground(yellow);
+        currentBtn = btnInputPoint;
+    }//GEN-LAST:event_btnInputPointMouseClicked
+
+    private void btnStudentListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStudentListMouseClicked
+        setBackgroundDefaultAllButton();
+        btnStudentList.setBackground(yellow);
+        currentBtn = btnStudentList;
+    }//GEN-LAST:event_btnStudentListMouseClicked
+
+    private void btnGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroupMouseClicked
+        setBackgroundDefaultAllButton();
+        btnGroup.setBackground(yellow);
+        currentBtn = btnGroup;
+    }//GEN-LAST:event_btnGroupMouseClicked
+
+    private void btnAccountListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountListMouseClicked
+        setBackgroundDefaultAllButton();
+        btnAccountList.setBackground(yellow);
+        currentBtn = btnAccountList;
+    }//GEN-LAST:event_btnAccountListMouseClicked
+
+    private void btnScholasticMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScholasticMouseClicked
+        setBackgroundDefaultAllButton();
+        btnScholastic.setBackground(yellow);
+        currentBtn = btnScholastic;
+    }//GEN-LAST:event_btnScholasticMouseClicked
+
+    private void btnToolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseClicked
+        setBackgroundDefaultAllButton();
+        btnTool.setBackground(yellow);
+        currentBtn = btnTool;
+    }//GEN-LAST:event_btnToolMouseClicked
+
+    private void btnSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseClicked
+        setBackgroundDefaultAllButton();
+        btnSetting.setBackground(yellow);
+        currentBtn = btnSetting;
+    }//GEN-LAST:event_btnSettingMouseClicked
     // ------------------------------------------------------------------------------------------------------------------------------
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
-
-    }// GEN-LAST:event_jTable1MouseClicked
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jButton8ActionPerformed
 
     private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_openMenuActionPerformed
         btnHeader.removeAll();
@@ -1082,7 +1173,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnHeader.repaint();
         btnHeader.revalidate();
         openMenu();
-
 //        System.out.println(UIManager.getSystemLookAndFeelClassName());
     }
 
@@ -1170,7 +1260,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }
 
     private void clickBgButton(JButton button, JPanel panel) {
-        button.setBackground(new Color(255, 188, 0));
+        button.setBackground(yellow);
         Component[] components = panel.getComponents();
         for (Component component : components) {
             // check if the component is a JButton
@@ -1194,12 +1284,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         new Table().setVisible(true);
     }
 
-//    public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
-//        cbNganhSinhVien.removeAllItems();
-//        for (String i : dsTenNganh) {
-//            cbNganhSinhVien.addItem(i);
-//        }
-//    }
     public JButton getBtnInformation() {
         return btnInformation;
     }
@@ -1217,23 +1301,25 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }
 
     public JButton getGroup() {
-        return group;
+        return btnGroup;
     }
 
     public JButton getInputPoint() {
-        return inputPoint;
+        return btnInputPoint;
     }
 
     public JButton getStudentList() {
-        return studentList;
+        return btnStudentList;
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccountList;
     private javax.swing.JButton btnChangePassword;
+    private javax.swing.JButton btnGroup;
     private javax.swing.JPanel btnHeader;
     private javax.swing.JButton btnInformation;
+    private javax.swing.JButton btnInputPoint;
     private javax.swing.JRadioButton btnMetal;
     private javax.swing.JRadioButton btnMotif;
     private javax.swing.JRadioButton btnNimbus;
@@ -1241,15 +1327,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnScholastic;
     private javax.swing.JButton btnScore;
     private javax.swing.JButton btnSetting;
+    private javax.swing.JButton btnStudentList;
     private javax.swing.JButton btnSubjectRegistration;
     private javax.swing.JButton btnTool;
     private javax.swing.JRadioButton btnWindow;
     private javax.swing.JRadioButton btnWindowClassic;
     private javax.swing.JPanel changeFrame;
     private javax.swing.JButton closeMenu;
-    private javax.swing.JButton group;
     private javax.swing.JPanel header;
-    private javax.swing.JButton inputPoint;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -1273,7 +1358,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton openMenu;
     private javax.swing.JLabel realTime;
     private javax.swing.JPanel settings;
-    private javax.swing.JButton studentList;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -1292,6 +1376,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void setBackgroundDefaultAllButton() {
+        for (JButton btn : allBtnLeftBar) {
+            btn.setBackground(lightBlue);
         }
     }
 
