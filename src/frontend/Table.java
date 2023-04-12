@@ -110,6 +110,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnInformation.setBackground(new java.awt.Color(0, 158, 248));
         btnInformation.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnInformation.setForeground(new java.awt.Color(255, 255, 255));
+        btnInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/personalInfo.png"))); // NOI18N
         btnInformation.setText("Thông tin cá nhân");
         btnInformation.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnInformation.setContentAreaFilled(false);
@@ -328,10 +329,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnChangePassword.setBackground(new java.awt.Color(0, 128, 215));
         btnChangePassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnChangePassword.setForeground(new java.awt.Color(255, 255, 255));
+        btnChangePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/logout.png"))); // NOI18N
         btnChangePassword.setText("Đăng xuất");
+        btnChangePassword.setToolTipText("");
         btnChangePassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         btnChangePassword.setContentAreaFilled(false);
-        btnChangePassword.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnChangePassword.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnChangePassword.setMaximumSize(new java.awt.Dimension(150, 40));
         btnChangePassword.setMinimumSize(new java.awt.Dimension(80, 60));
         btnChangePassword.setName(""); // NOI18N
@@ -346,9 +349,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -420,7 +423,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             .addGroup(headerLayout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(realTime, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
+                .addComponent(realTime, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
