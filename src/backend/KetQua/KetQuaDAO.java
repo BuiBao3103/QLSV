@@ -27,15 +27,12 @@ public class KetQuaDAO {
             while (rs.next()) {
                 String maSV = rs.getString("MaSV");
                 String maHP = rs.getString("MaHP");
-                String tenHP = rs.getString("TenMon");
-                int soTinChi = rs.getInt("TinChi");
-                int PhanTramQuaTrinh = rs.getInt("PhanTramQuaTrinh");
                 int soNhom = rs.getInt("SoNhom");
                 int hocKy = rs.getInt("HocKy");
                 int nam = rs.getInt("Nam");
                 double DiemQuaTrinh = rs.getDouble("DiemQuaTrinh");
                 double DiemCuoiKy = rs.getDouble("DiemCuoiKy");
-                KetQua k = new KetQua(maSV, maHP, tenHP, soTinChi, PhanTramQuaTrinh, soNhom, hocKy, nam, DiemQuaTrinh, DiemCuoiKy);
+                KetQua k = new KetQua(maSV, maHP, soNhom, hocKy, nam, DiemCuoiKy, DiemCuoiKy);
                 dskq.add(k);
             }
         } catch (SQLException e) {
@@ -66,7 +63,8 @@ public class KetQuaDAO {
                 int nam = rs.getInt("Nam");
                 double DiemQuaTrinh = rs.getDouble("DiemQuaTrinh");
                 double DiemCuoiKy = rs.getDouble("DiemCuoiKy");
-                KetQua k = new KetQua(maSV, maHP, tenHP, soTinChi, PhanTramQuaTrinh, soNhom, hocKy, nam, DiemQuaTrinh, DiemCuoiKy);
+                KetQua k = new KetQua(maSV, maHP, soNhom, hocKy, nam, DiemCuoiKy, DiemCuoiKy);
+
                 dskq.add(k);
             }
         } catch (SQLException e) {

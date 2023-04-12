@@ -4,10 +4,22 @@
  */
 package backend.QLLop;
 
-/**
- *
- * @author PC
- */
+import backend.QLGiangVien.GiangVien;
+import java.util.ArrayList;
+
+
 public class LopBUS {
+    static LopDAO lopDao = new LopDAO();
+    static ArrayList<Lop> dsLop = lopDao.get();
+    public LopBUS(){
+        
+    }
+    public static Lop getLopByLopid(String id){
+        for(Lop lop: dsLop){
+            if(lop.getMaLop().equals(id))
+                return lop;
+        }
+        return null;
+    }
     
 }

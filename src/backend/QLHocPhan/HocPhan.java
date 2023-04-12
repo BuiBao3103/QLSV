@@ -14,9 +14,9 @@ public class HocPhan {
     private String tenHP;
     private int tinChi;
     private int chuyenBiet;
-    private String phanTramQuaTrinh;
+    private int phanTramQuaTrinh;
 
-    public HocPhan(String maHP, String tenHP, int tinChi, int chuyenBiet, String phanTramQuaTrinh, String maKhoa, String maNganh) {
+    public HocPhan(String maHP, String tenHP, int tinChi, int chuyenBiet, int phanTramQuaTrinh, String maKhoa, String maNganh) {
         this.maHP = maHP;
         this.tenHP = tenHP;
         this.tinChi = tinChi;
@@ -63,11 +63,11 @@ public class HocPhan {
         this.chuyenBiet = chuyenBiet;
     }
 
-    public String getPhanTramQuaTrinh() {
+    public int getPhanTramQuaTrinh() {
         return phanTramQuaTrinh;
     }
 
-    public void setPhanTramQuaTrinh(String phanTramQuaTrinh) {
+    public void setPhanTramQuaTrinh(int phanTramQuaTrinh) {
         this.phanTramQuaTrinh = phanTramQuaTrinh;
     }
 

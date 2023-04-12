@@ -646,6 +646,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.add(personalInfo);
         mainPanel.repaint();
         mainPanel.revalidate();
+        SinhVienBUS sv = new SinhVienBUS();
+        sv.pesronnalInfor(personalInfo);
+        
     }// GEN-LAST:event_btnInformationActionPerformed
 
     private void btnSubjectRegistrationActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSubjectRegistrationActionPerformed
@@ -677,7 +680,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // thêm 1 component mới hoặc xóa component cũ
         // và nó sẽ gọi thèn layout parent tính toán lại kích thước
         // Có lẽ sẽ phù hợp cho responsive
-
         mainPanel.revalidate();
         new KetQuaBUS().addRowData(score.getjTable2());
 
