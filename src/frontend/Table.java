@@ -35,6 +35,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     public Table() {
         Thread t = new Thread(this);
         initComponents();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logologinsmaller.png")));
         t.start();
         leftBar.setPreferredSize(new Dimension(0, heightBar));
 
@@ -94,7 +95,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jTextField8 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Hello");
+        setTitle("Student Manager");
         setBackground(new java.awt.Color(255, 255, 255));
 
         leftBar.setBackground(new java.awt.Color(204, 153, 255));
@@ -714,7 +715,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.repaint();
         mainPanel.revalidate();
         mainPanel.add(studentInfor);
-        SinhVienBUS.showStudentList(studentInfor,1); //hiện 20 sinh viên trang 1
+        SinhVienBUS.showStudentList(studentInfor, 1); //hiện 20 sinh viên trang 1
         closeMenuActionPerformed(null); //tắt cái menu khu bấm zo nút
         SinhVienBUS.setCbNganhSinhVien(studentInfor); // cái này nó thêm mấy cái lựa chọn cho cái ngành sinh viên
         studentInfor.btnDongSinhVienActionPerformed(null);
