@@ -13,8 +13,8 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.*;
 import java.awt.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Table extends javax.swing.JFrame implements Runnable {
 
@@ -907,7 +907,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     private void btnMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetalActionPerformed
         changeTheme(btnMetal, arrays[0]);
-
     }//GEN-LAST:event_btnMetalActionPerformed
 
     private void btnMotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMotifActionPerformed
@@ -1082,9 +1081,32 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnHeader.add(closeMenu);
         btnHeader.repaint();
         btnHeader.revalidate();
-        leftBar.setPreferredSize(new Dimension(widthBar, heightBar));
+        openMenu();
 
 //        System.out.println(UIManager.getSystemLookAndFeelClassName());
+    }
+
+    public void openMenu() {
+        int initialWidth = leftBar.getPreferredSize().width;
+        int steps = 100 / 10; // 10 ms interval between each step
+        int stepWidth = widthBar / steps;
+
+        Timer timer = new Timer(10, new ActionListener() {
+            int currentWidth = initialWidth;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentWidth += stepWidth;
+                if (currentWidth >= widthBar) {
+                    currentWidth = widthBar;
+                    ((Timer) e.getSource()).stop();
+                }
+                Dimension newPreferredSize = new Dimension(currentWidth, leftBar.getPreferredSize().height);
+                leftBar.setPreferredSize(newPreferredSize);
+                leftBar.revalidate();
+            }
+        });
+        timer.start();
     }
 
     private void closeMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_closeMenuActionPerformed
@@ -1092,8 +1114,31 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnHeader.add(openMenu);
         btnHeader.repaint();
         btnHeader.revalidate();
-        leftBar.setPreferredSize(new Dimension(0, heightBar));
+        closeMenu();
         openMenu.updateUI();
+    }
+
+    public void closeMenu() {
+        int initialWidth = leftBar.getPreferredSize().width;
+        int steps = 100 / 10; // 10 ms interval between each step
+        int stepWidth = initialWidth / steps;
+
+        Timer timer = new Timer(10, new ActionListener() {
+            int currentWidth = initialWidth;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentWidth -= stepWidth;
+                if (currentWidth <= 0) {
+                    currentWidth = 0;
+                    ((Timer) e.getSource()).stop();
+                }
+                Dimension newPreferredSize = new Dimension(currentWidth, leftBar.getPreferredSize().height);
+                leftBar.setPreferredSize(newPreferredSize);
+                leftBar.revalidate();
+            }
+        });
+        timer.start();
     }
 
     private void changeTheme(JRadioButton btn, String themeText) {
@@ -1247,7 +1292,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 
