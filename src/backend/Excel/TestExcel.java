@@ -21,7 +21,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class TestExcel {
     public static void readExcel() throws IOException{
-        File fileTest = new File("C:\\Users\\ASUS\\Desktop\\Test.xlsx");
+        File fileTest = new File("Book1.xlsx");
         if(fileTest.exists()){
             System.out.println("success");
         }else{
