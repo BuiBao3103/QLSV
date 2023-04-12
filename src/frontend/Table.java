@@ -107,10 +107,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
+        btnInformation.setBackground(new java.awt.Color(0, 158, 248));
         btnInformation.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnInformation.setForeground(new java.awt.Color(255, 255, 255));
         btnInformation.setText("Thông tin cá nhân");
         btnInformation.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnInformation.setContentAreaFilled(false);
         btnInformation.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnInformation.setOpaque(true);
         btnInformation.setPreferredSize(new java.awt.Dimension(190, 50));
         btnInformation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,10 +122,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        btnSubjectRegistration.setBackground(new java.awt.Color(0, 158, 248));
         btnSubjectRegistration.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnSubjectRegistration.setForeground(new java.awt.Color(255, 255, 255));
         btnSubjectRegistration.setText("Đăng kí môn học");
         btnSubjectRegistration.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnSubjectRegistration.setContentAreaFilled(false);
         btnSubjectRegistration.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSubjectRegistration.setOpaque(true);
         btnSubjectRegistration.setPreferredSize(new java.awt.Dimension(190, 50));
         btnSubjectRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,10 +137,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        btnSchedule.setBackground(new java.awt.Color(0, 158, 248));
         btnSchedule.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnSchedule.setForeground(new java.awt.Color(255, 255, 255));
         btnSchedule.setText("Xem TKB");
         btnSchedule.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnSchedule.setContentAreaFilled(false);
         btnSchedule.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSchedule.setOpaque(true);
         btnSchedule.setPreferredSize(new java.awt.Dimension(190, 50));
         btnSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,10 +152,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        btnScore.setBackground(new java.awt.Color(0, 158, 248));
         btnScore.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnScore.setForeground(new java.awt.Color(255, 255, 255));
         btnScore.setText("Xem Điểm");
         btnScore.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnScore.setContentAreaFilled(false);
         btnScore.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnScore.setOpaque(true);
         btnScore.setPreferredSize(new java.awt.Dimension(190, 50));
         btnScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,16 +167,24 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        inputPoint.setBackground(new java.awt.Color(0, 158, 248));
         inputPoint.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        inputPoint.setForeground(new java.awt.Color(255, 255, 255));
         inputPoint.setText("Nhập điểm");
         inputPoint.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        inputPoint.setContentAreaFilled(false);
         inputPoint.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        inputPoint.setOpaque(true);
         inputPoint.setPreferredSize(new java.awt.Dimension(200, 50));
 
+        studentList.setBackground(new java.awt.Color(0, 158, 248));
         studentList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        studentList.setForeground(new java.awt.Color(255, 255, 255));
         studentList.setText("Danh sách sinh viên");
         studentList.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        studentList.setContentAreaFilled(false);
         studentList.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        studentList.setOpaque(true);
         studentList.setPreferredSize(new java.awt.Dimension(190, 50));
         studentList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,16 +192,24 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        group.setBackground(new java.awt.Color(0, 158, 248));
         group.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        group.setForeground(new java.awt.Color(255, 255, 255));
         group.setText("Nhóm môn học");
         group.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        group.setContentAreaFilled(false);
         group.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        group.setOpaque(true);
         group.setPreferredSize(new java.awt.Dimension(190, 50));
 
+        btnSetting.setBackground(new java.awt.Color(0, 158, 248));
         btnSetting.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnSetting.setForeground(new java.awt.Color(255, 255, 255));
         btnSetting.setText("Cài đặt");
         btnSetting.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnSetting.setContentAreaFilled(false);
         btnSetting.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSetting.setOpaque(true);
         btnSetting.setPreferredSize(new java.awt.Dimension(202, 50));
         btnSetting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,11 +217,15 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        btnAccountList.setBackground(new java.awt.Color(0, 158, 248));
         btnAccountList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnAccountList.setForeground(new java.awt.Color(255, 255, 255));
         btnAccountList.setText("Quản lí tài khoản");
         btnAccountList.setToolTipText("");
         btnAccountList.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnAccountList.setContentAreaFilled(false);
         btnAccountList.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAccountList.setOpaque(true);
         btnAccountList.setPreferredSize(new java.awt.Dimension(202, 50));
         btnAccountList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,16 +233,24 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        btnScholastic.setBackground(new java.awt.Color(0, 158, 248));
         btnScholastic.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnScholastic.setForeground(new java.awt.Color(255, 255, 255));
         btnScholastic.setText("Quản lí năm học");
         btnScholastic.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnScholastic.setContentAreaFilled(false);
         btnScholastic.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnScholastic.setOpaque(true);
         btnScholastic.setPreferredSize(new java.awt.Dimension(202, 50));
 
+        btnTool.setBackground(new java.awt.Color(0, 158, 248));
         btnTool.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnTool.setForeground(new java.awt.Color(255, 255, 255));
         btnTool.setText("Công cụ");
         btnTool.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnTool.setContentAreaFilled(false);
         btnTool.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnTool.setOpaque(true);
         btnTool.setPreferredSize(new java.awt.Dimension(202, 50));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -270,17 +314,23 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         getContentPane().add(leftBar, java.awt.BorderLayout.LINE_START);
 
-        header.setBackground(new java.awt.Color(204, 204, 204));
+        header.setBackground(new java.awt.Color(0, 128, 215));
         header.setForeground(new java.awt.Color(255, 255, 255));
         header.setPreferredSize(new java.awt.Dimension(1025, 60));
         header.setRequestFocusEnabled(false);
 
         realTime.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        realTime.setForeground(new java.awt.Color(255, 0, 51));
+        realTime.setForeground(new java.awt.Color(255, 255, 255));
         realTime.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
+        jPanel4.setBackground(new java.awt.Color(0, 128, 215));
+
+        btnChangePassword.setBackground(new java.awt.Color(0, 128, 215));
         btnChangePassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnChangePassword.setForeground(new java.awt.Color(255, 255, 255));
         btnChangePassword.setText("Đăng xuất");
+        btnChangePassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnChangePassword.setContentAreaFilled(false);
         btnChangePassword.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnChangePassword.setMaximumSize(new java.awt.Dimension(150, 40));
         btnChangePassword.setMinimumSize(new java.awt.Dimension(80, 60));
@@ -298,22 +348,29 @@ public class Table extends javax.swing.JFrame implements Runnable {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 37, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel5.setBackground(new java.awt.Color(0, 128, 215));
+
+        btnHeader.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         btnHeader.setOpaque(false);
         btnHeader.setPreferredSize(new java.awt.Dimension(60, 60));
         btnHeader.setLayout(new java.awt.CardLayout());
 
+        openMenu.setBackground(new java.awt.Color(0, 128, 215));
         openMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-menu-30.png"))); // NOI18N
+        openMenu.setBorder(null);
+        openMenu.setContentAreaFilled(false);
+        openMenu.setOpaque(true);
         openMenu.setPreferredSize(new java.awt.Dimension(60, 60));
         openMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,7 +379,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
         });
         btnHeader.add(openMenu, "card2");
 
+        closeMenu.setBackground(new java.awt.Color(0, 128, 215));
         closeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-close-30.png"))); // NOI18N
+        closeMenu.setBorder(null);
+        closeMenu.setContentAreaFilled(false);
+        closeMenu.setOpaque(true);
         closeMenu.setPreferredSize(new java.awt.Dimension(60, 60));
         closeMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,8 +400,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(12, 12, 12)
-                    .addComponent(btnHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(21, Short.MAX_VALUE)))
+                    .addComponent(btnHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(22, Short.MAX_VALUE)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,7 +410,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(btnHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(17, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
@@ -359,15 +420,15 @@ public class Table extends javax.swing.JFrame implements Runnable {
             .addGroup(headerLayout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(realTime, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
+                .addComponent(realTime, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(realTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(header, java.awt.BorderLayout.PAGE_START);
