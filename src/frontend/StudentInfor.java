@@ -492,6 +492,7 @@ public class StudentInfor extends javax.swing.JPanel {
 
         btnThemSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThemSinhVien.setText("Thêm");
+        btnThemSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThemSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemSinhVienActionPerformed(evt);
@@ -500,6 +501,8 @@ public class StudentInfor extends javax.swing.JPanel {
 
         btnTimKiemSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKiemSinhVien.setText("Tìm");
+        btnTimKiemSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTimKiemSinhVien.setDefaultCapable(false);
         btnTimKiemSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemSinhVienActionPerformed(evt);
@@ -883,6 +886,7 @@ public class StudentInfor extends javax.swing.JPanel {
         });
 
         cbTimKiemSinhVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên", "MSSV", "Ngành" }));
+        cbTimKiemSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         cbTrangThaiSinhVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang Hoạt Động", "Đang Khóa" }));
         cbTrangThaiSinhVien.addItemListener(new java.awt.event.ItemListener() {
@@ -913,6 +917,7 @@ public class StudentInfor extends javax.swing.JPanel {
         });
 
         btnNextPage.setText(">>");
+        btnNextPage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNextPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextPageActionPerformed(evt);
@@ -920,6 +925,7 @@ public class StudentInfor extends javax.swing.JPanel {
         });
 
         btnPrevPage.setText("<<");
+        btnPrevPage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrevPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrevPageActionPerformed(evt);
@@ -927,6 +933,7 @@ public class StudentInfor extends javax.swing.JPanel {
         });
 
         btnXoaLoc.setText("Xóa Lọc");
+        btnXoaLoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXoaLoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaLocActionPerformed(evt);

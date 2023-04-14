@@ -4,6 +4,7 @@
  */
 package frontend;
 
+import java.awt.Color;
 import javax.swing.JTable;
 
 /**
@@ -131,13 +132,23 @@ public class Score extends javax.swing.JPanel {
         btnXem.setBackground(new java.awt.Color(0, 158, 248));
         btnXem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXem.setForeground(new java.awt.Color(255, 255, 255));
-        btnXem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/search.png"))); // NOI18N
+        btnXem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-search-15.png"))); // NOI18N
         btnXem.setText("Xem");
         btnXem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        btnXem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnXem.setContentAreaFilled(false);
+        btnXem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXem.setMaximumSize(new java.awt.Dimension(40, 25));
         btnXem.setMinimumSize(new java.awt.Dimension(40, 16));
+        btnXem.setOpaque(true);
         btnXem.setPreferredSize(new java.awt.Dimension(80, 25));
+        btnXem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnXemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnXemMouseExited(evt);
+            }
+        });
         btnXem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXemActionPerformed(evt);
@@ -162,9 +173,9 @@ public class Score extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -358,6 +369,16 @@ public class Score extends javax.swing.JPanel {
     private void btnXemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnXemActionPerformed
+
+    private void btnXemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXemMouseEntered
+        btnXem.setBackground(new Color(153, 216, 252));
+    }//GEN-LAST:event_btnXemMouseEntered
+
+    private void btnXemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXemMouseExited
+        // TODO add your handling code here:
+        btnXem.setBackground(new Color(0, 158, 248));
+
+    }//GEN-LAST:event_btnXemMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
