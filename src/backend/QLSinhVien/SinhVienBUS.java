@@ -887,12 +887,12 @@ public class SinhVienBUS {
         p.getTxtID().setText(sv.getMaSV());
         p.getTxtName().setText(sv.getHoTen());
         p.getTxtCCCD().setText(sv.getCmnd());
-        p.getTxtGIoiTinh().setText(sv.getGioiTinh());
+        p.getTxtGioiTinh().setText(sv.getGioiTinh());
         p.getTxtTonGiao().setText(sv.getTonGiao());
         p.getTxtLop().setText(sv.getMaLop());
         p.getTxtNgaySinh().setText(String.valueOf(sv.getNgaySinh()));
         p.getTxtNienKhoa().setText(sv.getDiaChi());
-        p.getTxtDanToc().setText(sv.getDanToc());
+//        p.getTxtDanToc().setText(sv.getDanToc());
         p.getTxtSDT().setText(sv.getSoDienThoai());
         p.getTxtNienKhoa().setText(sv.getNienKhoa());
         p.getTxtNganh().setText(n.getTenNganh());

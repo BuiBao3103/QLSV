@@ -287,6 +287,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1eaf;p x&#x1ebf;p theo m&#xf4;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButton2">
           <Properties>
