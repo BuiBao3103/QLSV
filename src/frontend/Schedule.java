@@ -97,6 +97,7 @@ public class Schedule extends javax.swing.JPanel {
 
         jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jRadioButton1.setText("Sắp xếp theo môn");
+        jRadioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -105,10 +106,12 @@ public class Schedule extends javax.swing.JPanel {
 
         jRadioButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jRadioButton2.setText("Sắp xếp theo thứ tiết");
+        jRadioButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("In TKB");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout scheduleLayout = new javax.swing.GroupLayout(schedule);
         schedule.setLayout(scheduleLayout);

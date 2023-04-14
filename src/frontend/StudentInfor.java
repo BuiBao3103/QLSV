@@ -644,6 +644,7 @@ public class StudentInfor extends javax.swing.JPanel {
 
         btnSuaSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSuaSinhVien.setText("Sửa");
+        btnSuaSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSuaSinhVien.setDefaultCapable(false);
         btnSuaSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -653,6 +654,7 @@ public class StudentInfor extends javax.swing.JPanel {
 
         btnLuuSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLuuSinhVien.setText("Lưu");
+        btnLuuSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLuuSinhVien.setDefaultCapable(false);
         btnLuuSinhVien.setEnabled(false);
         btnLuuSinhVien.setNextFocusableComponent(txtHoTenSinhVien);
@@ -664,6 +666,7 @@ public class StudentInfor extends javax.swing.JPanel {
 
         btnXoaSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoaSinhVien.setText("Xóa");
+        btnXoaSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXoaSinhVien.setDefaultCapable(false);
         btnXoaSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -690,6 +693,7 @@ public class StudentInfor extends javax.swing.JPanel {
         });
 
         btnDongSinhVien.setText("X");
+        btnDongSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDongSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDongSinhVienActionPerformed(evt);
