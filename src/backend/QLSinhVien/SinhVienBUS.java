@@ -265,6 +265,8 @@ public class SinhVienBUS {
         }
 //        table.getBtnKhoiPhucSinhVien().setVisible(false); // tắt cái nút khôi phục đi
         table.getBtnLuuSinhVien().setEnabled(false);
+        table.getBtnSuaSinhVien().setVisible(true);
+        table.getBtnXoaSinhVien().setVisible(true);
         table.getTxtMSSinhVien().setEnabled(false);
         table.getTxtHoTenSinhVien().setEnabled(false);
         table.getTxtCMNDSinhVien().setEnabled(false);
@@ -459,7 +461,8 @@ public class SinhVienBUS {
         if (maxMaSV == null) { // chưa có sinh viên nào trong năm đó
             return mssv + "000001";
         }
-        int newMSSV = Integer.parseInt(maxMaSV) + 1; // nếu có sinh viên cùng năm rồi
+       // int newMSSV = Integer.parseInt(maxMaSV) + 1; // nếu có sinh viên cùng năm rồi
+        long newMSSV = Long.parseLong(maxMaSV)+1;
         return newMSSV + "";
     }
     
