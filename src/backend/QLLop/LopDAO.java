@@ -115,9 +115,9 @@ public class LopDAO {
     public void updateSoLuong(String maLop){ // hàm này tăng số lượng mỗi khi thêm sinh viên
         con = ConnectionDB.getConnection();
         try {
-            String query = "UPDATE Lop Set SoLuong = SoLuong + 1 where MaLop = '?' ";
+            String query = "UPDATE Lop Set SoLuong = SoLuong + 1 where MaLop = '"+maLop+"' ";
             pstm = con.prepareStatement(query);
-            pstm.setString(1, maLop);
+           // pstm.setString(1, maLop);
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
