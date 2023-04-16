@@ -4,6 +4,7 @@
  */
 package frontend;
 
+import backend.Excel.IOExcel;
 import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -206,68 +207,72 @@ public class Schedule extends javax.swing.JPanel {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            JFileChooser jFileChooser = new JFileChooser();
-            jFileChooser.showSaveDialog(this);
-            File savefile = jFileChooser.getSelectedFile();
-            if (savefile != null) {
-                savefile = new File(savefile.toString() + ".xlsx");
-                XSSFWorkbook wb = new XSSFWorkbook();
-                XSSFSheet sheet = wb.createSheet("dssv");
-                Row rowCol = sheet.createRow(0);
+        IOExcel.writeExcel(jTable1, "Schedule");
 
-                // Set title
-                CellStyle titleStyle = wb.createCellStyle();
-                titleStyle.setAlignment(HorizontalAlignment.CENTER);
-                XSSFFont font = wb.createFont();
-                font.setBold(true);
-                font.setFontHeightInPoints((short) 16);
-                titleStyle.setFont(font);
-                Cell titleCell = rowCol.createCell(0);
-                titleCell.setCellValue("Schedule");
-                titleCell.setCellStyle(titleStyle);
-                sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, jTable1.getColumnCount() - 1));
-
-                // Set header
-                CellStyle headerStyle = wb.createCellStyle();
-                headerStyle.setAlignment(HorizontalAlignment.CENTER);
-                Row rowHeader = sheet.createRow(1);
-                for (int i = 0; i < jTable1.getColumnCount(); i++) {
-                    Cell cell = rowHeader.createCell(i);
-                    cell.setCellValue(jTable1.getColumnName(i));
-                    cell.setCellStyle(headerStyle);
-                    if (i == 1) {
-                        sheet.setColumnWidth(i, 9000);
-                    } else {
-                        sheet.setColumnWidth(i, 3000);
-
-                    }
-                }
-
-                // Set data
-                CellStyle dataStyle = wb.createCellStyle();
-                dataStyle.setAlignment(HorizontalAlignment.CENTER);
-                for (int j = 0; j < jTable1.getRowCount(); j++) {
-                    Row row = sheet.createRow(j + 2);
-                    for (int k = 0; k < jTable1.getColumnCount(); k++) {
-                        Cell cell = row.createCell(k);
-                        if (jTable1.getValueAt(j, k) != null) {
-                            cell.setCellValue(jTable1.getValueAt(j, k).toString());
-                        }
-                        cell.setCellStyle(dataStyle);
-                    }
-                }
-                FileOutputStream out = new FileOutputStream(new File(savefile.toString()));
-                wb.write(out);
-                out.close();
-            } else {
-                JOptionPane.showMessageDialog(jComboBox1, "Error");
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        } catch (IOException ex) {
-            Logger.getLogger(Schedule.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            JFileChooser jFileChooser = new JFileChooser();
+//            jFileChooser.showSaveDialog(this);
+//            File savefile = jFileChooser.getSelectedFile();
+//            if (savefile != null) {
+//                savefile = new File(savefile.toString() + ".xlsx");
+//                XSSFWorkbook wb = new XSSFWorkbook();
+//                XSSFSheet sheet = wb.createSheet("dssv");
+//                Row rowCol = sheet.createRow(0);
+//
+//                // Set title
+//                CellStyle titleStyle = wb.createCellStyle();
+//                titleStyle.setAlignment(HorizontalAlignment.CENTER);
+//                XSSFFont font = wb.createFont();
+//                font.setBold(true);
+//                font.setFontHeightInPoints((short) 16);
+//                titleStyle.setFont(font);
+//                Cell titleCell = rowCol.createCell(0);
+//                titleCell.setCellValue("Schedule");
+//                titleCell.setCellStyle(titleStyle);
+//                sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, jTable1.getColumnCount() - 1));
+//
+//                // Set header
+//                CellStyle headerStyle = wb.createCellStyle();
+//                headerStyle.setAlignment(HorizontalAlignment.CENTER);
+//                Row rowHeader = sheet.createRow(1);
+//                for (int i = 0; i < jTable1.getColumnCount(); i++) {
+//                    Cell cell = rowHeader.createCell(i);
+//                    cell.setCellValue(jTable1.getColumnName(i));
+//                    cell.setCellStyle(headerStyle);
+//                    if (i == 1) {
+//                        sheet.setColumnWidth(i, 9000);
+//                    } else {
+//                        sheet.setColumnWidth(i, 3000);
+//
+//                    }
+//                }
+//
+//                // Set data
+//                CellStyle dataStyle = wb.createCellStyle();
+//                dataStyle.setAlignment(HorizontalAlignment.CENTER);
+//                for (int j = 0; j < jTable1.getRowCount(); j++) {
+//                    Row row = sheet.createRow(j + 2);
+//                    for (int k = 0; k < jTable1.getColumnCount(); k++) {
+//                        Cell cell = row.createCell(k);
+//                        if (jTable1.getValueAt(j, k) != null) {
+//                            cell.setCellValue(jTable1.getValueAt(j, k).toString());
+//                        }
+//                        cell.setCellStyle(dataStyle);
+//                    }
+//                }
+//                FileOutputStream out = new FileOutputStream(new File(savefile.toString()));
+//                wb.write(out);
+//                out.close();
+//                JOptionPane.showMessageDialog(jComboBox1, "Xuất File Excel thành công");
+//
+//            } else {
+//                JOptionPane.showMessageDialog(jComboBox1, "Xuất File Excel thất bại");
+//            }
+//        } catch (FileNotFoundException e) {
+//            System.out.println(e);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Schedule.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
