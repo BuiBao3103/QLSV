@@ -109,86 +109,66 @@
                   <Font name="Segoe UI" size="16" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="10" rowCount="6">
+                  <Table columnCount="10" rowCount="4">
                     <Column editable="true" title="M&#xe3; MH" type="java.lang.Integer">
                       <Data value="841107"/>
                       <Data value="841048"/>
                       <Data value="841058"/>
                       <Data value="861303"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
                     </Column>
                     <Column editable="true" title="T&#xea;n M&#xf4;n H&#x1ecd;c" type="java.lang.String">
                       <Data value="L&#x1ead;p Tr&#xec;nh Java"/>
                       <Data value="&#x9;P/t&#xed;ch thi&#x1ebf;t k&#x1ebf; h&#x1ec7; th&#x1ed1;ng th&#xf4;ng tin"/>
                       <Data value="&#x9;H&#x1ec7; &#x111;i&#x1ec1;u h&#xe0;nh m&#xe3; ngu&#x1ed3;n m&#x1edf;"/>
                       <Data value="Ch&#x1ee7; ngh&#x129;a x&#xe3; h&#x1ed9;i khoa h&#x1ecd;c"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
                     </Column>
                     <Column editable="true" title="NMH" type="java.lang.String">
                       <Data value="09"/>
                       <Data value="04"/>
                       <Data value="02"/>
                       <Data value="07"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
                     </Column>
                     <Column editable="true" title="STC" type="java.lang.Integer">
                       <Data value="4"/>
                       <Data value="4"/>
                       <Data value="3"/>
                       <Data value="2"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
                     </Column>
                     <Column editable="true" title="STCHP" type="java.lang.Integer">
                       <Data value="4"/>
                       <Data value="4"/>
                       <Data value="3"/>
                       <Data value="2"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
                     </Column>
                     <Column editable="true" title="Th&#x1ee9;" type="java.lang.String">
                       <Data value="Hai"/>
                       <Data value="S&#xe1;u"/>
                       <Data value="T&#x1b0;"/>
                       <Data value="T&#x1b0;"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
                     </Column>
                     <Column editable="true" title="Ti&#x1ebf;t B&#x110;" type="java.lang.Integer">
                       <Data value="1"/>
                       <Data value="1"/>
                       <Data value="3"/>
                       <Data value="1"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
                     </Column>
                     <Column editable="true" title="Ti&#x1ebf;t KT" type="java.lang.Integer">
                       <Data value="3"/>
                       <Data value="5"/>
                       <Data value="4"/>
                       <Data value="2"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
                     </Column>
                     <Column editable="true" title="Ph&#xf2;ng" type="java.lang.String">
                       <Data value="C.A105"/>
                       <Data value="C.A106"/>
                       <Data value="C.E403"/>
                       <Data value="C.B107"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
                     </Column>
                     <Column editable="true" title="DSSV" type="java.lang.String">
                       <Data value="DSSV"/>
                       <Data value="DSSV"/>
                       <Data value="DSSV"/>
                       <Data value="DSSV"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
                     </Column>
                   </Table>
                 </Property>
@@ -318,6 +298,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

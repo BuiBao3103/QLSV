@@ -15,6 +15,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -1276,7 +1278,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         }
     }
-
     public static void main(String args[]) {
 //        javax.swing.plaf.nimbus.NimbusLookAndFeel
 //com.sun.java.swing.plaf.windows.WindowsLookAndFeel
@@ -1342,7 +1343,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             cornerRadius = radius;
             backgroundColor = bgColor;
         }
-
+        
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);

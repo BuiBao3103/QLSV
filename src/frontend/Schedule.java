@@ -3,9 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package frontend;
+
 import java.awt.Font;
-import  javax.swing.table.*;
-import  javax.swing.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.*;
+import javax.swing.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 /**
  *
  * @author ASUS
@@ -47,9 +61,7 @@ public class Schedule extends javax.swing.JPanel {
                 { new Integer(841107), "Lập Trình Java", "09",  new Integer(4),  new Integer(4), "Hai",  new Integer(1),  new Integer(3), "C.A105", "DSSV"},
                 { new Integer(841048), "	P/tích thiết kế hệ thống thông tin", "04",  new Integer(4),  new Integer(4), "Sáu",  new Integer(1),  new Integer(5), "C.A106", "DSSV"},
                 { new Integer(841058), "	Hệ điều hành mã nguồn mở", "02",  new Integer(3),  new Integer(3), "Tư",  new Integer(3),  new Integer(4), "C.E403", "DSSV"},
-                { new Integer(861303), "Chủ nghĩa xã hội khoa học", "07",  new Integer(2),  new Integer(2), "Tư",  new Integer(1),  new Integer(2), "C.B107", "DSSV"},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                { new Integer(861303), "Chủ nghĩa xã hội khoa học", "07",  new Integer(2),  new Integer(2), "Tư",  new Integer(1),  new Integer(2), "C.B107", "DSSV"}
             },
             new String [] {
                 "Mã MH", "Tên Môn Học", "NMH", "STC", "STCHP", "Thứ", "Tiết BĐ", "Tiết KT", "Phòng", "DSSV"
@@ -112,6 +124,11 @@ public class Schedule extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("In TKB");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout scheduleLayout = new javax.swing.GroupLayout(schedule);
         schedule.setLayout(scheduleLayout);
@@ -183,6 +200,47 @@ public class Schedule extends javax.swing.JPanel {
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            JFileChooser jFileChooser = new JFileChooser();
+            jFileChooser.showSaveDialog(this);
+            File savefile = jFileChooser.getSelectedFile();
+            if (savefile != null) {
+                savefile = new File(savefile.toString() + ".xlsx");
+                XSSFWorkbook wb = new XSSFWorkbook();
+                XSSFSheet sheet = wb.createSheet("dssv");
+                Row headerRow = sheet.createRow(0); // Create row for header
+
+                // Fill in the header row with column names
+                for (int i = 0; i < jTable1.getColumnCount(); i++) {
+                    Cell cell = headerRow.createCell(i);
+                    cell.setCellValue(jTable1.getColumnName(i));
+                }
+
+                // Loop through rows of jTable1 to create rows in the Excel sheet
+                for (int j = 0; j < jTable1.getRowCount(); j++) {
+                    Row row = sheet.createRow(j + 1); // Offset by 1 for header row
+                    for (int k = 0; k < jTable1.getColumnCount(); k++) {
+                        Cell cell = row.createCell(k);
+                        if (jTable1.getValueAt(j, k) != null) {
+                            cell.setCellValue(jTable1.getValueAt(j, k).toString());
+                        }
+                    }
+                }
+                FileOutputStream out = new FileOutputStream(new File(savefile.toString()));
+                wb.write(out);
+                out.close();
+
+            } else {
+                JOptionPane.showMessageDialog(jComboBox1, "Error");
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException ex) {
+            Logger.getLogger(Schedule.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
