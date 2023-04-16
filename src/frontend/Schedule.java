@@ -14,9 +14,13 @@ import java.util.logging.Logger;
 import javax.swing.table.*;
 import javax.swing.*;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -210,28 +214,52 @@ public class Schedule extends javax.swing.JPanel {
                 savefile = new File(savefile.toString() + ".xlsx");
                 XSSFWorkbook wb = new XSSFWorkbook();
                 XSSFSheet sheet = wb.createSheet("dssv");
-                Row headerRow = sheet.createRow(0); // Create row for header
+                Row rowCol = sheet.createRow(0);
 
-                // Fill in the header row with column names
+                // Set title
+                CellStyle titleStyle = wb.createCellStyle();
+                titleStyle.setAlignment(HorizontalAlignment.CENTER);
+                XSSFFont font = wb.createFont();
+                font.setBold(true);
+                font.setFontHeightInPoints((short) 16);
+                titleStyle.setFont(font);
+                Cell titleCell = rowCol.createCell(0);
+                titleCell.setCellValue("Schedule");
+                titleCell.setCellStyle(titleStyle);
+                sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, jTable1.getColumnCount() - 1));
+
+                // Set header
+                CellStyle headerStyle = wb.createCellStyle();
+                headerStyle.setAlignment(HorizontalAlignment.CENTER);
+                Row rowHeader = sheet.createRow(1);
                 for (int i = 0; i < jTable1.getColumnCount(); i++) {
-                    Cell cell = headerRow.createCell(i);
+                    Cell cell = rowHeader.createCell(i);
                     cell.setCellValue(jTable1.getColumnName(i));
+                    cell.setCellStyle(headerStyle);
+                    if (i == 1) {
+                        sheet.setColumnWidth(i, 9000);
+                    } else {
+                        sheet.setColumnWidth(i, 3000);
+
+                    }
                 }
 
-                // Loop through rows of jTable1 to create rows in the Excel sheet
+                // Set data
+                CellStyle dataStyle = wb.createCellStyle();
+                dataStyle.setAlignment(HorizontalAlignment.CENTER);
                 for (int j = 0; j < jTable1.getRowCount(); j++) {
-                    Row row = sheet.createRow(j + 1); // Offset by 1 for header row
+                    Row row = sheet.createRow(j + 2);
                     for (int k = 0; k < jTable1.getColumnCount(); k++) {
                         Cell cell = row.createCell(k);
                         if (jTable1.getValueAt(j, k) != null) {
                             cell.setCellValue(jTable1.getValueAt(j, k).toString());
                         }
+                        cell.setCellStyle(dataStyle);
                     }
                 }
                 FileOutputStream out = new FileOutputStream(new File(savefile.toString()));
                 wb.write(out);
                 out.close();
-
             } else {
                 JOptionPane.showMessageDialog(jComboBox1, "Error");
             }
