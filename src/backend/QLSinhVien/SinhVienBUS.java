@@ -15,11 +15,14 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import frontend.StudentInfor;
+import java.awt.Color;
 import java.awt.Font;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -503,6 +506,92 @@ public class SinhVienBUS {
         }
     }
     
+    public static String checkStudentInfor(StudentInfor table, SinhVien svMoi){ // hàm này kiểm tra thông tin tô đỏ mấy ô sai và hiện thông báo
+        if (checkAllInfo(svMoi)){
+            return "";
+        }
+        LineBorder errorBorder = new LineBorder(Color.red, 2); // tô màu đỏ cho ô
+        LineBorder safeBorder = new LineBorder(Color.gray, 1);
+        String message = "Thông tin không hợp lệ:\n";
+        // kiểm tra họ tên
+        if(!checkHoTen(svMoi.getHoTen())){
+            message+= "Tên phải từ 1 đến 50 kí tự chữ cái vd:Nguyễn Văn A\n";
+            table.getTxtHoTenSinhVien().setBorder(errorBorder);
+        }
+        else{
+            table.getTxtHoTenSinhVien().setBorder(safeBorder);
+        }
+        // kiểm tra cmnd
+        if(!checkCMND(svMoi.getCmnd())){
+            message+= "CMND phải là 12 số vd:0123456789012\n";
+            table.getTxtCMNDSinhVien().setBorder(errorBorder);
+        }
+        else{
+            table.getTxtCMNDSinhVien().setBorder(safeBorder);
+        }
+        //kiểm tra sdt
+        if(!checkSoDienThoai(svMoi.getSoDienThoai())){
+            message+= "Số điện thoại gồm 10 số với đầu số Việt Nam vd:0771112223\n";
+            table.getTxtSoDTSinhVien().setBorder(errorBorder);
+        }
+        else{
+            table.getTxtSoDTSinhVien().setBorder(safeBorder);
+        }
+        //kiểm tra địa chỉ
+        if(!checkDiaChi(svMoi.getDiaChi())){
+            message+= "Địa chỉ gồm chữ cái, số, dấu '/' vd:6A23/1 Bình Chánh\n";
+            table.getTxtDiaChiSinhVien().setBorder(errorBorder);
+        }
+        else{
+            table.getTxtDiaChiSinhVien().setBorder(safeBorder);
+        }
+        // kiểm tra ngày sinh
+        if(!checkNgaySinh(dateFormat.format(svMoi.getNgaySinh()))){
+            if(!checkValidNgay(dateFormat.format(svMoi.getNgaySinh()))){ // ngày đúng dạng mà không tồn tại vd: 30/02
+                message+= "Ngày sinh không hợp lệ (18->99 tuổi, ngày phải tồn tại)\n";
+            }
+            else{ // ngày chưa đúng định dạng yyyy-mm-dd
+                message+= "Ngày sinh có dạng yyyy-mm-dd vd:2003-21-07\n";
+            }
+            table.getTxtNgaySinhSinhVien().setBorder(errorBorder);
+        }
+        else{
+            table.getTxtNgaySinhSinhVien().setBorder(safeBorder);
+        }
+        //kiểm tra giới tính
+        if(!checkGioiTinh(svMoi.getGioiTinh())){
+            message+= "Giới Tính là 'Nam' hoặc 'Nữ'\n";
+            table.getTxtGioiTinhSinhVien().setBorder(errorBorder);
+        }
+        else{
+            table.getTxtGioiTinhSinhVien().setBorder(safeBorder);
+        }
+        //kiểm tra dân tộc
+        if(!checkDanToc(svMoi.getDanToc())){
+            message+= "Dân tộc thuộc 54 dân tộc Việt Nam vd:Kinh, Hoa, Thái, Khmer...\n";
+            table.getTxtDanTocSinhVien().setBorder(errorBorder);
+        }
+        else{
+            table.getTxtDanTocSinhVien().setBorder(safeBorder);
+        }
+        //kiểm tra tôn giáo
+        if(!checkTonGiao(svMoi.getTonGiao())){
+            message+= "Tôn giáo không có hoặc thuộc 20 tôn giáo lớn vd:Phật giáo, Thiên chúa giáo, Cao đài...\n";
+            table.getTxtTonGiaoSinhVien().setBorder(errorBorder);
+        }
+        else{
+            table.getTxtDanTocSinhVien().setBorder(safeBorder);
+        }
+        //kiểm tra chọn ngành chưa
+        if(!checkNganh(maNganhToTenNganh(svMoi.getMaNganh()))){
+            message+= "Chưa chọn ngành\n";
+            table.getCbNganhSinhVien().setBorder(errorBorder);
+        }
+        else{
+            table.getCbNganhSinhVien().setBorder(safeBorder);
+        }
+        return message;
+    }
     public static void addSinhVienToServer(StudentInfor table, SinhVien svMoi) {
         String errorMessage = "Một số thông tin đã tồn tại rồi: \n";
         int a = JOptionPane.showConfirmDialog(table, "Bạn muốn thêm sinh viên này ?");
@@ -545,7 +634,7 @@ public class SinhVienBUS {
 //---------------------------------------------------- Khúc này toàn hàm kiểm tra thông tin thôi ---------------------------------------------------
 
     public static boolean checkHoTen(String hoTen) { // Kiểm tra tên hợp lệ không
-        if (hoTen.equals("") || hoTen.length() > 50) {
+        if (hoTen.trim().equals("") || hoTen.length() > 50) {
             return false;
         }
         
@@ -630,7 +719,7 @@ public class SinhVienBUS {
     }
     
     public static boolean checkMaLop(String maLop) {
-        if (maLop.equals("")) {
+        if (maLop.trim().equals("")) {
             return false;
         }
         int flag = 0;
@@ -659,7 +748,7 @@ public class SinhVienBUS {
     }
     
     public static boolean checkDanToc(String danToc) {
-        String[] dsDanToc = {"Kinh", "Tày", "Thái", "Mường", "Nùng", "H'Mông", "Dao", "Gia Rai", "Ê Đê", "Ba Na", "Chăm",
+        String[] dsDanToc = {"Kinh", "Hoa", "Tày", "Thái", "Mường", "Nùng", "H'Mông", "Dao", "Gia Rai", "Ê Đê", "Ba Na", "Chăm",
             "Sán Chay", "Cơ Ho", "Xơ Đăng", "Khơ Mú", "Giáy", "Lào", "La Chí", "La Ha", "Pu Péo", "Ro Măm",
             "Mạ", "Co", "Ta Ôi", "Chu Ru", "Lô Lô", "Kháng", "Xinh Mun", "Hrê", "Ra Glai", "Mnông", "Thổ",
             "Brâu", "Ơ Đu", "Khmer", "Chuông", "Mạ Pờ Lồ", "Rơ Măm", "Khơ Me", "Khơ Mạ", "Bru - Vân Kiều",
@@ -720,6 +809,9 @@ public class SinhVienBUS {
     
     public static boolean checkDiaChi(String diaChi) {
         if (diaChi.length() <= 0 || diaChi.length() > 50) {
+            return false;
+        }
+        if (diaChi.trim().equals("")){
             return false;
         }
         for (int i = 0; i < diaChi.length(); i++) {

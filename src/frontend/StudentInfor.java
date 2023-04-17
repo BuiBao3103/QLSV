@@ -554,11 +554,6 @@ public class StudentInfor extends javax.swing.JPanel {
         txtHoTenSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtHoTenSinhVien.setEnabled(false);
         txtHoTenSinhVien.setNextFocusableComponent(txtCMNDSinhVien);
-        txtHoTenSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtHoTenSinhVienCaretUpdate(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -571,11 +566,6 @@ public class StudentInfor extends javax.swing.JPanel {
         txtMSSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtMSSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtMSSinhVien.setEnabled(false);
-        txtMSSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtMSSinhVienCaretUpdate(evt);
-            }
-        });
 
         txtCMNDSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCMNDSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -597,11 +587,6 @@ public class StudentInfor extends javax.swing.JPanel {
         txtMaTKSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtMaTKSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtMaTKSinhVien.setEnabled(false);
-        txtMaTKSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtMaTKSinhVienCaretUpdate(evt);
-            }
-        });
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -611,22 +596,12 @@ public class StudentInfor extends javax.swing.JPanel {
         txtTonGiaoSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTonGiaoSinhVien.setEnabled(false);
         txtTonGiaoSinhVien.setNextFocusableComponent(cbNganhSinhVien);
-        txtTonGiaoSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtTonGiaoSinhVienCaretUpdate(evt);
-            }
-        });
 
         txtDanTocSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDanTocSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDanTocSinhVien.setEnabled(false);
         txtDanTocSinhVien.setMaximumSize(new java.awt.Dimension(64, 26));
         txtDanTocSinhVien.setNextFocusableComponent(txtTonGiaoSinhVien);
-        txtDanTocSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtDanTocSinhVienCaretUpdate(evt);
-            }
-        });
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -634,13 +609,9 @@ public class StudentInfor extends javax.swing.JPanel {
 
         txtGioiTinhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtGioiTinhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtGioiTinhSinhVien.setToolTipText("Nam/Nữ");
         txtGioiTinhSinhVien.setEnabled(false);
         txtGioiTinhSinhVien.setNextFocusableComponent(txtDanTocSinhVien);
-        txtGioiTinhSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtGioiTinhSinhVienCaretUpdate(evt);
-            }
-        });
 
         btnSuaSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSuaSinhVien.setText("Sửa");
@@ -681,16 +652,6 @@ public class StudentInfor extends javax.swing.JPanel {
         txtNienKhoaSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNienKhoaSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNienKhoaSinhVien.setEnabled(false);
-        txtNienKhoaSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtNienKhoaSinhVienCaretUpdate(evt);
-            }
-        });
-        txtNienKhoaSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNienKhoaSinhVienActionPerformed(evt);
-            }
-        });
 
         btnDongSinhVien.setText("X");
         btnDongSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -703,11 +664,6 @@ public class StudentInfor extends javax.swing.JPanel {
         cbNganhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbNganhSinhVien.setEnabled(false);
         cbNganhSinhVien.setNextFocusableComponent(btnLuuSinhVien);
-        cbNganhSinhVien.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbNganhSinhVienItemStateChanged(evt);
-            }
-        });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -715,13 +671,9 @@ public class StudentInfor extends javax.swing.JPanel {
 
         txtNgaySinhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNgaySinhSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNgaySinhSinhVien.setToolTipText("yyyy-mm-dd");
         txtNgaySinhSinhVien.setEnabled(false);
         txtNgaySinhSinhVien.setNextFocusableComponent(txtGioiTinhSinhVien);
-        txtNgaySinhSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtNgaySinhSinhVienCaretUpdate(evt);
-            }
-        });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -730,11 +682,6 @@ public class StudentInfor extends javax.swing.JPanel {
         txtSoDTSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSoDTSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSoDTSinhVien.setEnabled(false);
-        txtSoDTSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtSoDTSinhVienCaretUpdate(evt);
-            }
-        });
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -744,11 +691,6 @@ public class StudentInfor extends javax.swing.JPanel {
         txtDiaChiSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDiaChiSinhVien.setEnabled(false);
         txtDiaChiSinhVien.setNextFocusableComponent(txtNgaySinhSinhVien);
-        txtDiaChiSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtDiaChiSinhVienCaretUpdate(evt);
-            }
-        });
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -757,11 +699,6 @@ public class StudentInfor extends javax.swing.JPanel {
         txtLopSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtLopSinhVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtLopSinhVien.setEnabled(false);
-        txtLopSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtLopSinhVienCaretUpdate(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnMoreInfoLayout = new javax.swing.GroupLayout(pnMoreInfo);
         pnMoreInfo.setLayout(pnMoreInfoLayout);
@@ -1056,85 +993,13 @@ public class StudentInfor extends javax.swing.JPanel {
         SinhVienBUS.showMoreInfoStudent(this, SinhVienBUS.StudentinTable(tblStudentList, tblStudentList.getSelectedRow()));
     }//GEN-LAST:event_tblStudentListMouseClicked
 
-    private void txtDiaChiSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtDiaChiSinhVienCaretUpdate
-        if (!SinhVienBUS.checkDiaChi(txtDiaChiSinhVien.getText())) {
-            txtDiaChiSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtDiaChiSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtDiaChiSinhVienCaretUpdate
-
-    private void txtHoTenSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtHoTenSinhVienCaretUpdate
-        if (!SinhVienBUS.checkHoTen(txtHoTenSinhVien.getText())) {
-            txtHoTenSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtHoTenSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtHoTenSinhVienCaretUpdate
-
-    private void txtMSSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMSSinhVienCaretUpdate
-        if (!SinhVienBUS.checkMSSV(txtMSSinhVien.getText())) {
-            txtMSSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtMSSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtMSSinhVienCaretUpdate
-
     private void txtCMNDSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCMNDSinhVienCaretUpdate
-        if (!SinhVienBUS.checkCMND(txtCMNDSinhVien.getText())) {
-            txtCMNDSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtCMNDSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
+//        if (!SinhVienBUS.checkCMND(txtCMNDSinhVien.getText())) {
+//            txtCMNDSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
+//        } else {
+//            txtCMNDSinhVien.setBorder(new LineBorder(Color.gray, 1));
+//        }
     }//GEN-LAST:event_txtCMNDSinhVienCaretUpdate
-
-    private void txtNgaySinhSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNgaySinhSinhVienCaretUpdate
-        if (!SinhVienBUS.checkNgaySinh(txtNgaySinhSinhVien.getText())) {
-            txtNgaySinhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtNgaySinhSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtNgaySinhSinhVienCaretUpdate
-
-    private void txtMaTKSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMaTKSinhVienCaretUpdate
-        if (!SinhVienBUS.checkMaTaiKhoan(txtMaTKSinhVien.getText())) {
-            txtMaTKSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtMaTKSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtMaTKSinhVienCaretUpdate
-
-    private void txtTonGiaoSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTonGiaoSinhVienCaretUpdate
-        if (!SinhVienBUS.checkTonGiao(txtTonGiaoSinhVien.getText())) {
-            txtTonGiaoSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtTonGiaoSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtTonGiaoSinhVienCaretUpdate
-
-    private void txtDanTocSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtDanTocSinhVienCaretUpdate
-        if (!SinhVienBUS.checkDanToc(txtDanTocSinhVien.getText())) {
-            txtDanTocSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtDanTocSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtDanTocSinhVienCaretUpdate
-
-    private void txtSoDTSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSoDTSinhVienCaretUpdate
-        if (!SinhVienBUS.checkSoDienThoai(txtSoDTSinhVien.getText())) {
-            txtSoDTSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtSoDTSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtSoDTSinhVienCaretUpdate
-
-    private void txtGioiTinhSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtGioiTinhSinhVienCaretUpdate
-        if (!SinhVienBUS.checkGioiTinh(txtGioiTinhSinhVien.getText())) {
-            txtGioiTinhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtGioiTinhSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtGioiTinhSinhVienCaretUpdate
 
     private void btnSuaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaSinhVienActionPerformed
         if (tblStudentList.getSelectedRow() != -1) {
@@ -1145,7 +1010,7 @@ public class StudentInfor extends javax.swing.JPanel {
 
     private void btnLuuSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuSinhVienActionPerformed
         SinhVien svMoi = SinhVienBUS.getSinhVienFromMoreInfo(this);
-        if (SinhVienBUS.checkAllInfo(svMoi)) {
+        if (SinhVienBUS.checkStudentInfor(this, svMoi).equals("")) {
             if (btnSuaSinhVien.isVisible()) {   // cái này là lưu khi sinh viên được sửa
                 SinhVienBUS.updateSinhVienToServer(this, svCu, svMoi);
                 
@@ -1153,7 +1018,7 @@ public class StudentInfor extends javax.swing.JPanel {
                 SinhVienBUS.addSinhVienToServer(this, svMoi);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Thông tin không hợp lệ !");
+            JOptionPane.showMessageDialog(null, SinhVienBUS.checkStudentInfor(this, svMoi));
         }
     }//GEN-LAST:event_btnLuuSinhVienActionPerformed
 
@@ -1166,36 +1031,9 @@ public class StudentInfor extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnXoaSinhVienActionPerformed
 
-    private void txtNienKhoaSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNienKhoaSinhVienCaretUpdate
-        if (!SinhVienBUS.checkNienKhoa(txtNienKhoaSinhVien.getText())) {
-            txtNienKhoaSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtNienKhoaSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtNienKhoaSinhVienCaretUpdate
-
-    private void txtNienKhoaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNienKhoaSinhVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNienKhoaSinhVienActionPerformed
-
     public void btnDongSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongSinhVienActionPerformed
         SinhVienBUS.resetJPanelMoreInfo(this);
     }//GEN-LAST:event_btnDongSinhVienActionPerformed
-
-    private void cbNganhSinhVienItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbNganhSinhVienItemStateChanged
-        if (cbNganhSinhVien.getSelectedIndex() == -1) {
-            return;
-        }
-        if (!SinhVienBUS.checkNganh(cbNganhSinhVien.getSelectedItem().toString())) {
-            cbNganhSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-            String maLop = SinhVienBUS.autoCompleteLop(SinhVienBUS.tenNganhToMaNganh("")); // cái này sẽ cập nhật lại lớp mỗi lần thay đổi ngành
-            txtLopSinhVien.setText(maLop);
-        } else {
-            cbNganhSinhVien.setBorder(new LineBorder(Color.gray, 1));
-            String maLop = SinhVienBUS.autoCompleteLop(SinhVienBUS.tenNganhToMaNganh(cbNganhSinhVien.getSelectedItem().toString())); // cái này sẽ cập nhật lại lớp mỗi lần thay đổi ngành
-            txtLopSinhVien.setText(maLop);
-        }
-    }//GEN-LAST:event_cbNganhSinhVienItemStateChanged
 
     private void txtTimKiemSinhVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKiemSinhVienMouseClicked
         txtTimKiemSinhVien.setText("");
@@ -1230,14 +1068,6 @@ public class StudentInfor extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Chọn Sinh Viên Muốn Khôi Phục !");
         }
     }//GEN-LAST:event_btnKhoiPhucSinhVienActionPerformed
-
-    private void txtLopSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtLopSinhVienCaretUpdate
-        if (!SinhVienBUS.checkMaLop(txtLopSinhVien.getText())) {
-            txtLopSinhVien.setBorder(new LineBorder(Color.red, 2)); // tạo màu cho khung độ rộng 2
-        } else {
-            txtLopSinhVien.setBorder(new LineBorder(Color.gray, 1));
-        }
-    }//GEN-LAST:event_txtLopSinhVienCaretUpdate
 
     private void txtPresentPageCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtPresentPageCaretUpdate
         try{

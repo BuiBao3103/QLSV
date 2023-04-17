@@ -358,9 +358,6 @@
                       <ComponentRef name="txtCMNDSinhVien"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtHoTenSinhVienCaretUpdate"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
@@ -388,9 +385,6 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtMSSinhVienCaretUpdate"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCMNDSinhVien">
                   <Properties>
@@ -430,9 +424,6 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtMaTKSinhVienCaretUpdate"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel16">
                   <Properties>
@@ -454,9 +445,6 @@
                       <ComponentRef name="cbNganhSinhVien"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtTonGiaoSinhVienCaretUpdate"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtDanTocSinhVien">
                   <Properties>
@@ -472,9 +460,6 @@
                       <ComponentRef name="txtTonGiaoSinhVien"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtDanTocSinhVienCaretUpdate"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel18">
                   <Properties>
@@ -491,14 +476,12 @@
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Nam/N&#x1eef;"/>
                     <Property name="enabled" type="boolean" value="false"/>
                     <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="txtDanTocSinhVien"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtGioiTinhSinhVienCaretUpdate"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSuaSinhVien">
                   <Properties>
@@ -566,10 +549,6 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtNienKhoaSinhVienCaretUpdate"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNienKhoaSinhVienActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnDongSinhVien">
                   <Properties>
@@ -598,9 +577,6 @@
                       <ComponentRef name="btnLuuSinhVien"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbNganhSinhVienItemStateChanged"/>
-                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -620,14 +596,12 @@
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="toolTipText" type="java.lang.String" value="yyyy-mm-dd"/>
                     <Property name="enabled" type="boolean" value="false"/>
                     <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="txtGioiTinhSinhVien"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtNgaySinhSinhVienCaretUpdate"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
@@ -646,9 +620,6 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtSoDTSinhVienCaretUpdate"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17">
                   <Properties>
@@ -670,9 +641,6 @@
                       <ComponentRef name="txtNgaySinhSinhVien"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtDiaChiSinhVienCaretUpdate"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel21">
                   <Properties>
@@ -691,9 +659,6 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtLopSinhVienCaretUpdate"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
