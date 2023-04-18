@@ -10,12 +10,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
@@ -26,37 +29,30 @@ import org.apache.poi.xssf.usermodel.*;
  */
 public class IOExcel {
 
-    public static void readExcel(File file) {
-        try {
-            FileInputStream inputStream = new FileInputStream(file);
-            XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
-            XSSFSheet sheet = workbook.getSheetAt(0);
-            Iterator<Row> rowIterator = sheet.iterator();
-            while (rowIterator.hasNext()) {
-                Row row = rowIterator.next();
+    public static List<List<String>> readExcel(String filePath, int sheetIndex) throws IOException, InvalidFormatException {
+        List<List<String>> data = new ArrayList<>();
+        File file = new File(filePath);
+        if (!file.exists()) {
+            throw new IOException("File not found: " + filePath);
+        }
+        try (FileInputStream fileInputStream = new FileInputStream(file); Workbook workbook = WorkbookFactory.create(fileInputStream)) {
+            Sheet sheet = workbook.getSheetAt(sheetIndex);
+            for (Row row : sheet) {
                 Iterator<Cell> cellIterator = row.cellIterator();
+                List<String> rowData = new ArrayList<>();
                 while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
                     switch (cell.getCellType()) {
-                        case Cell.CELL_TYPE_STRING:
-                            System.out.print(cell.getStringCellValue() + "\t");
-                            break;
-                        case Cell.CELL_TYPE_NUMERIC:
-                            System.out.print(cell.getNumericCellValue() + "\t");
-                            break;
-                        case Cell.CELL_TYPE_BOOLEAN:
-                            System.out.print(cell.getBooleanCellValue() + "\t");
-                            break;
-                        default:
+                        case Cell.CELL_TYPE_STRING -> rowData.add(cell.getStringCellValue());
+                        case Cell.CELL_TYPE_NUMERIC -> rowData.add(String.valueOf(cell.getNumericCellValue()));
+                        case Cell.CELL_TYPE_BOOLEAN -> rowData.add(String.valueOf(cell.getBooleanCellValue()));
+                        default -> rowData.add("");
                     }
                 }
-                System.out.println();
+                data.add(rowData);
             }
-            workbook.close();
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        return data;
     }
 
     public static void writeExcel(JTable table, String header) {
@@ -67,7 +63,8 @@ public class IOExcel {
             if (savefile != null) {
                 savefile = new File(savefile.toString() + ".xlsx");
                 XSSFWorkbook wb = new XSSFWorkbook();
-                XSSFSheet sheet = wb.createSheet("dssv");
+                XSSFSheet sheet = wb.createSheet("qlsv");
+                //tạo hàng đầu tiên để đặt tiêu đề cho bảng
                 Row rowCol = sheet.createRow(0);
 
                 // Set title
@@ -111,9 +108,9 @@ public class IOExcel {
                         cell.setCellStyle(dataStyle);
                     }
                 }
-                FileOutputStream out = new FileOutputStream(new File(savefile.toString()));
-                wb.write(out);
-                out.close();
+                try (FileOutputStream out = new FileOutputStream(new File(savefile.toString()))) {
+                    wb.write(out);
+                }
                 JOptionPane.showMessageDialog(table, "Xuất File Excel thành công");
 
             } else {

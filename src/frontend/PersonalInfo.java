@@ -74,6 +74,8 @@ public class PersonalInfo extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         txtNgaySinh = new javax.swing.JLabel();
         jNgaySinh = new javax.swing.JLabel();
+        btnPrint = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setPreferredSize(new java.awt.Dimension(578, 50));
@@ -176,7 +178,7 @@ public class PersonalInfo extends javax.swing.JPanel {
             .addComponent(txtGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel1 = new RoundedPanel(9999,new Color(0,158,248));
+        jPanel1 = new RoundedPanel(20,new Color(0,158,248));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,10 +204,10 @@ public class PersonalInfo extends javax.swing.JPanel {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        jPanel2  = new RoundedPanel(9999,new Color(255,188,0));
+        jPanel2  = new RoundedPanel(20,new Color(255,188,0));
 
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel12.setPreferredSize(new java.awt.Dimension(578, 50));
@@ -369,7 +371,7 @@ public class PersonalInfo extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelPT = new RoundedPanel(9999, new Color(0, 158, 248));
+        panelPT = new RoundedPanel(20, new Color(0, 158, 248));
 
         panel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -468,20 +470,39 @@ public class PersonalInfo extends javax.swing.JPanel {
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
+
+        btnPrint.setBackground(new java.awt.Color(0, 158, 248));
+        btnPrint.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnPrint.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrint.setText("In");
+        btnPrint.setToolTipText("PDF File");
+        btnPrint.setContentAreaFilled(false);
+        btnPrint.setOpaque(true);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel1.setText("In giấy hoãn Nghĩa Vụ Quân Sự");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelPT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelPT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -492,9 +513,13 @@ public class PersonalInfo extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelPT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -659,10 +684,12 @@ public class PersonalInfo extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPrint;
     private javax.swing.JLabel jCCCD;
     private javax.swing.JLabel jCoVan;
     private javax.swing.JLabel jDiaChi;
     private javax.swing.JLabel jGioiTinh;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLop;
     private javax.swing.JLabel jMaSV;
     private javax.swing.JLabel jName;
