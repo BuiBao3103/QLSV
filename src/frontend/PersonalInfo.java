@@ -602,6 +602,14 @@ public class PersonalInfo extends javax.swing.JPanel {
         this.txtCoVan = txtCoVan;
     }
 
+    public JLabel getjDiaChi() {
+        return jDiaChi;
+    }
+
+    public void setjDiaChi(JLabel jDiaChi) {
+        this.jDiaChi = jDiaChi;
+    }
+
     class RoundedPanel extends JPanel {
 
         private Color backgroundColor;
