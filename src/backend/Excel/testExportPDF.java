@@ -70,24 +70,29 @@ public class testExportPDF {
         return sv;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DocumentException, IOException {
         testExportPDF exportPDF = new testExportPDF();
-        SinhVien sv = exportPDF.getSinhVien("3121410379");
+        String mssv = "3121410379";
+        SinhVien sv = exportPDF.getSinhVien(mssv);
         System.out.println(sv.getHoTen());
+        BaseFont vietnameseFont = BaseFont.createFont("arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 //        Do something with the dssv ArrayList
+        Font vn = new Font(vietnameseFont, 12);
+        String fileName = "res/" + mssv + ".pdf";
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\ASUS\\Documents\\test.pdf"));
+
+            PdfWriter.getInstance(document, new FileOutputStream(fileName));
             document.open();
 
             // Add image to the title
-            Image image = Image.getInstance("C:\\Users\\ASUS\\Documents\\DoAnJava-Nam2-HK2\\QLSV\\StudentManager\\src\\images\\logologinsmaller.png");
+            Image image = Image.getInstance("src\\images\\logologinsmaller.png");
             image.scaleAbsolute(70f, 70f);
             image.setAlignment(Element.ALIGN_CENTER);
             Paragraph title = new Paragraph();
+            title.setFont(vn);
             title.add(image);
             title.add("\nGiấy xác nhận hoãn nghĩa vụ quân sự");
-            title.setFont(new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD));
             title.setAlignment(Element.ALIGN_CENTER);
             title.setSpacingAfter(20f);
             document.add(title);
@@ -99,15 +104,15 @@ public class testExportPDF {
             table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
             table.getDefaultCell().setBorderWidth(0);
 
-            Font font = FontFactory.getFont("DejaVu Sans", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            table.addCell(new Phrase("Họ và tên:", font));
-            table.addCell(new Phrase(sv.getHoTen(), font));
-            table.addCell(new Phrase("MSSV:", font));
-            table.addCell(new Phrase(sv.getMaSV(), font));
-            table.addCell(new Phrase("CCCD", font));
-            table.addCell(new Phrase(sv.getCmnd(), font));
-            table.addCell(new Phrase("SoDienThoai", font));
-            table.addCell(new Phrase(sv.getSoDienThoai(), font));
+//            Font font = FontFactory.getFont("DejaVu Sans", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            table.addCell(new Phrase("Họ và tên:", vn));
+            table.addCell(new Phrase(sv.getHoTen(), vn));
+            table.addCell(new Phrase("MSSV:", vn));
+            table.addCell(new Phrase(sv.getMaSV(), vn));
+            table.addCell(new Phrase("CCCD", vn));
+            table.addCell(new Phrase(sv.getCmnd(), vn));
+            table.addCell(new Phrase("SoDienThoai", vn));
+            table.addCell(new Phrase(sv.getSoDienThoai(), vn));
 
             document.add(table);
             document.close();
