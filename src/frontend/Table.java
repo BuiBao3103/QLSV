@@ -7,6 +7,7 @@ package frontend;
 import backend.KetQua.KetQuaBUS;
 import backend.Nhom.NhomBUS;
 import backend.QLSinhVien.*;
+import backend.QLTaiKhoan.TaiKhoan;
 import frontend.mainPanel.SubjectRegistration;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -94,13 +95,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jLabel9 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        oldPassword = new javax.swing.JPasswordField();
         jPanel10 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        newPassword = new javax.swing.JPasswordField();
         jPanel9 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        cfmnewPassword = new javax.swing.JPasswordField();
+        savePassword = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Manager");
@@ -720,7 +722,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(474, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -733,8 +735,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel22.setText("Nhập mật khẩu cũ");
 
-        jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField7.setText("jTextField7");
+        oldPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -743,14 +744,14 @@ public class Table extends javax.swing.JFrame implements Runnable {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(jLabel22)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jTextField7)
+            .addComponent(oldPassword)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(oldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
@@ -759,8 +760,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel24.setText("Nhập mật khẩu mới");
 
-        jTextField9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField9.setText("jTextField7");
+        newPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        newPassword.setToolTipText("");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -769,15 +770,15 @@ public class Table extends javax.swing.JFrame implements Runnable {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jLabel24)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jTextField9)
+            .addComponent(newPassword)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jLabel24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel9.setOpaque(false);
@@ -785,35 +786,52 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel23.setText("Xác nhận lại mật khẩu mới");
 
-        jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField8.setText("jTextField7");
+        cfmnewPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel23)
-            .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(jLabel23)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(cfmnewPassword)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addComponent(cfmnewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        savePassword.setBackground(new java.awt.Color(0, 158, 248));
+        savePassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        savePassword.setForeground(new java.awt.Color(255, 255, 255));
+        savePassword.setText("Lưu");
+        savePassword.setContentAreaFilled(false);
+        savePassword.setOpaque(true);
+        savePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savePasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(1, 1, 1))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(savePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -825,7 +843,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 413, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addComponent(savePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout changeFrameLayout = new javax.swing.GroupLayout(changeFrame);
@@ -840,7 +860,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         changeFrameLayout.setVerticalGroup(
             changeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout settingsLayout = new javax.swing.GroupLayout(settings);
@@ -1171,6 +1191,13 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnSetting.setBackground(yellow);
         currentBtn = btnSetting;
     }//GEN-LAST:event_btnSettingMouseClicked
+
+    private void savePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePasswordActionPerformed
+        String oldpwd = oldPassword.getText();
+        String newpwd = newPassword.getText();
+        String cfm = cfmnewPassword.getText();
+        
+    }//GEN-LAST:event_savePasswordActionPerformed
     // ------------------------------------------------------------------------------------------------------------------------------
 
     private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_openMenuActionPerformed
@@ -1384,6 +1411,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnTool;
     private javax.swing.JRadioButton btnWindow;
     private javax.swing.JRadioButton btnWindowClassic;
+    private javax.swing.JPasswordField cfmnewPassword;
     private javax.swing.JPanel changeFrame;
     private javax.swing.JButton closeMenu;
     private javax.swing.JPanel header;
@@ -1402,13 +1430,13 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel leftBar;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPasswordField newPassword;
+    private javax.swing.JPasswordField oldPassword;
     private javax.swing.JButton openMenu;
     private javax.swing.JLabel realTime;
+    private javax.swing.JButton savePassword;
     private javax.swing.JPanel settings;
     // End of variables declaration//GEN-END:variables
 

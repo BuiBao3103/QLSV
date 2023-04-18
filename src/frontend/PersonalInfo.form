@@ -48,7 +48,7 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="jPanel1 = new RoundedPanel(20,new Color(0,158,248));"/>
+        <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="jPanel1 = new RoundedPanel(9999,new Color(0,158,248));"/>
       </AuxValues>
 
       <Layout>
@@ -282,7 +282,7 @@
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jPanel2  = new RoundedPanel(15,new Color(255,188,0));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jPanel2  = new RoundedPanel(9999,new Color(255,188,0));"/>
       </AuxValues>
 
       <Layout>
@@ -574,7 +574,7 @@
     </Container>
     <Container class="javax.swing.JPanel" name="panelPT">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="panelPT = new RoundedPanel(15, new Color(0, 158, 248));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="panelPT = new RoundedPanel(9999, new Color(0, 158, 248));"/>
       </AuxValues>
 
       <Layout>

@@ -176,7 +176,7 @@ public class PersonalInfo extends javax.swing.JPanel {
             .addComponent(txtGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel1 = new RoundedPanel(20,new Color(0,158,248));
+        jPanel1 = new RoundedPanel(9999,new Color(0,158,248));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -205,7 +205,7 @@ public class PersonalInfo extends javax.swing.JPanel {
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
-        jPanel2  = new RoundedPanel(15,new Color(255,188,0));
+        jPanel2  = new RoundedPanel(9999,new Color(255,188,0));
 
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel12.setPreferredSize(new java.awt.Dimension(578, 50));
@@ -369,7 +369,7 @@ public class PersonalInfo extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelPT = new RoundedPanel(15, new Color(0, 158, 248));
+        panelPT = new RoundedPanel(9999, new Color(0, 158, 248));
 
         panel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -579,11 +579,11 @@ public class PersonalInfo extends javax.swing.JPanel {
     }
 
     public JLabel getTxtSDT() {
-        return jSDT;
+        return txtSdt;
     }
 
     public void setTxtSDT(JLabel txtSDT) {
-        this.jSDT = txtSDT;
+        this.txtSdt = txtSDT;
     }
 
     public JLabel getTxtTonGiao() {
