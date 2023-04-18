@@ -31,7 +31,7 @@ public class TaiKhoanDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            ConnectionDB.closeConnection(con,pstm);
+            ConnectionDB.closeConnection(con, pstm);
         }
         return dstk;//+
     }
@@ -72,7 +72,7 @@ public class TaiKhoanDAO {
             pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con,pstm);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
@@ -90,7 +90,21 @@ public class TaiKhoanDAO {
             pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con,pstm);
+            ConnectionDB.closeConnection(con, pstm);
+        }
+    }
+
+    public void updatePwd(int maTK, TaiKhoan tk) {
+        con = ConnectionDB.getConnection();
+
+        try {
+            String query = "UPDATE TaiKhoan SET MatKhau = ? WHERE maTK=?";//+
+            pstm = con.prepareStatement(query);
+            pstm.setString(3, tk.getMatKhau());//+
+            pstm.executeQuery();
+        } catch (SQLException e) {
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
@@ -104,7 +118,7 @@ public class TaiKhoanDAO {
             pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con,pstm);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 // ---------------------------------------------kiem tra cac ham-----------------------------------------------

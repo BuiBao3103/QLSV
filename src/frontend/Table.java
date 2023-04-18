@@ -8,6 +8,7 @@ import backend.KetQua.KetQuaBUS;
 import backend.Nhom.NhomBUS;
 import backend.QLSinhVien.*;
 import backend.QLTaiKhoan.TaiKhoan;
+import backend.QLTaiKhoan.TaiKhoanBUS;
 import frontend.mainPanel.SubjectRegistration;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -1193,10 +1194,20 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnSettingMouseClicked
 
     private void savePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePasswordActionPerformed
+        String curpwd = TaiKhoanBUS.getPassword();
+        System.out.println(curpwd);
         String oldpwd = oldPassword.getText();
         String newpwd = newPassword.getText();
         String cfm = cfmnewPassword.getText();
-        
+        if (oldpwd.isEmpty() || newpwd.isEmpty() || cfm.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng điền đầy đủ thông tin!");
+        }
+        if (!oldpwd.equals(curpwd)) {
+            JOptionPane.showMessageDialog(rootPane, "Mật khẩu cũ không đúng.Vui lòng nhập lại");
+        }
+        if (!newpwd.equals(cfm)) {
+            JOptionPane.showMessageDialog(rootPane, "Mật khẩu xác nhận và mật khẩu mới không đúng.Vui lòng nhập lại");
+        }
     }//GEN-LAST:event_savePasswordActionPerformed
     // ------------------------------------------------------------------------------------------------------------------------------
 
@@ -1305,6 +1316,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         }
     }
+
     public static void main(String args[]) {
 //        javax.swing.plaf.nimbus.NimbusLookAndFeel
 //com.sun.java.swing.plaf.windows.WindowsLookAndFeel
@@ -1370,7 +1382,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             cornerRadius = radius;
             backgroundColor = bgColor;
         }
-        
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
