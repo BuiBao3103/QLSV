@@ -973,7 +973,7 @@ public class SinhVienBUS {
         return true;
     }
 
-    // Viết cho file péonnallnfo
+    // Viết cho file personallnfo
     public void pesronnalInfor(PersonalInfo p) {
         SinhVien sv = (new SinhVienDAO()).getByMaSV(TaiKhoanBUS.curentLogin.getTenTaiKhoan()).get(0);
         Nganh n = NganhBUS.getNganhByID(sv.getMaNganh());
@@ -986,7 +986,7 @@ public class SinhVienBUS {
         p.getTxtTonGiao().setText(sv.getTonGiao());
         p.getTxtLop().setText(sv.getMaLop());
         p.getTxtNgaySinh().setText(String.valueOf(sv.getNgaySinh()));
-        p.getTxtNienKhoa().setText(sv.getDiaChi());
+        p.getTxtDiaChi().setText(sv.getDiaChi());
 //        p.getTxtDanToc().setText(sv.getDanToc());
         p.getTxtSDT().setText(sv.getSoDienThoai());
         p.getTxtNienKhoa().setText(sv.getNienKhoa());
