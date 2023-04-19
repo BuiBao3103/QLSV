@@ -81,7 +81,14 @@ public class KhoaDAO {
 
         }
     }
-
+//    public void getTenKhoa(String maSV){
+//        con = ConnectionDB.getConnection();
+//        try{
+//            String query = "SELECT TenKhoa FROM SinhVien JOIN Khoa ON SinhVien.MaKhoa = Khoa.MaKhoa WHERE SinhVien.MaSV = ?";
+//        }
+//    }
+    
+    
 //    public static void main(String[] args) {
 //        KhoaDAO khd = new KhoaDAO();
 ////        ArrayList<Khoa> dskhoa=  khd.get();

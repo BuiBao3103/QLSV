@@ -6,6 +6,7 @@ package backend.Khoa;
 
 import backend.Nganh.Nganh;
 import backend.Nganh.NganhBUS;
+import backend.QLSinhVien.SinhVien;
 import java.util.ArrayList;
 
 /**

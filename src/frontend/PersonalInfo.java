@@ -4,6 +4,10 @@
  */
 package frontend;
 
+import backend.Excel.ExportPDF;
+import backend.QLSinhVien.SinhVienBUS;
+import backend.QLSinhVien.SinhVienDAO;
+import backend.QLTaiKhoan.TaiKhoanBUS;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -11,6 +15,7 @@ import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -480,6 +485,11 @@ public class PersonalInfo extends javax.swing.JPanel {
         btnPrint.setToolTipText("PDF File");
         btnPrint.setContentAreaFilled(false);
         btnPrint.setOpaque(true);
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel1.setText("In giấy hoãn Nghĩa Vụ Quân Sự");
@@ -523,6 +533,17 @@ public class PersonalInfo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+
+        try {
+            ExportPDF.generatePDF(TaiKhoanBUS.curentLogin.getTenTaiKhoan(), (new SinhVienDAO()).getByMaSV(TaiKhoanBUS.curentLogin.getTenTaiKhoan()).get(0));
+            JOptionPane.showMessageDialog(null, "Tạo file PDF thành công.Vui lòng vào folder res để nhận!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Xuất file  PDF thất bại: ");
+        }
+
+    }//GEN-LAST:event_btnPrintActionPerformed
+
     public JLabel getTxtCCCD() {
         return txtCCCD;
     }
@@ -538,7 +559,6 @@ public class PersonalInfo extends javax.swing.JPanel {
 //    public void setTxtDanToc(JLabel txtDanToc) {
 //        this.txtDanToc = txtDanToc;
 //    }
-
     public JLabel getTxtDiaChi() {
         return txtDiaChi;
     }
