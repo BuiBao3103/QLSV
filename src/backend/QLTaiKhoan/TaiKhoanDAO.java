@@ -3,6 +3,7 @@ package backend.QLTaiKhoan;
 import connectDB.ConnectionDB;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class TaiKhoanDAO {
 
@@ -104,7 +105,7 @@ public class TaiKhoanDAO {
             pstm.executeUpdate();
             int rowsUpdated = pstm.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("Password updated successfully");
+                System.out.println("Password updated successfully"); 
             } else {
                 System.out.println("Failed to update password");
             }

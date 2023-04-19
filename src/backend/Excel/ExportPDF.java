@@ -154,62 +154,62 @@ public class ExportPDF {
             table.getDefaultCell().setBorderWidth(0);
             PdfPCell cell1 = new PdfPCell(new Phrase("Họ và tên:", vn));
             cell1.setBorderWidth(0);
-            cell1.setPaddingTop(topMargin);
-            cell1.setPaddingBottom(bottomMargin);
+            cell1.setPaddingTop(7f);
+            cell1.setPaddingBottom(7f);
             table.addCell(cell1);
 
             PdfPCell cell2 = new PdfPCell(new Phrase(sv.getHoTen(), vn));
             cell2.setBorderWidth(0);
-            cell2.setPaddingTop(topMargin);
-            cell2.setPaddingBottom(bottomMargin);
+            cell2.setPaddingTop(7f);
+            cell2.setPaddingBottom(7f);
             table.addCell(cell2);
 
             PdfPCell cell3 = new PdfPCell(new Phrase("MSSV:", vn));
             cell3.setBorderWidth(0);
-            cell3.setPaddingTop(topMargin);
-            cell3.setPaddingBottom(bottomMargin);
+            cell3.setPaddingTop(7f);
+            cell3.setPaddingBottom(7f);
             table.addCell(cell3);
 
             PdfPCell cell4 = new PdfPCell(new Phrase(sv.getMaSV(), vn));
             cell4.setBorderWidth(0);
-            cell4.setPaddingTop(topMargin);
-            cell4.setPaddingBottom(bottomMargin);
+            cell4.setPaddingTop(7f);
+            cell4.setPaddingBottom(7f);
             table.addCell(cell4);
 
             PdfPCell cell5 = new PdfPCell(new Phrase("CCCD:", vn));
             cell5.setBorderWidth(0);
-            cell5.setPaddingTop(topMargin);
-            cell5.setPaddingBottom(bottomMargin);
+            cell5.setPaddingTop(7f);
+            cell5.setPaddingBottom(7f);
             table.addCell(cell5);
 
             PdfPCell cell6 = new PdfPCell(new Phrase(sv.getCmnd(), vn));
             cell6.setBorderWidth(0);
-            cell6.setPaddingTop(topMargin);
-            cell6.setPaddingBottom(bottomMargin);
+            cell6.setPaddingTop(7f);
+            cell6.setPaddingBottom(7f);
             table.addCell(cell6);
 
             PdfPCell cell7 = new PdfPCell(new Phrase("Số điện thoại:", vn));
             cell7.setBorderWidth(0);
-            cell7.setPaddingTop(topMargin);
-            cell7.setPaddingBottom(bottomMargin);
+            cell7.setPaddingTop(7f);
+            cell7.setPaddingBottom(7f);
             table.addCell(cell7);
 
             PdfPCell cell8 = new PdfPCell(new Phrase(sv.getSoDienThoai(), vn));
             cell8.setBorderWidth(0);
-            cell8.setPaddingTop(topMargin);
-            cell8.setPaddingBottom(bottomMargin);
+            cell8.setPaddingTop(7f);
+            cell8.setPaddingBottom(7f);
             table.addCell(cell8);
 
             PdfPCell cell9 = new PdfPCell(new Phrase("Niên khóa:", vn));
             cell9.setBorderWidth(0);
-            cell9.setPaddingTop(topMargin);
-            cell9.setPaddingBottom(bottomMargin);
+            cell9.setPaddingTop(7f);
+            cell9.setPaddingBottom(7f);
             table.addCell(cell9);
 
             PdfPCell cell10 = new PdfPCell(new Phrase(sv.getNienKhoa(), vn));
             cell10.setBorderWidth(0);
-            cell10.setPaddingTop(topMargin);
-            cell10.setPaddingBottom(bottomMargin);
+            cell10.setPaddingTop(7f);
+            cell10.setPaddingBottom(7f);
             table.addCell(cell10);
             document.add(table);
 

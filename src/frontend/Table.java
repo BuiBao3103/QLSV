@@ -104,7 +104,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jPanel9 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         cfmnewPassword = new javax.swing.JPasswordField();
-        savePassword = new javax.swing.JButton();
+        button1 = new component.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Manager");
@@ -808,15 +808,13 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        savePassword.setBackground(new java.awt.Color(0, 158, 248));
-        savePassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        savePassword.setForeground(new java.awt.Color(255, 255, 255));
-        savePassword.setText("Lưu");
-        savePassword.setContentAreaFilled(false);
-        savePassword.setOpaque(true);
-        savePassword.addActionListener(new java.awt.event.ActionListener() {
+        button1.setBackground(new java.awt.Color(0, 158, 248));
+        button1.setForeground(new java.awt.Color(255, 255, 255));
+        button1.setText("Lưu");
+        button1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savePasswordActionPerformed(evt);
+                button1ActionPerformed(evt);
             }
         });
 
@@ -831,7 +829,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(savePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -845,8 +843,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(savePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -1194,7 +1192,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         currentBtn = btnSetting;
     }//GEN-LAST:event_btnSettingMouseClicked
 
-    private void savePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePasswordActionPerformed
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         int curUser = TaiKhoanBUS.curentLogin.getMaTK();
         String curPwd = TaiKhoanBUS.curentLogin.getMatKhau();
         String oldPwd = oldPassword.getText();
@@ -1212,9 +1210,15 @@ public class Table extends javax.swing.JFrame implements Runnable {
             JOptionPane.showMessageDialog(rootPane, "Mật khẩu xác nhận và mật khẩu mới không đúng.Vui lòng nhập lại");
             return;
         }
-       TaiKhoanDAO tknew = new TaiKhoanDAO();
-       tknew.updatePwd(curUser, newPwd);
-    }//GEN-LAST:event_savePasswordActionPerformed
+        try {
+            TaiKhoanDAO tknew = new TaiKhoanDAO();
+            tknew.updatePwd(curUser, newPwd);
+            JOptionPane.showMessageDialog(rootPane, "Thay đổi mật khẩu thành công!!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Thay đổi mật khẩu thất bại!!");
+
+        }
+    }//GEN-LAST:event_button1ActionPerformed
     // ------------------------------------------------------------------------------------------------------------------------------
 
     private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_openMenuActionPerformed
@@ -1429,6 +1433,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnTool;
     private javax.swing.JRadioButton btnWindow;
     private javax.swing.JRadioButton btnWindowClassic;
+    private component.Button button1;
     private javax.swing.JPasswordField cfmnewPassword;
     private javax.swing.JPanel changeFrame;
     private javax.swing.JButton closeMenu;
@@ -1454,7 +1459,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPasswordField oldPassword;
     private javax.swing.JButton openMenu;
     private javax.swing.JLabel realTime;
-    private javax.swing.JButton savePassword;
     private javax.swing.JPanel settings;
     // End of variables declaration//GEN-END:variables
 

@@ -79,8 +79,8 @@ public class PersonalInfo extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         txtNgaySinh = new javax.swing.JLabel();
         jNgaySinh = new javax.swing.JLabel();
-        btnPrint = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        button1 = new component.Button();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setPreferredSize(new java.awt.Dimension(578, 50));
@@ -478,21 +478,18 @@ public class PersonalInfo extends javax.swing.JPanel {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        btnPrint.setBackground(new java.awt.Color(0, 158, 248));
-        btnPrint.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnPrint.setForeground(new java.awt.Color(255, 255, 255));
-        btnPrint.setText("In");
-        btnPrint.setToolTipText("PDF File");
-        btnPrint.setContentAreaFilled(false);
-        btnPrint.setOpaque(true);
-        btnPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel1.setText("In giấy hoãn Nghĩa Vụ Quân Sự");
+
+        button1.setBackground(new java.awt.Color(0, 158, 248));
+        button1.setForeground(new java.awt.Color(255, 255, 255));
+        button1.setText("In PDF");
+        button1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -510,8 +507,8 @@ public class PersonalInfo extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -528,13 +525,12 @@ public class PersonalInfo extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         try {
             ExportPDF.generatePDF(TaiKhoanBUS.curentLogin.getTenTaiKhoan(), (new SinhVienDAO()).getByMaSV(TaiKhoanBUS.curentLogin.getTenTaiKhoan()).get(0));
             JOptionPane.showMessageDialog(null, "Tạo file PDF thành công.Vui lòng vào folder res để nhận!");
@@ -542,7 +538,7 @@ public class PersonalInfo extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Xuất file  PDF thất bại: ");
         }
 
-    }//GEN-LAST:event_btnPrintActionPerformed
+    }//GEN-LAST:event_button1ActionPerformed
 
     public JLabel getTxtCCCD() {
         return txtCCCD;
@@ -704,7 +700,7 @@ public class PersonalInfo extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPrint;
+    private component.Button button1;
     private javax.swing.JLabel jCCCD;
     private javax.swing.JLabel jCoVan;
     private javax.swing.JLabel jDiaChi;
