@@ -4,8 +4,10 @@
  */
 package frontend;
 
+import backend.KetQua.KetQuaBUS;
 import java.awt.Color;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -19,6 +21,14 @@ public class Score extends javax.swing.JPanel {
 
     public void setjTable2(JTable jTable2) {
         this.table = jTable2;
+    }
+
+    public JTextField getTxtSearch() {
+        return txtSearch;
+    }
+
+    public void setTxtSearch(JTextField txtSearch) {
+        this.txtSearch = txtSearch;
     }
 
     /**
@@ -47,7 +57,7 @@ public class Score extends javax.swing.JPanel {
         jLabel25 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         btnXem = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -120,14 +130,14 @@ public class Score extends javax.swing.JPanel {
         jLabel26.setText("Nhập học kỳ xem điểm thi (VD 20221)");
         jPanel5.add(jLabel26);
 
-        jTextField1.setMinimumSize(new java.awt.Dimension(100, 22));
-        jTextField1.setPreferredSize(new java.awt.Dimension(100, 22));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtSearch.setMinimumSize(new java.awt.Dimension(100, 22));
+        txtSearch.setPreferredSize(new java.awt.Dimension(100, 22));
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtSearchActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField1);
+        jPanel5.add(txtSearch);
 
         btnXem.setBackground(new java.awt.Color(0, 158, 248));
         btnXem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -362,12 +372,14 @@ public class Score extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     private void btnXemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemActionPerformed
-        // TODO add your handling code here:
+      KetQuaBUS kq = new KetQuaBUS();
+      kq.Search(this);
+      getTxtSearch().setText("");
     }//GEN-LAST:event_btnXemActionPerformed
 
     private void btnXemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXemMouseEntered
@@ -406,8 +418,8 @@ public class Score extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel score;
     private javax.swing.JTable table;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
