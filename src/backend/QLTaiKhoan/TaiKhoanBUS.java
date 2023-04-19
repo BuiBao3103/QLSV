@@ -65,6 +65,14 @@ public class TaiKhoanBUS {
         return -1;
     }
 
+    public static String getPassword() {
+        if (curentLogin != null) {
+            return curentLogin.getMatKhau();
+        } else {
+            return null;
+        }
+    }
+
     public void phanQuyen(ArrayList<String> dsq) {
         Table table = new Table();
         table.setVisible(true);

@@ -31,7 +31,7 @@ public class TaiKhoanDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            ConnectionDB.closeConnection(con,pstm);
+            ConnectionDB.closeConnection(con, pstm);
         }
         return dstk;//+
     }
@@ -72,7 +72,7 @@ public class TaiKhoanDAO {
             pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con,pstm);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
@@ -90,7 +90,28 @@ public class TaiKhoanDAO {
             pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con,pstm);
+            ConnectionDB.closeConnection(con, pstm);
+        }
+    }
+
+    public void updatePwd(int maTK, String newPwd) {
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "UPDATE TaiKhoan SET MatKhau = ? WHERE maTK = ?";
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, newPwd);
+            pstm.setInt(2, maTK);
+            pstm.executeUpdate();
+            int rowsUpdated = pstm.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Password updated successfully");
+            } else {
+                System.out.println("Failed to update password");
+            }
+        } catch (SQLException e) {
+            // handle the exception appropriately
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 
@@ -104,7 +125,7 @@ public class TaiKhoanDAO {
             pstm.executeQuery();
         } catch (SQLException e) {
         } finally {
-            ConnectionDB.closeConnection(con,pstm);
+            ConnectionDB.closeConnection(con, pstm);
         }
     }
 // ---------------------------------------------kiem tra cac ham-----------------------------------------------

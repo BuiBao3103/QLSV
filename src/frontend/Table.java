@@ -8,6 +8,8 @@ import backend.KetQua.KetQuaBUS;
 import backend.Nhom.NhomBUS;
 import backend.QLSinhVien.*;
 import backend.QLTaiKhoan.TaiKhoan;
+import backend.QLTaiKhoan.TaiKhoanBUS;
+import backend.QLTaiKhoan.TaiKhoanDAO;
 import frontend.mainPanel.SubjectRegistration;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -923,7 +925,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // và nó sẽ gọi thèn layout parent tính toán lại kích thước
         // Có lẽ sẽ phù hợp cho responsive
         mainPanel.revalidate();
-        new KetQuaBUS().addRowData(score.getjTable2());
+        new KetQuaBUS().addRowData(score.getjTable2(),2022,2);
 
     }// GEN-LAST:event_btnScoreActionPerformed
 
@@ -1193,10 +1195,25 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnSettingMouseClicked
 
     private void savePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePasswordActionPerformed
-        String oldpwd = oldPassword.getText();
-        String newpwd = newPassword.getText();
-        String cfm = cfmnewPassword.getText();
-        
+        int curUser = TaiKhoanBUS.curentLogin.getMaTK();
+        String curPwd = TaiKhoanBUS.curentLogin.getMatKhau();
+        String oldPwd = oldPassword.getText();
+        String newPwd = newPassword.getText();
+        String cfmPwd = cfmnewPassword.getText();
+        if (oldPwd.isEmpty() || newPwd.isEmpty() || cfmPwd.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng điền đầy đủ thông tin!");
+            return;
+        }
+        if (!oldPwd.equals(curPwd)) {
+            JOptionPane.showMessageDialog(rootPane, "Mật khẩu cũ không đúng.Vui lòng nhập lại");
+            return;
+        }
+        if (!newPwd.equals(cfmPwd)) {
+            JOptionPane.showMessageDialog(rootPane, "Mật khẩu xác nhận và mật khẩu mới không đúng.Vui lòng nhập lại");
+            return;
+        }
+       TaiKhoanDAO tknew = new TaiKhoanDAO();
+       tknew.updatePwd(curUser, newPwd);
     }//GEN-LAST:event_savePasswordActionPerformed
     // ------------------------------------------------------------------------------------------------------------------------------
 
@@ -1305,6 +1322,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         }
     }
+
     public static void main(String args[]) {
 //        javax.swing.plaf.nimbus.NimbusLookAndFeel
 //com.sun.java.swing.plaf.windows.WindowsLookAndFeel
@@ -1370,7 +1388,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             cornerRadius = radius;
             backgroundColor = bgColor;
         }
-        
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
