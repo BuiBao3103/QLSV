@@ -9,6 +9,7 @@ import backend.Nhom.NhomBUS;
 import backend.QLSinhVien.*;
 import backend.QLTaiKhoan.TaiKhoan;
 import backend.QLTaiKhoan.TaiKhoanBUS;
+import backend.QLTaiKhoan.TaiKhoanDAO;
 import frontend.mainPanel.SubjectRegistration;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -1194,20 +1195,25 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnSettingMouseClicked
 
     private void savePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePasswordActionPerformed
-        String curpwd = TaiKhoanBUS.getPassword();
-        System.out.println(curpwd);
-        String oldpwd = oldPassword.getText();
-        String newpwd = newPassword.getText();
-        String cfm = cfmnewPassword.getText();
-        if (oldpwd.isEmpty() || newpwd.isEmpty() || cfm.isEmpty()) {
+        int curUser = TaiKhoanBUS.curentLogin.getMaTK();
+        String curPwd = TaiKhoanBUS.curentLogin.getMatKhau();
+        String oldPwd = oldPassword.getText();
+        String newPwd = newPassword.getText();
+        String cfmPwd = cfmnewPassword.getText();
+        if (oldPwd.isEmpty() || newPwd.isEmpty() || cfmPwd.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng điền đầy đủ thông tin!");
+            return;
         }
-        if (!oldpwd.equals(curpwd)) {
+        if (!oldPwd.equals(curPwd)) {
             JOptionPane.showMessageDialog(rootPane, "Mật khẩu cũ không đúng.Vui lòng nhập lại");
+            return;
         }
-        if (!newpwd.equals(cfm)) {
+        if (!newPwd.equals(cfmPwd)) {
             JOptionPane.showMessageDialog(rootPane, "Mật khẩu xác nhận và mật khẩu mới không đúng.Vui lòng nhập lại");
+            return;
         }
+       TaiKhoanDAO tknew = new TaiKhoanDAO();
+       tknew.updatePwd(curUser, newPwd);
     }//GEN-LAST:event_savePasswordActionPerformed
     // ------------------------------------------------------------------------------------------------------------------------------
 
