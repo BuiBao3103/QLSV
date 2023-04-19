@@ -993,22 +993,10 @@ public class SinhVienBUS {
         p.getTxtNganh().setText(n.getTenNganh());
         p.getTxtCoVan().setText(gv.getTenGV());
     }
-
     //----------------------------------------Kết thúc phần kiểm tra thông tin-------------------------------------------------------------------------------------------
     public static void main(String[] args) {
-//        svDAO.get().forEach(sv -> {
-//            System.out.println(sv.toString());
-//        });
-//                SimpleDateFormat dateForMatKhau = new SimpleDateFormat("yyyyMMdd");
-//        for (SinhVien sv : svDAO.get()) {
-//            System.out.println(dateForMatKhau.format(sv.getNgaySinh()));
-//        }
-////        svDAO.get();
-//    String x = "DCT1234";
-//    System.out.println(x.substring(4, 6));
-//        System.out.println(x.endsWith("9"));
-//        System.out.println(new LopDAO().GiangVienForNewLop());
-
+//        SinhVien sv = (new SinhVienDAO()).getByMaSV(TaiKhoanBUS.curentLogin.getTenTaiKhoan()).get(0);
+//        System.out.println(sv);
     }
     
 }
