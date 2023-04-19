@@ -924,7 +924,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // và nó sẽ gọi thèn layout parent tính toán lại kích thước
         // Có lẽ sẽ phù hợp cho responsive
         mainPanel.revalidate();
-        new KetQuaBUS().addRowData(score.getjTable2());
+        new KetQuaBUS().addRowData(score.getjTable2(),2022,2);
 
     }// GEN-LAST:event_btnScoreActionPerformed
 
