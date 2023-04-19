@@ -49,8 +49,7 @@ public class StudentInfor extends javax.swing.JPanel {
     public void setBtnXoaLoc(JButton btnXoaLoc) {
         this.btnXoaLoc = btnXoaLoc;
     }
-    
-    
+
     public int getNumberOfSinhVienPage() {
         return numberOfSinhVienPage;
     }
@@ -70,8 +69,8 @@ public class StudentInfor extends javax.swing.JPanel {
     public String getTxtPresentPage() {
         return txtPresentPage.getText();
     }
-    
-    public JTextField getObTxtPresentPage(){
+
+    public JTextField getObTxtPresentPage() {
         return txtPresentPage;
     }
 
@@ -664,6 +663,11 @@ public class StudentInfor extends javax.swing.JPanel {
         cbNganhSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbNganhSinhVien.setEnabled(false);
         cbNganhSinhVien.setNextFocusableComponent(btnLuuSinhVien);
+        cbNganhSinhVien.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbNganhSinhVienItemStateChanged(evt);
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1013,7 +1017,7 @@ public class StudentInfor extends javax.swing.JPanel {
         if (SinhVienBUS.checkStudentInfor(this, svMoi).equals("")) {
             if (btnSuaSinhVien.isVisible()) {   // cái này là lưu khi sinh viên được sửa
                 SinhVienBUS.updateSinhVienToServer(this, svCu, svMoi);
-                
+
             } else {           // cái này lưu khi sinh viên được thêm
                 SinhVienBUS.addSinhVienToServer(this, svMoi);
             }
@@ -1070,9 +1074,9 @@ public class StudentInfor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnKhoiPhucSinhVienActionPerformed
 
     private void txtPresentPageCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtPresentPageCaretUpdate
-        try{
+        try {
             Integer.valueOf(txtPresentPage.getText());
-        }catch(Exception e){
+        } catch (Exception e) {
             return;
         }
         if (cbTrangThaiSinhVien.getSelectedIndex() == 0) { // trạng thái hoạt động
@@ -1106,7 +1110,7 @@ public class StudentInfor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNextPageActionPerformed
 
     private void btnXoaLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLocActionPerformed
-        SinhVienBUS.showStudentList(this,1); //hiện 20 sinh viên trang 1
+        SinhVienBUS.showStudentList(this, 1); //hiện 20 sinh viên trang 1
         txtPresentPage.setText("1");
         SinhVienBUS.btnXoaLocOnClick(this);
     }//GEN-LAST:event_btnXoaLocActionPerformed
@@ -1114,6 +1118,16 @@ public class StudentInfor extends javax.swing.JPanel {
     private void txtPresentPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPresentPageActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPresentPageActionPerformed
+
+    private void cbNganhSinhVienItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbNganhSinhVienItemStateChanged
+        if (!SinhVienBUS.checkNganh(cbNganhSinhVien.getSelectedItem().toString())) {
+            String maLop = SinhVienBUS.autoCompleteLop(SinhVienBUS.tenNganhToMaNganh(cbNganhSinhVien.getSelectedItem().toString())); // cái này sẽ cập nhật lại lớp mỗi lần thay đổi ngành
+            txtLopSinhVien.setText(maLop);
+        } else {
+            String maLop = SinhVienBUS.autoCompleteLop(SinhVienBUS.tenNganhToMaNganh(cbNganhSinhVien.getSelectedItem().toString())); // cái này sẽ cập nhật lại lớp mỗi lần thay đổi ngành
+            txtLopSinhVien.setText(maLop);
+        }
+    }//GEN-LAST:event_cbNganhSinhVienItemStateChanged
 //    public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
 //        cbNganhSinhVien.removeAllItems();
 //        for (String i : dsTenNganh) {

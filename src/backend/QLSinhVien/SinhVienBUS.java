@@ -548,7 +548,7 @@ public class SinhVienBUS {
         // kiểm tra ngày sinh
         if(!checkNgaySinh(dateFormat.format(svMoi.getNgaySinh()))){
             if(!checkValidNgay(dateFormat.format(svMoi.getNgaySinh()))){ // ngày đúng dạng mà không tồn tại vd: 30/02
-                message+= "Ngày sinh không hợp lệ (18->99 tuổi, ngày phải tồn tại)\n";
+                message+= "Ngày sinh không hợp lệ (yyyy-mm-dd, 18->99 tuổi, ngày phải tồn tại)\n";
             }
             else{ // ngày chưa đúng định dạng yyyy-mm-dd
                 message+= "Ngày sinh có dạng yyyy-mm-dd vd:2003-21-07\n";
