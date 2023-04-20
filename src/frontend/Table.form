@@ -446,9 +446,9 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/icons/icons8-user-menu-male-30.png"/>
+                      <Image iconType="3" name="/images/icons/icons8-cat-30.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xed; t&#xe0;i kho&#x1ea3;n"/>
+                    <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xed; n&#x103;m h&#x1ecd;c"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -484,9 +484,9 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/icons/icons8-cat-30.png"/>
+                      <Image iconType="3" name="/images/icons/icons8-signal-30.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xed; n&#x103;m h&#x1ecd;c"/>
+                    <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="0" left="15" right="0" top="0"/>
@@ -506,6 +506,7 @@
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnScholasticMouseClicked"/>
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnScholasticMouseEntered"/>
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnScholasticMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnScholasticActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnTool">
