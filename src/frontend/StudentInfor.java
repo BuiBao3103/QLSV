@@ -21,7 +21,17 @@ public class StudentInfor extends javax.swing.JPanel {
     private SinhVien svCu = new SinhVien();
     private int numberOfSinhVienPage = (int) Math.ceil(SinhVienBUS.soLuongSinhVien / SinhVienBUS.soLuongSinhVienMotTrang); // làm tròn lên để có số trang cần
     private int numberOfDeletedSinhVienPage = (int) Math.ceil(SinhVienBUS.soLuongSinhVienBiXoa / SinhVienBUS.soLuongSinhVienMotTrang); // làm tròn lên để có số trang cần
-
+    
+    // mấy cái biến này lưu thông tin lọc khi chuyển qua lại của cái cbTimKiemSinhVien
+    private String thuocTinhTimKiem = "Tên"; // cái này là tên của giá trị cần tìm, mặc định là Tên
+    private String timKiemTen = "";   // cái này là giá trị
+    private String timKiemMSSV = "";
+    private String timKiemNganh = "";
+    private String timKiemLop = "";
+    private String timKiemGioiTinh = "";
+    private String timKiemNamSinh = "";
+    private String timKiemKhoa = "";
+    //----------------------------------------------
     public StudentInfor() {
         initComponents();
     }
@@ -77,6 +87,73 @@ public class StudentInfor extends javax.swing.JPanel {
     public void setTxtPresentPage(JTextField txtPresentPage) {
         this.txtPresentPage = txtPresentPage;
     }
+
+    public String getThuocTinhTimKiem() {
+        return thuocTinhTimKiem;
+    }
+
+    public void setThuocTinhTimKiem(String thuocTinhTimKiem) {
+        this.thuocTinhTimKiem = thuocTinhTimKiem;
+    }
+
+    
+
+    public String getTimKiemTen() {
+        return timKiemTen;
+    }
+
+    public void setTimKiemTen(String timKiemTen) {
+        this.timKiemTen = timKiemTen;
+    }
+
+    public String getTimKiemMSSV() {
+        return timKiemMSSV;
+    }
+
+    public void setTimKiemMSSV(String timKiemMSSV) {
+        this.timKiemMSSV = timKiemMSSV;
+    }
+
+    public String getTimKiemNganh() {
+        return timKiemNganh;
+    }
+
+    public void setTimKiemNganh(String timKiemNganh) {
+        this.timKiemNganh = timKiemNganh;
+    }
+
+    public String getTimKiemLop() {
+        return timKiemLop;
+    }
+
+    public void setTimKiemLop(String timKiemLop) {
+        this.timKiemLop = timKiemLop;
+    }
+
+    public String getTimKiemGioiTinh() {
+        return timKiemGioiTinh;
+    }
+
+    public void setTimKiemGioiTinh(String timKiemGioiTinh) {
+        this.timKiemGioiTinh = timKiemGioiTinh;
+    }
+
+    public String getTimKiemNamSinh() {
+        return timKiemNamSinh;
+    }
+
+    public void setTimKiemNamSinh(String timKiemNamSinh) {
+        this.timKiemNamSinh = timKiemNamSinh;
+    }
+
+    public String getTimKiemKhoa() {
+        return timKiemKhoa;
+    }
+
+    public void setTimKiemKhoa(String timKiemKhoa) {
+        this.timKiemKhoa = timKiemKhoa;
+    }
+    
 
     public SinhVien getSvCu() {
         return svCu;
@@ -394,8 +471,8 @@ public class StudentInfor extends javax.swing.JPanel {
         return txtTimKiemSinhVien;
     }
 
-    public void setTxtTimKiemSinhVien(JTextField txtTimKiemSinhVien) {
-        this.txtTimKiemSinhVien = txtTimKiemSinhVien;
+    public void setTxtTimKiemSinhVien(String txtTimKiemSinhVien) {
+        this.txtTimKiemSinhVien.setText(txtTimKiemSinhVien);
     }
 
     public JTextField getTxtTonGiaoSinhVien() {
@@ -823,15 +900,24 @@ public class StudentInfor extends javax.swing.JPanel {
         );
 
         //PromptSupport.setPrompt("Gợi ý ngắn", txtTimKiemSinhVien);
-        txtTimKiemSinhVien.setText("vd: 312141, Anh, Sư Phạm, ...");
+        txtTimKiemSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKiemSinhVienCaretUpdate(evt);
+            }
+        });
         txtTimKiemSinhVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtTimKiemSinhVienMouseClicked(evt);
             }
         });
 
-        cbTimKiemSinhVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên", "MSSV", "Ngành" }));
+        cbTimKiemSinhVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên", "MSSV", "Ngành", "Lớp", "Giới Tính", "Năm Sinh", "Khóa" }));
         cbTimKiemSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbTimKiemSinhVien.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbTimKiemSinhVienItemStateChanged(evt);
+            }
+        });
 
         cbTrangThaiSinhVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang Hoạt Động", "Đang Khóa" }));
         cbTrangThaiSinhVien.addItemListener(new java.awt.event.ItemListener() {
@@ -979,16 +1065,15 @@ public class StudentInfor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemSinhVienActionPerformed
 
     private void btnTimKiemSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemSinhVienActionPerformed
-        String condition = txtTimKiemSinhVien.getText();
-        String conditionName = cbTimKiemSinhVien.getSelectedItem().toString(); // cái này lấy thuộc tính tìm kiếm theo gì nè
-        if (!condition.equals("") && !condition.equals("vd: 312141, Anh, Sư Phạm, ...")) {
-            SinhVienBUS.showStudentListWithCondition(this, condition, conditionName);
-            btnNextPage.setVisible(false);
-            btnPrevPage.setVisible(false);
-            txtPresentPage.setVisible(false);
-        } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập nội dung tìm kiếm\n Tên, Ngành, MSSV");
-        }
+
+       if(SinhVienBUS.chuaNhapGiaTriTimKiem(this)){
+           JOptionPane.showMessageDialog(null, "Nhập nội dung cần tìm hoặc lọc");
+           return;
+       }
+       SinhVienBUS.showStudentListWithCondition(this);
+       btnNextPage.setVisible(false);
+       btnPrevPage.setVisible(false);
+       txtPresentPage.setVisible(false);
     }//GEN-LAST:event_btnTimKiemSinhVienActionPerformed
 
     private void tblStudentListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudentListMouseClicked
@@ -1120,6 +1205,9 @@ public class StudentInfor extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPresentPageActionPerformed
 
     private void cbNganhSinhVienItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbNganhSinhVienItemStateChanged
+        if(cbNganhSinhVien.getSelectedIndex()<0){
+            return;
+        }
         if (!SinhVienBUS.checkNganh(cbNganhSinhVien.getSelectedItem().toString())) {
             String maLop = SinhVienBUS.autoCompleteLop(SinhVienBUS.tenNganhToMaNganh(cbNganhSinhVien.getSelectedItem().toString())); // cái này sẽ cập nhật lại lớp mỗi lần thay đổi ngành
             txtLopSinhVien.setText(maLop);
@@ -1128,6 +1216,16 @@ public class StudentInfor extends javax.swing.JPanel {
             txtLopSinhVien.setText(maLop);
         }
     }//GEN-LAST:event_cbNganhSinhVienItemStateChanged
+
+    private void cbTimKiemSinhVienItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTimKiemSinhVienItemStateChanged
+        thuocTinhTimKiem = cbTimKiemSinhVien.getSelectedItem().toString();
+        SinhVienBUS.giaTriTimKiemCuaThuocTinh(this);
+        
+    }//GEN-LAST:event_cbTimKiemSinhVienItemStateChanged
+
+    private void txtTimKiemSinhVienCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemSinhVienCaretUpdate
+        SinhVienBUS.doiGiaTriTimKiem(this, txtTimKiemSinhVien.getText());
+    }//GEN-LAST:event_txtTimKiemSinhVienCaretUpdate
 //    public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
 //        cbNganhSinhVien.removeAllItems();
 //        for (String i : dsTenNganh) {
