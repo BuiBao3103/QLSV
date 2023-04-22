@@ -104,7 +104,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         jPanel9 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         cfmnewPassword = new javax.swing.JPasswordField();
-        button1 = new component.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Manager");
@@ -796,7 +795,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jLabel23)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(332, Short.MAX_VALUE))
             .addComponent(cfmnewPassword)
         );
         jPanel9Layout.setVerticalGroup(
@@ -808,16 +807,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        button1.setBackground(new java.awt.Color(0, 158, 248));
-        button1.setForeground(new java.awt.Color(255, 255, 255));
-        button1.setText("Lưu");
-        button1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -827,10 +816,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -843,9 +829,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 423, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout changeFrameLayout = new javax.swing.GroupLayout(changeFrame);
@@ -923,7 +907,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // và nó sẽ gọi thèn layout parent tính toán lại kích thước
         // Có lẽ sẽ phù hợp cho responsive
         mainPanel.revalidate();
-        new KetQuaBUS().addRowData(score.getjTable2(),2022,2);
+        new KetQuaBUS().addRowData(score,2022,2);
 
     }// GEN-LAST:event_btnScoreActionPerformed
 
@@ -1433,7 +1417,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnTool;
     private javax.swing.JRadioButton btnWindow;
     private javax.swing.JRadioButton btnWindowClassic;
-    private component.Button button1;
     private javax.swing.JPasswordField cfmnewPassword;
     private javax.swing.JPanel changeFrame;
     private javax.swing.JButton closeMenu;
