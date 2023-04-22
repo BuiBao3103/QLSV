@@ -18,11 +18,11 @@ public class NienHoc {
         this.nam = nam;
     }
 
-    public int getNienKhoa() {
+    public int getHocKi() {
         return hocKi;
     }
 
-    public void setNienKhoa(int hocKi) {
+    public void setHocKi(int hocKi) {
         this.hocKi = hocKi;
     }
 
@@ -33,5 +33,5 @@ public class NienHoc {
     public void setNam(int nam) {
         this.nam = nam;
     }
-    
+
 }

@@ -35,11 +35,11 @@ public class NienHocDAO {
         return nh;
     }
 
-    public void updateCurrentNienHoc() {
+    public void updateCurrentNienHoc(int hk, int nam) {
         try {
             FileWriter writer = new FileWriter("src/backend/QLNienHoc/NienHoc.txt");
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
-            bufferedWriter.write("1 2023");
+            bufferedWriter.write(hk + " " + nam);
             bufferedWriter.close();
             writer.close();
         } catch (IOException e) {

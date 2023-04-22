@@ -29,4 +29,17 @@ public class NienHocBUS {
         NienHocBUS.currentNienHoc = currentNienHoc;
     }
 
+    public static void updateNienHoc(int hk, int nam) {
+        nhDAO.updateCurrentNienHoc(hk, nam);
+    }
+
+    public static NienHoc prevNienHoc(NienHoc nh) {
+        int hkHienTai = nh.getHocKi();
+        int namHienTai = nh.getNam();
+        //Nêu hk hiện tại là 1 thì học kì trước là 2 của năm trước
+        //Nêu hk hiện tại là 2 thì học kì trước là 1 của năm hiện tại
+        int hkTruoc = (hkHienTai == 1) ? 2 : 1;
+        int namTruoc = (hkHienTai == 1) ? namHienTai - 1 : namHienTai;
+        return new NienHoc(hkTruoc, namTruoc);
+    }
 }
