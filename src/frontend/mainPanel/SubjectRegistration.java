@@ -48,8 +48,8 @@ public class SubjectRegistration extends javax.swing.JPanel {
         filter_btn = new javax.swing.JButton();
         add_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cbChuyenBietPhu = new javax.swing.JComboBox<>();
+        cbChuyenBiet = new javax.swing.JComboBox<>();
         jscrollbar = new javax.swing.JScrollPane();
         tblNhomMonHoc = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -79,10 +79,16 @@ public class SubjectRegistration extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel1.setText("Chuyên Biệt:");
 
-        jComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cbChuyenBietPhu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cbChuyenBietPhu.setEnabled(false);
 
-        jComboBox4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Không", "Môn Chung", "Ngành", "Khoa" }));
+        cbChuyenBiet.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cbChuyenBiet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Không", "Môn Chung", "Ngành", "Khoa" }));
+        cbChuyenBiet.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbChuyenBietItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,14 +102,14 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbChuyenBiet, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbChuyenBietPhu, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(filterHP_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(filter_btn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
                 .addComponent(add_btn)
                 .addGap(22, 22, 22))
         );
@@ -111,16 +117,17 @@ public class SubjectRegistration extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(filter_pal)
-                    .addComponent(add_btn)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(filterHP_txt)
-                    .addComponent(filter_btn))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(filter_pal)
+                        .addComponent(add_btn)
+                        .addComponent(filter_btn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox3)
-                    .addComponent(jComboBox4))
+                    .addComponent(cbChuyenBietPhu)
+                    .addComponent(cbChuyenBiet))
                 .addGap(14, 14, 14))
         );
 
@@ -213,8 +220,8 @@ public class SubjectRegistration extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscrollbar, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscrollbar, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
@@ -225,7 +232,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
         subjectRegistration.setLayout(subjectRegistrationLayout);
         subjectRegistrationLayout.setHorizontalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 909, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         subjectRegistrationLayout.setVerticalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +243,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 909, Short.MAX_VALUE)
+            .addGap(0, 934, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(subjectRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -257,13 +264,41 @@ public class SubjectRegistration extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_filterHP_txtActionPerformed
 
+    private void cbChuyenBietItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbChuyenBietItemStateChanged
+        //evt.getStateChange == 1 when Selected
+        if (evt.getStateChange() == 1) {
+            switch (cbChuyenBiet.getSelectedIndex()) {
+                case 0 -> { //Không
+                    cbChuyenBietPhu.removeAllItems();
+                    cbChuyenBietPhu.setEnabled(false);
+                }
+                case 1 -> {//Môn chung
+                    cbChuyenBietPhu.removeAllItems();
+                    cbChuyenBietPhu.setEnabled(false);
+                }
+                case 2 -> {//nganh
+                    cbChuyenBietPhu.removeAllItems();
+                    cbChuyenBietPhu.setEnabled(true);
+                    cbChuyenBietPhu.addItem("CNTT");
+                    cbChuyenBietPhu.addItem("KTPM");
+                }
+                case 3 -> {//khoa
+                    cbChuyenBietPhu.removeAllItems();
+                    cbChuyenBietPhu.setEnabled(true);
+                    cbChuyenBietPhu.addItem("SuPhamTuNhien");
+                    cbChuyenBietPhu.addItem("SuPhamXaHoi");
+                }
+            }
+        }
+    }//GEN-LAST:event_cbChuyenBietItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_btn;
+    private javax.swing.JComboBox<String> cbChuyenBiet;
+    private javax.swing.JComboBox<String> cbChuyenBietPhu;
     private javax.swing.JTextField filterHP_txt;
     private javax.swing.JButton filter_btn;
     private javax.swing.JLabel filter_pal;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
