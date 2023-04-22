@@ -49,8 +49,8 @@ public class Schedule extends javax.swing.JPanel {
 
         schedule = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tblSchedule = new javax.swing.JTable();
+        cbChonHocKy = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -60,52 +60,87 @@ public class Schedule extends javax.swing.JPanel {
 
         schedule.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSchedule.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tblSchedule.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(841107), "Lập Trình Java", "09",  new Integer(4),  new Integer(4), "Hai",  new Integer(1),  new Integer(3), "C.A105", "DSSV"},
-                { new Integer(841048), "	P/tích thiết kế hệ thống thông tin", "04",  new Integer(4),  new Integer(4), "Sáu",  new Integer(1),  new Integer(5), "C.A106", "DSSV"},
-                { new Integer(841058), "	Hệ điều hành mã nguồn mở", "02",  new Integer(3),  new Integer(3), "Tư",  new Integer(3),  new Integer(4), "C.E403", "DSSV"},
-                { new Integer(861303), "Chủ nghĩa xã hội khoa học", "07",  new Integer(2),  new Integer(2), "Tư",  new Integer(1),  new Integer(2), "C.B107", "DSSV"}
+                { new Integer(841107), "Lập Trình Java", "09",  new Integer(4), "Hai",  new Integer(1),  new Integer(3), "C.A105", "DSSV"},
+                { new Integer(841048), "	P/tích thiết kế hệ thống thông tin", "04",  new Integer(4), "Sáu",  new Integer(1),  new Integer(5), "C.A106", "DSSV"},
+                { new Integer(841058), "	Hệ điều hành mã nguồn mở", "02",  new Integer(3), "Tư",  new Integer(3),  new Integer(4), "C.E403", "DSSV"},
+                { new Integer(861303), "Chủ nghĩa xã hội khoa học", "07",  new Integer(2), "Tư",  new Integer(1),  new Integer(2), "C.B107", "DSSV"}
             },
             new String [] {
-                "Mã MH", "Tên Môn Học", "NMH", "STC", "STCHP", "Thứ", "Tiết BĐ", "Tiết KT", "Phòng", "DSSV"
+                "Mã MH", "Tên Môn Học", "NMH", "STC", "Thứ", "Tiết BĐ", "Số Tiết", "Phòng", "DSSV"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setRowHeight(35);
-        jTable1.setRowMargin(10);
-        jTable1.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+        tblSchedule.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblSchedule.setRowHeight(35);
+        tblSchedule.setRowMargin(10);
+        tblSchedule.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
         DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
         leftRenderer.setHorizontalAlignment(JLabel.CENTER);
-        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        for (int i = 0; i < jTable1.getColumnCount(); i++)
+        ((DefaultTableCellRenderer)tblSchedule.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < tblSchedule.getColumnCount(); i++)
         {
 
             if(i != 1){
-                jTable1.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+                tblSchedule.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
             }else{
                 continue;
             }
         }
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblSchedule.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tblScheduleMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblSchedule);
+        if (tblSchedule.getColumnModel().getColumnCount() > 0) {
+            tblSchedule.getColumnModel().getColumn(0).setMinWidth(70);
+            tblSchedule.getColumnModel().getColumn(0).setPreferredWidth(70);
+            tblSchedule.getColumnModel().getColumn(0).setMaxWidth(70);
+            tblSchedule.getColumnModel().getColumn(2).setMinWidth(60);
+            tblSchedule.getColumnModel().getColumn(2).setPreferredWidth(60);
+            tblSchedule.getColumnModel().getColumn(2).setMaxWidth(60);
+            tblSchedule.getColumnModel().getColumn(3).setMinWidth(45);
+            tblSchedule.getColumnModel().getColumn(3).setPreferredWidth(45);
+            tblSchedule.getColumnModel().getColumn(3).setMaxWidth(45);
+            tblSchedule.getColumnModel().getColumn(4).setMinWidth(65);
+            tblSchedule.getColumnModel().getColumn(4).setPreferredWidth(65);
+            tblSchedule.getColumnModel().getColumn(4).setMaxWidth(65);
+            tblSchedule.getColumnModel().getColumn(5).setMinWidth(60);
+            tblSchedule.getColumnModel().getColumn(5).setPreferredWidth(60);
+            tblSchedule.getColumnModel().getColumn(5).setMaxWidth(60);
+            tblSchedule.getColumnModel().getColumn(5).setCellRenderer(null);
+            tblSchedule.getColumnModel().getColumn(6).setMinWidth(60);
+            tblSchedule.getColumnModel().getColumn(6).setPreferredWidth(60);
+            tblSchedule.getColumnModel().getColumn(6).setMaxWidth(60);
+            tblSchedule.getColumnModel().getColumn(7).setMinWidth(65);
+            tblSchedule.getColumnModel().getColumn(7).setPreferredWidth(65);
+            tblSchedule.getColumnModel().getColumn(7).setMaxWidth(65);
+            tblSchedule.getColumnModel().getColumn(8).setMinWidth(60);
+            tblSchedule.getColumnModel().getColumn(8).setPreferredWidth(60);
+            tblSchedule.getColumnModel().getColumn(8).setMaxWidth(60);
+        }
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbChonHocKy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2-2022" }));
+        cbChonHocKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbChonHocKyActionPerformed(evt);
             }
         });
 
@@ -139,7 +174,6 @@ public class Schedule extends javax.swing.JPanel {
         schedule.setLayout(scheduleLayout);
         scheduleLayout.setHorizontalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
                 .addGap(606, 606, 606)
                 .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -150,17 +184,20 @@ public class Schedule extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbChonHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(scheduleLayout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         scheduleLayout.setVerticalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scheduleLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbChonHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(8, 8, 8)
@@ -168,7 +205,7 @@ public class Schedule extends javax.swing.JPanel {
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addGap(194, 194, 194))
         );
 
@@ -176,7 +213,7 @@ public class Schedule extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1133, Short.MAX_VALUE)
+            .addGap(0, 1144, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, 0)
@@ -193,21 +230,37 @@ public class Schedule extends javax.swing.JPanel {
                     .addGap(0, 0, 0)))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    public JComboBox<String> getCbChonHocKy() {
+        return cbChonHocKy;
+    }
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    public void setCbChonHocKy(JComboBox<String> cbChonHocKy) {
+        this.cbChonHocKy = cbChonHocKy;
+    }
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    public JTable getTblSchedule() {
+        return tblSchedule;
+    }
+
+    public void setTblSchedule(JTable tblSchedule) {
+        this.tblSchedule = tblSchedule;
+    }
+
+    private void tblScheduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblScheduleMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_tblScheduleMouseClicked
+
+    private void cbChonHocKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbChonHocKyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbChonHocKyActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        IOExcel.writeExcel(jTable1, "Schedule");
+        IOExcel.writeExcel(tblSchedule, "Schedule");
 
 //        try {
 //            JFileChooser jFileChooser = new JFileChooser();
@@ -277,13 +330,13 @@ public class Schedule extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbChonHocKy;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel schedule;
+    private javax.swing.JTable tblSchedule;
     // End of variables declaration//GEN-END:variables
 }

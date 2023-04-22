@@ -101,4 +101,28 @@ public class HocPhanDAO {
             ConnectionDB.closeConnection(con, pstm);
         }
     }
+    
+    public HocPhan getByMaHP(String mahp){
+        con = ConnectionDB.getConnection();
+        HocPhan hp = null;
+        try {
+            String query = "select * from HocPhan where MaHP = '"+mahp+"'";//+
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String maHP = rs.getString("MaHP");//+
+                String tenHP = rs.getString("TenMon");//+
+                int tinChi = rs.getInt("TinChi");//+
+                int chuyenBiet = rs.getInt("ChuyenBiet");
+                int phanTramQuaTrinh = rs.getInt("PhanTramQuaTrinh");
+                String maKhoa = rs.getString("MaKhoa");
+                String maNganh = rs.getString("maNganh");
+                hp = new HocPhan(maHP, tenHP, tinChi, chuyenBiet, phanTramQuaTrinh, maKhoa, maNganh);
+            }
+        } catch (SQLException e) {
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return hp;
+    }
 }

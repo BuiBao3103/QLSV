@@ -909,6 +909,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnScheduleActionPerformed
         mainPanel.removeAll();
         mainPanel.add(schedule);
+        NhomBUS.showTKB(schedule);
+        schedule.getCbChonHocKy().setSelectedIndex(0);
         mainPanel.repaint();
         mainPanel.revalidate();
     }// GEN-LAST:event_btnScheduleActionPerformed

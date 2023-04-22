@@ -12,11 +12,16 @@ import backend.Nganh.NganhBUS;
 import backend.QLGiangVien.GiangVienBUS;
 import backend.QLHocPhan.HocPhan;
 import backend.QLHocPhan.HocPhanBUS;
+import backend.QLHocPhan.HocPhanDAO;
 import backend.QLSinhVien.SinhVien;
 import backend.QLSinhVien.SinhVienDAO;
 import backend.QLTaiKhoan.TaiKhoanBUS;
+import frontend.Schedule;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.swing.JTable;
+import java.util.Date;
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,6 +32,14 @@ public class NhomBUS {
 
     private static NhomDAO nhomDAO = new NhomDAO();
     private static ArrayList<Nhom> dsNhom = nhomDAO.get();
+    private static SinhVienDAO svDAO = new SinhVienDAO();
+    private static HocPhanDAO hpDAO = new HocPhanDAO();
+
+    private Date today = new Date();
+    private SimpleDateFormat month = new SimpleDateFormat("MM");
+    private SimpleDateFormat year = new SimpleDateFormat("yyyy");
+
+    private static ArrayList<Nhom> dsNhomDaHoc = nhomDAO.getBySinhVien(); // lấy các học phần sv đang đăng nhập đã học
 
     public static void showGroupSuggestions(JTable table) {
         ArrayList<KetQua> dskq = (new KetQuaDAO()).get(2, 2022);
@@ -104,5 +117,53 @@ public class NhomBUS {
             }
         }
         return false;
+    }
+    // ------ các hàm thao tác với tkb -------------------
+//    public String hocKyHienTai(){ // hàm này trả về học kì của năm hiện tại vd: "HK2 2022-2023"    // học kỳ 2 từ tháng 1->5 hoc ky 1 từ 8->12
+//        int myMonth = Integer.parseInt(month.format(today));
+//        int myYear = Integer.parseInt(year.format(today));
+//        int prevYear = myYear - 1;
+//        int nextYear = myYear + 1;
+//        String namHoc = "";
+//        if(myMonth >= 8){ // lấy năm hiện tại 
+//            namHoc = "HK1 " + myYear +"-"+ nextYear;
+//        }
+//        else{ // 2 tháng 6,7 tính cho hk2 luôn
+//            namHoc = "HK2 " + prevYear +"-"+ myYear;
+//        }
+//        return namHoc;
+//    }
+    public static void formatTable(JTable table){
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for(int i = 0; i < table.getColumnCount(); i++){
+             table.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
+        } 
+    }
+    public static void showTKB(Schedule schedule) {
+        JTable table = schedule.getTblSchedule();
+        DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        tableModel.setRowCount(0);
+        formatTable(table);
+
+        String hocKyDaChon = schedule.getCbChonHocKy().getSelectedItem().toString();
+        int hocKy = Integer.parseInt(hocKyDaChon.split("-")[0]); // lấy học kì đã chọn trong combobox
+        int nam = Integer.parseInt(hocKyDaChon.split("-")[1]); // lấy năm đã chọn trong combobox
+
+        for (Nhom nh : dsNhomDaHoc) {
+            if (nh.getHocKy() == hocKy && nh.getNam() == nam) {
+                HocPhan hp = hpDAO.getByMaHP(nh.getMaHP()); // cái này lấy ra học phần của nhóm đó để có tên hp, số tchi ...
+                tableModel.addRow(new Object[]{
+                    nh.getMaHP(), hp.getTenHP(), nh.getSoNhom(), hp.getTinChi(), nh.getThu(), nh.getTietBD(), nh.getSoTiet(), nh.getPhong(), "DSSV"
+                });
+            }
+        }
+
+        table.setModel(tableModel);
+    }
+
+    public static void main(String[] args) {
+//        NhomBUS nBUS = new NhomBUS();
+//        System.out.println(nBUS.hocKyHienTai());
     }
 }
