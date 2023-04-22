@@ -8,22 +8,22 @@ package backend.QLNienHoc;
  *
  * @author ASUS
  */
-public class NIenHoc {
+public class NienHoc {
 
-    private int nienKhoa;
+    private int hocKi;
     private int nam;
 
-    public NIenHoc(int nienKhoa, int nam) {
-        this.nienKhoa = nienKhoa;
+    public NienHoc(int hocKi, int nam) {
+        this.hocKi = hocKi;
         this.nam = nam;
     }
 
     public int getNienKhoa() {
-        return nienKhoa;
+        return hocKi;
     }
 
-    public void setNienKhoa(int nienKhoa) {
-        this.nienKhoa = nienKhoa;
+    public void setNienKhoa(int hocKi) {
+        this.hocKi = hocKi;
     }
 
     public int getNam() {

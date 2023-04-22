@@ -16,21 +16,23 @@ import java.io.IOException;
  */
 public class NienHocDAO {
 
-    public void getCurrentNienHoc() {
+    public NienHoc getCurrentNienHoc() {
+        NienHoc nh = null;
         try {
             FileReader reader = new FileReader("src/backend/QLNienHoc/NienHoc.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
 
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
-            }
-
+            String line = bufferedReader.readLine();
+            int hk = Integer.parseInt(line.split(" ")[0]);
+            int nam = Integer.parseInt(line.split(" ")[1]);
             reader.close();
             bufferedReader.close();
+            nh = new NienHoc(hk, nam);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return nh;
     }
 
     public void updateCurrentNienHoc() {
@@ -43,10 +45,5 @@ public class NienHocDAO {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-//        new NienHocDAO().getCurrentNienHoc();
-        new NienHocDAO().updateCurrentNienHoc();
     }
 }
