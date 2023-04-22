@@ -29,7 +29,7 @@ import javax.swing.border.LineBorder;
  * @author ASUS
  */
 public class SinhVienBUS {
-    
+
     private static SinhVienDAO svDAO = new SinhVienDAO();
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // cái này để chuyển qua lại kiểu date với String
     static ArrayList<SinhVien> dssv = new SinhVienDAO().get();
@@ -41,15 +41,15 @@ public class SinhVienBUS {
 
     public SinhVienBUS() {
     }
-    
+
     public static void getDsTenNganh() { // hàm này sẽ thay đổi ds lấy tất cả các ngành
         dsTenNganh.add(""); // cái này cho cái trường hợp chưa chọn
         for (Nganh i : dsNganh) {
             dsTenNganh.add(maNganhToTenNganh(i.getMaNganh()));
         }
-        
+
     }
-    
+
     public static void getDsTenNganhByKhoa(String maKhoa) {  // hàm này sẽ lấy được ds các ngành thuộc về khoa '...'
         dsTenNganh.add(""); // cái này cho cái trường hợp chưa chọn
         for (Nganh i : dsNganh) {
@@ -58,7 +58,7 @@ public class SinhVienBUS {
             }
         }
     }
-    
+
     public static void formatTable(JTable table) {
         table.getColumn("MSSV").setMinWidth(150);
         table.getColumn("MSSV").setMaxWidth(150);
@@ -83,7 +83,7 @@ public class SinhVienBUS {
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setAutoCreateRowSorter(true);
     }
-    
+
     public static void showStudentList(StudentInfor studentInfor, int page) {
         getDsTenNganh(); // cái hàm này sẽ thay đổi cái dstennganh cho cái combobox ten nganh
         ArrayList<SinhVien> dssv = new SinhVienDAO().getByNumberOfPage(page); // cái này lấy 100 svien ở số trang tương ứng
@@ -98,7 +98,7 @@ public class SinhVienBUS {
         formatTable(table);
         table.setModel(tblSinhVien); // cái này để thiết lập mô hình dữ liệu
     }
-    
+
     public static void showDeletedStudent(StudentInfor studentInfor, int page) {
         JTable table = studentInfor.getTblStudentList();
         DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
@@ -132,52 +132,6 @@ public class SinhVienBUS {
 //        dssv = dssvNew;
 ////       System.out.println(dssv.size());
 //    }
-    public static void showStudentListWithCondition(StudentInfor studentInfor, String condition, String conditionName) {
-        JTable table = studentInfor.getTblStudentList();
-        DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
-        tblSinhVien.setRowCount(0);
-        int trangThai = 0;
-        if (studentInfor.getCbTrangThaiSinhVien().getSelectedIndex() == 0) {
-            trangThai = 1;
-        }
-//        System.out.println(conditionName);
-        ArrayList<SinhVien> dssvNew = svDAO.getByCondition(condition, conditionName);
-//        if (conditionName.equals("MSSV")) {
-//            for (SinhVien i : dssv) {
-//                if (i.getMaSV().contains(condition) && i.getTrangThai() == trangThai) {
-//                    dssvNew.add(i);
-//                }
-//            }
-//        }
-//        if (conditionName.equals("Tên")) {
-//            for (SinhVien i : dssv) {
-//                if (i.getHoTen().contains(condition)&& i.getTrangThai() == trangThai) {
-//                    dssvNew.add(i);
-//                }
-//            }
-//        }
-//        if (conditionName.equals("Ngành")) {
-//            for (SinhVien i : dssv) {
-//                if (maNganhToTenNganh(i.getMaNganh()).contains(condition)&& i.getTrangThai() == trangThai) {
-//                    dssvNew.add(i);
-//                }
-//            }
-//        }
-        int flag = 0; // cái biến này xem coi có svien nào tìm được không
-        for (SinhVien i : dssvNew) {
-            if (i.getTrangThai() == trangThai) {
-                tblSinhVien.addRow(new Object[]{
-                    i.getMaSV(), i.getHoTen(), maNganhToTenNganh(i.getMaNganh()), i.getNienKhoa()
-                });
-                flag = 1;
-            }
-        }
-        if (flag == 0) { // không dùng dssvNew.isEmty() được vì có thể tìm được svien nhưng không thỏa trạng thái
-            JOptionPane.showMessageDialog(null, "Không tìm thấy sinh viên nào\n");
-            return;
-        }
-    }
-    
     public static SinhVien StudentinTable(JTable table, int row) { //hàm này trả về sinh viên ở dòng được chọn trong bảng
         String mssv = table.getValueAt(row, 0) + ""; // cái dòng này sẽ từ cái dòng được chọn trong bảng lấy ra giá trị trong ô mssv
         for (SinhVien sv : dssv) {
@@ -187,7 +141,7 @@ public class SinhVienBUS {
         }
         return null;
     }
-    
+
     public static void showMoreInfoStudent(StudentInfor table, SinhVien sv) {
         table.setTxtHoTenSinhVien(sv.getHoTen());
         table.setTxtMSSinhVien(sv.getMaSV());
@@ -203,9 +157,9 @@ public class SinhVienBUS {
 //        table.setTxtNganhSinhVien(maNganhToTenNganh(sv.getMaNganh()));
         table.getCbNganhSinhVien().setSelectedItem(maNganhToTenNganh(sv.getMaNganh()));
         table.setTxtMaTKSinhVien(sv.getMaTK() + "");
-        
+
     }
-    
+
     public static String maNganhToTenNganh(String maNganh) { // // cái hàm này trả về tên ngành từ mã ngành DCT -> Công Nghệ Thông Tin (DCT)
 
         for (Nganh nganh : dsNganh) {
@@ -215,7 +169,7 @@ public class SinhVienBUS {
         }
         return "";
     }
-    
+
     public static String tenNganhToMaNganh(String tenNganh) { // hàm này sẽ từ 'Công Nghệ Thông Tin (DCT)' trả về 'DCT'
         if (tenNganh.equals("")) {
             return "";
@@ -223,7 +177,7 @@ public class SinhVienBUS {
         String maNganh = tenNganh.split("[()]")[1]; // cái "[()]" là cắt chuỗi khi gặp 2 dấu hiệu là ')' và '('
         return maNganh;
     }
-    
+
     public static String checkUpdateInfo(SinhVien svCu, SinhVien svMoi) { // hàm này trả về các lỗi đã tồn tại của các thuộc tính khóa
         String errorMessage = "";
         if (!svCu.getCmnd().equals(svMoi.getCmnd())) {  // nếu sửa CMND thì 2 cái cmnd cũ mới khác nhau
@@ -243,25 +197,25 @@ public class SinhVienBUS {
         }
         return errorMessage;
     }
-    
+
     public static String checkAddInfo(SinhVien svMoi) { // hàm này trả về các lỗi đã tồn tại của các thuộc tính khóa
         String errorMessage = "";
-        
+
         if (checkExistCMND(svMoi.getCmnd())) { //cmnd đã tồn tại
             errorMessage += "- Chứng Minh Nhân Dân\n";
         }
-        
+
         if (checkExistMSSV(svMoi.getMaSV())) {  // mssv đã tồn tại
             errorMessage += "- Mã Số Sinh Viên\n";
         }
-        
+
         if (checkExistMaTaiKhoan(svMoi.getMaTK() + "")) { // mã tk tồn tại rồi
             errorMessage += "- Mã Tài Khoản";
         }
-        
+
         return errorMessage;
     }
-    
+
     public static void resetJPanelMoreInfo(StudentInfor table) {
         if (table.getCbTrangThaiSinhVien().getSelectedIndex() != 1) {   // cái này nó bật lại mấy cái nút nên chỉ bật cho bên trạng thái chưa xóa thôi
             table.getBtnSuaSinhVien().setEnabled(true);
@@ -279,7 +233,7 @@ public class SinhVienBUS {
 //        table.getTxtNganhSinhVien().setEnabled(false);
 
         table.getCbNganhSinhVien().setEnabled(false);
-        
+
         table.getTxtNgaySinhSinhVien().setEnabled(false);
         table.getTxtSoDTSinhVien().setEnabled(false);
         table.getTxtNienKhoaSinhVien().setEnabled(false);
@@ -294,6 +248,20 @@ public class SinhVienBUS {
         table.setTxtMSSinhVien(blank);
         table.setTxtMaTKSinhVien(blank);
 //        table.setTxtNganhSinhVien(blank);
+        LineBorder safeBorder = new LineBorder(Color.gray, 1);
+        table.getTxtHoTenSinhVien().setBorder(safeBorder);
+        table.getTxtCMNDSinhVien().setBorder(safeBorder);
+        table.getTxtDanTocSinhVien().setBorder(safeBorder);
+        table.getTxtDiaChiSinhVien().setBorder(safeBorder);
+        table.getTxtGioiTinhSinhVien().setBorder(safeBorder);
+        table.getTxtLopSinhVien().setBorder(safeBorder);
+        table.getTxtNgaySinhSinhVien().setBorder(safeBorder);
+        table.getTxtSoDTSinhVien().setBorder(safeBorder);
+        table.getTxtGioiTinhSinhVien().setBorder(safeBorder);
+        table.getTxtTonGiaoSinhVien().setBorder(safeBorder);
+        table.getTxtNienKhoaSinhVien().setBorder(safeBorder);
+        
+        
         table.getCbNganhSinhVien().setSelectedIndex(0); // cái này để cái combobox ngành sinh viên nó không chứa ngành nào
         table.setTxtLopSinhVien(blank);
         table.setTxtNgaySinhSinhVien(blank);
@@ -302,21 +270,21 @@ public class SinhVienBUS {
         table.setTxtTonGiaoSinhVien(blank);
         table.getPnMoreInfo().setVisible(false);
     }
-    
+
     public static void changeBtnForTrangThai(StudentInfor table) {
         table.getBtnThemSinhVien().setEnabled(false);
         table.getBtnSuaSinhVien().setEnabled(false);
         table.getBtnXoaSinhVien().setEnabled(false);
         table.getBtnKhoiPhucSinhVien().setVisible(true);
     }
-    
+
     public static void resetBtnForTrangThai(StudentInfor table) {
         table.getBtnThemSinhVien().setEnabled(true);
         table.getBtnSuaSinhVien().setEnabled(true);
         table.getBtnXoaSinhVien().setEnabled(true);
         table.getBtnKhoiPhucSinhVien().setVisible(false);
     }
-    
+
     public static String compare2SinhVien(SinhVien svCu, SinhVien svMoi) {
         String result = "";
         if (!svCu.getMaSV().equals(svMoi.getMaSV())) {
@@ -354,7 +322,7 @@ public class SinhVienBUS {
         }
         return result;
     }
-    
+
     public static SinhVien getSinhVienFromMoreInfo(StudentInfor table) {   // cái hàm này lấy thông tin từ panel Moreinfo tạo ra svien mới
         String HoTen = table.getTxtHoTenSinhVien().getText();
         String MSSV = table.getTxtMSSinhVien().getText();
@@ -381,7 +349,7 @@ public class SinhVienBUS {
         SinhVien sv = new SinhVien(1, MSSV, CMND, SoDT, MaLop, HoTen, NgaySinh, GioiTinh, DiaChi, DanToc, TonGiao, NienKhoa, Nganh, MaTK);
         return sv;
     }
-    
+
     public static void updateSinhVien(StudentInfor table) { // cái hàm nàỳ sẽ bật những component cho mình sửa sinh viên
         table.getBtnSuaSinhVien().setEnabled(false);
         table.getBtnLuuSinhVien().setEnabled(true);
@@ -396,17 +364,26 @@ public class SinhVienBUS {
         table.getTxtSoDTSinhVien().setEnabled(true);
 //        table.getTxtNienKhoaSinhVien().setEnabled(true);
         table.getTxtTonGiaoSinhVien().setEnabled(true);
-        
+
     }
 
     public static void btnXoaLocOnClick(StudentInfor studentInfor) {
-        setCbNganhSinhVien(studentInfor); // cái này nó thêm mấy cái lựa chọn cho cái ngành sinh viên
-        studentInfor.btnDongSinhVienActionPerformed(null);        
+//        setCbNganhSinhVien(studentInfor); // cái này nó thêm mấy cái lựa chọn cho cái ngành sinh viên
+        studentInfor.btnDongSinhVienActionPerformed(null);
         studentInfor.getBtnKhoiPhucSinhVien().setVisible(false); // ẩn cái nút khôi phục sinh viên
         studentInfor.getBtnNextPage().setVisible(true);
         studentInfor.getBtnPrevPage().setVisible(true);
-        studentInfor.getObTxtPresentPage().setVisible(true);
-        studentInfor.getTxtTimKiemSinhVien().setText("vd: 312141, Anh, Sư Phạm, ...");
+        studentInfor.getObTxtPresentPage().setVisible(true); // cái này có hàm getobject riêng mới chỉnh visible được
+        studentInfor.setThuocTinhTimKiem("Tên");
+        studentInfor.setTimKiemTen("");
+        studentInfor.setTimKiemMSSV("");
+        studentInfor.setTimKiemNganh("");
+        studentInfor.setTimKiemLop("");
+        studentInfor.setTimKiemNamSinh("");
+        studentInfor.setTimKiemGioiTinh("");
+        studentInfor.setTimKiemKhoa("");
+        
+        studentInfor.getTxtTimKiemSinhVien().setText("");
         studentInfor.getCbTimKiemSinhVien().setSelectedIndex(0);
     }
 
@@ -426,7 +403,7 @@ public class SinhVienBUS {
             }
         }
     }
-    
+
     public static void addSinhVien(StudentInfor table) { // Cái hàm này chạy mỗi khi ấn nút thêm
         resetJPanelMoreInfo(table); // cái này xóa hết thông tin trong pnMoreInfo
         table.getPnMoreInfo().setVisible(true);
@@ -454,7 +431,7 @@ public class SinhVienBUS {
         table.getTxtMaTKSinhVien().setText(autoCompleteMaTK() + "");
         table.getTxtNienKhoaSinhVien().setText(autoCompleteNienKhoa());
     }
-    
+
     public static String autoCompleteMSSV() {
         String mssv = "31"; // 2 số đầu là cố định
 //        int year = new Date().getYear(); cái này trả về năm hiện tại trừ đi 1900 vd: hiện tại là 2023 nó sẽ ra 123
@@ -464,21 +441,21 @@ public class SinhVienBUS {
         if (maxMaSV == null) { // chưa có sinh viên nào trong năm đó
             return mssv + "000001";
         }
-       // int newMSSV = Integer.parseInt(maxMaSV) + 1; // nếu có sinh viên cùng năm rồi
-        long newMSSV = Long.parseLong(maxMaSV)+1;
+        // int newMSSV = Integer.parseInt(maxMaSV) + 1; // nếu có sinh viên cùng năm rồi
+        long newMSSV = Long.parseLong(maxMaSV) + 1;
         return newMSSV + "";
     }
-    
+
     public static int autoCompleteMaTK() { // hàm này trả về mã tài khoản cho sv cần tạo nè
         return svDAO.maxMaTK() + 1;
     }
-    
+
     public static String autoCompleteNienKhoa() {
         int entryYear = LocalDate.now().getYear(); // năm vào trường
         int graduateYear = entryYear + 4; // năm tốt nghiệp sau 4 năm
         return entryYear + "-" + graduateYear;
     }
-    
+
     public static String autoCompleteLop(String maNganh) {
         if (maNganh.equals("")) {
             return ""; // cái này chưa chọn ngành 
@@ -505,93 +482,84 @@ public class SinhVienBUS {
             return maLopMoi;
         }
     }
-    
-    public static String checkStudentInfor(StudentInfor table, SinhVien svMoi){ // hàm này kiểm tra thông tin tô đỏ mấy ô sai và hiện thông báo
-        if (checkAllInfo(svMoi)){
+
+    public static String checkStudentInfor(StudentInfor table, SinhVien svMoi) { // hàm này kiểm tra thông tin tô đỏ mấy ô sai và hiện thông báo
+        if (checkAllInfo(svMoi)) {
             return "";
         }
         LineBorder errorBorder = new LineBorder(Color.red, 2); // tô màu đỏ cho ô
         LineBorder safeBorder = new LineBorder(Color.gray, 1);
         String message = "Thông tin không hợp lệ:\n";
         // kiểm tra họ tên
-        if(!checkHoTen(svMoi.getHoTen())){
-            message+= "Tên phải từ 1 đến 50 kí tự chữ cái vd:Nguyễn Văn A\n";
+        if (!checkHoTen(svMoi.getHoTen())) {
+            message += "Tên phải từ 1 đến 50 kí tự chữ cái vd:Nguyễn Văn A\n";
             table.getTxtHoTenSinhVien().setBorder(errorBorder);
-        }
-        else{
+        } else {
             table.getTxtHoTenSinhVien().setBorder(safeBorder);
         }
         // kiểm tra cmnd
-        if(!checkCMND(svMoi.getCmnd())){
-            message+= "CMND phải là 12 số vd:0123456789012\n";
+        if (!checkCMND(svMoi.getCmnd())) {
+            message += "CMND phải là 12 số vd:0123456789012\n";
             table.getTxtCMNDSinhVien().setBorder(errorBorder);
-        }
-        else{
+        } else {
             table.getTxtCMNDSinhVien().setBorder(safeBorder);
         }
         //kiểm tra sdt
-        if(!checkSoDienThoai(svMoi.getSoDienThoai())){
-            message+= "Số điện thoại gồm 10 số với đầu số Việt Nam vd:0771112223\n";
+        if (!checkSoDienThoai(svMoi.getSoDienThoai())) {
+            message += "Số điện thoại gồm 10 số với đầu số Việt Nam vd:0771112223\n";
             table.getTxtSoDTSinhVien().setBorder(errorBorder);
-        }
-        else{
+        } else {
             table.getTxtSoDTSinhVien().setBorder(safeBorder);
         }
         //kiểm tra địa chỉ
-        if(!checkDiaChi(svMoi.getDiaChi())){
-            message+= "Địa chỉ gồm chữ cái, số, dấu '/' vd:6A23/1 Bình Chánh\n";
+        if (!checkDiaChi(svMoi.getDiaChi())) {
+            message += "Địa chỉ gồm chữ cái, số, dấu '/' vd:6A23/1 Bình Chánh\n";
             table.getTxtDiaChiSinhVien().setBorder(errorBorder);
-        }
-        else{
+        } else {
             table.getTxtDiaChiSinhVien().setBorder(safeBorder);
         }
         // kiểm tra ngày sinh
-        if(!checkNgaySinh(dateFormat.format(svMoi.getNgaySinh()))){
-            if(!checkValidNgay(dateFormat.format(svMoi.getNgaySinh()))){ // ngày đúng dạng mà không tồn tại vd: 30/02
-                message+= "Ngày sinh không hợp lệ (yyyy-mm-dd, 18->99 tuổi, ngày phải tồn tại)\n";
-            }
-            else{ // ngày chưa đúng định dạng yyyy-mm-dd
-                message+= "Ngày sinh có dạng yyyy-mm-dd vd:2003-21-07\n";
+        if (!checkNgaySinh(dateFormat.format(svMoi.getNgaySinh()))) {
+            if (!checkValidNgay(dateFormat.format(svMoi.getNgaySinh()))) { // ngày đúng dạng mà không tồn tại vd: 30/02
+                message += "Ngày sinh không hợp lệ (yyyy-mm-dd, 18->99 tuổi, ngày phải tồn tại)\n";
+            } else { // ngày chưa đúng định dạng yyyy-mm-dd
+                message += "Ngày sinh có dạng yyyy-mm-dd vd:2003-21-07\n";
             }
             table.getTxtNgaySinhSinhVien().setBorder(errorBorder);
-        }
-        else{
+        } else {
             table.getTxtNgaySinhSinhVien().setBorder(safeBorder);
         }
         //kiểm tra giới tính
-        if(!checkGioiTinh(svMoi.getGioiTinh())){
-            message+= "Giới Tính là 'Nam' hoặc 'Nữ'\n";
+        if (!checkGioiTinh(svMoi.getGioiTinh())) {
+            message += "Giới Tính là 'Nam' hoặc 'Nữ'\n";
             table.getTxtGioiTinhSinhVien().setBorder(errorBorder);
-        }
-        else{
+        } else {
             table.getTxtGioiTinhSinhVien().setBorder(safeBorder);
         }
         //kiểm tra dân tộc
-        if(!checkDanToc(svMoi.getDanToc())){
-            message+= "Dân tộc thuộc 54 dân tộc Việt Nam vd:Kinh, Hoa, Thái, Khmer...\n";
+        if (!checkDanToc(svMoi.getDanToc())) {
+            message += "Dân tộc thuộc 54 dân tộc Việt Nam vd:Kinh, Hoa, Thái, Khmer...\n";
             table.getTxtDanTocSinhVien().setBorder(errorBorder);
-        }
-        else{
+        } else {
             table.getTxtDanTocSinhVien().setBorder(safeBorder);
         }
         //kiểm tra tôn giáo
-        if(!checkTonGiao(svMoi.getTonGiao())){
-            message+= "Tôn giáo không có hoặc thuộc 20 tôn giáo lớn vd:Phật giáo, Thiên chúa giáo, Cao đài...\n";
+        if (!checkTonGiao(svMoi.getTonGiao())) {
+            message += "Tôn giáo không có hoặc thuộc 20 tôn giáo lớn vd:Phật giáo, Thiên chúa giáo, Cao đài...\n";
             table.getTxtTonGiaoSinhVien().setBorder(errorBorder);
-        }
-        else{
+        } else {
             table.getTxtDanTocSinhVien().setBorder(safeBorder);
         }
         //kiểm tra chọn ngành chưa
-        if(!checkNganh(maNganhToTenNganh(svMoi.getMaNganh()))){
-            message+= "Chưa chọn ngành\n";
+        if (!checkNganh(maNganhToTenNganh(svMoi.getMaNganh()))) {
+            message += "Chưa chọn ngành\n";
             table.getCbNganhSinhVien().setBorder(errorBorder);
-        }
-        else{
+        } else {
             table.getCbNganhSinhVien().setBorder(safeBorder);
         }
         return message;
     }
+
     public static void addSinhVienToServer(StudentInfor table, SinhVien svMoi) {
         String errorMessage = "Một số thông tin đã tồn tại rồi: \n";
         int a = JOptionPane.showConfirmDialog(table, "Bạn muốn thêm sinh viên này ?");
@@ -609,7 +577,7 @@ public class SinhVienBUS {
             }
         }
     }
-    
+
     public static void createTaiKhoanForSinhVien(SinhVien sv) { // hàm này tạo tài khoản cho sinh viên
         int maTK = sv.getMaTK();
         String tenTK = sv.getMaSV();
@@ -620,11 +588,11 @@ public class SinhVienBUS {
         TaiKhoan tk = new TaiKhoan(maTK, tenTK, matKhau, maNhomQuyen);
         new TaiKhoanDAO().add(tk);
     }
-    
+
     public int getTrangThai(int MaTK) {
         return svDAO.getTrangThaiByMaTk(MaTK);
     }
-    
+
     public static void setCbNganhSinhVien(StudentInfor studentInfor) {
         studentInfor.getCbNganhSinhVien().removeAllItems();
         for (String i : dsTenNganh) {
@@ -637,7 +605,7 @@ public class SinhVienBUS {
         if (hoTen.trim().equals("") || hoTen.length() > 50) {
             return false;
         }
-        
+
         for (int i = 0; i < hoTen.length(); i++) {
             char kiTu = hoTen.charAt(i);
             if ((kiTu < 'a' || kiTu > 'z') && (kiTu < 'A' || kiTu > 'Z') && kiTu != ' ' && !checkNguyenAm(kiTu)) {
@@ -646,7 +614,7 @@ public class SinhVienBUS {
         }
         return true;
     }
-    
+
     public static boolean checkNguyenAm(char kiTu) { // cái hàm check các kí tự trong tên có dấu
         char dsNguyenAm[] = {'à', 'á', 'ả', 'ã', 'ạ', 'Á', 'À', 'Ả', 'Ã', 'Ạ',
             'ă', 'Ă', 'â', 'Â', 'ằ', 'ắ', 'ẳ', 'ẵ', 'ặ', 'Ấ', 'Ầ', 'Ẩ', 'Ẫ', 'Ậ',
@@ -669,7 +637,7 @@ public class SinhVienBUS {
         }
         return false;
     }
-    
+
     public static boolean checkMSSV(String MSSV) {
         if (MSSV.length() != 10) {
             return false;
@@ -682,7 +650,7 @@ public class SinhVienBUS {
         }
         return true;
     }
-    
+
     public static boolean checkExistMSSV(String MSSV) { // nếu mssv tồn tại rồi trả về true
 //        ArrayList<SinhVien> dssv = new ArrayList(); // Kiểm tra MSSV có tồn tại chưa
 //        dssv = svDAO.get();
@@ -693,7 +661,7 @@ public class SinhVienBUS {
         }
         return false;
     }
-    
+
     public static boolean checkCMND(String CMND) {
         if (CMND.length() != 12) {
             return false;
@@ -708,7 +676,7 @@ public class SinhVienBUS {
 //        dssv = svDAO.get();
         return true;
     }
-    
+
     public static boolean checkExistCMND(String CMND) {
         for (SinhVien i : dssv) {
             if (i.getCmnd().equals(CMND)) {
@@ -717,7 +685,7 @@ public class SinhVienBUS {
         }
         return false;
     }
-    
+
     public static boolean checkMaLop(String maLop) {
         if (maLop.trim().equals("")) {
             return false;
@@ -739,14 +707,14 @@ public class SinhVienBUS {
         }
         return true;
     }
-    
+
     public static boolean checkGioiTinh(String gioiTinh) {
         if (!gioiTinh.equals("Nữ") && !gioiTinh.equals("Nam")) {
             return false;
         }
         return true;
     }
-    
+
     public static boolean checkDanToc(String danToc) {
         String[] dsDanToc = {"Kinh", "Hoa", "Tày", "Thái", "Mường", "Nùng", "H'Mông", "Dao", "Gia Rai", "Ê Đê", "Ba Na", "Chăm",
             "Sán Chay", "Cơ Ho", "Xơ Đăng", "Khơ Mú", "Giáy", "Lào", "La Chí", "La Ha", "Pu Péo", "Ro Măm",
@@ -763,9 +731,9 @@ public class SinhVienBUS {
             }
         }
         return false;
-        
+
     }
-    
+
     public static boolean checkTonGiao(String tonGiao) {
         // 10 tôn giáo phổ biến nhất Việt Nam
         String[] dsTonGiao = {"Không", "Phật giáo", "Thiên chúa giáo", "Hòa hảo", "Cao Đài", "Đạo Bửu Sơn Kỳ Hương",
@@ -778,7 +746,7 @@ public class SinhVienBUS {
         }
         return false;
     }
-    
+
     public static boolean checkSoDienThoai(String soDienThoai) {
         if (soDienThoai.length() != 10) {
             return false;
@@ -806,12 +774,12 @@ public class SinhVienBUS {
         // ---------------------------------------------------------
         return true;
     }
-    
+
     public static boolean checkDiaChi(String diaChi) {
         if (diaChi.length() <= 0 || diaChi.length() > 50) {
             return false;
         }
-        if (diaChi.trim().equals("")){
+        if (diaChi.trim().equals("")) {
             return false;
         }
         for (int i = 0; i < diaChi.length(); i++) {
@@ -823,7 +791,7 @@ public class SinhVienBUS {
         }
         return true;
     }
-    
+
     public static boolean checkNienKhoa(String nienKhoa) {
         int namVaoTruong, namRaTruong;
         try {
@@ -843,7 +811,7 @@ public class SinhVienBUS {
         }
         return true;
     }
-    
+
     public static boolean checkNgaySinh(String ngaySinh) {
         if (ngaySinh.length() != 10) { // 1999-07-08 -> true 1999-7-8 -> false
             return false;
@@ -858,7 +826,7 @@ public class SinhVienBUS {
         }
         return true;
     }
-    
+
     public static boolean checkNganh(String nganh) { // tham số truyền vao kiểu 'Công Nghệ Thông Tin (DCT)'
 //        String dsMaNganh[] = {"DAN","DCT","DHO","DKE","DKH","DKP","DKQ","DLI","DQK","DSA","DSI","DTN"};
         ArrayList<Nganh> dsNganh = new ArrayList();
@@ -883,7 +851,7 @@ public class SinhVienBUS {
         }
         return false;
     }
-    
+
     public static boolean checkMaTaiKhoan(String maTaiKhoan) {
         int intMaTaiKhoan;
         try {
@@ -894,10 +862,10 @@ public class SinhVienBUS {
         if (intMaTaiKhoan < 0) {
             return false;
         }
-        
+
         return true;
     }
-    
+
     public static boolean checkExistMaTaiKhoan(String maTaiKhoan) {
         int intMaTaiKhoan;
         try {
@@ -933,16 +901,16 @@ public class SinhVienBUS {
             return false;
         }
         return true;
-        
+
     }
-    
+
     public static boolean checkNamNhuan(int nam) {  // kiem tra xem nam dang xet co phai nam nhuan khong 
         if ((nam % 4 == 0 && nam % 100 != 0) || nam % 400 == 0) {
             return true;
         }
         return false;
     }
-    
+
     public static int soNgayTrongThang(int thang, int nam) { // tim so ngay trong thang tuong ung
         switch (thang) {
             case 1, 3, 5, 7, 8, 10, 12 -> {
@@ -967,7 +935,7 @@ public class SinhVienBUS {
                 || !checkGioiTinh(sv.getGioiTinh()) || !checkHoTen(sv.getHoTen()) || !checkMSSV(sv.getMaSV())
                 || !checkMaTaiKhoan(sv.getMaTK() + "") || !checkNganh(maNganhToTenNganh(sv.getMaNganh())) || !checkNgaySinh(dateFormat.format(sv.getNgaySinh()))
                 || !checkNienKhoa(sv.getNienKhoa()) || !checkSoDienThoai(sv.getSoDienThoai()) || !checkTonGiao(sv.getTonGiao())) {
-            
+
             return false;
         }
         return true;
@@ -993,10 +961,135 @@ public class SinhVienBUS {
         p.getTxtNganh().setText(n.getTenNganh());
         p.getTxtCoVan().setText(gv.getTenGV());
     }
+
     //----------------------------------------Kết thúc phần kiểm tra thông tin-------------------------------------------------------------------------------------------
+    //----Các hàm xử lý lọc thông tin-----
+    public static void doiGiaTriTimKiem(StudentInfor stu, String giaTri) { // hàm này đổi giá trị tìm kiếm và lưu vào biến
+        String thuocTinh = stu.getThuocTinhTimKiem();
+        if (thuocTinh.equals("Tên")) {
+            stu.setTimKiemTen(giaTri);
+            return;
+        }
+        if (thuocTinh.equals("MSSV")) {
+            stu.setTimKiemMSSV(giaTri);
+            return;
+        }
+        if (thuocTinh.equals("Ngành")) {
+            stu.setTimKiemNganh(giaTri);
+            return;
+        }
+        if (thuocTinh.equals("Lớp")) {
+            stu.setTimKiemLop(giaTri);
+            return;
+        }
+        if (thuocTinh.equals("Giới Tính")) {
+            stu.setTimKiemGioiTinh(giaTri);
+            return;
+        }
+        if (thuocTinh.equals("Năm Sinh")) {
+            stu.setTimKiemNamSinh(giaTri);
+            return;
+        }
+        if (thuocTinh.equals("Khóa")) {
+            stu.setTimKiemKhoa(giaTri);
+            return;
+        }
+    }
+
+    public static void giaTriTimKiemCuaThuocTinh(StudentInfor stu) {
+        String thuocTinh = stu.getThuocTinhTimKiem();
+        if (thuocTinh.equals("Tên")) {
+            stu.setTxtTimKiemSinhVien(stu.getTimKiemTen());
+            return;
+        }
+        if (thuocTinh.equals("MSSV")) {
+            stu.setTxtTimKiemSinhVien(stu.getTimKiemMSSV());
+            return;
+        }
+        if (thuocTinh.equals("Ngành")) {
+            stu.setTxtTimKiemSinhVien(stu.getTimKiemNganh());
+            return;
+        }
+        if (thuocTinh.equals("Lớp")) {
+            stu.setTxtTimKiemSinhVien(stu.getTimKiemLop());
+            return;
+        }
+        if (thuocTinh.equals("Giới Tính")) {
+            stu.setTxtTimKiemSinhVien(stu.getTimKiemGioiTinh());
+            return;
+        }
+        if (thuocTinh.equals("Năm Sinh")) {
+            stu.setTxtTimKiemSinhVien(stu.getTimKiemNamSinh());
+            return;
+        }
+        if (thuocTinh.equals("Khóa")) {
+            stu.setTxtTimKiemSinhVien(stu.getTimKiemKhoa());
+        }
+    }
+
+    public static void showStudentListWithCondition(StudentInfor stu) { // hàm này lọc lại bằng trạng thái sinh viên rồi đổ vào table
+        JTable table = stu.getTblStudentList();
+        DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
+        tblSinhVien.setRowCount(0);
+        int trangThai = 0;
+        if (stu.getCbTrangThaiSinhVien().getSelectedIndex() == 0) {
+            trangThai = 1;
+        }
+//        System.out.println(conditionName);
+        ArrayList<SinhVien> dssvNew = getDSSVWithCondition(stu);
+        int flag = 0; // cái biến này xem coi có svien nào tìm được không
+        for (SinhVien i : dssvNew) {
+            if (i.getTrangThai() == trangThai) {
+                tblSinhVien.addRow(new Object[]{
+                    i.getMaSV(), i.getHoTen(), maNganhToTenNganh(i.getMaNganh()), i.getNienKhoa()
+                });
+                flag = 1;
+            }
+        }
+        if (flag == 0) { // không dùng dssvNew.isEmty() được vì có thể tìm được svien nhưng không thỏa trạng thái
+            JOptionPane.showMessageDialog(null, "Không tìm thấy sinh viên nào\n");
+            return;
+        }
+    }
+
+    public static String getKhoaSinhVien(SinhVien sv) { // cái hàm này ra được năm vào trường của svien vd: 2023-2027 trả về 2023
+        return sv.getNienKhoa().split("-")[0];
+    }
+
+    public static ArrayList<SinhVien> getDSSVWithCondition(StudentInfor stu) { // hàm này lọc lại 1 lần nửa bằng ngành với khóa
+        ArrayList<SinhVien> dssv = svDAO.getByFilter(stu);
+        String giaTriNganh = stu.getTimKiemNganh();
+        String giaTriKhoa = stu.getTimKiemKhoa();
+
+        ArrayList<SinhVien> dssvNew = new ArrayList();
+        for (SinhVien sv : dssv) {
+            if (getKhoaSinhVien(sv).contains(giaTriKhoa) && maNganhToTenNganh(sv.getMaNganh()).contains(giaTriNganh)) {
+                dssvNew.add(sv);
+            }
+        }
+        return dssvNew;
+    }
+
+    public static boolean chuaNhapGiaTriTimKiem(StudentInfor stu) { // hàm này nếu chưa nhập tất cả thông tin tìm kiếm thì trả về true
+        String giaTriTen = stu.getTimKiemTen().trim();
+        String giaTriMSSV = stu.getTimKiemMSSV().trim();
+        String giaTriNganh = stu.getTimKiemNganh().trim();
+        String giaTriLop = stu.getTimKiemLop().trim();
+        String giaTriGioiTinh = stu.getTimKiemGioiTinh().trim();
+        String giaTriNamSinh = stu.getTimKiemNamSinh().trim();
+        String giaTriKhoa = stu.getTimKiemKhoa().trim();
+
+        String giaTriTimKiem = giaTriTen + giaTriMSSV + giaTriNganh + giaTriLop + giaTriGioiTinh + giaTriNamSinh + giaTriKhoa;
+
+        if (giaTriTimKiem.equals("")) {
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
 //        SinhVien sv = (new SinhVienDAO()).getByMaSV(TaiKhoanBUS.curentLogin.getTenTaiKhoan()).get(0);
 //        System.out.println(sv);
     }
-    
+
 }

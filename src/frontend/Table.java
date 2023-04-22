@@ -341,8 +341,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnAccountList.setBackground(new java.awt.Color(0, 158, 248));
         btnAccountList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnAccountList.setForeground(new java.awt.Color(255, 255, 255));
-        btnAccountList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-user-menu-male-30.png"))); // NOI18N
-        btnAccountList.setText("Quản lí tài khoản");
+        btnAccountList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-cat-30.png"))); // NOI18N
+        btnAccountList.setText("Quản lí năm học");
         btnAccountList.setToolTipText("");
         btnAccountList.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnAccountList.setContentAreaFilled(false);
@@ -370,8 +370,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnScholastic.setBackground(new java.awt.Color(0, 158, 248));
         btnScholastic.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnScholastic.setForeground(new java.awt.Color(255, 255, 255));
-        btnScholastic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-cat-30.png"))); // NOI18N
-        btnScholastic.setText("Quản lí năm học");
+        btnScholastic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-signal-30.png"))); // NOI18N
+        btnScholastic.setText("Thống kê");
         btnScholastic.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnScholastic.setContentAreaFilled(false);
         btnScholastic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -387,6 +387,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnScholasticMouseExited(evt);
+            }
+        });
+        btnScholastic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnScholasticActionPerformed(evt);
             }
         });
 
@@ -888,6 +893,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnScheduleActionPerformed
         mainPanel.removeAll();
         mainPanel.add(schedule);
+        NhomBUS.showTKB(schedule);
+        schedule.getCbChonHocKy().setSelectedIndex(0); // chọn học kì về học kì hiện tại
+        schedule.getScpDSSV().setVisible(false);
+        closeMenuActionPerformed(null);
         mainPanel.repaint();
         mainPanel.revalidate();
     }// GEN-LAST:event_btnScheduleActionPerformed
@@ -1203,6 +1212,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
         }
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void btnScholasticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScholasticActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnScholasticActionPerformed
     // ------------------------------------------------------------------------------------------------------------------------------
 
     private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_openMenuActionPerformed

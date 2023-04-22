@@ -1,8 +1,11 @@
 package backend.Nhom;
 
+import backend.QLTaiKhoan.TaiKhoanBUS;
 import connectDB.ConnectionDB;
 import java.util.ArrayList;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class NhomDAO {
 
@@ -110,7 +113,42 @@ public class NhomDAO {
         }
 
     }
+   
+    public ArrayList<Nhom> getBySinhVien(){ // hàm này trả về những nhóm sv đã học
+        String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
+        ArrayList<Nhom> dsn = new ArrayList<>();
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "Select nh.*\n" +
+                            "from KETQUA kq join NHOM nh on kq.MaHP = nh.MaHP and kq.SoNhom = nh.SoNhom\n" +
+                            "where kq.MaSV = '"+maSV+"'";
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String maHP = rs.getString("MaHP");
+                int soNhom = rs.getInt("SoNhom");
+                int hocKy = rs.getInt("HocKy");
+                int nam = rs.getInt("Nam");
+                String maGV = rs.getString("MaGV");
+                String phong = rs.getString("Phong");
+                int soSinhVien = rs.getInt("SoSinhVien");
+                String thu = rs.getString("Thu");
+                int tietBD = rs.getInt("TietBD");
+                int soTiet = rs.getInt("SoTiet");
+                Nhom n = new Nhom(maHP, soNhom, hocKy, nam, maGV, phong, soSinhVien, thu, tietBD, soTiet);
+                dsn.add(n);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
 
+        }
+        return dsn;
+        
+    }
+    
+    
     public static void main(String[] args) {
         NhomDAO nd = new NhomDAO();
 //        ArrayList<Nhom> n = nd.get();
@@ -118,6 +156,7 @@ public class NhomDAO {
 //Nhom n = new Nhom("861303",3,3,2022,"123","C.A105",40,"2",1,3);
 //nd.add(n);
 //nd.update("861302",2 , 2,2021 , n);
-        nd.delete("861303", 3, 3, 2022);
+//        nd.delete("861303", 3, 3, 2022);
+        System.out.println(nd.getBySinhVien());
     }
 }

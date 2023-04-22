@@ -5,6 +5,7 @@
 package backend.QLSinhVien;
 
 import connectDB.ConnectionDB;
+import frontend.StudentInfor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -485,9 +486,54 @@ public class SinhVienDAO {
         } else {
             dssv = getByNganh(CondiTion);
         }
+        ConnectionDB.closeConnection(con, pstm);
         return dssv;//+
     }
-
+    public ArrayList<SinhVien> getByFilter(StudentInfor stu){
+        con = ConnectionDB.getConnection();
+        String giaTriTen = stu.getTimKiemTen();
+        String giaTriMSSV = stu.getTimKiemMSSV();
+        String giaTriNganh = stu.getTimKiemNganh(); // sau khi lọc các giá trị kia thì lọc lại ngành bằng SinhVienBUS
+        String giaTriLop = stu.getTimKiemLop();
+        String giaTriGioiTinh = stu.getTimKiemGioiTinh();
+        String giaTriNamSinh = stu.getTimKiemNamSinh();
+        String giaTriKhoa = stu.getTimKiemKhoa(); // sau khi lọc các giá trị kia thì lọc lại Khóa bằng SinhVienBUS
+               
+        ArrayList<SinhVien> dssv = new ArrayList<>();
+        try {
+            String query = "select * from SinhVien where HoTen like N'%"+giaTriTen+"%' "
+                    +"and maSV like '%"+giaTriMSSV+"%' "
+                    +"and MaLop like '%"+giaTriLop+"%' "
+                    +"and GioiTinh like N'%"+giaTriGioiTinh+"%' "
+                    +"and YEAR(NgaySinh) like '%"+giaTriNamSinh+"%'";//+
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
+                String maSV = rs.getString("MaSV");//+
+                String cmnd = rs.getString("Cmnd");//+
+                String soDienThoai = rs.getString("SoDienThoai");
+                String maLop = rs.getString("MaLop");
+                String hoTen = rs.getString("HoTen");//+
+                Date ngaySinh = rs.getDate("NgaySinh");//+
+                String gioiTinh = rs.getString("GioiTinh");//+
+                String diaChi = rs.getString("DiaChi");//+
+                String danToc = rs.getString("DanToc");//+
+                String tonGiao = rs.getString("TonGiao");//+
+                String nienKhoa = rs.getString("NienKhoa");//+
+                String maNganh = rs.getString("MaNganh");//+
+                int maTK = rs.getInt("MaTK");
+                SinhVien sv = new SinhVien(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+                dssv.add(sv);//+
+            }
+        } catch (SQLException e) {
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dssv;//+
+        
+    }
+    
     public static void main(String[] args) {
 //        ArrayList<SinhVien> dssv = new SinhVienDAO().getByNganh("Công");
 //        Date ngay = new Date();

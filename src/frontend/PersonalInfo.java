@@ -483,8 +483,9 @@ public class PersonalInfo extends javax.swing.JPanel {
 
         button1.setBackground(new java.awt.Color(0, 158, 248));
         button1.setForeground(new java.awt.Color(255, 255, 255));
+        button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icons8-pdf-35.png"))); // NOI18N
         button1.setText("In PDF");
-        button1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        button1.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button1ActionPerformed(evt);
