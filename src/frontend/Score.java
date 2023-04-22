@@ -80,6 +80,15 @@ public class Score extends javax.swing.JPanel {
         this.txtTichLuyHe4 = txtTichLuyHe4;
     }
 
+    public JLabel getTxtHocKyVaNam() {
+        return txtHocKyVaNam;
+    }
+
+    public void setTxtHocKyVaNam(JLabel txtHocKyVaNam) {
+        this.txtHocKyVaNam = txtHocKyVaNam;
+    }
+    
+
     /**
      * Creates new form Score
      */
@@ -103,7 +112,7 @@ public class Score extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
+        txtHocKyVaNam = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
@@ -170,10 +179,10 @@ public class Score extends javax.swing.JPanel {
             //        }
         jScrollPane3.setViewportView(table);
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("Học kỳ 2 Năm học 2022");
+        txtHocKyVaNam.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtHocKyVaNam.setForeground(new java.awt.Color(51, 51, 255));
+        txtHocKyVaNam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtHocKyVaNam.setText("Học kỳ 2 Năm học 2022");
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel26.setText("Nhập học kỳ xem điểm thi (VD 20221)");
@@ -225,14 +234,14 @@ public class Score extends javax.swing.JPanel {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtHocKyVaNam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtHocKyVaNam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -428,7 +437,6 @@ public class Score extends javax.swing.JPanel {
     private void btnXemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemActionPerformed
       KetQuaBUS kq = new KetQuaBUS();
       kq.SearchHocKy(this);
-      getTxtSearch().setText("");
     }//GEN-LAST:event_btnXemActionPerformed
 
     private void btnXemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXemMouseEntered
@@ -447,7 +455,6 @@ public class Score extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -465,6 +472,7 @@ public class Score extends javax.swing.JPanel {
     private javax.swing.JTable table;
     private javax.swing.JLabel txtHocKyHe10;
     private javax.swing.JLabel txtHocKyHe4;
+    private javax.swing.JLabel txtHocKyVaNam;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JLabel txtSoTCHocKy;
     private javax.swing.JLabel txtSoTinChiTichLuy;

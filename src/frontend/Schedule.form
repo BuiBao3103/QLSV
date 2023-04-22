@@ -240,14 +240,8 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JComboBox" name="cbChonHocKy">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="2-2022"/>
-              </StringArray>
-            </Property>
-          </Properties>
           <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbChonHocKyItemStateChanged"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbChonHocKyActionPerformed"/>
           </Events>
           <AuxValues>

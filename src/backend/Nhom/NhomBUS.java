@@ -13,6 +13,8 @@ import backend.QLGiangVien.GiangVienBUS;
 import backend.QLHocPhan.HocPhan;
 import backend.QLHocPhan.HocPhanBUS;
 import backend.QLHocPhan.HocPhanDAO;
+import backend.QLNienHoc.NienHoc;
+import backend.QLNienHoc.NienHocDAO;
 import backend.QLSinhVien.SinhVien;
 import backend.QLSinhVien.SinhVienBUS;
 import backend.QLSinhVien.SinhVienDAO;
@@ -154,20 +156,7 @@ public class NhomBUS {
     }
 
     // ------ các hàm thao tác với tkb -------------------
-//    public String hocKyHienTai(){ // hàm này trả về học kì của năm hiện tại vd: "HK2 2022-2023"    // học kỳ 2 từ tháng 1->5 hoc ky 1 từ 8->12
-//        int myMonth = Integer.parseInt(month.format(today));
-//        int myYear = Integer.parseInt(year.format(today));
-//        int prevYear = myYear - 1;
-//        int nextYear = myYear + 1;
-//        String namHoc = "";
-//        if(myMonth >= 8){ // lấy năm hiện tại 
-//            namHoc = "HK1 " + myYear +"-"+ nextYear;
-//        }
-//        else{ // 2 tháng 6,7 tính cho hk2 luôn
-//            namHoc = "HK2 " + prevYear +"-"+ myYear;
-//        }
-//        return namHoc;
-//    }
+    
     public static void formatTable(JTable table) {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -181,11 +170,15 @@ public class NhomBUS {
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
         tableModel.setRowCount(0);
         formatTable(table);
-
-        String hocKyDaChon = schedule.getCbChonHocKy().getSelectedItem().toString();
-        int hocKy = Integer.parseInt(hocKyDaChon.split("-")[0]); // lấy học kì đã chọn trong combobox
-        int nam = Integer.parseInt(hocKyDaChon.split("-")[1]); // lấy năm đã chọn trong combobox
-
+        int hocKy;
+        int nam;
+        try{
+            String hocKyDaChon = schedule.getCbChonHocKy().getSelectedItem().toString();
+            hocKy = Integer.parseInt(hocKyDaChon.split(" ")[0]); // lấy học kì đã chọn trong combobox
+            nam = Integer.parseInt(hocKyDaChon.split(" ")[1]); // lấy năm đã chọn trong combobox
+        }catch(Exception e){
+            return;
+        }
         for (Nhom nh : dsNhomDaHoc) {
             if (nh.getHocKy() == hocKy && nh.getNam() == nam) {
                 HocPhan hp = hpDAO.getByMaHP(nh.getMaHP()); // cái này lấy ra học phần của nhóm đó để có tên hp, số tchi ...
@@ -233,6 +226,27 @@ public class NhomBUS {
                     i++, sv.getMaSV(), sv.getHoTen(), SinhVienBUS.maNganhToTenNganh(sv.getMaNganh()), sv.getMaLop()
                 });
             }
+        }
+    }
+    
+        public static void addItemToCbChonHocKy(Schedule schedule){
+        String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
+        SinhVien sv = svDAO.getByMaSV(maSV).get(0);
+        int namVaoHoc = Integer.parseInt(sv.getNienKhoa().split("-")[0]);
+        NienHoc hientai = new NienHocDAO().getCurrentNienHoc();
+        
+        if(hientai.getHocKi() == 2){
+            schedule.getCbChonHocKy().addItem(2+" "+ hientai.getNam());
+            schedule.getCbChonHocKy().addItem(1+" "+ hientai.getNam());
+        }
+        else{
+            schedule.getCbChonHocKy().addItem(1+" "+ hientai.getNam());
+        }
+        int i = 1;
+        while(namVaoHoc < hientai.getNam()){
+            schedule.getCbChonHocKy().addItem(1+" "+ namVaoHoc);
+            schedule.getCbChonHocKy().addItem(2+" "+ namVaoHoc);
+            namVaoHoc++;
         }
     }
 

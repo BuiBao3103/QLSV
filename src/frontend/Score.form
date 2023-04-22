@@ -221,7 +221,7 @@
                                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                       <Component id="jPanel5" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jLabel25" max="32767" attributes="0"/>
+                                  <Component id="txtHocKyVaNam" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -231,7 +231,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel25" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="txtHocKyVaNam" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel5" min="-2" pref="35" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -240,7 +240,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel25">
+                    <Component class="javax.swing.JLabel" name="txtHocKyVaNam">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="18" style="0"/>
