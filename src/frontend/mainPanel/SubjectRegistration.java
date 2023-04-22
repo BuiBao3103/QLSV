@@ -3,9 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package frontend.mainPanel;
-import  javax.swing.table.*;
-import  javax.swing.*;
+
+import backend.Nhom.NhomBUS;
+import javax.swing.table.*;
+import javax.swing.*;
 import java.awt.*;
+
 /**
  *
  * @author ASUS
@@ -41,27 +44,26 @@ public class SubjectRegistration extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         filter_pal = new javax.swing.JLabel();
-        filter_combox = new javax.swing.JComboBox<>();
-        filter_txt = new javax.swing.JTextField();
+        filterHP_txt = new javax.swing.JTextField();
         filter_btn = new javax.swing.JButton();
         add_btn = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jscrollbar = new javax.swing.JScrollPane();
         tblNhomMonHoc = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
         filter_pal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        filter_pal.setText("Lọc theo");
+        filter_pal.setText("Lọc môn học:");
 
-        filter_combox.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        filter_combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        filter_combox.addActionListener(new java.awt.event.ActionListener() {
+        filterHP_txt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        filterHP_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filter_comboxActionPerformed(evt);
+                filterHP_txtActionPerformed(evt);
             }
         });
-
-        filter_txt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         filter_btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         filter_btn.setText("Lọc");
@@ -74,34 +76,52 @@ public class SubjectRegistration extends javax.swing.JPanel {
         add_btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         add_btn.setText("Thêm");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel1.setText("Chuyên Biệt:");
+
+        jComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        jComboBox4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Không", "Môn Chung", "Ngành", "Khoa" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(filter_pal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filter_combox, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filter_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filter_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 339, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filter_pal, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(filterHP_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filter_btn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
                 .addComponent(add_btn)
-                .addGap(21, 21, 21))
+                .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(filter_pal)
-                    .addComponent(filter_combox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filter_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filter_btn)
-                    .addComponent(add_btn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(add_btn)
+                    .addComponent(filterHP_txt)
+                    .addComponent(filter_btn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox3)
+                    .addComponent(jComboBox4))
+                .addGap(14, 14, 14))
         );
 
         tblNhomMonHoc.setModel(new javax.swing.table.DefaultTableModel(
@@ -136,7 +156,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 continue;
             }
         }
-        jScrollPane2.setViewportView(tblNhomMonHoc);
+        jscrollbar.setViewportView(tblNhomMonHoc);
         if (tblNhomMonHoc.getColumnModel().getColumnCount() > 0) {
             tblNhomMonHoc.getColumnModel().getColumn(0).setMaxWidth(40);
             tblNhomMonHoc.getColumnModel().getColumn(1).setMaxWidth(60);
@@ -184,7 +204,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jscrollbar))
                 .addGap(18, 18, 18))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -193,10 +213,10 @@ public class SubjectRegistration extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
+                .addComponent(jscrollbar, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
 
         jScrollPane1.setViewportView(jPanel2);
@@ -205,7 +225,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
         subjectRegistration.setLayout(subjectRegistrationLayout);
         subjectRegistrationLayout.setHorizontalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 909, Short.MAX_VALUE)
         );
         subjectRegistrationLayout.setVerticalGroup(
             subjectRegistrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,38 +236,41 @@ public class SubjectRegistration extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 908, Short.MAX_VALUE)
+            .addGap(0, 909, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(subjectRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 838, Short.MAX_VALUE)
+            .addGap(0, 914, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(subjectRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void filter_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_btnActionPerformed
-        // TODO add your handling code here:
+        String hocPhan = filterHP_txt.getText();
+        NhomBUS.filterGroup(hocPhan, tblNhomMonHoc);
     }//GEN-LAST:event_filter_btnActionPerformed
 
-    private void filter_comboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_comboxActionPerformed
+    private void filterHP_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterHP_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_filter_comboxActionPerformed
+    }//GEN-LAST:event_filterHP_txtActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_btn;
+    private javax.swing.JTextField filterHP_txt;
     private javax.swing.JButton filter_btn;
-    private javax.swing.JComboBox<String> filter_combox;
     private javax.swing.JLabel filter_pal;
-    private javax.swing.JTextField filter_txt;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jscrollbar;
     private javax.swing.JPanel subjectRegistration;
     private javax.swing.JTable tblNhomMonHoc;
     // End of variables declaration//GEN-END:variables

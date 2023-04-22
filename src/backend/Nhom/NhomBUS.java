@@ -83,7 +83,7 @@ public class NhomBUS {
         return cnt;
     }
 
-    private static boolean checkPreviousHocPhan(String maHP) {
+    public static boolean checkPreviousHocPhan(String maHP) {
         ArrayList<String> dsMonHocTruoc = HocPhanBUS.getMonHocTruoc(maHP);
         KetQuaBUS kqBUS = new KetQuaBUS();
         for (String hpt : dsMonHocTruoc) {
@@ -96,7 +96,7 @@ public class NhomBUS {
         return true;
     }
 
-    private static boolean checkSvKhoaNganh(String maHP) {
+    public static boolean checkSvKhoaNganh(String maHP) {
         HocPhan hp = HocPhanBUS.getHocPhanByID(maHP);
         SinhVien sv = (new SinhVienDAO()).getByMaSV(TaiKhoanBUS.curentLogin.getTenTaiKhoan()).get(0);
         switch (hp.getChuyenBiet()) {
@@ -119,6 +119,40 @@ public class NhomBUS {
         }
         return false;
     }
+
+    public static void filterGroup(String monHoc, JTable table) {
+        boolean found = false;
+        ArrayList<KetQua> dskq = (new KetQuaDAO()).get(2, 2022);
+        DefaultTableModel tblNhom = (DefaultTableModel) table.getModel();
+        tblNhom.setRowCount(0);
+        int i = 1;
+        for (Nhom nhom : dsNhom) {
+            String nameHP = HocPhanBUS.getHPnameByHPid(nhom.getMaHP());
+            //filter by name or id HP
+            if (!nhom.getMaHP().toLowerCase().contains(monHoc.toLowerCase())
+                    && !nameHP.toLowerCase().contains(monHoc.toLowerCase())) {
+                continue;
+            }
+            found = true;
+            //Get data GiangVien
+            String fullnameGV = GiangVienBUS.getGVnameByGVid(nhom.getMaGV()).getTenGV();
+            String formattedName = GiangVienBUS.formatGVName(fullnameGV);//Trương Tấn Khoa -> T.T.Khoa
+            //Get data HocPhan
+            String tcHP = HocPhanBUS.getHPtcByHPid(nhom.getMaHP());
+            //handle remaining slot 
+            int remainSlot = nhom.getSoLuongSV()
+                    - countGroupRegistered(dskq, nhom.getMaHP(), nhom.getSoNhom());
+            //Create row data
+            Object[] rowData = {i++, nhom.getMaHP(), nameHP, nhom.getSoNhom(), tcHP,
+                nhom.getSoLuongSV(), remainSlot, nhom.getThu().substring(4),
+                nhom.getTietBD(), nhom.getSoTiet(), nhom.getPhong(), formattedName};
+            tblNhom.addRow(rowData);
+        }
+        if (!found) {
+            JOptionPane.showMessageDialog(null, "Không tim thấy môn học nào!", "Kết quả lọc", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
     // ------ các hàm thao tác với tkb -------------------
 //    public String hocKyHienTai(){ // hàm này trả về học kì của năm hiện tại vd: "HK2 2022-2023"    // học kỳ 2 từ tháng 1->5 hoc ky 1 từ 8->12
 //        int myMonth = Integer.parseInt(month.format(today));
@@ -134,13 +168,14 @@ public class NhomBUS {
 //        }
 //        return namHoc;
 //    }
-    public static void formatTable(JTable table){
+    public static void formatTable(JTable table) {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        for(int i = 0; i < table.getColumnCount(); i++){
-             table.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
-        } 
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
     }
+
     public static void showTKB(Schedule schedule) {
         JTable table = schedule.getTblSchedule();
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
@@ -161,40 +196,41 @@ public class NhomBUS {
         }
         table.setModel(tableModel);
     }
-    
-    public static ArrayList<SinhVien> getDSSVFromSelectedRow(Schedule schedule){ // hàm này lấy dssv từ học phần đang chọn
+
+    public static ArrayList<SinhVien> getDSSVFromSelectedRow(Schedule schedule) { // hàm này lấy dssv từ học phần đang chọn
         int selectedRow = schedule.getTblSchedule().getSelectedRow();
         JTable tblSchedule = schedule.getTblSchedule();
         String maHpDuocChon = tblSchedule.getValueAt(selectedRow, 0).toString();
         int nhomDuocChon = Integer.parseInt(tblSchedule.getValueAt(selectedRow, 2).toString());
-        
+
         ArrayList<String> dsMaSV = new KetQuaDAO().getDsMaSV(maHpDuocChon, nhomDuocChon);
         ArrayList<SinhVien> dssv = new ArrayList();
-        for (String MaSV : dsMaSV){
+        for (String MaSV : dsMaSV) {
             SinhVien sv = svDAO.getByMaSV(MaSV).get(0);
             dssv.add(sv);
         }
         return dssv;
     }
-    public static void showDSSV(Schedule schedule){
+
+    public static void showDSSV(Schedule schedule) {
         int selectedRow = schedule.getTblSchedule().getSelectedRow();
-        if(selectedRow < 0){
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Chọn môn muốn xem danh sách");
             return;
         }
         ArrayList<SinhVien> dssv = getDSSVFromSelectedRow(schedule); // lấy dssv đang học Hphan nhóm đang chọn
-        
+
         JTable table = schedule.getTblDSSV();
         schedule.getScpDSSV().setVisible(true);
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
         tableModel.setRowCount(0);
         formatTable(table);
-        
+
         int i = 1;
-        for(SinhVien sv: dssv){
-            if(sv.getTrangThai()==1){
+        for (SinhVien sv : dssv) {
+            if (sv.getTrangThai() == 1) {
                 tableModel.addRow(new Object[]{
-                   i++, sv.getMaSV(), sv.getHoTen(), SinhVienBUS.maNganhToTenNganh(sv.getMaNganh()), sv.getMaLop()
+                    i++, sv.getMaSV(), sv.getHoTen(), SinhVienBUS.maNganhToTenNganh(sv.getMaNganh()), sv.getMaLop()
                 });
             }
         }
