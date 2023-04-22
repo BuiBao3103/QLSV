@@ -363,9 +363,9 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel22" pref="90" max="32767" attributes="0"/>
-                                      <Component id="jLabel19" max="32767" attributes="0"/>
-                                      <Component id="jLabel20" max="32767" attributes="0"/>
+                                      <Component id="txtSoTCHocKy" pref="90" max="32767" attributes="0"/>
+                                      <Component id="txtHocKyHe10" max="32767" attributes="0"/>
+                                      <Component id="txtHocKyHe4" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -376,17 +376,17 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtHocKyHe10" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtHocKyHe4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtSoTCHocKy" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
                               </Group>
@@ -418,17 +418,17 @@
                             <Property name="text" type="java.lang.String" value="S&#x1ed1; t&#xed;n ch&#x1ec9; &#x111;&#x1ea1;t &#x111;&#x1b0;&#x1ee3;c"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel19">
+                        <Component class="javax.swing.JLabel" name="txtHocKyHe10">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="jLabel19"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel20">
+                        <Component class="javax.swing.JLabel" name="txtHocKyHe4">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="jLabel20"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel22">
+                        <Component class="javax.swing.JLabel" name="txtSoTCHocKy">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="jLabel21"/>
                           </Properties>
@@ -449,15 +449,15 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel33" max="32767" attributes="0"/>
+                                          <Component id="txtSoTinChiTichLuy" max="32767" attributes="0"/>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel31" pref="64" max="32767" attributes="0"/>
+                                          <Component id="txtTichLuyHe10" pref="64" max="32767" attributes="0"/>
                                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel32" max="32767" attributes="0"/>
+                                          <Component id="txtTichLuyHe4" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -469,17 +469,17 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtTichLuyHe10" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtTichLuyHe4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtSoTinChiTichLuy" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
                               </Group>
@@ -511,17 +511,17 @@
                             <Property name="text" type="java.lang.String" value="S&#x1ed1; t&#xed;n ch&#x1ec9; t&#xed;ch l&#x169;y"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel31">
+                        <Component class="javax.swing.JLabel" name="txtTichLuyHe10">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="jLabel19"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel32">
+                        <Component class="javax.swing.JLabel" name="txtTichLuyHe4">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="jLabel20"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel33">
+                        <Component class="javax.swing.JLabel" name="txtSoTinChiTichLuy">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="jLabel21"/>
                           </Properties>

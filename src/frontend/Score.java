@@ -6,6 +6,7 @@ package frontend;
 
 import backend.KetQua.KetQuaBUS;
 import java.awt.Color;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -29,6 +30,54 @@ public class Score extends javax.swing.JPanel {
 
     public void setTxtSearch(JTextField txtSearch) {
         this.txtSearch = txtSearch;
+    }
+
+    public JLabel getTxtHocKyHe10() {
+        return txtHocKyHe10;
+    }
+
+    public void setTxtHocKyHe10(JLabel txtHocKyHe10) {
+        this.txtHocKyHe10 = txtHocKyHe10;
+    }
+
+    public JLabel getTxtHocKyHe4() {
+        return txtHocKyHe4;
+    }
+
+    public void setTxtHocKyHe4(JLabel txtHocKyHe4) {
+        this.txtHocKyHe4 = txtHocKyHe4;
+    }
+
+    public JLabel getTxtSoTCHocKy() {
+        return txtSoTCHocKy;
+    }
+
+    public void setTxtSoTCHocKy(JLabel txtSoTCHocKy) {
+        this.txtSoTCHocKy = txtSoTCHocKy;
+    }
+
+    public JLabel getTxtSoTinChiTichLuy() {
+        return txtSoTinChiTichLuy;
+    }
+
+    public void setTxtSoTinChiTichLuy(JLabel txtSoTinChiTichLuy) {
+        this.txtSoTinChiTichLuy = txtSoTinChiTichLuy;
+    }
+
+    public JLabel getTxtTichLuyHe10() {
+        return txtTichLuyHe10;
+    }
+
+    public void setTxtTichLuyHe10(JLabel txtTichLuyHe10) {
+        this.txtTichLuyHe10 = txtTichLuyHe10;
+    }
+
+    public JLabel getTxtTichLuyHe4() {
+        return txtTichLuyHe4;
+    }
+
+    public void setTxtTichLuyHe4(JLabel txtTichLuyHe4) {
+        this.txtTichLuyHe4 = txtTichLuyHe4;
     }
 
     /**
@@ -64,16 +113,16 @@ public class Score extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        txtHocKyHe10 = new javax.swing.JLabel();
+        txtHocKyHe4 = new javax.swing.JLabel();
+        txtSoTCHocKy = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
+        txtTichLuyHe10 = new javax.swing.JLabel();
+        txtTichLuyHe4 = new javax.swing.JLabel();
+        txtSoTinChiTichLuy = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,11 +247,11 @@ public class Score extends javax.swing.JPanel {
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel17.setText("Số tín chỉ đạt được");
 
-        jLabel19.setText("jLabel19");
+        txtHocKyHe10.setText("jLabel19");
 
-        jLabel20.setText("jLabel20");
+        txtHocKyHe4.setText("jLabel20");
 
-        jLabel22.setText("jLabel21");
+        txtSoTCHocKy.setText("jLabel21");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -215,9 +264,9 @@ public class Score extends javax.swing.JPanel {
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtSoTCHocKy, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(txtHocKyHe10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtHocKyHe4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -225,15 +274,15 @@ public class Score extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel19))
+                    .addComponent(txtHocKyHe10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jLabel20))
+                    .addComponent(txtHocKyHe4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jLabel22))
+                    .addComponent(txtSoTCHocKy))
                 .addGap(0, 30, Short.MAX_VALUE))
         );
 
@@ -246,11 +295,11 @@ public class Score extends javax.swing.JPanel {
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel30.setText("Số tín chỉ tích lũy");
 
-        jLabel31.setText("jLabel19");
+        txtTichLuyHe10.setText("jLabel19");
 
-        jLabel32.setText("jLabel20");
+        txtTichLuyHe4.setText("jLabel20");
 
-        jLabel33.setText("jLabel21");
+        txtSoTinChiTichLuy.setText("jLabel21");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -264,13 +313,13 @@ public class Score extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSoTinChiTichLuy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                        .addComponent(txtTichLuyHe10, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtTichLuyHe4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         jPanel8Layout.setVerticalGroup(
@@ -278,15 +327,15 @@ public class Score extends javax.swing.JPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(jLabel31))
+                    .addComponent(txtTichLuyHe10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
-                    .addComponent(jLabel32))
+                    .addComponent(txtTichLuyHe4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
-                    .addComponent(jLabel33))
+                    .addComponent(txtSoTinChiTichLuy))
                 .addGap(0, 30, Short.MAX_VALUE))
         );
 
@@ -378,7 +427,7 @@ public class Score extends javax.swing.JPanel {
 
     private void btnXemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemActionPerformed
       KetQuaBUS kq = new KetQuaBUS();
-      kq.Search(this);
+      kq.SearchHocKy(this);
       getTxtSearch().setText("");
     }//GEN-LAST:event_btnXemActionPerformed
 
@@ -398,17 +447,11 @@ public class Score extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
@@ -420,6 +463,12 @@ public class Score extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel score;
     private javax.swing.JTable table;
+    private javax.swing.JLabel txtHocKyHe10;
+    private javax.swing.JLabel txtHocKyHe4;
     private javax.swing.JTextField txtSearch;
+    private javax.swing.JLabel txtSoTCHocKy;
+    private javax.swing.JLabel txtSoTinChiTichLuy;
+    private javax.swing.JLabel txtTichLuyHe10;
+    private javax.swing.JLabel txtTichLuyHe4;
     // End of variables declaration//GEN-END:variables
 }

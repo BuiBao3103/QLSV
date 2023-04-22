@@ -40,10 +40,13 @@ public class KetQuaBUS {
         return false;
     }
 
-    public void addRowData(JTable table, int nam,int hk) {
+    public void addRowData(Score score, int nam,int hk) {
+        JTable table = score.getjTable2();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-
-        int stt = 1;
+        int stt = 0;
+         double TongDiemHe10 = 0;
+         double TongDiemHe4 = 0;
+         int soTinChi =0;
         model.setRowCount(0);
         for (KetQua kq : dsKQSV) {
             if (hk == kq.getHocKy() && nam == kq.getNam()) {
@@ -52,19 +55,41 @@ public class KetQuaBUS {
                 int soTC = hp.getTinChi();
                 String phanTramQuaTrinh = hp.getPhanTramQuaTrinh() + "%";
                 String phanTramThi = (100 - hp.getPhanTramQuaTrinh()) + "%"; // % điểm thi = 100% - %điểm quá trình
-                double diemQuaTrinh = kq.getDiemQT();
-                double diemCuoiKy = kq.getDiemCK();
-                double diemHe10 = DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy);
+                 double diemQuaTrinh = kq.getDiemQT();
+                 double diemCuoiKy = kq.getDiemCK();
+                 double diemHe10 = DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy);
+                 soTinChi +=soTC;
                 String diemChu = DiemChuHe4(diemHe10);
+                TongDiemHe10  += diemHe10;
+                TongDiemHe4 += TinhDiemHe4(diemHe10);
+                stt++;
                 model.addRow(new Object[]{
-                    stt++, kq.getMaHP(), tenHP, soTC, phanTramQuaTrinh,
+                    stt, kq.getMaHP(), tenHP, soTC, phanTramQuaTrinh,
                     phanTramThi, diemQuaTrinh, diemCuoiKy,
                     diemHe10, diemChu
                 });
             }
         }
+         double diemTrungBinhHe10 = TongDiemHe10 / stt;
+         double diemTrungBinhHe4 = TongDiemHe4/stt;
+       score.getTxtHocKyHe10().setText(String.valueOf(diemTrungBinhHe10));
+        score.getTxtHocKyHe4().setText(String.valueOf(diemTrungBinhHe4));
+        score.getTxtSoTCHocKy().setText(String.valueOf(soTinChi));
     }
-
+public void showTable( ){
+     for ( KetQua kq : dsKQSV) {
+                HocPhan hp = HocPhanBUS.getHocPhanByID(kq.getMaHP());
+                String tenHP = hp.getTenHP();
+                int soTC = hp.getTinChi();
+                String phanTramQuaTrinh = hp.getPhanTramQuaTrinh() + "%";
+                String phanTramThi = (100 - hp.getPhanTramQuaTrinh()) + "%"; // % điểm thi = 100% - %điểm quá trình
+                 double diemQuaTrinh = kq.getDiemQT();
+                 double diemCuoiKy = kq.getDiemCK();
+                 double diemHe10 = DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy);
+                   String diemChu = DiemChuHe4(diemHe10);
+                 
+     }
+}
     public int[] convertStringToNumber(String text) {
         int[]  result = new int[2];
         String firstPart = text.substring(0, 4);
@@ -84,28 +109,36 @@ public boolean formatCheck(String text){
     }
     return true;
 }
-public void Search (Score score){
+public void SearchHocKy (Score score){
     String input = score.getTxtSearch().getText();
-    System.out.println(input);
     if(formatCheck(input)){
         int[] result =convertStringToNumber(input);
-        System.out.println(result[0]);
-                System.out.println(result[1]);
-
-        addRowData(score.getjTable2(), result[0], result[1]); 
+        addRowData(score, result[0], result[1]); 
     }
     else{
         JOptionPane.showMessageDialog(score, "Nhập sai định dạng");
     }
 }
-    public double DiemHe10(String PhanTramQuaTrinh, double diemQuaTrinh, double diemThi) {
+    public  double DiemHe10(String PhanTramQuaTrinh,  double diemQuaTrinh, double diemThi) {
         if (PhanTramQuaTrinh.equals("40%")) {
             return diemQuaTrinh * 0.4 + diemThi * 0.6;
         } else {
             return diemQuaTrinh * 0.5 + diemThi * 0.5;
         }
     }
-
+public double TinhDiemHe4(double diemHe10){
+      if (diemHe10 >= 8.5) {
+            return 4.0;
+        } else if (diemHe10 >= 7.0 && diemHe10 <= 8.4) {
+            return 3.0;
+        } else if (diemHe10 >= 5.5 && diemHe10 <= 6.9) {
+            return 2.0;
+        } else if (diemHe10 >= 4.0 && diemHe10 <= 5.4) {
+            return 1.0;
+        } else {
+            return 0.0;
+        }
+}
     public String DiemChuHe4(double diemHe10) {
         if (diemHe10 >= 8.5) {
             return "A";
