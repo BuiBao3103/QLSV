@@ -143,7 +143,27 @@ public class KetQuaDAO {
 
         }
     }
-
+    
+    public ArrayList<String> getDsMaSV(String maHP, int soNhom){
+        ArrayList<String> dsMaSV = new ArrayList();
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "select MaSV\n" +
+                            "from KETQUA\n" +
+                            "where MaHP = '' and SoNhom = 1";
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String maSV = rs.getString("MaSV");
+                dsMaSV.add(maSV);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dsMaSV;
+    }
     public static void main(String[] args) {
         KetQuaDAO kqd = new KetQuaDAO();
         ArrayList<KetQua> dskq = kqd.get("3121410482");

@@ -14,6 +14,7 @@ import backend.QLHocPhan.HocPhan;
 import backend.QLHocPhan.HocPhanBUS;
 import backend.QLHocPhan.HocPhanDAO;
 import backend.QLSinhVien.SinhVien;
+import backend.QLSinhVien.SinhVienBUS;
 import backend.QLSinhVien.SinhVienDAO;
 import backend.QLTaiKhoan.TaiKhoanBUS;
 import frontend.Schedule;
@@ -154,12 +155,49 @@ public class NhomBUS {
             if (nh.getHocKy() == hocKy && nh.getNam() == nam) {
                 HocPhan hp = hpDAO.getByMaHP(nh.getMaHP()); // cái này lấy ra học phần của nhóm đó để có tên hp, số tchi ...
                 tableModel.addRow(new Object[]{
-                    nh.getMaHP(), hp.getTenHP(), nh.getSoNhom(), hp.getTinChi(), nh.getThu(), nh.getTietBD(), nh.getSoTiet(), nh.getPhong(), "DSSV"
+                    nh.getMaHP(), hp.getTenHP(), nh.getSoNhom(), hp.getTinChi(), nh.getThu(), nh.getTietBD(), nh.getSoTiet(), nh.getPhong()
                 });
             }
         }
-
         table.setModel(tableModel);
+    }
+    
+    public static ArrayList<SinhVien> getDSSVFromSelectedRow(Schedule schedule){ // hàm này lấy dssv từ học phần đang chọn
+        int selectedRow = schedule.getTblSchedule().getSelectedRow();
+        JTable tblSchedule = schedule.getTblSchedule();
+        String maHpDuocChon = tblSchedule.getValueAt(selectedRow, 0).toString();
+        int nhomDuocChon = Integer.parseInt(tblSchedule.getValueAt(selectedRow, 2).toString());
+        
+        ArrayList<String> dsMaSV = new KetQuaDAO().getDsMaSV(maHpDuocChon, nhomDuocChon);
+        ArrayList<SinhVien> dssv = new ArrayList();
+        for (String MaSV : dsMaSV){
+            SinhVien sv = svDAO.getByMaSV(MaSV).get(0);
+            dssv.add(sv);
+        }
+        return dssv;
+    }
+    public static void showDSSV(Schedule schedule){
+        int selectedRow = schedule.getTblSchedule().getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Chọn môn muốn xem danh sách");
+            return;
+        }
+        ArrayList<SinhVien> dssv = getDSSVFromSelectedRow(schedule); // lấy dssv đang học Hphan nhóm đang chọn
+        
+        JTable table = schedule.getTblDSSV();
+        schedule.getScpDSSV().setVisible(true);
+        DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        tableModel.setRowCount(0);
+        formatTable(table);
+        
+        int i = 1;
+        for(SinhVien sv: dssv){
+            if(sv.getTrangThai()==1){
+                tableModel.addRow(new Object[]{
+                   i++, sv.getMaSV(), sv.getHoTen(), SinhVienBUS.maNganhToTenNganh(sv.getMaNganh()), sv.getMaLop()
+                });
+            }
+        }
     }
 
     public static void main(String[] args) {

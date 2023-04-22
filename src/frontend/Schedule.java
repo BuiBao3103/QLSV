@@ -5,6 +5,7 @@
 package frontend;
 
 import backend.Excel.IOExcel;
+import backend.Nhom.NhomBUS;
 import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,6 +56,9 @@ public class Schedule extends javax.swing.JPanel {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
+        btnXemDSSV = new javax.swing.JButton();
+        scpDSSV = new javax.swing.JScrollPane();
+        tblDSSV = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 153, 204));
 
@@ -63,20 +67,20 @@ public class Schedule extends javax.swing.JPanel {
         tblSchedule.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tblSchedule.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(841107), "Lập Trình Java", "09",  new Integer(4), "Hai",  new Integer(1),  new Integer(3), "C.A105", "DSSV"},
-                { new Integer(841048), "	P/tích thiết kế hệ thống thông tin", "04",  new Integer(4), "Sáu",  new Integer(1),  new Integer(5), "C.A106", "DSSV"},
-                { new Integer(841058), "	Hệ điều hành mã nguồn mở", "02",  new Integer(3), "Tư",  new Integer(3),  new Integer(4), "C.E403", "DSSV"},
-                { new Integer(861303), "Chủ nghĩa xã hội khoa học", "07",  new Integer(2), "Tư",  new Integer(1),  new Integer(2), "C.B107", "DSSV"}
+                { new Integer(841107), "Lập Trình Java", "09",  new Integer(4), "Hai",  new Integer(1),  new Integer(3), "C.A105"},
+                { new Integer(841048), "	P/tích thiết kế hệ thống thông tin", "04",  new Integer(4), "Sáu",  new Integer(1),  new Integer(5), "C.A106"},
+                { new Integer(841058), "	Hệ điều hành mã nguồn mở", "02",  new Integer(3), "Tư",  new Integer(3),  new Integer(4), "C.E403"},
+                { new Integer(861303), "Chủ nghĩa xã hội khoa học", "07",  new Integer(2), "Tư",  new Integer(1),  new Integer(2), "C.B107"}
             },
             new String [] {
-                "Mã MH", "Tên Môn Học", "NMH", "STC", "Thứ", "Tiết BĐ", "Số Tiết", "Phòng", "DSSV"
+                "Mã MH", "Tên Môn Học", "NMH", "STC", "Thứ", "Tiết BĐ", "Số Tiết", "Phòng"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -125,16 +129,12 @@ public class Schedule extends javax.swing.JPanel {
             tblSchedule.getColumnModel().getColumn(5).setMinWidth(60);
             tblSchedule.getColumnModel().getColumn(5).setPreferredWidth(60);
             tblSchedule.getColumnModel().getColumn(5).setMaxWidth(60);
-            tblSchedule.getColumnModel().getColumn(5).setCellRenderer(null);
             tblSchedule.getColumnModel().getColumn(6).setMinWidth(60);
             tblSchedule.getColumnModel().getColumn(6).setPreferredWidth(60);
             tblSchedule.getColumnModel().getColumn(6).setMaxWidth(60);
             tblSchedule.getColumnModel().getColumn(7).setMinWidth(65);
             tblSchedule.getColumnModel().getColumn(7).setPreferredWidth(65);
             tblSchedule.getColumnModel().getColumn(7).setMaxWidth(65);
-            tblSchedule.getColumnModel().getColumn(8).setMinWidth(60);
-            tblSchedule.getColumnModel().getColumn(8).setPreferredWidth(60);
-            tblSchedule.getColumnModel().getColumn(8).setMaxWidth(60);
         }
 
         cbChonHocKy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2-2022" }));
@@ -170,26 +170,73 @@ public class Schedule extends javax.swing.JPanel {
             }
         });
 
+        btnXemDSSV.setText("DSSV");
+        btnXemDSSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXemDSSVActionPerformed(evt);
+            }
+        });
+
+        tblDSSV.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                { new Integer(1), "3121410502", "Phan Huỳnh Minh Tiến", "Công Nghệ Thông Tin (DCT)", "DCT1213"},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "STT", "MSSV", "Tên", "Ngành", "Lớp"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        scpDSSV.setViewportView(tblDSSV);
+        if (tblDSSV.getColumnModel().getColumnCount() > 0) {
+            tblDSSV.getColumnModel().getColumn(0).setMinWidth(40);
+            tblDSSV.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tblDSSV.getColumnModel().getColumn(0).setMaxWidth(40);
+            tblDSSV.getColumnModel().getColumn(1).setMinWidth(100);
+            tblDSSV.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblDSSV.getColumnModel().getColumn(1).setMaxWidth(100);
+            tblDSSV.getColumnModel().getColumn(4).setMinWidth(80);
+            tblDSSV.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tblDSSV.getColumnModel().getColumn(4).setMaxWidth(80);
+        }
+
         javax.swing.GroupLayout scheduleLayout = new javax.swing.GroupLayout(schedule);
         schedule.setLayout(scheduleLayout);
         scheduleLayout.setHorizontalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
-                .addGap(606, 606, 606)
-                .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(35, 35, 35)
-                .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(238, 238, 238))
             .addGroup(scheduleLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbChonHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(scheduleLayout.createSequentialGroup()
-                .addComponent(jScrollPane1)
+                .addGroup(scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
+                        .addGap(606, 606, 606)
+                        .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(157, 157, 157)
+                        .addComponent(btnXemDSSV))
+                    .addGroup(scheduleLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scpDSSV)
+                            .addGroup(scheduleLayout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbChonHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         scheduleLayout.setVerticalGroup(
@@ -200,20 +247,23 @@ public class Schedule extends javax.swing.JPanel {
                     .addComponent(cbChonHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(8, 8, 8)
+                .addGap(7, 7, 7)
                 .addGroup(scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRadioButton2)
+                    .addComponent(btnXemDSSV))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                .addGap(194, 194, 194))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scpDSSV, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1144, Short.MAX_VALUE)
+            .addGap(0, 1128, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, 0)
@@ -222,7 +272,7 @@ public class Schedule extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 491, Short.MAX_VALUE)
+            .addGap(0, 516, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, 0)
@@ -230,6 +280,30 @@ public class Schedule extends javax.swing.JPanel {
                     .addGap(0, 0, 0)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JButton getBtnXemDSSV() {
+        return btnXemDSSV;
+    }
+
+    public void setBtnXemDSSV(JButton btnXemDSSV) {
+        this.btnXemDSSV = btnXemDSSV;
+    }
+
+    public JScrollPane getScpDSSV() {
+        return scpDSSV;
+    }
+
+    public void setScpDSSV(JScrollPane scpDSSV) {
+        this.scpDSSV = scpDSSV;
+    }
+
+    public JTable getTblDSSV() {
+        return tblDSSV;
+    }
+
+    public void setTblDSSV(JTable tblDSSV) {
+        this.tblDSSV = tblDSSV;
+    }
     
     public JComboBox<String> getCbChonHocKy() {
         return cbChonHocKy;
@@ -328,8 +402,13 @@ public class Schedule extends javax.swing.JPanel {
 //        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnXemDSSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemDSSVActionPerformed
+        NhomBUS.showDSSV(this);
+    }//GEN-LAST:event_btnXemDSSVActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnXemDSSV;
     private javax.swing.JComboBox<String> cbChonHocKy;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -337,6 +416,8 @@ public class Schedule extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel schedule;
+    private javax.swing.JScrollPane scpDSSV;
+    private javax.swing.JTable tblDSSV;
     private javax.swing.JTable tblSchedule;
     // End of variables declaration//GEN-END:variables
 }
