@@ -9,10 +9,13 @@ import backend.QLHocPhan.HocPhanBUS;
 import backend.QLTaiKhoan.TaiKhoanBUS;
 import frontend.Login;
 import frontend.Score;
+import java.awt.Font;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -58,15 +61,16 @@ public class KetQuaBUS {
                 double diemQuaTrinh = kq.getDiemQT();
                 double diemCuoiKy = kq.getDiemCK();
                 double diemHe10 = DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy);
+                String diemChu = DiemChu(diemHe10);
+                String ketQua = KetQua(diemHe10);
                 soTinChi += soTC;
-                String diemChu = DiemChuHe4(diemHe10);
                 TongDiemHe10 += diemHe10;
                 TongDiemHe4 += TinhDiemHe4(diemHe10);
                 stt++;
                 model.addRow(new Object[]{
                     stt, kq.getMaHP(), tenHP, soTC, phanTramQuaTrinh,
                     phanTramThi, diemQuaTrinh, diemCuoiKy,
-                    diemHe10, diemChu
+                    diemHe10, diemChu,ketQua
                 });
             }
         }
@@ -76,14 +80,15 @@ public class KetQuaBUS {
         score.getTxtHocKyHe10().setText(String.valueOf(diemTrungBinhHe10));
         score.getTxtHocKyHe4().setText(String.valueOf(diemTrungBinhHe4));
         score.getTxtSoTCHocKy().setText(String.valueOf(soTinChi));
-        
+        formatTable(table);
     }
+
     public void ShowTichLuy(Score score) {
         double TongDiemHe10 = 0;
         double TongDiemHe4 = 0;
         int soTinChi = 0;
         for (KetQua kq : dsKQSV) {
-            HocPhan hp = HocPhanBUS.getHocPhanByID(kq.getMaHP());   
+            HocPhan hp = HocPhanBUS.getHocPhanByID(kq.getMaHP());
             int soTC = hp.getTinChi();
             String phanTramQuaTrinh = hp.getPhanTramQuaTrinh() + "%";
             double diemQuaTrinh = kq.getDiemQT();
@@ -93,13 +98,62 @@ public class KetQuaBUS {
             TongDiemHe10 += diemHe10;
             TongDiemHe4 += TinhDiemHe4(diemHe10);
             double diemTrungBinhHe10 = TongDiemHe10 / dsKQSV.size();
-            double diemTrungBinhHe4 = TongDiemHe4 /dsKQSV.size();
+            double diemTrungBinhHe4 = TongDiemHe4 / dsKQSV.size();
             score.getTxtTichLuyHe10().setText(String.valueOf(diemTrungBinhHe10));
             score.getTxtTichLuyHe4().setText(String.valueOf(diemTrungBinhHe4));
             score.getTxtSoTinChiTichLuy().setText(String.valueOf(soTinChi));
         }
 
     }
+
+    public static void formatTable(JTable table) {
+        table.getColumn("STT").setMinWidth(30);
+        table.getColumn("STT").setMaxWidth(30);
+        table.getColumn("Mã Môn").setMaxWidth(100);
+        table.getColumn("Mã Môn").setMinWidth(100);
+        table.getColumn("Tên Môn").setMaxWidth(250);
+        table.getColumn("Tên Môn").setMinWidth(250);
+        table.getColumn("TC").setMaxWidth(30);
+        table.getColumn("TC").setMinWidth(30);
+        table.getColumn("% KT").setMaxWidth(50);
+        table.getColumn("% KT").setMinWidth(50);
+        table.getColumn("% Thi").setMaxWidth(50);
+        table.getColumn("% Thi").setMinWidth(50);
+        table.getColumn("Quá trình").setMaxWidth(70);
+        table.getColumn("Quá trình").setMinWidth(70);   
+        table.getColumn("Điểm thi").setMaxWidth(70);
+        table.getColumn("Điểm thi").setMinWidth(70);
+        table.getColumn("Điểm TK").setMaxWidth(70);
+        table.getColumn("Điểm TK").setMinWidth(70);
+        table.getColumn("ĐTK(4)").setMaxWidth(70);
+        table.getColumn("ĐTK(4)").setMinWidth(70);
+         table.getColumn("KQ").setMinWidth(30);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Căn Giữa cho các cột kiểu String
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.setDefaultRenderer(String.class, centerRenderer);
+        table.getColumn("STT").setCellRenderer(centerRenderer);
+        table.getColumn("Mã Môn").setCellRenderer(centerRenderer);
+        table.getColumn("Tên Môn").setCellRenderer(centerRenderer);
+        table.getColumn("TC").setCellRenderer(centerRenderer);
+        table.getColumn("% KT").setCellRenderer(centerRenderer);
+        table.getColumn("% Thi").setCellRenderer(centerRenderer);
+        table.getColumn("Quá trình").setCellRenderer(centerRenderer);
+        table.getColumn("Điểm thi").setCellRenderer(centerRenderer);
+        table.getColumn("Điểm TK").setCellRenderer(centerRenderer);
+        table.getColumn("ĐTK(4)").setCellRenderer(centerRenderer);
+        table.getColumn("KQ").setCellRenderer(centerRenderer);
+
+//        table.getColumn("Ngành").setCellRenderer(centerRenderer);
+        table.getTableHeader().setDefaultRenderer(centerRenderer);
+        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        table.setRowHeight(35);
+        table.setRowMargin(10);
+        table.setFont(new java.awt.Font("Segoe UI", 0, 16));
+        table.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.setAutoCreateRowSorter(true);
+    }
+
     public int[] convertStringToNumber(String text) {
         int[] result = new int[2];
         String firstPart = text.substring(0, 4);
@@ -123,7 +177,7 @@ public class KetQuaBUS {
 
     public void SearchHocKy(Score score) {
         String input = score.getTxtSearch().getText();
-        if(input.isEmpty()){
+        if (input.isEmpty()) {
             JOptionPane.showMessageDialog(score, "Bạn chưa nhập thông tin");
             score.getTxtSearch().requestFocus(true);
             return;
@@ -131,11 +185,11 @@ public class KetQuaBUS {
         if (formatCheck(input)) {
             int[] result = convertStringToNumber(input);
             addRowData(score, result[0], result[1]);
-              score.getTxtSearch().setText("");
+            score.getTxtSearch().setText("");
         } else {
             JOptionPane.showMessageDialog(score, "Nhập sai định dạng");
             score.getTxtSearch().requestFocus(true);
-             score. getTxtSearch().setText("");
+            score.getTxtSearch().setText("");
         }
     }
 
@@ -161,7 +215,7 @@ public class KetQuaBUS {
         }
     }
 
-    public String DiemChuHe4(double diemHe10) {
+    public String DiemChu(double diemHe10) {
         if (diemHe10 >= 8.5) {
             return "A";
         } else if (diemHe10 >= 7.0 && diemHe10 <= 8.4) {
@@ -174,7 +228,13 @@ public class KetQuaBUS {
             return "F";
         }
     }
-
+    public String KetQua(double diemHe10)
+    {
+           if (diemHe10 >= 4.0) 
+                return "Đạt";
+            else 
+                 return "X";     
+    }
     public static void main(String[] args) {
         kqDAO.get("3121410066");
     }
