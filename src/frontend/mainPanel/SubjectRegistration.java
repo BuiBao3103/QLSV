@@ -4,6 +4,10 @@
  */
 package frontend.mainPanel;
 
+import backend.Khoa.Khoa;
+import backend.Khoa.KhoaBUS;
+import backend.Nganh.Nganh;
+import backend.Nganh.NganhBUS;
 import backend.Nhom.NhomBUS;
 import javax.swing.table.*;
 import javax.swing.*;
@@ -75,6 +79,11 @@ public class SubjectRegistration extends javax.swing.JPanel {
 
         add_btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         add_btn.setText("Thêm");
+        add_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_btnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel1.setText("Chuyên Biệt:");
@@ -83,10 +92,16 @@ public class SubjectRegistration extends javax.swing.JPanel {
         cbChuyenBietPhu.setEnabled(false);
 
         cbChuyenBiet.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cbChuyenBiet.setMaximumRowCount(100);
         cbChuyenBiet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Không", "Môn Chung", "Ngành", "Khoa" }));
         cbChuyenBiet.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbChuyenBietItemStateChanged(evt);
+            }
+        });
+        cbChuyenBiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbChuyenBietActionPerformed(evt);
             }
         });
 
@@ -100,16 +115,15 @@ public class SubjectRegistration extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filter_pal, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cbChuyenBiet, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbChuyenBietPhu, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(filterHP_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(filter_btn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+                        .addComponent(cbChuyenBietPhu, 0, 236, Short.MAX_VALUE))
+                    .addComponent(filterHP_txt))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(filter_btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
                 .addComponent(add_btn)
                 .addGap(22, 22, 22))
         );
@@ -118,11 +132,12 @@ public class SubjectRegistration extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(filterHP_txt)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(filterHP_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                        .addComponent(filter_btn))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(filter_pal)
-                        .addComponent(add_btn)
-                        .addComponent(filter_btn)))
+                        .addComponent(add_btn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -163,6 +178,11 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 continue;
             }
         }
+        tblNhomMonHoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNhomMonHocMouseClicked(evt);
+            }
+        });
         jscrollbar.setViewportView(tblNhomMonHoc);
         if (tblNhomMonHoc.getColumnModel().getColumnCount() > 0) {
             tblNhomMonHoc.getColumnModel().getColumn(0).setMaxWidth(40);
@@ -243,7 +263,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 934, Short.MAX_VALUE)
+            .addGap(0, 887, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(subjectRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -279,18 +299,35 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 case 2 -> {//nganh
                     cbChuyenBietPhu.removeAllItems();
                     cbChuyenBietPhu.setEnabled(true);
-                    cbChuyenBietPhu.addItem("CNTT");
-                    cbChuyenBietPhu.addItem("KTPM");
+                    cbChuyenBietPhu.addItem("Chọn Ngành");
+                    for (Nganh nganh : NganhBUS.getDsNganh()) {
+                        cbChuyenBietPhu.addItem(nganh.getMaNganh() + "-" + nganh.getTenNganh());
+                    }
+
                 }
                 case 3 -> {//khoa
                     cbChuyenBietPhu.removeAllItems();
                     cbChuyenBietPhu.setEnabled(true);
-                    cbChuyenBietPhu.addItem("SuPhamTuNhien");
-                    cbChuyenBietPhu.addItem("SuPhamXaHoi");
+                    cbChuyenBietPhu.addItem("Chọn Khoa");
+                    for (Khoa khoa : KhoaBUS.getDsKhoa()) {
+                        cbChuyenBietPhu.addItem(khoa.getMaKhoa() + "-" + khoa.getTenKhoa());
+                    }
                 }
             }
         }
     }//GEN-LAST:event_cbChuyenBietItemStateChanged
+
+    private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
+
+    }//GEN-LAST:event_add_btnActionPerformed
+
+    private void tblNhomMonHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhomMonHocMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblNhomMonHocMouseClicked
+
+    private void cbChuyenBietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbChuyenBietActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbChuyenBietActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_btn;

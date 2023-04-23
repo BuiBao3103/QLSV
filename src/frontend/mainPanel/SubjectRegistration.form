@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="934" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="887" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Component id="subjectRegistration" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -93,19 +93,17 @@
                                   <Component id="filter_pal" min="-2" pref="103" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="cbChuyenBiet" min="-2" pref="116" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cbChuyenBietPhu" min="-2" pref="209" max="-2" attributes="0"/>
+                                      <Component id="cbChuyenBietPhu" pref="236" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="filterHP_txt" min="-2" pref="331" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="filter_btn" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="filterHP_txt" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="294" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="filter_btn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="214" max="32767" attributes="0"/>
                               <Component id="add_btn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
@@ -116,11 +114,13 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="filterHP_txt" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="filterHP_txt" alignment="3" pref="30" max="32767" attributes="0"/>
+                                      <Component id="filter_btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="filter_pal" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="add_btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="filter_btn" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -171,6 +171,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="add_btnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel1">
                       <Properties>
@@ -199,6 +202,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="16" style="0"/>
                         </Property>
+                        <Property name="maximumRowCount" type="int" value="100"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
                             <StringItem index="0" value="Kh&#xf4;ng"/>
@@ -210,6 +214,7 @@
                       </Properties>
                       <Events>
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbChuyenBietItemStateChanged"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbChuyenBietActionPerformed"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -307,6 +312,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblNhomMonHocMouseClicked"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tblNhomMonHoc.setFont(new Font(&quot;Segoe UI&quot;, 0, 14));&#xd;&#xa;tblNhomMonHoc.getTableHeader().setFont(new Font(&quot;Segoe UI&quot;, 0, 16));&#xd;&#xa;tblNhomMonHoc.setRowHeight(35);&#xd;&#xa;tblNhomMonHoc.setRowMargin(10);&#xd;&#xa;DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();&#xd;&#xa;leftRenderer.setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;((DefaultTableCellRenderer)tblNhomMonHoc.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;        for (int i = 0; i &lt; tblNhomMonHoc.getColumnCount(); i++)&#xd;&#xa;        {&#xd;&#xa;            &#xd;&#xa;            if(i != 1){&#xd;&#xa;                tblNhomMonHoc.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);&#xd;&#xa;            }else{&#xd;&#xa;                continue;&#xd;&#xa;            }&#xd;&#xa;        }&#xd;&#xa;"/>
                       </AuxValues>

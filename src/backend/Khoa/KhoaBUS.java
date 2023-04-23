@@ -31,4 +31,12 @@ public class KhoaBUS {
         Nganh nganhSV = NganhBUS.getNganhByID(maNganh);
         return getKhoaByID(nganhSV.getMaKhoa());
     }
+
+    public static ArrayList<Khoa> getDsKhoa() {
+        return dsKhoa;
+    }
+
+    public static void setDsKhoa(ArrayList<Khoa> dsKhoa) {
+        KhoaBUS.dsKhoa = dsKhoa;
+    }
 }

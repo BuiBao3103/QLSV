@@ -19,6 +19,7 @@ import backend.QLSinhVien.SinhVien;
 import backend.QLSinhVien.SinhVienBUS;
 import backend.QLSinhVien.SinhVienDAO;
 import backend.QLTaiKhoan.TaiKhoanBUS;
+import com.sun.java.accessibility.util.GUIInitializedListener;
 import frontend.Schedule;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,10 +34,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class NhomBUS {
 
-    private static NhomDAO nhomDAO = new NhomDAO();
-    private static ArrayList<Nhom> dsNhom = nhomDAO.get();
-    private static SinhVienDAO svDAO = new SinhVienDAO();
-    private static HocPhanDAO hpDAO = new HocPhanDAO();
+    static NhomDAO nhomDAO = new NhomDAO();
+    static ArrayList<Nhom> dsNhom = nhomDAO.get();
+    static SinhVienDAO svDAO = new SinhVienDAO();
+    static HocPhanDAO hpDAO = new HocPhanDAO();
 
     private Date today = new Date();
     private SimpleDateFormat month = new SimpleDateFormat("MM");
@@ -156,7 +157,6 @@ public class NhomBUS {
     }
 
     // ------ các hàm thao tác với tkb -------------------
-    
     public static void formatTable(JTable table) {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -172,11 +172,11 @@ public class NhomBUS {
         formatTable(table);
         int hocKy;
         int nam;
-        try{
+        try {
             String hocKyDaChon = schedule.getCbChonHocKy().getSelectedItem().toString();
             hocKy = Integer.parseInt(hocKyDaChon.split(" ")[0]); // lấy học kì đã chọn trong combobox
             nam = Integer.parseInt(hocKyDaChon.split(" ")[1]); // lấy năm đã chọn trong combobox
-        }catch(Exception e){
+        } catch (Exception e) {
             return;
         }
         for (Nhom nh : dsNhomDaHoc) {
@@ -228,24 +228,23 @@ public class NhomBUS {
             }
         }
     }
-    
-        public static void addItemToCbChonHocKy(Schedule schedule){
+
+    public static void addItemToCbChonHocKy(Schedule schedule) {
         String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
         SinhVien sv = svDAO.getByMaSV(maSV).get(0);
         int namVaoHoc = Integer.parseInt(sv.getNienKhoa().split("-")[0]);
         NienHoc hientai = new NienHocDAO().getCurrentNienHoc();
-        
-        if(hientai.getHocKi() == 2){
-            schedule.getCbChonHocKy().addItem(2+" "+ hientai.getNam());
-            schedule.getCbChonHocKy().addItem(1+" "+ hientai.getNam());
-        }
-        else{
-            schedule.getCbChonHocKy().addItem(1+" "+ hientai.getNam());
+
+        if (hientai.getHocKi() == 2) {
+            schedule.getCbChonHocKy().addItem(2 + " " + hientai.getNam());
+            schedule.getCbChonHocKy().addItem(1 + " " + hientai.getNam());
+        } else {
+            schedule.getCbChonHocKy().addItem(1 + " " + hientai.getNam());
         }
         int i = 1;
-        while(namVaoHoc < hientai.getNam()){
-            schedule.getCbChonHocKy().addItem(1+" "+ namVaoHoc);
-            schedule.getCbChonHocKy().addItem(2+" "+ namVaoHoc);
+        while (namVaoHoc < hientai.getNam()) {
+            schedule.getCbChonHocKy().addItem(1 + " " + namVaoHoc);
+            schedule.getCbChonHocKy().addItem(2 + " " + namVaoHoc);
             namVaoHoc++;
         }
     }
