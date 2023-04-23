@@ -101,9 +101,9 @@
                                   </Group>
                                   <Component id="filterHP_txt" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="filter_btn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="214" max="32767" attributes="0"/>
+                              <EmptySpace pref="220" max="32767" attributes="0"/>
                               <Component id="add_btn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>

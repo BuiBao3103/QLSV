@@ -121,9 +121,9 @@ public class SubjectRegistration extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbChuyenBietPhu, 0, 236, Short.MAX_VALUE))
                     .addComponent(filterHP_txt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filter_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
                 .addComponent(add_btn)
                 .addGap(22, 22, 22))
         );
@@ -277,7 +277,11 @@ public class SubjectRegistration extends javax.swing.JPanel {
 
     private void filter_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_btnActionPerformed
         String hocPhan = filterHP_txt.getText();
-        NhomBUS.filterGroup(hocPhan, tblNhomMonHoc);
+        int chuyenBiet = cbChuyenBiet.getSelectedIndex();
+        String chuyenBietPhu = cbChuyenBietPhu.getSelectedItem().toString();
+        if (chuyenBiet == 2 && chuyenBietPhu == "Chọn Ngành" 
+                || chuyenBiet == 3 && chuyenBietPhu == "Chọn Khoa"  )
+            NhomBUS.filterGroup(hocPhan, chuyenBiet, tblNhomMonHoc);
     }//GEN-LAST:event_filter_btnActionPerformed
 
     private void filterHP_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterHP_txtActionPerformed

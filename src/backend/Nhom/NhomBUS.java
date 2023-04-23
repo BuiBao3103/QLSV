@@ -123,7 +123,7 @@ public class NhomBUS {
         return false;
     }
 
-    public static void filterGroup(String monHoc, JTable table) {
+    public static void filterGroup(String monHoc,int chuyenBiet, JTable table) {
         boolean found = false;
         ArrayList<KetQua> dskq = (new KetQuaDAO()).get(2, 2022);
         DefaultTableModel tblNhom = (DefaultTableModel) table.getModel();
