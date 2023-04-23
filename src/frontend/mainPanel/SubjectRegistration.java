@@ -277,11 +277,23 @@ public class SubjectRegistration extends javax.swing.JPanel {
 
     private void filter_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_btnActionPerformed
         String hocPhan = filterHP_txt.getText();
+        if (hocPhan.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập môn học!", "Bổ sung", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         int chuyenBiet = cbChuyenBiet.getSelectedIndex();
-        String chuyenBietPhu = cbChuyenBietPhu.getSelectedItem().toString();
-        if (chuyenBiet == 2 && chuyenBietPhu == "Chọn Ngành" 
-                || chuyenBiet == 3 && chuyenBietPhu == "Chọn Khoa"  )
-            NhomBUS.filterGroup(hocPhan, chuyenBiet, tblNhomMonHoc);
+        String chuyenBietPhu = cbChuyenBietPhu.getSelectedItem() + "";
+        if (chuyenBiet == 2 && chuyenBietPhu.equals("Chọn Ngành")
+                || chuyenBiet == 3 && chuyenBietPhu.equals("Chọn Khoa")) {
+            JOptionPane.showMessageDialog(null, "Chọn giá trị chuyên biệt!", "Bổ sung", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if (chuyenBietPhu != null) {
+            chuyenBietPhu = chuyenBietPhu.split("-")[0];
+        }
+        NhomBUS.filterGroup(hocPhan, chuyenBiet, chuyenBietPhu, tblNhomMonHoc);
+
+
     }//GEN-LAST:event_filter_btnActionPerformed
 
     private void filterHP_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterHP_txtActionPerformed
