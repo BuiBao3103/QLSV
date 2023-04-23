@@ -150,7 +150,7 @@ public class KetQuaDAO {
         try {
             String query = "select MaSV\n" +
                             "from KETQUA\n" +
-                            "where MaHP = '' and SoNhom = 1";
+                            "where MaHP = '"+maHP+"' and SoNhom = "+soNhom;
             pstm = con.prepareStatement(query);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {

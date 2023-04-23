@@ -137,7 +137,11 @@ public class Schedule extends javax.swing.JPanel {
             tblSchedule.getColumnModel().getColumn(7).setMaxWidth(65);
         }
 
-        cbChonHocKy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2-2022" }));
+        cbChonHocKy.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbChonHocKyItemStateChanged(evt);
+            }
+        });
         cbChonHocKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbChonHocKyActionPerformed(evt);
@@ -405,6 +409,10 @@ public class Schedule extends javax.swing.JPanel {
     private void btnXemDSSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemDSSVActionPerformed
         NhomBUS.showDSSV(this);
     }//GEN-LAST:event_btnXemDSSVActionPerformed
+
+    private void cbChonHocKyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbChonHocKyItemStateChanged
+        NhomBUS.showTKB(this);
+    }//GEN-LAST:event_cbChonHocKyItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

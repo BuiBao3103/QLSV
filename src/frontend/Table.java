@@ -893,9 +893,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnScheduleActionPerformed
         mainPanel.removeAll();
         mainPanel.add(schedule);
-        NhomBUS.showTKB(schedule);
+        NhomBUS.addItemToCbChonHocKy(schedule); // dựa vào tài khoản đăng nhập mà thêm vào số học kì tương ứng
         schedule.getCbChonHocKy().setSelectedIndex(0); // chọn học kì về học kì hiện tại
+        NhomBUS.showTKB(schedule);    
         schedule.getScpDSSV().setVisible(false);
+        
         closeMenuActionPerformed(null);
         mainPanel.repaint();
         mainPanel.revalidate();
