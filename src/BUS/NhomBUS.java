@@ -204,8 +204,8 @@ public class NhomBUS {
         int nam;
         try {
             String hocKyDaChon = schedule.getCbChonHocKy().getSelectedItem().toString();
-            hocKy = Integer.parseInt(hocKyDaChon.split(" ")[0]); // lấy học kì đã chọn trong combobox
-            nam = Integer.parseInt(hocKyDaChon.split(" ")[1]); // lấy năm đã chọn trong combobox
+            hocKy = Integer.parseInt(hocKyDaChon.split(" - ")[0]); // lấy học kì đã chọn trong combobox
+            nam = Integer.parseInt(hocKyDaChon.split(" - ")[1]); // lấy năm đã chọn trong combobox
         } catch (Exception e) {
             return;
         }
@@ -264,18 +264,10 @@ public class NhomBUS {
         SinhVienDTO sv = svDAO.getByMaSV(maSV).get(0);
         int namVaoHoc = Integer.parseInt(sv.getNienKhoa().split("-")[0]);
         NienHocDTO hientai = new NienHocDAO().getCurrentNienHoc();
-
-        if (hientai.getHocKi() == 2) {
-            schedule.getCbChonHocKy().addItem(2 + " " + hientai.getNam());
-            schedule.getCbChonHocKy().addItem(1 + " " + hientai.getNam());
-        } else {
-            schedule.getCbChonHocKy().addItem(1 + " " + hientai.getNam());
-        }
-        int i = 1;
-        while (namVaoHoc < hientai.getNam()) {
-            schedule.getCbChonHocKy().addItem(1 + " " + namVaoHoc);
-            schedule.getCbChonHocKy().addItem(2 + " " + namVaoHoc);
-            namVaoHoc++;
+        schedule.getCbChonHocKy().removeAll();
+        while (namVaoHoc <= hientai.getNam()) {
+            schedule.getCbChonHocKy().addItem(hientai.getHocKi() + " - " + hientai.getNam());
+            hientai = NienHocBUS.prevNienHoc(hientai);
         }
     }
 
