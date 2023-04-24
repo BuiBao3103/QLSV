@@ -7,7 +7,7 @@ package BUS;
 import DAO.TaiKhoanDAO;
 import DTO.TaiKhoanDTO;
 import DAO.SinhVienDAO;
-import DAO.SinhVienDTO;
+import DTO.SinhVienDTO;
 import BUS.LopBUS;
 import DAO.LopDAO;
 import DTO.LopDTO;
@@ -28,7 +28,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 /**
@@ -47,6 +46,15 @@ public class SinhVienBUS {
     public static double soLuongSinhVienMotTrang = 20.0; // cái này để double để chia có số dư rồi làm tròn lên
 
     public SinhVienBUS() {
+    }
+
+    public static SinhVienDTO getSvByID(String id) {
+        for (SinhVienDTO sv : dssv) {
+            if (sv.getMaSV().equals(id)) {
+                return sv;
+            }
+        }
+        return null;
     }
 
     public static void getDsTenNganh() { // hàm này sẽ thay đổi ds lấy tất cả các ngành
@@ -267,8 +275,7 @@ public class SinhVienBUS {
         table.getTxtGioiTinhSinhVien().setBorder(safeBorder);
         table.getTxtTonGiaoSinhVien().setBorder(safeBorder);
         table.getTxtNienKhoaSinhVien().setBorder(safeBorder);
-        
-        
+
         table.getCbNganhSinhVien().setSelectedIndex(0); // cái này để cái combobox ngành sinh viên nó không chứa ngành nào
         table.setTxtLopSinhVien(blank);
         table.setTxtNgaySinhSinhVien(blank);
@@ -389,7 +396,7 @@ public class SinhVienBUS {
         studentInfor.setTimKiemNamSinh("");
         studentInfor.setTimKiemGioiTinh("");
         studentInfor.setTimKiemKhoa("");
-        
+
         studentInfor.getTxtTimKiemSinhVien().setText("");
         studentInfor.getCbTimKiemSinhVien().setSelectedIndex(0);
     }

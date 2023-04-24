@@ -4,7 +4,7 @@
  */
 package backend.Excel;
 
-import DAO.SinhVienDTO;
+import DTO.SinhVienDTO;
 import connectDB.ConnectionDB;
 import java.sql.Connection;
 import com.itextpdf.text.Document;

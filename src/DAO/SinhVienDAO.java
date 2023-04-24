@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import DAO.SinhVienDTO;
+import DTO.SinhVienDTO;
 import connectDB.ConnectionDB;
 import GUI.MainPanel.StudentInfor;
 import java.sql.Connection;

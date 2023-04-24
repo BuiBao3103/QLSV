@@ -15,7 +15,7 @@ import DTO.HocPhanDTO;
 import DAO.HocPhanDAO;
 import DTO.NienHocDTO;
 import DAO.NienHocDAO;
-import DAO.SinhVienDTO;
+import DTO.SinhVienDTO;
 import DAO.SinhVienDAO;
 import GUI.MainPanel.Schedule;
 import java.text.SimpleDateFormat;

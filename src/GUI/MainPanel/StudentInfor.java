@@ -6,7 +6,7 @@ package GUI.MainPanel;
 
 import BUS.SinhVienBUS;
 import DAO.SinhVienDAO;
-import DAO.SinhVienDTO;
+import DTO.SinhVienDTO;
 import backend.Excel.IOExcel;
 import javax.accessibility.AccessibleContext;
 import javax.swing.*;
