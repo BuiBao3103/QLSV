@@ -4,8 +4,7 @@
  */
 package backend.Excel;
 
-import backend.QLSinhVien.SinhVien;
-import com.itextpdf.text.Chunk;
+import DAO.SinhVienDTO;
 import connectDB.ConnectionDB;
 import java.sql.Connection;
 import com.itextpdf.text.Document;
@@ -26,12 +25,8 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  *
@@ -42,9 +37,9 @@ public class ExportPDF {
     static Connection con = null;
     static PreparedStatement pstm = null;
 
-    public static SinhVien getSinhVien(String MaSV) {
+    public static SinhVienDTO getSinhVien(String MaSV) {
         con = ConnectionDB.getConnection();
-        SinhVien sv = null;
+        SinhVienDTO sv = null;
         try {
             String query = "SELECT * FROM SinhVien WHERE MaSV like '%" + MaSV + "%'";
             pstm = con.prepareStatement(query);
@@ -64,7 +59,7 @@ public class ExportPDF {
                 String nienKhoa = rs.getString("NienKhoa");
                 String maNganh = rs.getString("MaNganh");
                 int maTK = rs.getInt("MaTK");
-                sv = new SinhVien(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+                sv = new SinhVienDTO(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,7 +84,7 @@ public class ExportPDF {
         return now.getMonthValue();
     }
 
-    public static void generatePDF(String mssv, SinhVien sv) {
+    public static void generatePDF(String mssv, SinhVienDTO sv) {
         BaseFont vietnameseFont = null;
         float topMargin = 10f;
         float bottomMargin = 10f;

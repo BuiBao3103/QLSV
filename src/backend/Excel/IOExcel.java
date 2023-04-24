@@ -4,7 +4,7 @@
  */
 package backend.Excel;
 
-import frontend.Schedule;
+import GUI.MainPanel.Schedule;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
