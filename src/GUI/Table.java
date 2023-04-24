@@ -1041,11 +1041,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     }//GEN-LAST:event_btnScholasticMouseEntered
 
-    private void btnToolMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseEntered
-        hoverButton(btnTool, yellow);
-
-    }//GEN-LAST:event_btnToolMouseEntered
-
     private void btnSettingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseEntered
         hoverButton(btnSetting, yellow);
 
@@ -1104,13 +1099,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         }
 
     }//GEN-LAST:event_btnScholasticMouseExited
-
-    private void btnToolMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseExited
-        if (btnTool != currentBtn) {
-            hoverButton(btnTool, lightBlue);
-        }
-
-    }//GEN-LAST:event_btnToolMouseExited
 
     private void btnSettingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseExited
         if (btnSetting != currentBtn) {
@@ -1195,12 +1183,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         currentBtn = btnScholastic;
     }//GEN-LAST:event_btnScholasticMouseClicked
 
-    private void btnToolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseClicked
-        setBackgroundDefaultAllButton();
-        btnTool.setBackground(yellow);
-        currentBtn = btnTool;
-    }//GEN-LAST:event_btnToolMouseClicked
-
     private void btnSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseClicked
         setBackgroundDefaultAllButton();
         btnSetting.setBackground(yellow);
@@ -1238,6 +1220,22 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private void btnScholasticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScholasticActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnScholasticActionPerformed
+
+    private void btnToolMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseExited
+        if (btnTool != currentBtn) {
+            hoverButton(btnTool, lightBlue);
+        }
+    }//GEN-LAST:event_btnToolMouseExited
+
+    private void btnToolMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseEntered
+        hoverButton(btnTool, yellow);
+    }//GEN-LAST:event_btnToolMouseEntered
+
+    private void btnToolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseClicked
+        setBackgroundDefaultAllButton();
+        btnTool.setBackground(yellow);
+        currentBtn = btnTool;
+    }//GEN-LAST:event_btnToolMouseClicked
     // ------------------------------------------------------------------------------------------------------------------------------
 
     private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_openMenuActionPerformed

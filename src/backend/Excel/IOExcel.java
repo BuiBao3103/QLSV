@@ -43,10 +43,14 @@ public class IOExcel {
                 while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
                     switch (cell.getCellType()) {
-                        case Cell.CELL_TYPE_STRING -> rowData.add(cell.getStringCellValue());
-                        case Cell.CELL_TYPE_NUMERIC -> rowData.add(String.valueOf(cell.getNumericCellValue()));
-                        case Cell.CELL_TYPE_BOOLEAN -> rowData.add(String.valueOf(cell.getBooleanCellValue()));
-                        default -> rowData.add("");
+                        case Cell.CELL_TYPE_STRING ->
+                            rowData.add(cell.getStringCellValue());
+                        case Cell.CELL_TYPE_NUMERIC ->
+                            rowData.add(String.valueOf(cell.getNumericCellValue()));
+                        case Cell.CELL_TYPE_BOOLEAN ->
+                            rowData.add(String.valueOf(cell.getBooleanCellValue()));
+                        default ->
+                            rowData.add("");
                     }
                 }
                 data.add(rowData);
@@ -55,7 +59,7 @@ public class IOExcel {
         return data;
     }
 
-    public static void writeExcel(JTable table, String header) {
+    public static void writeExcel(JTable table, String header, String sheetName) {
         try {
             JFileChooser jFileChooser = new JFileChooser();
             jFileChooser.showSaveDialog(table.getParent());
@@ -63,7 +67,7 @@ public class IOExcel {
             if (savefile != null) {
                 savefile = new File(savefile.toString() + ".xlsx");
                 XSSFWorkbook wb = new XSSFWorkbook();
-                XSSFSheet sheet = wb.createSheet("qlsv");
+                XSSFSheet sheet = wb.createSheet(sheetName);
                 //tạo hàng đầu tiên để đặt tiêu đề cho bảng
                 Row rowCol = sheet.createRow(0);
 
@@ -87,12 +91,6 @@ public class IOExcel {
                     Cell cell = rowHeader.createCell(i);
                     cell.setCellValue(table.getColumnName(i));
                     cell.setCellStyle(headerStyle);
-                    if (i == 1) {
-                        sheet.setColumnWidth(i, 9000);
-                    } else {
-                        sheet.setColumnWidth(i, 3000);
-
-                    }
                 }
 
                 // Set data
@@ -108,13 +106,18 @@ public class IOExcel {
                         cell.setCellStyle(dataStyle);
                     }
                 }
+
+                // Set column widths for data rows
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                    sheet.autoSizeColumn(i);
+                }
                 try (FileOutputStream out = new FileOutputStream(new File(savefile.toString()))) {
                     wb.write(out);
                 }
-                JOptionPane.showMessageDialog(table, "Xuất File Excel thành công");
+                JOptionPane.showMessageDialog(null, "Xuất File Excel thành công");
 
             } else {
-                JOptionPane.showMessageDialog(table, "Xuất File Excel thất bại");
+                JOptionPane.showMessageDialog(null, "Xuất File Excel thất bại");
             }
         } catch (FileNotFoundException e) {
             System.out.println(e);

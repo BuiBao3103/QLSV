@@ -322,7 +322,7 @@ public class Schedule extends javax.swing.JPanel {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        IOExcel.writeExcel(tblSchedule, "Schedule");
+        IOExcel.writeExcel(tblSchedule, "Thời khóa biểu","tkb");
 
 //        try {
 //            JFileChooser jFileChooser = new JFileChooser();
