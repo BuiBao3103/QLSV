@@ -1165,9 +1165,13 @@ public class Table extends javax.swing.JFrame implements Runnable {
             int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
             ImageIcon icon = null;
             if (currentHour >= 6 && currentHour < 18) {
-                icon = new ImageIcon(getClass().getResource("/resource/images/day.png"));
+                icon = new ImageIcon(getClass().getResource("/resource/images/day.gif"));
+                Image img = icon.getImage().getScaledInstance(320, 320, java.awt.Image.SCALE_DEFAULT);
+                icon = new ImageIcon(img);
             } else {
-                icon = new ImageIcon(getClass().getResource("/resource/images/night.png"));
+                icon = new ImageIcon(getClass().getResource("/resource/images/moon.gif"));
+                Image img = icon.getImage().getScaledInstance(320, 320, java.awt.Image.SCALE_DEFAULT);
+                icon = new ImageIcon(img);
             }
             lblImg.setIcon(icon);
         } catch (Exception e) {
