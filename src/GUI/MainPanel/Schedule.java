@@ -165,6 +165,7 @@ public class Schedule extends javax.swing.JPanel {
             }
         });
 
+        tblDSSV.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tblDSSV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 { new Integer(1), "3121410502", "Phan Huỳnh Minh Tiến", "Công Nghệ Thông Tin (DCT)", "DCT1213"},
@@ -185,6 +186,20 @@ public class Schedule extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        tblDSSV.setRowHeight(35);
+        tblDSSV.setRowMargin(10);
+        tblDSSV.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+        leftRenderer.setHorizontalAlignment(JLabel.CENTER);
+        ((DefaultTableCellRenderer)tblDSSV.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < tblDSSV.getColumnCount(); i++)
+        {
+
+            if(i != 2){
+                tblSchedule.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+            }else{
+                continue;
+            }
+        }
         scpDSSV.setViewportView(tblDSSV);
         if (tblDSSV.getColumnModel().getColumnCount() > 0) {
             tblDSSV.getColumnModel().getColumn(0).setMinWidth(40);

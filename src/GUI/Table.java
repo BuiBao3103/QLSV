@@ -18,6 +18,7 @@ import GUI.MainPanel.Settings;
 import GUI.MainPanel.Statistics;
 import GUI.MainPanel.StudentInfor;
 import GUI.MainPanel.SubjectRegistration;
+import GUI.MainPanel.Tool;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,6 +52,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private final SubjectRegistration subjectRegistration = new SubjectRegistration();
     private final Statistics statistics = new Statistics();
     private final ManagerYear managerYear = new ManagerYear();
+    private final Tool tool = new Tool();
     private final int widthBar = 226;
     private final int heightBar = this.getHeight();
 
@@ -413,6 +415,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnToolMouseExited(evt);
+            }
+        });
+        btnTool.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnToolActionPerformed(evt);
             }
         });
 
@@ -953,6 +960,13 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnTool.setBackground(yellow);
         currentBtn = btnTool;
     }//GEN-LAST:event_btnToolMouseClicked
+
+    private void btnToolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToolActionPerformed
+        mainPanel.removeAll();
+        mainPanel.add(tool);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }//GEN-LAST:event_btnToolActionPerformed
     // ------------------------------------------------------------------------------------------------------------------------------
 
     private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_openMenuActionPerformed

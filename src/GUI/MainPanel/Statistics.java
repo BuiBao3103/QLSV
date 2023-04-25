@@ -298,8 +298,6 @@ public class Statistics extends javax.swing.JPanel {
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
         );
 
-        statChart = new  RoundedPanel(20);
-
         con = ConnectionDB.getConnection();
         String query = "select DiemCuoiKy,DiemQuaTrinh from KETQUA";
         CategoryDataset dataset = null;
