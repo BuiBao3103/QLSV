@@ -9,6 +9,7 @@ import DTO.TaiKhoanDTO;
 import BUS.NQ_CTQBUS;
 import BUS.SinhVienBUS;
 import GUI.Login;
+import GUI.MainPanel.ManagerYear;
 import GUI.Table;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -109,5 +110,39 @@ public class TaiKhoanBUS {
 
             }
         }
+    }
+
+    public static void configManagerYear(ManagerYear managerYear) {
+        int hkHienTai = NienHocBUS.currentNienHoc.getHocKi();
+        int namHienTai = NienHocBUS.currentNienHoc.getNam();
+
+        managerYear.getCbHK().setSelectedIndex(hkHienTai - 1);
+        managerYear.getTxtNam().setText(namHienTai + "");
+
+        if (NhomBUS.dangkyMon) {
+            managerYear.getRdDKY().setSelected(true);
+        } else {
+            managerYear.getRdDKN().setSelected(true);
+        }
+
+    }
+
+    public static void saveConfigManagerYear(ManagerYear managerYear) {
+        int hkHienTai = NienHocBUS.currentNienHoc.getHocKi();
+        int namHienTai = NienHocBUS.currentNienHoc.getNam();
+        int hkMoi = Integer.parseInt(managerYear.getCbHK().getSelectedItem() + "");
+        int namMoi = Integer.parseInt(managerYear.getTxtNam().getText());
+        boolean isChange = false;
+        if (hkHienTai != hkMoi || namHienTai != namMoi) {
+            isChange = true;
+        }
+        if (!isChange) {
+            JOptionPane.showMessageDialog(null, "Không có gì thay đổi!", "Thay đổi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        NienHocBUS.updateNienHoc(hkMoi, namMoi);
+        NienHocBUS.currentNienHoc.setHocKi(hkMoi);
+        NienHocBUS.currentNienHoc.setNam(namMoi);
+
     }
 }

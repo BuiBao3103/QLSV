@@ -4,6 +4,11 @@
  */
 package GUI.MainPanel;
 
+import BUS.TaiKhoanBUS;
+import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author ASUS
@@ -33,20 +38,15 @@ public class ManagerYear extends javax.swing.JPanel {
         jProgressBar1 = new javax.swing.JProgressBar();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
-        buttonGroup5 = new javax.swing.ButtonGroup();
-        buttonGroup6 = new javax.swing.ButtonGroup();
+        rdgrDK = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         txtNam = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cbHK = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        btnChange = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        btnChange = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         rdDKY = new javax.swing.JRadioButton();
         rdDKN = new javax.swing.JRadioButton();
 
@@ -61,8 +61,12 @@ public class ManagerYear extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jList1);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Chương trình hiện tại", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 16))); // NOI18N
+
         txtNam.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtNam.setText("2022");
+        txtNam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtNam.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel1.setText("Học kỳ");
@@ -72,58 +76,25 @@ public class ManagerYear extends javax.swing.JPanel {
 
         cbHK.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbHK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel3.setText("Đăng ký môn học");
-
-        btnChange.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnChange.setText("Sửa");
-        btnChange.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChangeActionPerformed(evt);
-            }
-        });
-
-        btnSave.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnSave.setText("Lưu");
-
-        rdDKY.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        rdDKY.setText("Cho phép");
-
-        rdDKN.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        rdDKN.setText("Dừng");
+        cbHK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbHK.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rdDKY)
-                                    .addComponent(rdDKN))
-                                .addGap(32, 32, 32))
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSave))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1)
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(cbHK, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                        .addComponent(btnChange)))
-                .addContainerGap())
+                .addGap(16, 16, 16)
+                .addComponent(cbHK, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtNam, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,21 +106,70 @@ public class ManagerYear extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbHK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnChange))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSave)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rdDKY)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdDKN)
-                        .addGap(29, 29, 29))))
+                    .addComponent(cbHK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        btnSave.setBackground(new java.awt.Color(0, 158, 248));
+        btnSave.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
+        btnSave.setText("Lưu");
+        btnSave.setContentAreaFilled(false);
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSave.setEnabled(false);
+        btnSave.setOpaque(true);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        btnChange.setBackground(new java.awt.Color(0, 158, 248));
+        btnChange.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnChange.setForeground(new java.awt.Color(255, 255, 255));
+        btnChange.setText("Sửa");
+        btnChange.setContentAreaFilled(false);
+        btnChange.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnChange.setOpaque(true);
+        btnChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeActionPerformed(evt);
+            }
+        });
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Đăng ký môn học", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 16))); // NOI18N
+
+        rdgrDK.add(rdDKY);
+        rdDKY.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        rdDKY.setText("Cho phép");
+        rdDKY.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rdDKY.setEnabled(false);
+
+        rdgrDK.add(rdDKN);
+        rdDKN.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        rdDKN.setText("Dừng");
+        rdDKN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rdDKN.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rdDKN)
+                    .addComponent(rdDKY))
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rdDKY)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdDKN)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -158,39 +178,96 @@ public class ManagerYear extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnChange)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSave))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(btnChange))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
-        // TODO add your handling code here:
+        cbHK.setEnabled(true);
+        txtNam.setEnabled(true);
+        rdDKN.setEnabled(true);
+        rdDKY.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnChange.setEnabled(false);
+
     }//GEN-LAST:event_btnChangeActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        TaiKhoanBUS.saveConfigManagerYear(this);
+        cbHK.setEnabled(false);
+        txtNam.setEnabled(false);
+        rdDKN.setEnabled(false);
+        rdDKY.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnChange.setEnabled(true);
+
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    public JComboBox<String> getCbHK() {
+        return cbHK;
+    }
+
+    public void setCbHK(JComboBox<String> cbHK) {
+        this.cbHK = cbHK;
+    }
+
+    public JRadioButton getRdDKN() {
+        return rdDKN;
+    }
+
+    public void setRdDKN(JRadioButton rdDKN) {
+        this.rdDKN = rdDKN;
+    }
+
+    public JRadioButton getRdDKY() {
+        return rdDKY;
+    }
+
+    public void setRdDKY(JRadioButton rdDKY) {
+        this.rdDKY = rdDKY;
+    }
+
+    public JTextField getTxtNam() {
+        return txtNam;
+    }
+
+    public void setTxtNam(JTextField txtNam) {
+        this.txtNam = txtNam;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChange;
     private javax.swing.JButton btnSave;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.ButtonGroup buttonGroup5;
-    private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.JComboBox<String> cbHK;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -198,6 +275,7 @@ public class ManagerYear extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JRadioButton rdDKN;
     private javax.swing.JRadioButton rdDKY;
+    private javax.swing.ButtonGroup rdgrDK;
     private javax.swing.JTextField txtNam;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,6 +8,7 @@ import BUS.GiangVienBUS;
 import BUS.SinhVienBUS;
 import BUS.KetQuaBUS;
 import BUS.NhomBUS;
+import BUS.NienHocBUS;
 import BUS.TaiKhoanBUS;
 import GUI.MainPanel.ManagerYear;
 import GUI.MainPanel.PersonalInfo;
@@ -704,7 +705,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // Có lẽ sẽ phù hợp cho responsive
         mainPanel.revalidate();
         KetQuaBUS kq = new KetQuaBUS();
-        kq.addRowData(score, 2022, 2);
+        int hkHienTai = NienHocBUS.getCurrentNienHoc().getHocKi();
+        int namHienTai = NienHocBUS.getCurrentNienHoc().getNam();
+        kq.addRowData(score, namHienTai, hkHienTai);
         kq.ShowTichLuy(score);
 
     }// GEN-LAST:event_btnScoreActionPerformed
@@ -736,9 +739,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     private void btnAccountListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountListActionPerformed
         mainPanel.removeAll(); // xóa hết nội dung vùng content
+        mainPanel.add(managerYear);
         mainPanel.repaint();
         mainPanel.revalidate();
-        mainPanel.add(managerYear);
+        TaiKhoanBUS.configManagerYear(managerYear);
     }//GEN-LAST:event_btnAccountListActionPerformed
 
     private void btnSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingActionPerformed
