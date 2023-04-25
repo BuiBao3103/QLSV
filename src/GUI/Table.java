@@ -9,6 +9,7 @@ import BUS.SinhVienBUS;
 import BUS.KetQuaBUS;
 import BUS.NhomBUS;
 import BUS.TaiKhoanBUS;
+import GUI.MainPanel.ManagerYear;
 import GUI.MainPanel.PersonalInfo;
 import GUI.MainPanel.Schedule;
 import GUI.MainPanel.Score;
@@ -41,15 +42,16 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private Color darkBlue = new Color(0, 158, 248);
     private ArrayList<JButton> allBtnLeftBar = new ArrayList<>();
     private JButton currentBtn = null;
-    private Settings settings = new Settings();
-    private Schedule schedule = new Schedule();
-    private Score score = new Score();
-    private StudentInfor studentInfor = new StudentInfor();
-    private PersonalInfo personalInfo = new PersonalInfo();
-    private SubjectRegistration subjectRegistration = new SubjectRegistration();
-    private int widthBar = 226;
-    private int heightBar = this.getHeight();
-    private Statistics statistics = new Statistics();
+    private final Settings settings = new Settings();
+    private final Schedule schedule = new Schedule();
+    private final Score score = new Score();
+    private final StudentInfor studentInfor = new StudentInfor();
+    private final PersonalInfo personalInfo = new PersonalInfo();
+    private final SubjectRegistration subjectRegistration = new SubjectRegistration();
+    private final Statistics statistics = new Statistics();
+    private final ManagerYear managerYear = new ManagerYear();
+    private final int widthBar = 226;
+    private final int heightBar = this.getHeight();
 
     /**
      * Creates new form TableInside
@@ -733,7 +735,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnStudentListActionPerformed
 
     private void btnAccountListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountListActionPerformed
-
+        mainPanel.removeAll(); // xóa hết nội dung vùng content
+        mainPanel.repaint();
+        mainPanel.revalidate();
+        mainPanel.add(managerYear);
     }//GEN-LAST:event_btnAccountListActionPerformed
 
     private void btnSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingActionPerformed
