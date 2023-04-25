@@ -622,14 +622,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
                     .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 373, Short.MAX_VALUE)
-                        .addComponent(lblAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblQuote, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(lblQuote, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,14 +636,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addComponent(lblName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lblQuote)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblAuthor)
-                .addGap(21, 21, 21))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(103, 103, 103)
-                    .addComponent(lblQuote)
-                    .addContainerGap(46, Short.MAX_VALUE)))
+                .addGap(16, 16, 16))
         );
 
         greeting.add(jPanel1);
@@ -1166,11 +1161,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
             ImageIcon icon = null;
             if (currentHour >= 6 && currentHour < 18) {
                 icon = new ImageIcon(getClass().getResource("/resource/images/day.gif"));
-                Image img = icon.getImage().getScaledInstance(320, 320, java.awt.Image.SCALE_DEFAULT);
+                Image img = icon.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_DEFAULT);
                 icon = new ImageIcon(img);
             } else {
                 icon = new ImageIcon(getClass().getResource("/resource/images/moon.gif"));
-                Image img = icon.getImage().getScaledInstance(320, 320, java.awt.Image.SCALE_DEFAULT);
+                Image img = icon.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_DEFAULT);
                 icon = new ImageIcon(img);
             }
             lblImg.setIcon(icon);
