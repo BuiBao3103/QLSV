@@ -45,7 +45,7 @@ public class KetQuaDAO {
     }
 
     public ArrayList<KetQuaDTO> get(String MaSV) {
-
+        System.out.println("KetQuaDAO");
         con = ConnectionDB.getConnection();
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {
