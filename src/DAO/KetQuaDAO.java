@@ -33,7 +33,7 @@ public class KetQuaDAO {
                 int nam = rs.getInt("Nam");
                 double DiemQuaTrinh = rs.getDouble("DiemQuaTrinh");
                 double DiemCuoiKy = rs.getDouble("DiemCuoiKy");
-                KetQuaDTO k = new KetQuaDTO(maSV, maHP, soNhom, hocKy, nam, DiemCuoiKy, DiemCuoiKy);
+                KetQuaDTO k = new KetQuaDTO(maSV, maHP, soNhom, hocKy, nam, DiemQuaTrinh, DiemCuoiKy);
                 dskq.add(k);
             }
         } catch (SQLException e) {
@@ -64,7 +64,7 @@ public class KetQuaDAO {
                 int nam = rs.getInt("Nam");
                 double DiemQuaTrinh = rs.getDouble("DiemQuaTrinh");
                 double DiemCuoiKy = rs.getDouble("DiemCuoiKy");
-                KetQuaDTO k = new KetQuaDTO(maSV, maHP, soNhom, hocKy, nam, DiemCuoiKy, DiemCuoiKy);
+                KetQuaDTO k = new KetQuaDTO(maSV, maHP, soNhom, hocKy, nam, DiemQuaTrinh, DiemCuoiKy);
 
                 dskq.add(k);
             }

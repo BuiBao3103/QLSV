@@ -52,10 +52,10 @@ public class KetQuaBUS {
                 String phanTramThi = (100 - hp.getPhanTramQuaTrinh()) + "%"; // % điểm thi = 100% - %điểm quá trình
                 double diemQuaTrinh = kq.getDiemQT();
                 double diemCuoiKy = kq.getDiemCK();
-                double diemHe10 = DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy);
+                double diemHe10 = lamTronSo(DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy));
                 String diemChu = DiemChu(diemHe10);
                 String ketQua = KetQua(diemHe10);
-                soTinChi += soTC;
+                 soTinChi += tinhSoTinChi(soTC, diemHe10);
                 TongDiemHe10 += diemHe10;
                 TongDiemHe4 += TinhDiemHe4(diemHe10);
                 stt++;
@@ -69,8 +69,8 @@ public class KetQuaBUS {
         double diemTrungBinhHe10 = TongDiemHe10 / stt;
         double diemTrungBinhHe4 = TongDiemHe4 / stt;
         score.getTxtHocKyVaNam().setText("Học kỳ " + hk + " năm " + nam);
-        score.getTxtHocKyHe10().setText(String.valueOf(diemTrungBinhHe10));
-        score.getTxtHocKyHe4().setText(String.valueOf(diemTrungBinhHe4));
+        score.getTxtHocKyHe10().setText(String.valueOf(lamTronSo(diemTrungBinhHe10)));
+        score.getTxtHocKyHe4().setText(String.valueOf(lamTronSo(diemTrungBinhHe4)));
         score.getTxtSoTCHocKy().setText(String.valueOf(soTinChi));
         formatTable(table);
     }
@@ -85,19 +85,27 @@ public class KetQuaBUS {
             String phanTramQuaTrinh = hp.getPhanTramQuaTrinh() + "%";
             double diemQuaTrinh = kq.getDiemQT();
             double diemCuoiKy = kq.getDiemCK();
-            double diemHe10 = DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy);
-            soTinChi += soTC;
+            double diemHe10 = lamTronSo(DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy));
+            soTinChi += tinhSoTinChi(soTC, diemHe10);
             TongDiemHe10 += diemHe10;
             TongDiemHe4 += TinhDiemHe4(diemHe10);
             double diemTrungBinhHe10 = TongDiemHe10 / dsKQSV.size();
             double diemTrungBinhHe4 = TongDiemHe4 / dsKQSV.size();
-            score.getTxtTichLuyHe10().setText(String.valueOf(diemTrungBinhHe10));
-            score.getTxtTichLuyHe4().setText(String.valueOf(diemTrungBinhHe4));
+            score.getTxtTichLuyHe10().setText(String.valueOf(lamTronSo(diemTrungBinhHe10)));
+            score.getTxtTichLuyHe4().setText(String.valueOf(lamTronSo(diemTrungBinhHe4)));
             score.getTxtSoTinChiTichLuy().setText(String.valueOf(soTinChi));
         }
 
     }
-
+public double lamTronSo(double diem){    // làm tròn số lên hoặc xuống tùy thuộc vào giá trị thập phân của số đó.
+return  Math.round(diem * 100.0) / 100.0;
+}
+public int tinhSoTinChi(int soTinChi,double diemHe10){ // hàm này để tính tổng số tín 
+    int tong = 0;
+    if(diemHe10>=4.0)
+        tong+=soTinChi;
+    return tong;
+}
     public static void formatTable(JTable table) {
         table.getColumn("STT").setMinWidth(30);
         table.getColumn("STT").setMaxWidth(30);
@@ -231,6 +239,8 @@ public class KetQuaBUS {
 
     public static void main(String[] args) {
         kqDAO.get("3121410066");
+       KetQuaBUS kq = new KetQuaBUS();
+        System.out.println(kq.lamTronSo(8.62));
     }
 
     public ArrayList<KetQuaDTO> getDsKQSV() {
