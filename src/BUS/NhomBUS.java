@@ -18,9 +18,7 @@ import DAO.NienHocDAO;
 import DTO.SinhVienDTO;
 import DAO.SinhVienDAO;
 import GUI.MainPanel.Schedule;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -30,8 +28,8 @@ import javax.swing.table.DefaultTableModel;
  * @author ASUS
  */
 public class NhomBUS {
-
     static NhomDAO nhomDAO = new NhomDAO();
+    static boolean dangkyMon = nhomDAO.getCurrentDangKyMon() ;
     static ArrayList<NhomDTO> dsNhom = nhomDAO.get();
     static SinhVienDAO svDAO = new SinhVienDAO();
     static HocPhanDAO hpDAO = new HocPhanDAO();

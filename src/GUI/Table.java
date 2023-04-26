@@ -8,13 +8,17 @@ import BUS.GiangVienBUS;
 import BUS.SinhVienBUS;
 import BUS.KetQuaBUS;
 import BUS.NhomBUS;
+import BUS.NienHocBUS;
 import BUS.TaiKhoanBUS;
+import GUI.MainPanel.ManagerYear;
 import GUI.MainPanel.PersonalInfo;
 import GUI.MainPanel.Schedule;
 import GUI.MainPanel.Score;
 import GUI.MainPanel.Settings;
+import GUI.MainPanel.Statistics;
 import GUI.MainPanel.StudentInfor;
 import GUI.MainPanel.SubjectRegistration;
+import GUI.MainPanel.Tool;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,14 +44,17 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private Color darkBlue = new Color(0, 158, 248);
     private ArrayList<JButton> allBtnLeftBar = new ArrayList<>();
     private JButton currentBtn = null;
-    private Settings settings = new Settings();
-    private Schedule schedule = new Schedule();
-    private Score score = new Score();
-    private StudentInfor studentInfor = new StudentInfor();
-    private PersonalInfo personalInfo = new PersonalInfo();
-    private SubjectRegistration subjectRegistration = new SubjectRegistration();
-    private int widthBar = 226;
-    private int heightBar = this.getHeight();
+    private final Settings settings = new Settings();
+    private final Schedule schedule = new Schedule();
+    private final Score score = new Score();
+    private final StudentInfor studentInfor = new StudentInfor();
+    private final PersonalInfo personalInfo = new PersonalInfo();
+    private final SubjectRegistration subjectRegistration = new SubjectRegistration();
+    private final Statistics statistics = new Statistics();
+    private final ManagerYear managerYear = new ManagerYear();
+    private final Tool tool = new Tool();
+    private final int widthBar = 226;
+    private final int heightBar = this.getHeight();
 
     /**
      * Creates new form TableInside
@@ -59,7 +66,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         t.start();
         leftBar.setPreferredSize(new Dimension(0, heightBar));
         allBtnLeftBar.addAll(Arrays.asList(btnInformation, btnSubjectRegistration, btnSchedule, btnScore,
-                btnInputPoint, btnStudentList, btnGroup, btnSetting, btnAccountList, btnScholastic, btnTool));
+                btnInputPoint, btnStudentList, btnGroup, btnSetting, btnAccountList, btnStatistics, btnTool));
         this.greeting();
     }
 
@@ -79,7 +86,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnGroup = new javax.swing.JButton();
         btnSetting = new javax.swing.JButton();
         btnAccountList = new javax.swing.JButton();
-        btnScholastic = new javax.swing.JButton();
+        btnStatistics = new javax.swing.JButton();
         btnTool = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         realTime = new javax.swing.JLabel();
@@ -360,31 +367,31 @@ public class Table extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        btnScholastic.setBackground(new java.awt.Color(0, 158, 248));
-        btnScholastic.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnScholastic.setForeground(new java.awt.Color(255, 255, 255));
-        btnScholastic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-signal-30.png"))); // NOI18N
-        btnScholastic.setText("Thống kê");
-        btnScholastic.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
-        btnScholastic.setContentAreaFilled(false);
-        btnScholastic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnScholastic.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnScholastic.setOpaque(true);
-        btnScholastic.setPreferredSize(new java.awt.Dimension(202, 50));
-        btnScholastic.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnStatistics.setBackground(new java.awt.Color(0, 158, 248));
+        btnStatistics.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnStatistics.setForeground(new java.awt.Color(255, 255, 255));
+        btnStatistics.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-signal-30.png"))); // NOI18N
+        btnStatistics.setText("Thống kê");
+        btnStatistics.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        btnStatistics.setContentAreaFilled(false);
+        btnStatistics.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnStatistics.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnStatistics.setOpaque(true);
+        btnStatistics.setPreferredSize(new java.awt.Dimension(202, 50));
+        btnStatistics.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnScholasticMouseClicked(evt);
+                btnStatisticsMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnScholasticMouseEntered(evt);
+                btnStatisticsMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnScholasticMouseExited(evt);
+                btnStatisticsMouseExited(evt);
             }
         });
-        btnScholastic.addActionListener(new java.awt.event.ActionListener() {
+        btnStatistics.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnScholasticActionPerformed(evt);
+                btnStatisticsActionPerformed(evt);
             }
         });
 
@@ -410,13 +417,18 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 btnToolMouseExited(evt);
             }
         });
+        btnTool.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnToolActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnAccountList, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-            .addComponent(btnScholastic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnStatistics, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnInformation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSubjectRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -447,7 +459,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addGap(0, 0, 0)
                 .addComponent(btnAccountList, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnScholastic, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnTool, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -622,14 +634,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
                     .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 373, Short.MAX_VALUE)
-                        .addComponent(lblAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblQuote, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(lblQuote, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,14 +648,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
                 .addComponent(lblName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lblQuote)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblAuthor)
-                .addGap(21, 21, 21))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(103, 103, 103)
-                    .addComponent(lblQuote)
-                    .addContainerGap(46, Short.MAX_VALUE)))
+                .addGap(16, 16, 16))
         );
 
         greeting.add(jPanel1);
@@ -705,7 +712,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
         // Có lẽ sẽ phù hợp cho responsive
         mainPanel.revalidate();
         KetQuaBUS kq = new KetQuaBUS();
-        kq.addRowData(score, 2022, 2);
+        int hkHienTai = NienHocBUS.getCurrentNienHoc().getHocKi();
+        int namHienTai = NienHocBUS.getCurrentNienHoc().getNam();
+        kq.addRowData(score, namHienTai, hkHienTai);
         kq.ShowTichLuy(score);
 
     }// GEN-LAST:event_btnScoreActionPerformed
@@ -736,7 +745,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnStudentListActionPerformed
 
     private void btnAccountListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountListActionPerformed
-
+        mainPanel.removeAll(); // xóa hết nội dung vùng content
+        mainPanel.add(managerYear);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+        TaiKhoanBUS.configManagerYear(managerYear);
     }//GEN-LAST:event_btnAccountListActionPerformed
 
     private void btnSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingActionPerformed
@@ -772,10 +785,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     }//GEN-LAST:event_btnAccountListMouseEntered
 
-    private void btnScholasticMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScholasticMouseEntered
-        hoverButton(btnScholastic, yellow);
+    private void btnStatisticsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStatisticsMouseEntered
+        hoverButton(btnStatistics, yellow);
 
-    }//GEN-LAST:event_btnScholasticMouseEntered
+    }//GEN-LAST:event_btnStatisticsMouseEntered
 
     private void btnSettingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseEntered
         hoverButton(btnSetting, yellow);
@@ -829,12 +842,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
     }//GEN-LAST:event_btnAccountListMouseExited
 
-    private void btnScholasticMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScholasticMouseExited
-        if (btnScholastic != currentBtn) {
-            hoverButton(btnScholastic, lightBlue);
+    private void btnStatisticsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStatisticsMouseExited
+        if (btnStatistics != currentBtn) {
+            hoverButton(btnStatistics, lightBlue);
         }
 
-    }//GEN-LAST:event_btnScholasticMouseExited
+    }//GEN-LAST:event_btnStatisticsMouseExited
 
     private void btnSettingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseExited
         if (btnSetting != currentBtn) {
@@ -913,11 +926,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
         currentBtn = btnAccountList;
     }//GEN-LAST:event_btnAccountListMouseClicked
 
-    private void btnScholasticMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScholasticMouseClicked
+    private void btnStatisticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStatisticsMouseClicked
         setBackgroundDefaultAllButton();
-        btnScholastic.setBackground(yellow);
-        currentBtn = btnScholastic;
-    }//GEN-LAST:event_btnScholasticMouseClicked
+        btnStatistics.setBackground(yellow);
+        currentBtn = btnStatistics;
+    }//GEN-LAST:event_btnStatisticsMouseClicked
 
     private void btnSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseClicked
         setBackgroundDefaultAllButton();
@@ -925,9 +938,12 @@ public class Table extends javax.swing.JFrame implements Runnable {
         currentBtn = btnSetting;
     }//GEN-LAST:event_btnSettingMouseClicked
 
-    private void btnScholasticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScholasticActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnScholasticActionPerformed
+    private void btnStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatisticsActionPerformed
+        mainPanel.removeAll();
+        mainPanel.add(statistics);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }//GEN-LAST:event_btnStatisticsActionPerformed
 
     private void btnToolMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseExited
         if (btnTool != currentBtn) {
@@ -944,6 +960,13 @@ public class Table extends javax.swing.JFrame implements Runnable {
         btnTool.setBackground(yellow);
         currentBtn = btnTool;
     }//GEN-LAST:event_btnToolMouseClicked
+
+    private void btnToolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToolActionPerformed
+        mainPanel.removeAll();
+        mainPanel.add(tool);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }//GEN-LAST:event_btnToolActionPerformed
     // ------------------------------------------------------------------------------------------------------------------------------
 
     private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_openMenuActionPerformed
@@ -1076,9 +1099,9 @@ public class Table extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnInputPoint;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnSchedule;
-    private javax.swing.JButton btnScholastic;
     private javax.swing.JButton btnScore;
     private javax.swing.JButton btnSetting;
+    private javax.swing.JButton btnStatistics;
     private javax.swing.JButton btnStudentList;
     private javax.swing.JButton btnSubjectRegistration;
     private javax.swing.JButton btnTool;
@@ -1166,11 +1189,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
             ImageIcon icon = null;
             if (currentHour >= 6 && currentHour < 18) {
                 icon = new ImageIcon(getClass().getResource("/resource/images/day.gif"));
-                Image img = icon.getImage().getScaledInstance(320, 320, java.awt.Image.SCALE_DEFAULT);
+                Image img = icon.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_DEFAULT);
                 icon = new ImageIcon(img);
             } else {
                 icon = new ImageIcon(getClass().getResource("/resource/images/moon.gif"));
-                Image img = icon.getImage().getScaledInstance(320, 320, java.awt.Image.SCALE_DEFAULT);
+                Image img = icon.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_DEFAULT);
                 icon = new ImageIcon(img);
             }
             lblImg.setIcon(icon);

@@ -2,7 +2,11 @@ package DAO;
 
 import DTO.NhomDTO;
 import BUS.TaiKhoanBUS;
+import DTO.NienHocDTO;
 import connectDB.ConnectionDB;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.sql.*;
 
@@ -10,6 +14,24 @@ public class NhomDAO {
 
     Connection con = null;
     PreparedStatement pstm = null;
+
+    public boolean getCurrentDangKyMon() {
+        NienHocDTO nh = null;
+        try {
+            FileReader reader = new FileReader("src/resource/config/DangKyMonHoc.txt");
+            BufferedReader bufferedReader = new BufferedReader(reader);
+
+            String line = bufferedReader.readLine();
+            reader.close();
+            bufferedReader.close();
+            if (line.equals("true")) {
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public ArrayList<NhomDTO> get() {
         ArrayList<NhomDTO> dsn = new ArrayList<>();
@@ -112,15 +134,15 @@ public class NhomDAO {
         }
 
     }
-   
-    public ArrayList<NhomDTO> getBySinhVien(){ // hàm này trả về những nhóm sv đã học
+
+    public ArrayList<NhomDTO> getBySinhVien() { // hàm này trả về những nhóm sv đã học
         String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
         ArrayList<NhomDTO> dsn = new ArrayList<>();
         con = ConnectionDB.getConnection();
         try {
-            String query = "Select nh.*\n" +
-                            "from KETQUA kq join NHOM nh on kq.MaHP = nh.MaHP and kq.SoNhom = nh.SoNhom\n" +
-                            "where kq.MaSV = '"+maSV+"'";
+            String query = "Select nh.*\n"
+                    + "from KETQUA kq join NHOM nh on kq.MaHP = nh.MaHP and kq.SoNhom = nh.SoNhom\n"
+                    + "where kq.MaSV = '" + maSV + "'";
             pstm = con.prepareStatement(query);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
@@ -144,10 +166,9 @@ public class NhomDAO {
 
         }
         return dsn;
-        
+
     }
-    
-    
+
     public static void main(String[] args) {
         NhomDAO nd = new NhomDAO();
 //        ArrayList<Nhom> n = nd.get();

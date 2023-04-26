@@ -165,6 +165,7 @@ public class Schedule extends javax.swing.JPanel {
             }
         });
 
+        tblDSSV.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tblDSSV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 { new Integer(1), "3121410502", "Phan Huỳnh Minh Tiến", "Công Nghệ Thông Tin (DCT)", "DCT1213"},
@@ -185,6 +186,20 @@ public class Schedule extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        tblDSSV.setRowHeight(35);
+        tblDSSV.setRowMargin(10);
+        tblDSSV.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
+        leftRenderer.setHorizontalAlignment(JLabel.CENTER);
+        ((DefaultTableCellRenderer)tblDSSV.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < tblDSSV.getColumnCount(); i++)
+        {
+
+            if(i != 2){
+                tblSchedule.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+            }else{
+                continue;
+            }
+        }
         scpDSSV.setViewportView(tblDSSV);
         if (tblDSSV.getColumnModel().getColumnCount() > 0) {
             tblDSSV.getColumnModel().getColumn(0).setMinWidth(40);
@@ -203,28 +218,22 @@ public class Schedule extends javax.swing.JPanel {
         scheduleLayout.setHorizontalGroup(
             scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scheduleLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scpDSSV, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
-                        .addGap(606, 606, 606)
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(157, 157, 157)
+                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
                         .addComponent(btnXemDSSV))
                     .addGroup(scheduleLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scpDSSV)
-                            .addGroup(scheduleLayout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbChonHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jButton1)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbChonHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         scheduleLayout.setVerticalGroup(
@@ -251,7 +260,7 @@ public class Schedule extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1128, Short.MAX_VALUE)
+            .addGap(0, 889, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, 0)
