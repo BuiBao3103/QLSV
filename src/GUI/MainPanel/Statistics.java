@@ -15,28 +15,21 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.sql.*;
 import java.text.DecimalFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.jdbc.JDBCCategoryDataset;
 
 /**
  *
  * @author ASUS
  */
 public class Statistics extends javax.swing.JPanel {
-    
+
     private static final String KEY1 = "Xuất sắc";
     public static final String KEY2 = "Giỏi";
     public static final String KEY3 = "Khá";
@@ -47,12 +40,12 @@ public class Statistics extends javax.swing.JPanel {
      */
     Connection con = null;
     PreparedStatement pstm = null;
-    
+
     public Statistics() {
         initComponents();
-        drawPieChart();
+        drawPieChart(statChart);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,7 +69,7 @@ public class Statistics extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         iconItem2 = new javax.swing.JLabel();
-        pieChart = new javax.swing.JPanel();
+        statChart = new javax.swing.JPanel();
 
         jPanel1 = new RoundedPanel(20, new Color(50,177,249));
         jPanel1.setPreferredSize(new java.awt.Dimension(320, 104));
@@ -308,14 +301,14 @@ public class Statistics extends javax.swing.JPanel {
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout pieChartLayout = new javax.swing.GroupLayout(pieChart);
-        pieChart.setLayout(pieChartLayout);
-        pieChartLayout.setHorizontalGroup(
-            pieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout statChartLayout = new javax.swing.GroupLayout(statChart);
+        statChart.setLayout(statChartLayout);
+        statChartLayout.setHorizontalGroup(
+            statChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        pieChartLayout.setVerticalGroup(
-            pieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        statChartLayout.setVerticalGroup(
+            statChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 532, Short.MAX_VALUE)
         );
 
@@ -326,7 +319,7 @@ public class Statistics extends javax.swing.JPanel {
             .addComponent(panelOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pieChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(statChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
@@ -334,38 +327,38 @@ public class Statistics extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(pieChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(statChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     class RoundedPanel extends JPanel {
-        
+
         private Color backgroundColor;
         private int cornerRadius = 15;
-        
+
         public RoundedPanel(LayoutManager layout, int radius) {
             super(layout);
             cornerRadius = radius;
         }
-        
+
         public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
             super(layout);
             cornerRadius = radius;
             backgroundColor = bgColor;
         }
-        
+
         public RoundedPanel(int radius) {
             super();
             cornerRadius = radius;
         }
-        
+
         public RoundedPanel(int radius, Color bgColor) {
             super();
             cornerRadius = radius;
             backgroundColor = bgColor;
         }
-        
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -386,16 +379,16 @@ public class Statistics extends javax.swing.JPanel {
             graphics.drawRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height); //paint border
         }
     }
-    
-    public void drawPieChart() {
-        
+
+    public void drawPieChart(JPanel panel) {
+
         DefaultPieDataset dataset = new DefaultPieDataset();
         dataset.setValue(KEY1, 99);
         dataset.setValue(KEY2, 77);
         dataset.setValue(KEY3, 12);
         dataset.setValue(KEY4, 41);
         dataset.setValue(KEY5, 89);
-        
+
         JFreeChart someChart = ChartFactory.createPieChart(
                 "Header", dataset, true, true, false);
         PiePlot plot = (PiePlot) someChart.getPlot();
@@ -405,23 +398,29 @@ public class Statistics extends javax.swing.JPanel {
         plot.setSectionPaint(KEY4, Color.yellow);
         plot.setSectionPaint(KEY5, Color.pink);
 
-//        plot.setExplodePercent(KEY1, 0.10);
-//        plot.setExplodePercent(KEY2, 0.20);
-//        plot.setExplodePercent(KEY3, 0.30);
+        plot.setExplodePercent(KEY1, 0.10);
+        plot.setExplodePercent(KEY2, 0.10);
+        plot.setExplodePercent(KEY3, 0.10);
+        plot.setExplodePercent(KEY4, 0.10);
+        plot.setExplodePercent(KEY5, 0.10);
+
         plot.setSimpleLabels(true);
-        
+
         PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
                 "{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
         plot.setLabelGenerator(gen);
-        ChartPanel pieChartPanel = new ChartPanel(someChart) {
-            @Override
-            public Dimension getPreferredSize() {
-                return new Dimension(500, 500);
-            }
-        };
+        ChartPanel pieChartPanel = new ChartPanel(someChart);
+        pieChartPanel.setDomainZoomable(true);
         pieChartPanel.setVisible(true);
-//        pieChart.add(pieChartPanel);
-        this.add(pieChartPanel);
+        panel.add(pieChartPanel);
+        pieChartPanel.setSize(statChart.getSize().width, statChart.getSize().height);
+        statChart.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                pieChartPanel.setSize(statChart.getSize().width, statChart.getSize().height);
+            }
+        });
+        System.out.println("run");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel iconItem;
@@ -443,6 +442,6 @@ public class Statistics extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel panelOptions;
-    private javax.swing.JPanel pieChart;
+    private javax.swing.JPanel statChart;
     // End of variables declaration//GEN-END:variables
 }
