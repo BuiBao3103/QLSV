@@ -8,10 +8,16 @@ import BUS.SinhVienBUS;
 import DAO.SinhVienDAO;
 import DTO.SinhVienDTO;
 import backend.Excel.IOExcel;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.accessibility.AccessibleContext;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import javax.swing.plaf.ComponentUI;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 /**
  *
@@ -937,6 +943,11 @@ public class StudentInfor extends javax.swing.JPanel {
 
         btnImport.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnImport.setText("Import");
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportActionPerformed(evt);
+            }
+        });
 
         btnExport.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnExport.setText("Export");
@@ -1220,7 +1231,9 @@ public class StudentInfor extends javax.swing.JPanel {
             SinhVienBUS.showDeletedStudent(this, Integer.parseInt(txtPresentPage.getText()));
         }
     }//GEN-LAST:event_txtPresentPageCaretUpdate
-
+    public void loadPage() {
+        txtPresentPageCaretUpdate(null);
+    }
     private void btnPrevPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevPageActionPerformed
         int presentPage = Integer.parseInt(txtPresentPage.getText()); // lấy trang hiện tại là bao nhiêu
         if (presentPage == 1) {
@@ -1280,6 +1293,20 @@ public class StudentInfor extends javax.swing.JPanel {
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         IOExcel.writeExcel(tblStudentList, "Danh sách sinh viên", "qlsv");
     }//GEN-LAST:event_btnExportActionPerformed
+
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
+        ArrayList<ArrayList<Object>> data = null;
+        try {
+            data = IOExcel.readExcel(0);
+            SinhVienBUS.importByExcel(data, this);
+        } catch (IOException ex) {
+            Logger.getLogger(StudentInfor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidFormatException ex) {
+            Logger.getLogger(StudentInfor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(StudentInfor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnImportActionPerformed
 //    public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
 //        cbNganhSinhVien.removeAllItems();
 //        for (String i : dsTenNganh) {

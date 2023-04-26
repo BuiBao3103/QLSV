@@ -274,17 +274,17 @@ public class NhomBUS {
     // mấy hàm dưới này phục vụ sắp xếp môn học
     public static int getNumberFromDayOfWeek(String dayOfWeek) { // cái hàm này trả về số thứ tự các ngày trong tuần, cho dễ xắp xếp á
         switch (dayOfWeek) {
-            case "Thứ Hai":
+            case "Hai":
                 return 2;
-            case "Thứ Ba":
+            case "Ba":
                 return 3;
-            case "Thứ Tư":
+            case "Tư":
                 return 4;
-            case "Thứ Năm":
+            case "Năm":
                 return 5;
-            case "Thứ Sáu":
+            case "Sáu":
                 return 6;
-            case "Thứ Bảy":
+            case "Bảy":
                 return 7;
             default:
                 return 8;

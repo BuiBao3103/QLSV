@@ -774,6 +774,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Import"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImportActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnExport">
                   <Properties>
