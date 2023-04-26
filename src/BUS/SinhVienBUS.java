@@ -585,11 +585,21 @@ public class SinhVienBUS {
                 JOptionPane.showMessageDialog(table, "Thêm Thành Công");
                 resetJPanelMoreInfo(table);
                 btnXoaLocOnClick(table);
+                insertSinhVienToTable(table.getTblStudentList(), svMoi);
                 dssv = svDAO.get();
             } else {   // thông tin khóa bị trùng
                 JOptionPane.showMessageDialog(table, errorMessage + checkAddInfo(svMoi));
             }
         }
+    }
+
+    public static void insertSinhVienToTable(JTable table, SinhVienDTO sv) { // mỗi khi thêm 1sv thì hàm này đưa sv đó vào trang hiện tại của table
+        DefaultTableModel tblSinhVien = (DefaultTableModel) table.getModel();
+
+        tblSinhVien.addRow(new Object[]{
+            sv.getMaSV(), sv.getHoTen(), maNganhToTenNganh(sv.getMaNganh()), sv.getNienKhoa()
+        });
+        table.setModel(tblSinhVien); // cái này để thiết lập mô hình dữ liệu
     }
 
     public static void createTaiKhoanForSinhVien(SinhVienDTO sv) { // hàm này tạo tài khoản cho sinh viên
