@@ -19,7 +19,7 @@
           <Component id="panelOptions" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="pieChart" max="32767" attributes="0"/>
+              <Component id="statChart" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -29,7 +29,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="panelOptions" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Component id="pieChart" max="32767" attributes="0"/>
+              <Component id="statChart" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -395,7 +395,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pieChart">
+    <Container class="javax.swing.JPanel" name="statChart">
 
       <Layout>
         <DimensionLayout dim="0">
