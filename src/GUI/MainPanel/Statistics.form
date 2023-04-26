@@ -19,7 +19,7 @@
           <Component id="panelOptions" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="statChart" max="32767" attributes="0"/>
+              <Component id="pieChart" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -29,7 +29,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="panelOptions" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Component id="statChart" max="32767" attributes="0"/>
+              <Component id="pieChart" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -395,10 +395,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="statChart">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="con = ConnectionDB.getConnection();&#xa;        String query = &quot;select DiemCuoiKy,DiemQuaTrinh from KETQUA&quot;;&#xa;        CategoryDataset dataset = null;&#xa;        try {&#xa;            dataset = new JDBCCategoryDataset(con, query);&#xa;        } catch (SQLException ex) {&#xa;            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;        JFreeChart chart = ChartFactory.createLineChart(&quot;&#x110;i&#x1ec3;m trung b&#xec;nh c&#x1ee7;a SV KHOA CNTT n&#x103;m 2022&quot;, &quot;&#x110;i&#x1ec3;m TB&quot;, &quot;Thang &#x110;i&#x1ec3;m&quot;, dataset, PlotOrientation.VERTICAL, false, true, true);&#xa;        BarRenderer renderer = null;&#xa;        CategoryPlot plot = null;&#xa;        renderer = new BarRenderer();&#xa;        ChartPanel chartPanel = new ChartPanel(chart);&#xa;        chartPanel.setVisible(true);&#xa;        statChart.add(chartPanel);&#xa;        chartPanel.setSize(statChart.getSize().width, statChart.getSize().height);&#xa;        statChart.addComponentListener(new ComponentAdapter() {&#xa;            @Override&#xa;            public void componentResized(ComponentEvent e) {&#xa;                chartPanel.setSize(statChart.getSize().width, statChart.getSize().height);&#xa;            }&#xa;        });"/>
-      </AuxValues>
+    <Container class="javax.swing.JPanel" name="pieChart">
 
       <Layout>
         <DimensionLayout dim="0">
