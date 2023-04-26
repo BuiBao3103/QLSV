@@ -32,13 +32,14 @@ public class Schedule extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgSapXep = new javax.swing.ButtonGroup();
         schedule = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSchedule = new javax.swing.JTable();
         cbChonHocKy = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        btnSapXepTheoMon = new javax.swing.JRadioButton();
+        btnSapXepTheoThuTiet = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         btnXemDSSV = new javax.swing.JButton();
         scpDSSV = new javax.swing.JScrollPane();
@@ -135,18 +136,20 @@ public class Schedule extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setText("Chọn học kỳ xem thời khóa biểu");
 
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton1.setText("Sắp xếp theo môn");
-        jRadioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        btgSapXep.add(btnSapXepTheoMon);
+        btnSapXepTheoMon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSapXepTheoMon.setText("Sắp xếp theo môn");
+        btnSapXepTheoMon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSapXepTheoMon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                btnSapXepTheoMonActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton2.setText("Sắp xếp theo thứ tiết");
-        jRadioButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btgSapXep.add(btnSapXepTheoThuTiet);
+        btnSapXepTheoThuTiet.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSapXepTheoThuTiet.setText("Sắp xếp theo thứ tiết");
+        btnSapXepTheoThuTiet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -223,9 +226,9 @@ public class Schedule extends javax.swing.JPanel {
                     .addComponent(scpDSSV, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleLayout.createSequentialGroup()
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSapXepTheoMon, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSapXepTheoThuTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(btnXemDSSV))
                     .addGroup(scheduleLayout.createSequentialGroup()
@@ -246,8 +249,8 @@ public class Schedule extends javax.swing.JPanel {
                     .addComponent(jButton1))
                 .addGap(7, 7, 7)
                 .addGroup(scheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
+                    .addComponent(btnSapXepTheoMon)
+                    .addComponent(btnSapXepTheoThuTiet)
                     .addComponent(btnXemDSSV))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
@@ -277,6 +280,22 @@ public class Schedule extends javax.swing.JPanel {
                     .addGap(0, 0, 0)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JRadioButton getBtnSapXepTheoMon() {
+        return btnSapXepTheoMon;
+    }
+
+    public void setBtnSapXepTheoMon(JRadioButton btnSapXepTheoMon) {
+        this.btnSapXepTheoMon = btnSapXepTheoMon;
+    }
+
+    public JRadioButton getBtnSapXepTheoThuTiet() {
+        return btnSapXepTheoThuTiet;
+    }
+
+    public void setBtnSapXepTheoThuTiet(JRadioButton btnSapXepTheoThuTiet) {
+        this.btnSapXepTheoThuTiet = btnSapXepTheoThuTiet;
+    }
 
     public JButton getBtnXemDSSV() {
         return btnXemDSSV;
@@ -326,9 +345,9 @@ public class Schedule extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbChonHocKyActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void btnSapXepTheoMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapXepTheoMonActionPerformed
+        NhomBUS.showTKB(this);
+    }//GEN-LAST:event_btnSapXepTheoMonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         IOExcel.writeExcel(tblSchedule, "Thời khóa biểu","tkb");
@@ -409,12 +428,13 @@ public class Schedule extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgSapXep;
+    private javax.swing.JRadioButton btnSapXepTheoMon;
+    private javax.swing.JRadioButton btnSapXepTheoThuTiet;
     private javax.swing.JButton btnXemDSSV;
     private javax.swing.JComboBox<String> cbChonHocKy;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel schedule;
     private javax.swing.JScrollPane scpDSSV;

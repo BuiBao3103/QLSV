@@ -28,8 +28,9 @@ import javax.swing.table.DefaultTableModel;
  * @author ASUS
  */
 public class NhomBUS {
+
     static NhomDAO nhomDAO = new NhomDAO();
-    static boolean dangkyMon = nhomDAO.getCurrentDangKyMon() ;
+    static boolean dangkyMon = nhomDAO.getCurrentDangKyMon();
     static ArrayList<NhomDTO> dsNhom = nhomDAO.get();
     static SinhVienDAO svDAO = new SinhVienDAO();
     static HocPhanDAO hpDAO = new HocPhanDAO();
@@ -207,6 +208,7 @@ public class NhomBUS {
         } catch (Exception e) {
             return;
         }
+        arrangeSchedule(schedule);
         for (NhomDTO nh : dsNhomDaHoc) {
             if (nh.getHocKy() == hocKy && nh.getNam() == nam) {
                 HocPhanDTO hp = hpDAO.getByMaHP(nh.getMaHP()); // cái này lấy ra học phần của nhóm đó để có tên hp, số tchi ...
@@ -266,6 +268,71 @@ public class NhomBUS {
         while (namVaoHoc <= hientai.getNam()) {
             schedule.getCbChonHocKy().addItem(hientai.getHocKi() + " - " + hientai.getNam());
             hientai = NienHocBUS.prevNienHoc(hientai);
+        }
+    }
+
+    // mấy hàm dưới này phục vụ sắp xếp môn học
+    public static int getNumberFromDayOfWeek(String dayOfWeek) { // cái hàm này trả về số thứ tự các ngày trong tuần, cho dễ xắp xếp á
+        switch (dayOfWeek) {
+            case "Thứ Hai":
+                return 2;
+            case "Thứ Ba":
+                return 3;
+            case "Thứ Tư":
+                return 4;
+            case "Thứ Năm":
+                return 5;
+            case "Thứ Sáu":
+                return 6;
+            case "Thứ Bảy":
+                return 7;
+            default:
+                return 8;
+        }
+    }
+
+    public static boolean compare2NhomDTO(NhomDTO nh1, NhomDTO nh2) {
+        if (getNumberFromDayOfWeek(nh1.getThu()) > getNumberFromDayOfWeek(nh2.getThu())) { // nhóm 1 nằm sau nhóm 2
+            return true;
+        } else if (getNumberFromDayOfWeek(nh1.getThu()) == getNumberFromDayOfWeek(nh2.getThu())) { // 2 nhóm cùng ngày trong tuần
+            if (nh1.getTietBD() > nh2.getTietBD()) {
+                return true; // nhóm 1 học sau nhóm 2
+            } else { // nhóm 1 học trước nhóm 2
+                return false;
+            }
+        }
+        return false; // nhóm 1 học trước nhóm 2 trong 2 ngày khác nhau
+    }
+
+    public static void swap(ArrayList<NhomDTO> dsn, int index1, int index2) { // hàm này đổi chổ 2 vị trí trong arrayLisst nhóm
+        NhomDTO temp = dsn.get(index1);
+        dsn.set(index1, dsn.get(index2));
+        dsn.set(index2, temp);
+    }
+
+    public static void arrangeSchedule(Schedule schedule) {
+        if (schedule.getBtnSapXepTheoMon().isSelected()) { // sắp xếp theo mã môn
+            for (NhomDTO nh1 : dsNhomDaHoc) {
+                for (NhomDTO nh2 : dsNhomDaHoc) {
+                    if (Integer.parseInt(nh1.getMaHP()) > Integer.parseInt(nh2.getMaHP())) {
+                        int index1 = dsNhomDaHoc.indexOf(nh1);
+                        int index2 = dsNhomDaHoc.indexOf(nh2);
+                        swap(dsNhomDaHoc, index1, index2);
+                    }
+                }
+            }
+        } else { // sắp xếp theo thứ tiết
+            for (NhomDTO nh1 : dsNhomDaHoc) {
+                for (NhomDTO nh2 : dsNhomDaHoc) {
+                    if (nh1.getNam() == nh2.getNam() && nh1.getHocKy() == nh2.getHocKy()) {
+                        if (compare2NhomDTO(nh1, nh2)) { // nhóm 1 sau nhóm 2
+                            int index1 = dsNhomDaHoc.indexOf(nh1);
+                            int index2 = dsNhomDaHoc.indexOf(nh2);
+                            swap(dsNhomDaHoc, index1, index2);
+                        }
+                    }
+                }
+            }
         }
     }
 
