@@ -381,7 +381,6 @@ public class Statistics extends javax.swing.JPanel {
     }
 
     public void drawPieChart(JPanel panel) {
-
         DefaultPieDataset dataset = new DefaultPieDataset();
         dataset.setValue(KEY1, 99);
         dataset.setValue(KEY2, 77);
@@ -390,7 +389,7 @@ public class Statistics extends javax.swing.JPanel {
         dataset.setValue(KEY5, 89);
 
         JFreeChart someChart = ChartFactory.createPieChart(
-                "Header", dataset, true, true, false);
+                "Đánh giá học tập", dataset, true, true, false);
         PiePlot plot = (PiePlot) someChart.getPlot();
         plot.setSectionPaint(KEY1, Color.green);
         plot.setSectionPaint(KEY2, Color.red);
