@@ -29,6 +29,7 @@ public class TaiKhoanBUS {
         String matkhau = lg.getPassword().getText();
         TaiKhoanBUS qltk = new TaiKhoanBUS();
         curentLogin = qltk.getByUsername(tenTK);
+        System.out.println(curentLogin.toString());
         if (curentLogin != null) {
             int trangThai = qltk.getTrangThai(curentLogin);
             if (trangThai == 0) {

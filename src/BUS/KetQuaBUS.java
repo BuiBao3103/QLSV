@@ -36,6 +36,7 @@ public class KetQuaBUS {
     }
 
     public void addRowData(Score score, int nam, int hk) {
+        System.out.println(dsKQSV.toString());
         JTable table = score.getjTable2();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int stt = 0;
