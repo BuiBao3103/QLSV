@@ -22,14 +22,16 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class TaiKhoanBUS {
 
-    public static TaiKhoanDTO curentLogin = new TaiKhoanBUS().getByUsername("3121410482");
+//    public static TaiKhoanDTO curentLogin = new TaiKhoanBUS().getByUsername("3121410482");
+    static TaiKhoanDAO tkDAO = new TaiKhoanDAO();
+    public static TaiKhoanDTO curentLogin = tkDAO.getByUserName("3121410066");
 
     public static void login(Login lg) {
         String tenTK = lg.getUsername().getText();
         String matkhau = lg.getPassword().getText();
         TaiKhoanBUS qltk = new TaiKhoanBUS();
         curentLogin = qltk.getByUsername(tenTK);
-        System.out.println(curentLogin.toString());
+        System.out.println(tenTK);
         if (curentLogin != null) {
             int trangThai = qltk.getTrangThai(curentLogin);
             if (trangThai == 0) {
@@ -43,7 +45,7 @@ public class TaiKhoanBUS {
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ignored) {
 
                 }
-
+                
                 new TaiKhoanBUS().phanQuyen(dsq);
 
             } else {
@@ -56,7 +58,6 @@ public class TaiKhoanBUS {
     }
 
     public TaiKhoanDTO getByUsername(String tentk) {
-        TaiKhoanDAO tkDAO = new TaiKhoanDAO();
         return tkDAO.getByUserName(tentk);
     }
 

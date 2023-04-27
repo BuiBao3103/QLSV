@@ -302,7 +302,8 @@ public class Login extends javax.swing.JFrame {
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
 //        JOptionPane.showMessageDialog(rootPane, "Hello");
 //        animatorLogin.start();
-       TaiKhoanBUS.login(this);
+        TaiKhoanBUS.login(this);
+        this.dispose();
 
     }//GEN-LAST:event_button1ActionPerformed
 
@@ -318,9 +319,10 @@ public class Login extends javax.swing.JFrame {
         cardLayout.previous(jPanel4);
         password.setEchoChar('\u25CF');
     }//GEN-LAST:event_eyeHideActionPerformed
-    public void setIcon(){
+    public void setIcon() {
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resource/images/logologinsmaller.png")));
     }
+
     /**
      * @param args the command line arguments
      */
@@ -362,7 +364,6 @@ public class Login extends javax.swing.JFrame {
 //            }
 //        });
     }
-
 
     public PasswordField getPassword() {
         return password;

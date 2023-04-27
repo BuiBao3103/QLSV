@@ -91,7 +91,7 @@ public class NhomBUS {
                     - countGroupRegistered(dskq, nhom.getMaHP(), nhom.getSoNhom());
             //Create row data
             Object[] rowData = {i++, nhom.getMaHP(), nameHP, nhom.getSoNhom(), tcHP,
-                nhom.getSoLuongSV(), remainSlot, nhom.getThu().substring(4),
+                nhom.getSoLuongSV(), remainSlot, nhom.getThu(),
                 nhom.getTietBD(), nhom.getSoTiet(), nhom.getPhong(), formattedName};
             tblNhom.addRow(rowData);
         }
@@ -180,7 +180,7 @@ public class NhomBUS {
                     - countGroupRegistered(dskq, nhom.getMaHP(), nhom.getSoNhom());
             //Create row data
             Object[] rowData = {i++, nhom.getMaHP(), nameHP, nhom.getSoNhom(), tcHP,
-                nhom.getSoLuongSV(), remainSlot, nhom.getThu().substring(4),
+                nhom.getSoLuongSV(), remainSlot, nhom.getThu(),
                 nhom.getTietBD(), nhom.getSoTiet(), nhom.getPhong(), formattedName};
             tblNhom.addRow(rowData);
         }

@@ -301,11 +301,11 @@ public class Statistics extends javax.swing.JPanel {
             panelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelOptionsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addGap(27, 27, 27))
         );
         panelOptionsLayout.setVerticalGroup(
@@ -322,7 +322,7 @@ public class Statistics extends javax.swing.JPanel {
         pieChart.setLayout(pieChartLayout);
         pieChartLayout.setHorizontalGroup(
             pieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
+            .addGap(0, 833, Short.MAX_VALUE)
         );
         pieChartLayout.setVerticalGroup(
             pieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,7 +373,7 @@ public class Statistics extends javax.swing.JPanel {
             .addComponent(panelOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -436,17 +436,20 @@ public class Statistics extends javax.swing.JPanel {
 
     public void drawColumnChart(JPanel pnl) throws SQLException {
         con = ConnectionDB.getConnection();
-        String query = "select DiemCuoiKy,DiemQuaTrinh from KETQUA";
-//        String query = "select count(*),NienKhoa from SINHVIEN group by NienKhoa";
-        CategoryDataset dataset = new JDBCCategoryDataset(con, query);
+//        String query = "select count(*),SUBSTRING(NienKhoa,1,4) from SINHVIEN group by SUBSTRING(NienKhoa,1,4)";
+////        String query = "select count(*),NienKhoa from SINHVIEN group by NienKhoa";
+//        CategoryDataset dataset = new JDBCCategoryDataset(con, query);
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(120, "Profit", "Jan");
+        dataset.setValue(240, "Profit", "Feb");
+        dataset.setValue(180, "Profit", "Mar");
+        dataset.setValue(90, "Profit", "Apr");
         JFreeChart chart = ChartFactory.createBarChart("Điểm trung bình của SV KHOA CNTT năm 2022", "Năm học", "Số lượng sinh viên", dataset, PlotOrientation.VERTICAL, false, true, false);
         BarRenderer renderer = null;
         CategoryPlot plot = chart.getCategoryPlot();
-        renderer = (BarRenderer)plot.getRenderer();
+        renderer = (BarRenderer) plot.getRenderer();
         // Set custom colors for the bars
-        renderer.setSeriesPaint(0, new Color(79, 129, 189));
-        renderer.setSeriesPaint(1, new Color(192, 80, 77));
-        renderer.setSeriesPaint(2, new Color(155, 187, 89));
+        renderer.setSeriesPaint(0, new Color(0, 128, 215));
 
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setVisible(true);
