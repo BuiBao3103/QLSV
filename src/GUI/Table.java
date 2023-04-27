@@ -39,10 +39,10 @@ import org.json.JSONObject;
 
 public class Table extends javax.swing.JFrame implements Runnable {
 
-    private Color yellow = new Color(255, 188, 0);
-    private Color lightBlue = new Color(0, 158, 248);
-    private Color darkBlue = new Color(0, 158, 248);
-    private ArrayList<JButton> allBtnLeftBar = new ArrayList<>();
+    private final Color yellow = new Color(255, 188, 0);
+    private final Color lightBlue = new Color(0, 158, 248);
+    private final Color darkBlue = new Color(0, 158, 248);
+    private final ArrayList<JButton> allBtnLeftBar = new ArrayList<>();
     private JButton currentBtn = null;
     private final Settings settings = new Settings();
     private final Schedule schedule = new Schedule();

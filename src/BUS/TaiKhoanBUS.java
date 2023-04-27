@@ -135,15 +135,26 @@ public class TaiKhoanBUS {
         int namMoi = Integer.parseInt(managerYear.getTxtNam().getText());
         boolean isChange = false;
         if (hkHienTai != hkMoi || namHienTai != namMoi) {
+            NienHocBUS.currentNienHoc.setHocKi(hkMoi);
+            NienHocBUS.currentNienHoc.setNam(namMoi);
+            NienHocBUS.updateNienHoc(hkMoi, namMoi);
+            isChange = true;
+        }
+        System.out.println(NhomBUS.dangkyMon);
+        if (NhomBUS.dangkyMon && managerYear.getRdDKN().isSelected()
+                || !NhomBUS.dangkyMon && managerYear.getRdDKY().isSelected()) {
+            if (managerYear.getRdDKY().isSelected()) {
+                NhomBUS.dangkyMon = true;
+            } else {
+                NhomBUS.dangkyMon = false;
+            }
+            NhomBUS.updateCurrentDangKyMon(NhomBUS.dangkyMon);
             isChange = true;
         }
         if (!isChange) {
             JOptionPane.showMessageDialog(null, "Không có gì thay đổi!", "Thay đổi", JOptionPane.INFORMATION_MESSAGE);
-            return;
+
         }
-        NienHocBUS.updateNienHoc(hkMoi, namMoi);
-        NienHocBUS.currentNienHoc.setHocKi(hkMoi);
-        NienHocBUS.currentNienHoc.setNam(namMoi);
 
     }
 }

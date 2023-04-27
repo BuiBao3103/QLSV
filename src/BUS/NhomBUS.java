@@ -37,6 +37,10 @@ public class NhomBUS {
 
     private static ArrayList<NhomDTO> dsNhomDaHoc = nhomDAO.getBySinhVien(); // lấy các học phần sv đang đăng nhập đã học
 
+    public static void updateCurrentDangKyMon(boolean isDangkyMon) {
+        nhomDAO.updateCurrentDangKyMon(isDangkyMon);
+    }
+
     public static void showGroupRegistration(JTable table) {
         DefaultTableModel tblDangKy = (DefaultTableModel) table.getModel();
         tblDangKy.setRowCount(0);

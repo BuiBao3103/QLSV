@@ -5,7 +5,9 @@ import BUS.TaiKhoanBUS;
 import DTO.NienHocDTO;
 import connectDB.ConnectionDB;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.sql.*;
@@ -31,6 +33,22 @@ public class NhomDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void updateCurrentDangKyMon(boolean isDangKyMon) {
+        try {
+            FileWriter writer = new FileWriter("src/resource/config/DangKyMonHoc.txt");
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            if (isDangKyMon) {
+                bufferedWriter.write("true");
+            } else {
+                bufferedWriter.write("false");
+            }
+            bufferedWriter.close();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<NhomDTO> get() {
