@@ -15,14 +15,22 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.jdbc.JDBCCategoryDataset;
 
 /**
  *
@@ -43,7 +51,13 @@ public class Statistics extends javax.swing.JPanel {
 
     public Statistics() {
         initComponents();
-        drawPieChart(statChart);
+        drawPieChart(pieChart);
+        try {
+            drawColumnChart(columnChart);
+        } catch (SQLException ex) {
+            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -69,7 +83,10 @@ public class Statistics extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         iconItem2 = new javax.swing.JLabel();
-        statChart = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel7 = new javax.swing.JPanel();
+        pieChart = new javax.swing.JPanel();
+        columnChart = new javax.swing.JPanel();
 
         jPanel1 = new RoundedPanel(20, new Color(50,177,249));
         jPanel1.setPreferredSize(new java.awt.Dimension(320, 104));
@@ -103,7 +120,7 @@ public class Statistics extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,7 +189,7 @@ public class Statistics extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -241,7 +258,7 @@ public class Statistics extends javax.swing.JPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -284,11 +301,11 @@ public class Statistics extends javax.swing.JPanel {
             panelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelOptionsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addGap(27, 27, 27))
         );
         panelOptionsLayout.setVerticalGroup(
@@ -301,16 +318,53 @@ public class Statistics extends javax.swing.JPanel {
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout statChartLayout = new javax.swing.GroupLayout(statChart);
-        statChart.setLayout(statChartLayout);
-        statChartLayout.setHorizontalGroup(
-            statChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pieChartLayout = new javax.swing.GroupLayout(pieChart);
+        pieChart.setLayout(pieChartLayout);
+        pieChartLayout.setHorizontalGroup(
+            pieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 958, Short.MAX_VALUE)
+        );
+        pieChartLayout.setVerticalGroup(
+            pieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 304, Short.MAX_VALUE)
+        );
+
+        columnChart.setBackground(new java.awt.Color(255, 153, 153));
+
+        javax.swing.GroupLayout columnChartLayout = new javax.swing.GroupLayout(columnChart);
+        columnChart.setLayout(columnChartLayout);
+        columnChartLayout.setHorizontalGroup(
+            columnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        statChartLayout.setVerticalGroup(
-            statChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+        columnChartLayout.setVerticalGroup(
+            columnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 289, Short.MAX_VALUE)
         );
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(columnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pieChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(25, 25, 25))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pieChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(columnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
+        );
+
+        jScrollPane2.setViewportView(jPanel7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -319,15 +373,15 @@ public class Statistics extends javax.swing.JPanel {
             .addComponent(panelOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(statChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(27, 27, 27))
+                .addComponent(jScrollPane2)
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(statChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -380,6 +434,50 @@ public class Statistics extends javax.swing.JPanel {
         }
     }
 
+    public void drawColumnChart(JPanel pnl) throws SQLException {
+        con = ConnectionDB.getConnection();
+        String query = "select DiemCuoiKy,DiemQuaTrinh from KETQUA";
+//        String query = "select count(*),NienKhoa from SINHVIEN group by NienKhoa";
+        CategoryDataset dataset = new JDBCCategoryDataset(con, query);
+        JFreeChart chart = ChartFactory.createBarChart("Điểm trung bình của SV KHOA CNTT năm 2022", "Năm học", "Số lượng sinh viên", dataset, PlotOrientation.VERTICAL, false, true, false);
+        BarRenderer renderer = null;
+        CategoryPlot plot = chart.getCategoryPlot();
+        renderer = (BarRenderer)plot.getRenderer();
+        // Set custom colors for the bars
+        renderer.setSeriesPaint(0, new Color(79, 129, 189));
+        renderer.setSeriesPaint(1, new Color(192, 80, 77));
+        renderer.setSeriesPaint(2, new Color(155, 187, 89));
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setVisible(true);
+        pnl.add(chartPanel);
+        chartPanel.setSize(pnl.getSize().width, pnl.getSize().height);
+        pnl.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                chartPanel.setSize(pnl.getSize().width, pnl.getSize().height);
+            }
+        });
+//         con = ConnectionDB.getConnection();
+//        String query = "select count(*),SUBSTRING(NienKhoa,1,4) from SINHVIEN group by SUBSTRING(NienKhoa,1,4)";
+//        CategoryDataset dataset = new JDBCCategoryDataset(con, query);
+//        JFreeChart chart = ChartFactory.createLineChart("Số lượng sinh viên các khoa", "Điểm TB", "Thang Điểm", dataset, PlotOrientation.VERTICAL, false, true, true);
+////        JFreeChart chart = ChartFactory.createBarChart("Số lượng sinh viên các khoa", "Năm học", "Số lượng", dataset, PlotOrientation.VERTICAL, true, true, );
+//    BarRenderer renderer = null;
+//        CategoryPlot plot = null;
+//        renderer = new BarRenderer();
+//        ChartPanel chartPanel = new ChartPanel(chart);
+//        chartPanel.setVisible(true);
+//        pnl.add(chartPanel);
+//        chartPanel.setSize(pnl.getSize().width, pnl.getSize().height);
+//        pnl.addComponentListener(new ComponentAdapter() {
+//            @Override
+//            public void componentResized(ComponentEvent e) {
+//                chartPanel.setSize(pnl.getSize().width, pnl.getSize().height);
+//            }
+//        });
+    }
+
     public void drawPieChart(JPanel panel) {
 
         DefaultPieDataset dataset = new DefaultPieDataset();
@@ -413,16 +511,17 @@ public class Statistics extends javax.swing.JPanel {
         pieChartPanel.setDomainZoomable(true);
         pieChartPanel.setVisible(true);
         panel.add(pieChartPanel);
-        pieChartPanel.setSize(statChart.getSize().width, statChart.getSize().height);
-        statChart.addComponentListener(new ComponentAdapter() {
+        pieChartPanel.setSize(panel.getSize().width, panel.getSize().height);
+        panel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                pieChartPanel.setSize(statChart.getSize().width, statChart.getSize().height);
+                pieChartPanel.setSize(panel.getSize().width, panel.getSize().height);
             }
         });
         System.out.println("run");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel columnChart;
     private javax.swing.JLabel iconItem;
     private javax.swing.JLabel iconItem1;
     private javax.swing.JLabel iconItem2;
@@ -441,7 +540,9 @@ public class Statistics extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel panelOptions;
-    private javax.swing.JPanel statChart;
+    private javax.swing.JPanel pieChart;
     // End of variables declaration//GEN-END:variables
 }
