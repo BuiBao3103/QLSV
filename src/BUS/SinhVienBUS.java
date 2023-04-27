@@ -955,11 +955,11 @@ public class SinhVienBUS {
 // ---------------------------------------------------------------------------------------------------------------
 
     public static boolean checkAllInfo(SinhVienDTO sv) {
-        if (!checkCMND(sv.getCmnd()) || !checkDanToc(sv.getDanToc()) || !checkDiaChi(sv.getDiaChi()) || !checkMaLop(sv.getMaLop())
+        if (!checkCMND(sv.getCmnd()) || !checkDanToc(sv.getDanToc()) || !checkDiaChi(sv.getDiaChi()) //|| !checkMaLop(sv.getMaLop())
                 || !checkGioiTinh(sv.getGioiTinh()) || !checkHoTen(sv.getHoTen()) || !checkMSSV(sv.getMaSV())
                 || !checkMaTaiKhoan(sv.getMaTK() + "") || !checkNganh(maNganhToTenNganh(sv.getMaNganh())) || !checkNgaySinh(dateFormat.format(sv.getNgaySinh()))
-                || !checkNienKhoa(sv.getNienKhoa()) || !checkSoDienThoai(sv.getSoDienThoai()) || !checkTonGiao(sv.getTonGiao())) {
-
+                || !checkNienKhoa(sv.getNienKhoa()) || !checkSoDienThoai(sv.getSoDienThoai()) || !checkTonGiao(sv.getTonGiao()) || checkExistCMND(sv.getCmnd())
+                || checkExistMSSV(sv.getMaSV()) || checkExistMaTaiKhoan(sv.getMaTK() + "")) {
             return false;
         }
         return true;
@@ -1109,6 +1109,50 @@ public class SinhVienBUS {
             return true;
         }
         return false;
+    }
+
+    public static void importByExcel(ArrayList<ArrayList<Object>> data, StudentInfor studentInfor) throws ParseException {
+        String err = "Các dòng bị lỗi là :\n";
+        ArrayList<SinhVienDTO> dssv = new ArrayList<>();
+        for (ArrayList<Object> svAttibute : data) {
+            int trangThai = 1;
+            String maSV = svAttibute.get(0).toString();
+            String cmnd = svAttibute.get(1).toString();
+            String soDienThoai = svAttibute.get(2).toString();
+            String maLop = svAttibute.get(3).toString();
+            String hoTen = svAttibute.get(4).toString();
+            System.out.println("[" + svAttibute.get(5).toString() + "]");
+            Date ngaySinh = dateFormat.parse("2000-01-01");
+            try {
+                ngaySinh = dateFormat.parse(svAttibute.get(5).toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String gioiTinh = svAttibute.get(6).toString();
+            String diaChi = svAttibute.get(7).toString();
+            String danToc = svAttibute.get(8).toString();
+            String tonGiao = svAttibute.get(9).toString();
+            String nienKhoa = svAttibute.get(10).toString();
+            String maNganh = svAttibute.get(11).toString();
+            int maTK = svDAO.maxMaTK() + 1;
+            SinhVienDTO sv = new SinhVienDTO(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh,
+                    gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+            if (checkAllInfo(sv)) {
+                dssv.add(sv);
+                createTaiKhoanForSinhVien(sv);
+            } else {
+                System.out.println("cai gi cung dc");
+                err += sv.getMaSV() + "\n";
+            }
+        }
+        if (!err.equals("Các dòng bị lỗi là :\n")) {
+            JOptionPane.showMessageDialog(null, err, "Lỗi nhập excel", JOptionPane.ERROR_MESSAGE);
+        }
+        if (dssv.size() > 0) {
+            svDAO.addByExecl(dssv);
+            JOptionPane.showMessageDialog(null, "Nhập thành công!");
+            studentInfor.loadPage();
+        }
     }
 
     public static void main(String[] args) {

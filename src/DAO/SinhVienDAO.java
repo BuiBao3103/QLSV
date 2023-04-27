@@ -133,8 +133,36 @@ public class SinhVienDAO {
             pstm.setString(12, sv.getNienKhoa());//+
             pstm.setString(13, sv.getMaNganh());//+
             pstm.setInt(14, sv.getMaTK());//+
-
             pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+    }
+
+    public void addByExecl(ArrayList<SinhVienDTO> dssv) {
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "INSERT INTO SinhVien VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";//++
+            for (SinhVienDTO sv : dssv) {
+                pstm = con.prepareStatement(query);
+                pstm.setInt(1, sv.getTrangThai());
+                pstm.setString(2, sv.getMaSV());//+
+                pstm.setString(3, sv.getCmnd());//+
+                pstm.setString(4, sv.getSoDienThoai());
+                pstm.setString(5, sv.getMaLop());
+                pstm.setString(6, sv.getHoTen());//+
+                pstm.setDate(7, java.sql.Date.valueOf(dateFormat.format(sv.getNgaySinh())));
+                pstm.setString(8, sv.getGioiTinh());//+
+                pstm.setString(9, sv.getDiaChi());//+
+                pstm.setString(10, sv.getDanToc());//+
+                pstm.setString(11, sv.getTonGiao());//+
+                pstm.setString(12, sv.getNienKhoa());//+
+                pstm.setString(13, sv.getMaNganh());//+
+                pstm.setInt(14, sv.getMaTK());//+
+                pstm.executeUpdate();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -490,7 +518,8 @@ public class SinhVienDAO {
         ConnectionDB.closeConnection(con, pstm);
         return dssv;//+
     }
-    public ArrayList<SinhVienDTO> getByFilter(StudentInfor stu){
+
+    public ArrayList<SinhVienDTO> getByFilter(StudentInfor stu) {
         con = ConnectionDB.getConnection();
         String giaTriTen = stu.getTimKiemTen();
         String giaTriMSSV = stu.getTimKiemMSSV();
@@ -499,14 +528,14 @@ public class SinhVienDAO {
         String giaTriGioiTinh = stu.getTimKiemGioiTinh();
         String giaTriNamSinh = stu.getTimKiemNamSinh();
         String giaTriKhoa = stu.getTimKiemKhoa(); // sau khi lọc các giá trị kia thì lọc lại Khóa bằng SinhVienBUS
-               
+
         ArrayList<SinhVienDTO> dssv = new ArrayList<>();
         try {
-            String query = "select * from SinhVien where HoTen like N'%"+giaTriTen+"%' "
-                    +"and maSV like '%"+giaTriMSSV+"%' "
-                    +"and MaLop like '%"+giaTriLop+"%' "
-                    +"and GioiTinh like N'%"+giaTriGioiTinh+"%' "
-                    +"and YEAR(NgaySinh) like '%"+giaTriNamSinh+"%'";//+
+            String query = "select * from SinhVien where HoTen like N'%" + giaTriTen + "%' "
+                    + "and maSV like '%" + giaTriMSSV + "%' "
+                    + "and MaLop like '%" + giaTriLop + "%' "
+                    + "and GioiTinh like N'%" + giaTriGioiTinh + "%' "
+                    + "and YEAR(NgaySinh) like '%" + giaTriNamSinh + "%'";//+
             pstm = con.prepareStatement(query);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
@@ -532,9 +561,9 @@ public class SinhVienDAO {
             ConnectionDB.closeConnection(con, pstm);
         }
         return dssv;//+
-        
+
     }
-    
+
     public static void main(String[] args) {
 //        ArrayList<SinhVien> dssv = new SinhVienDAO().getByNganh("Công");
 //        Date ngay = new Date();

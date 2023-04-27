@@ -12,12 +12,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -29,17 +30,20 @@ import org.apache.poi.xssf.usermodel.*;
  */
 public class IOExcel {
 
-    public static List<List<String>> readExcel(String filePath, int sheetIndex) throws IOException, InvalidFormatException {
-        List<List<String>> data = new ArrayList<>();
-        File file = new File(filePath);
+    public static ArrayList<ArrayList<Object>> readExcel(int sheetIndex) throws IOException, InvalidFormatException {
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.showOpenDialog(null);
+        File savefile = jFileChooser.getSelectedFile();
+        ArrayList<ArrayList<Object>> data = new ArrayList<>();
+        File file = new File(savefile.getPath());
         if (!file.exists()) {
-            throw new IOException("File not found: " + filePath);
+            throw new IOException("File not found: " + savefile.getPath());
         }
         try (FileInputStream fileInputStream = new FileInputStream(file); Workbook workbook = WorkbookFactory.create(fileInputStream)) {
             Sheet sheet = workbook.getSheetAt(sheetIndex);
             for (Row row : sheet) {
                 Iterator<Cell> cellIterator = row.cellIterator();
-                List<String> rowData = new ArrayList<>();
+                ArrayList<Object> rowData = new ArrayList<>();
                 while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
                     switch (cell.getCellType()) {
@@ -123,6 +127,22 @@ public class IOExcel {
             System.out.println(e);
         } catch (IOException ex) {
             Logger.getLogger(Schedule.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void main(String[] args) throws IOException, InvalidFormatException {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
+                | UnsupportedLookAndFeelException ignored) {
+        }
+
+        ArrayList<ArrayList<Object>> data = IOExcel.readExcel(0);
+        for (ArrayList<Object> sv : data) {
+            for (Object cot : sv) {
+                System.out.print(cot.toString() + " ");
+            }
+            System.out.println();
         }
     }
 }
