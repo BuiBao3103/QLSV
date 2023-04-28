@@ -63,6 +63,8 @@ public class SubjectRegistration extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblNhomDangKy = new javax.swing.JTable();
+        lblTongTinChi = new javax.swing.JLabel();
+        btnXoa = new javax.swing.JButton();
 
         jPanel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
@@ -122,7 +124,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
                         .addComponent(cbChuyenBiet, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbChuyenBietPhu, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 94, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(121, 121, 121)
@@ -185,8 +187,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(add_btn)
-                .addContainerGap())
+                .addComponent(add_btn))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +206,8 @@ public class SubjectRegistration extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,22 +320,38 @@ public class SubjectRegistration extends javax.swing.JPanel {
             tblNhomDangKy.getColumnModel().getColumn(6).setMaxWidth(60);
         }
 
+        lblTongTinChi.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTongTinChi.setText("Tổng số tín chỉ:");
+
+        btnXoa.setBackground(new java.awt.Color(0, 158, 248));
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnXoa.setForeground(new java.awt.Color(255, 255, 255));
+        btnXoa.setText("Xóa");
+        btnXoa.setContentAreaFilled(false);
+        btnXoa.setOpaque(true);
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jscrollbar, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(14, 14, 14))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTongTinChi, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnXoa))
+                    .addComponent(jscrollbar))
+                .addGap(35, 35, 35))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,8 +361,12 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jscrollbar, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblTongTinChi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnXoa))
+                    .addComponent(jLabel2))
+                .addGap(14, 14, 14)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -365,7 +387,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 896, Short.MAX_VALUE)
+            .addGap(0, 897, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(subjectRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -376,6 +398,23 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 .addComponent(subjectRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JButton getBtnXoa() {
+        return btnXoa;
+    }
+
+    public void setBtnXoa(JButton btnXoa) {
+        this.btnXoa = btnXoa;
+    }
+
+    public JLabel getLblTongTinChi() {
+        return lblTongTinChi;
+    }
+
+    public void setLblTongTinChi(JLabel lblTongTinChi) {
+        this.lblTongTinChi = lblTongTinChi;
+    }
+
 
     private void filter_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_btnActionPerformed
         String hocPhan = filterHP_txt.getText();
@@ -442,7 +481,6 @@ public class SubjectRegistration extends javax.swing.JPanel {
         }
         String maHP = tblNhomMonHoc.getValueAt(i, 1) + "";
         int soNhom = Integer.parseInt(tblNhomMonHoc.getValueAt(i, 3) + "");
-        System.out.println(maHP + " " + soNhom);
         if (KetQuaBUS.subjectRegistration(maHP, soNhom)) {
             JOptionPane.showMessageDialog(null, "Đang ký thành công!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
             reloadSubjectRegistration();
@@ -450,7 +488,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
     }//GEN-LAST:event_add_btnActionPerformed
     public void reloadSubjectRegistration() {
         NhomBUS.showGroupSuggestions(tblNhomMonHoc);
-        NhomBUS.showGroupRegistration(tblNhomDangKy);
+        NhomBUS.showGroupRegistration(tblNhomDangKy, lblTongTinChi);
         filterHP_txt.setText("");
         cbChuyenBiet.setSelectedIndex(0);
     }
@@ -475,8 +513,21 @@ public class SubjectRegistration extends javax.swing.JPanel {
         NhomBUS.showGroupSuggestions(tblNhomMonHoc);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        int i = tblNhomDangKy.getSelectedRow();
+        if (i == -1) {
+            JOptionPane.showMessageDialog(null, "Chưa chọn nhóm đăng ký!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        String maHP = tblNhomDangKy.getValueAt(i, 1) + "";
+        int soNhom = Integer.parseInt(tblNhomDangKy.getValueAt(i, 3) + "");
+        KetQuaBUS.deleteSubjectRegister(maHP, soNhom);
+        reloadSubjectRegistration();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_btn;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbChuyenBiet;
     private javax.swing.JComboBox<String> cbChuyenBietPhu;
     private javax.swing.JTextField filterHP_txt;
@@ -491,6 +542,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblTongTinChi;
     private javax.swing.JPanel subjectRegistration;
     private javax.swing.JTable tblNhomDangKy;
     private javax.swing.JTable tblNhomMonHoc;

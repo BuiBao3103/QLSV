@@ -41,17 +41,20 @@ public class NhomBUS {
         nhomDAO.updateCurrentDangKyMon(isDangkyMon);
     }
 
-    public static void showGroupRegistration(JTable table) {
+    public static void showGroupRegistration(JTable table, JLabel lblTongTinChi) {
         DefaultTableModel tblDangKy = (DefaultTableModel) table.getModel();
         tblDangKy.setRowCount(0);
         int i = 1;
+        int sumTC = 0;
         for (KetQuaDTO dk : KetQuaBUS.dsDaDangKySV) {
             HocPhanDTO hp = HocPhanBUS.getHocPhanByID(dk.getMaHP());
+            sumTC += hp.getTinChi();
             int phanTramGK = hp.getPhanTramQuaTrinh();
             int phanTramCK = 100 - phanTramGK;
             Object[] rowData = {i++, hp.getMaHP(), hp.getTenHP(), dk.getSoNhom(), hp.getTinChi(), phanTramGK, phanTramCK};
             tblDangKy.addRow(rowData);
         }
+        lblTongTinChi.setText("Tổng số tín chỉ: " + sumTC);
     }
 
     public static void showGroupSuggestions(JTable table) {
@@ -73,7 +76,7 @@ public class NhomBUS {
                 continue;
             }
             //Check condition hocphan previous
-            if (checkPreviousHocPhan(nhom.getMaHP())) {
+            if (!checkPreviousHocPhan(nhom.getMaHP())) {
                 continue;
             }
             //Get data GiangVien
