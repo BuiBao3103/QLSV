@@ -379,7 +379,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
 
     private void filter_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_btnActionPerformed
         String hocPhan = filterHP_txt.getText();
-        if (hocPhan.equals("") && cbChuyenBiet.getSelectedItem().toString().equals("Không")) {
+        if (hocPhan.equals("") && cbChuyenBiet.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Nhập môn học!", "Bổ sung", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -443,8 +443,17 @@ public class SubjectRegistration extends javax.swing.JPanel {
         String maHP = tblNhomMonHoc.getValueAt(i, 1) + "";
         int soNhom = Integer.parseInt(tblNhomMonHoc.getValueAt(i, 3) + "");
         System.out.println(maHP + " " + soNhom);
-        KetQuaBUS.subjectRegistration(maHP, soNhom);
+        if (KetQuaBUS.subjectRegistration(maHP, soNhom)) {
+            JOptionPane.showMessageDialog(null, "Đang ký thành công!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            reloadSubjectRegistration();
+        }
     }//GEN-LAST:event_add_btnActionPerformed
+    public void reloadSubjectRegistration() {
+        NhomBUS.showGroupSuggestions(tblNhomMonHoc);
+        NhomBUS.showGroupRegistration(tblNhomDangKy);
+        filterHP_txt.setText("");
+        cbChuyenBiet.setSelectedIndex(0);
+    }
 
     public JTable getTblNhomDangKy() {
         return tblNhomDangKy;

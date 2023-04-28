@@ -30,12 +30,35 @@ public class KetQuaBUS {
             NienHocBUS.currentNienHoc.getHocKi(),
             NienHocBUS.currentNienHoc.getNam());
 
-    public static void subjectRegistration(String maMon, int soNhom) {
+    public static boolean subjectRegistration(String maMon, int soNhom) {
+        //check isLearn 
+        if (isLearned(maMon)) {
+            JOptionPane.showMessageDialog(null, "Bạn đã học môn này rồi!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        //check DaDangKy
+        if (NhomBUS.checkIsRegistered(maMon)) {
+            JOptionPane.showMessageDialog(null, "Bạn đã đăng ký môn này rồi!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        //checkKhoaNganh
+        if (!NhomBUS.checkSvKhoaNganh(maMon)) {
+            JOptionPane.showMessageDialog(null, "Không thuộc khoa,ngành của bạn!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        //check Prevous MonHoc
+        if (NhomBUS.checkPreviousHocPhan(maMon)) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa học môn học trước!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
         int hk = NienHocBUS.currentNienHoc.getHocKi();
         int nam = NienHocBUS.currentNienHoc.getNam();
         String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
         KetQuaDTO dkm = new KetQuaDTO(maSV, maMon, soNhom, hk, nam, -1, -1);
         kqDAO.add(dkm);
+        //update dsDaDangKy
+        dsDaDangKySV.add(dkm);
+        return true;
     }
 
     public static boolean isLearned(String maHP) {

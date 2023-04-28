@@ -60,12 +60,13 @@ public class NhomBUS {
         tblNhom.setRowCount(0);
         int i = 1;
         for (NhomDTO nhom : dsNhom) {
+            System.out.println(nhom.toString());
             //Check isLearned
             if (KetQuaBUS.isLearned(nhom.getMaHP())) {
                 continue;
             }
             //check isRegister
-            if(checkIsRegistered(nhom.getMaHP())){
+            if (checkIsRegistered(nhom.getMaHP())) {
                 continue;
             }
             //Check condition Khoa, Nganh
@@ -73,7 +74,7 @@ public class NhomBUS {
                 continue;
             }
             //Check condition hocphan previous
-            if (!checkPreviousHocPhan(nhom.getMaHP())) {
+            if (checkPreviousHocPhan(nhom.getMaHP())) {
                 continue;
             }
             //Get data GiangVien
