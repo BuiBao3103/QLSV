@@ -45,7 +45,6 @@ public class KetQuaDAO {
     }
 
     public ArrayList<KetQuaDTO> getDaHoc(String MaSV) {
-        System.out.println("KetQuaDAO");
         con = ConnectionDB.getConnection();
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {
@@ -78,7 +77,6 @@ public class KetQuaDAO {
     }
 
     public ArrayList<KetQuaDTO> getDaDangKy(String MaSV, int hk, int n) {
-        System.out.println("KetQuaDAO");
         con = ConnectionDB.getConnection();
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {

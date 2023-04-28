@@ -542,7 +542,6 @@ public class Statistics extends javax.swing.JPanel {
                 pieChartPanel.setSize(panel.getSize().width, panel.getSize().height);
             }
         });
-        System.out.println("run");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel columnChart;

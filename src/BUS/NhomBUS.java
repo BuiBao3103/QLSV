@@ -62,7 +62,6 @@ public class NhomBUS {
         tblNhom.setRowCount(0);
         int i = 1;
         for (NhomDTO nhom : dsNhom) {
-            System.out.println(nhom.toString());
             //Check isLearned
             if (KetQuaBUS.isLearned(nhom.getMaHP())) {
                 continue;
