@@ -24,7 +24,19 @@ public class KetQuaBUS {
 
     static KetQuaDAO kqDAO = new KetQuaDAO();
 
-    public static ArrayList<KetQuaDTO> dsKQSV = kqDAO.get(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
+    public static ArrayList<KetQuaDTO> dsKQSV = kqDAO.getDaHoc(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
+    public static ArrayList<KetQuaDTO> dsDaDangKySV = kqDAO.getDaDangKy(
+            TaiKhoanBUS.curentLogin.getTenTaiKhoan(),
+            NienHocBUS.currentNienHoc.getHocKi(),
+            NienHocBUS.currentNienHoc.getNam());
+
+    public static void subjectRegistration(String maMon, int soNhom) {
+        int hk = NienHocBUS.currentNienHoc.getHocKi();
+        int nam = NienHocBUS.currentNienHoc.getNam();
+        String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
+        KetQuaDTO dkm = new KetQuaDTO(maSV, maMon, soNhom, hk, nam, -1, -1);
+        kqDAO.add(dkm);
+    }
 
     public static boolean isLearned(String maHP) {
         for (KetQuaDTO kq : dsKQSV) {
@@ -56,7 +68,7 @@ public class KetQuaBUS {
                 double diemHe10 = lamTronSo(DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy));
                 String diemChu = DiemChu(diemHe10);
                 String ketQua = KetQua(diemHe10);
-                 soTinChi += tinhSoTinChi(soTC, diemHe10);
+                soTinChi += tinhSoTinChi(soTC, diemHe10);
                 TongDiemHe10 += diemHe10;
                 TongDiemHe4 += TinhDiemHe4(diemHe10);
                 stt++;
@@ -98,15 +110,19 @@ public class KetQuaBUS {
         }
 
     }
-public double lamTronSo(double diem){    // làm tròn số lên hoặc xuống tùy thuộc vào giá trị thập phân của số đó.
-return  Math.round(diem * 100.0) / 100.0;
-}
-public int tinhSoTinChi(int soTinChi,double diemHe10){ // hàm này để tính tổng số tín 
-    int tong = 0;
-    if(diemHe10>=4.0)
-        tong+=soTinChi;
-    return tong;
-}
+
+    public double lamTronSo(double diem) {    // làm tròn số lên hoặc xuống tùy thuộc vào giá trị thập phân của số đó.
+        return Math.round(diem * 100.0) / 100.0;
+    }
+
+    public int tinhSoTinChi(int soTinChi, double diemHe10) { // hàm này để tính tổng số tín 
+        int tong = 0;
+        if (diemHe10 >= 4.0) {
+            tong += soTinChi;
+        }
+        return tong;
+    }
+
     public static void formatTable(JTable table) {
         table.getColumn("STT").setMinWidth(30);
         table.getColumn("STT").setMaxWidth(30);
@@ -240,7 +256,7 @@ public int tinhSoTinChi(int soTinChi,double diemHe10){ // hàm này để tính 
 
     public static void main(String[] args) {
         kqDAO.get("3121410066");
-       KetQuaBUS kq = new KetQuaBUS();
+        KetQuaBUS kq = new KetQuaBUS();
         System.out.println(kq.lamTronSo(8.62));
     }
 

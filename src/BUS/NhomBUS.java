@@ -31,7 +31,7 @@ public class NhomBUS {
 
     static NhomDAO nhomDAO = new NhomDAO();
     static boolean dangkyMon = nhomDAO.getCurrentDangKyMon();
-    static ArrayList<NhomDTO> dsNhom = nhomDAO.get();
+    static ArrayList<NhomDTO> dsNhom = nhomDAO.get(NienHocBUS.currentNienHoc);
     static SinhVienDAO svDAO = new SinhVienDAO();
     static HocPhanDAO hpDAO = new HocPhanDAO();
 
@@ -61,23 +61,25 @@ public class NhomBUS {
     }
 
     public static void showGroupSuggestions(JTable table) {
-        ArrayList<KetQuaDTO> dskq = (new KetQuaDAO()).get(2, 2022);
+        ArrayList<KetQuaDTO> dskqToanTruong = (new KetQuaDAO()).get(2, 2022);
         DefaultTableModel tblNhom = (DefaultTableModel) table.getModel();
         tblNhom.setRowCount(0);
         int i = 1;
         for (NhomDTO nhom : dsNhom) {
-            //Check Registered
+            //Check isLearned
             if (KetQuaBUS.isLearned(nhom.getMaHP())) {
+                continue;
+            }
+            //check isRegister
+            if(checkIsRegistered(nhom.getMaHP())){
                 continue;
             }
             //Check condition Khoa, Nganh
             if (!checkSvKhoaNganh(nhom.getMaHP())) {
-                System.out.println("err khoa nganh");
                 continue;
             }
             //Check condition hocphan previous
             if (!checkPreviousHocPhan(nhom.getMaHP())) {
-                System.out.println("err prev");
                 continue;
             }
             //Get data GiangVien
@@ -88,7 +90,7 @@ public class NhomBUS {
             String tcHP = HocPhanBUS.getHocPhanByID(nhom.getMaHP()).getTinChi() + "";
             //handle remaining slot 
             int remainSlot = nhom.getSoLuongSV()
-                    - countGroupRegistered(dskq, nhom.getMaHP(), nhom.getSoNhom());
+                    - countGroupRegistered(dskqToanTruong, nhom.getMaHP(), nhom.getSoNhom());
             //Create row data
             Object[] rowData = {i++, nhom.getMaHP(), nameHP, nhom.getSoNhom(), tcHP,
                 nhom.getSoLuongSV(), remainSlot, nhom.getThu(),
@@ -107,9 +109,17 @@ public class NhomBUS {
         return cnt;
     }
 
+    public static boolean checkIsRegistered(String maHP) {
+        for (KetQuaDTO dk : KetQuaBUS.dsDaDangKySV) {
+            if (dk.getMaHP().equals(maHP)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean checkPreviousHocPhan(String maHP) {
         ArrayList<String> dsMonHocTruoc = HocPhanBUS.getMonHocTruoc(maHP);
-        System.out.println(dsMonHocTruoc.toString());
         for (String hpt : dsMonHocTruoc) {
             if (KetQuaBUS.isLearned(hpt)) {
                 continue;
@@ -146,7 +156,7 @@ public class NhomBUS {
 
     public static void filterGroup(String monHoc, String chuyenBiet, String chuyenBietPhu, JTable table) {
         boolean found = false;
-        ArrayList<KetQuaDTO> dskq = (new KetQuaDAO()).get(2, 2022);
+        ArrayList<KetQuaDTO> dskqToanTruong = (new KetQuaDAO()).get(2, 2022);
         DefaultTableModel tblNhom = (DefaultTableModel) table.getModel();
         tblNhom.setRowCount(0);
         int i = 1;
@@ -177,7 +187,7 @@ public class NhomBUS {
             String tcHP = hp.getTinChi() + "";
             //handle remaining slot 
             int remainSlot = nhom.getSoLuongSV()
-                    - countGroupRegistered(dskq, nhom.getMaHP(), nhom.getSoNhom());
+                    - countGroupRegistered(dskqToanTruong, nhom.getMaHP(), nhom.getSoNhom());
             //Create row data
             Object[] rowData = {i++, nhom.getMaHP(), nameHP, nhom.getSoNhom(), tcHP,
                 nhom.getSoLuongSV(), remainSlot, nhom.getThu(),

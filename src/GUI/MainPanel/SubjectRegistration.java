@@ -4,6 +4,7 @@
  */
 package GUI.MainPanel;
 
+import BUS.KetQuaBUS;
 import DTO.KhoaDTO;
 import BUS.KhoaBUS;
 import DTO.NganhDTO;
@@ -239,12 +240,8 @@ public class SubjectRegistration extends javax.swing.JPanel {
         ((DefaultTableCellRenderer)tblNhomMonHoc.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         for (int i = 0; i < tblNhomMonHoc.getColumnCount(); i++)
         {
+            tblNhomMonHoc.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
 
-            if(i != 1){
-                tblNhomMonHoc.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
-            }else{
-                continue;
-            }
         }
         tblNhomMonHoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -307,11 +304,9 @@ public class SubjectRegistration extends javax.swing.JPanel {
         ((DefaultTableCellRenderer)tblNhomDangKy.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         for (int i = 0; i < tblNhomDangKy.getColumnCount(); i++)
         {
-            if(i != 1){
-                tblNhomDangKy.getColumnModel().getColumn(i).setCellRenderer(leftRenderer2);
-            }else{
-                continue;
-            }
+
+            tblNhomDangKy.getColumnModel().getColumn(i).setCellRenderer(leftRenderer2);
+
         }
         jScrollPane2.setViewportView(tblNhomDangKy);
         if (tblNhomDangKy.getColumnModel().getColumnCount() > 0) {
@@ -446,10 +441,9 @@ public class SubjectRegistration extends javax.swing.JPanel {
             return;
         }
         String maHP = tblNhomMonHoc.getValueAt(i, 1) + "";
-        String nhom = tblNhomMonHoc.getValueAt(i, 3) + "";
-        System.out.println(maHP + " " + nhom);
-
-
+        int soNhom = Integer.parseInt(tblNhomMonHoc.getValueAt(i, 3) + "");
+        System.out.println(maHP + " " + soNhom);
+        KetQuaBUS.subjectRegistration(maHP, soNhom);
     }//GEN-LAST:event_add_btnActionPerformed
 
     public JTable getTblNhomDangKy() {

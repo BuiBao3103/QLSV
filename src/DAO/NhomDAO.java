@@ -81,6 +81,38 @@ public class NhomDAO {
         return dsn;
     }
 
+    public ArrayList<NhomDTO> get(NienHocDTO nh) {
+        ArrayList<NhomDTO> dsn = new ArrayList<>();
+        con = ConnectionDB.getConnection();
+        try {
+            String query = "select * from Nhom where Hocky=? and Nam=?";
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, nh.getHocKi());
+            pstm.setInt(2, nh.getNam());
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String maHP = rs.getString("MaHP");
+                int soNhom = rs.getInt("SoNhom");
+                int hocKy = rs.getInt("HocKy");
+                int nam = rs.getInt("Nam");
+                String maGV = rs.getString("MaGV");
+                String phong = rs.getString("Phong");
+                int soSinhVien = rs.getInt("SoSinhVien");
+                String thu = rs.getString("Thu");
+                int tietBD = rs.getInt("TietBD");
+                int soTiet = rs.getInt("SoTiet");
+                NhomDTO n = new NhomDTO(maHP, soNhom, hocKy, nam, maGV, phong, soSinhVien, thu, tietBD, soTiet);
+                dsn.add(n);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+
+        }
+        return dsn;
+    }
+
     public void add(NhomDTO n) {
         con = ConnectionDB.getConnection();
         try {
