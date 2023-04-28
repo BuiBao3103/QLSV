@@ -110,6 +110,7 @@ public class NhomDAO {
             ConnectionDB.closeConnection(con, pstm);
 
         }
+        System.out.println(dsn.toString());
         return dsn;
     }
 

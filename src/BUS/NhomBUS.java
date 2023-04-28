@@ -45,13 +45,7 @@ public class NhomBUS {
         DefaultTableModel tblDangKy = (DefaultTableModel) table.getModel();
         tblDangKy.setRowCount(0);
         int i = 1;
-        for (KetQuaDTO dk : KetQuaBUS.dsKQSV) {
-            int hkHienTai = NienHocBUS.getCurrentNienHoc().getHocKi();
-            int namHienTai = NienHocBUS.getCurrentNienHoc().getNam();
-            if (dk.getHocKy() != hkHienTai || dk.getNam() != namHienTai) {
-                continue;
-            }
-
+        for (KetQuaDTO dk : KetQuaBUS.dsDaDangKySV) {
             HocPhanDTO hp = HocPhanBUS.getHocPhanByID(dk.getMaHP());
             int phanTramGK = hp.getPhanTramQuaTrinh();
             int phanTramCK = 100 - phanTramGK;

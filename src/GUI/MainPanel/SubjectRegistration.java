@@ -379,7 +379,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
 
     private void filter_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_btnActionPerformed
         String hocPhan = filterHP_txt.getText();
-        if (hocPhan.equals("")) {
+        if (hocPhan.equals("") && cbChuyenBiet.getSelectedItem().toString().equals("Không")) {
             JOptionPane.showMessageDialog(null, "Nhập môn học!", "Bổ sung", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
