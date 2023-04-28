@@ -114,6 +114,42 @@ public class KetQuaDAO {
         return dskq;
     }
 
+    public ArrayList<KetQuaDTO> getDaDangKyToanTruong(int hk, int n) {
+        System.out.println("KetQuaDAO");
+        con = ConnectionDB.getConnection();
+        ArrayList<KetQuaDTO> dskq = new ArrayList<>();
+        try {
+            String query = "select * from KetQua kq join HocPhan hp on kq.MaHP=hp.MaHP "
+                    + "where DiemQuaTrinh = -1 and DiemCuoiKy = -1 "
+                    + "and HocKy = ? and nam = ?";
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, hk);
+            pstm.setInt(2, n);
+
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String maSV = rs.getString("MaSV");
+                String maHP = rs.getString("MaHP");
+                String tenHP = rs.getString("TenMon");
+                int soTinChi = rs.getInt("TinChi");
+                int PhanTramQuaTrinh = rs.getInt("PhanTramQuaTrinh");
+                int soNhom = rs.getInt("SoNhom");
+                int hocKy = rs.getInt("HocKy");
+                int nam = rs.getInt("Nam");
+                double DiemQuaTrinh = rs.getDouble("DiemQuaTrinh");
+                double DiemCuoiKy = rs.getDouble("DiemCuoiKy");
+                KetQuaDTO k = new KetQuaDTO(maSV, maHP, soNhom, hocKy, nam, DiemQuaTrinh, DiemCuoiKy);
+
+                dskq.add(k);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dskq;
+    }
+
     public ArrayList<KetQuaDTO> get(String MaSV) {
         System.out.println("KetQuaDAO");
         con = ConnectionDB.getConnection();
