@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class LopBUS {
     static LopDAO lopDao = new LopDAO();
-    static ArrayList<LopDTO> dsLop = lopDao.get();
+    public static ArrayList<LopDTO> dsLop = lopDao.get();
     public LopBUS(){
         
     }

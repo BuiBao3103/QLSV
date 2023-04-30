@@ -29,13 +29,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class NhomBUS {
 
-    static NhomDAO nhomDAO = new NhomDAO();
-    static boolean dangkyMon = nhomDAO.getCurrentDangKyMon();
-    static ArrayList<NhomDTO> dsNhom = nhomDAO.get();
+    public static NhomDAO nhomDAO = new NhomDAO();
+    public static boolean dangkyMon = nhomDAO.getCurrentDangKyMon();
+    public static ArrayList<NhomDTO> dsNhom = nhomDAO.get();
     static SinhVienDAO svDAO = new SinhVienDAO();
     static HocPhanDAO hpDAO = new HocPhanDAO();
 
-    private static ArrayList<NhomDTO> dsNhomDaHoc = nhomDAO.getBySinhVien(); // lấy các học phần sv đang đăng nhập đã học
+    public static ArrayList<NhomDTO> dsNhomDaHoc = nhomDAO.getBySinhVien(); // lấy các học phần sv đang đăng nhập đã học
 
     public static void updateCurrentDangKyMon(boolean isDangkyMon) {
         nhomDAO.updateCurrentDangKyMon(isDangkyMon);

@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class GiangVienBUS {
 
-    static GiangVienDAO gvDAO = new GiangVienDAO();
-    static ArrayList<GiangVienDTO> dsgv = gvDAO.get();
+    public static GiangVienDAO gvDAO = new GiangVienDAO();
+    public static ArrayList<GiangVienDTO> dsgv = gvDAO.get();
 
     public GiangVienBUS() {
     }

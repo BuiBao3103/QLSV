@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class NganhBUS {
 
     static NganhDAO nganhDAO = new NganhDAO();
-    static ArrayList<NganhDTO> dsNganh = nganhDAO.get();
+    public static ArrayList<NganhDTO> dsNganh = nganhDAO.get();
 
     public static NganhDTO getNganhByID(String maNganh) {
         for (NganhDTO n : dsNganh) {

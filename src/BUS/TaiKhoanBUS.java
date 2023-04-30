@@ -26,12 +26,25 @@ public class TaiKhoanBUS {
     static TaiKhoanDAO tkDAO = new TaiKhoanDAO();
     public static TaiKhoanDTO curentLogin = tkDAO.getByUserName("3121410066");
 
+    public static void resetWhenNewLogin() { // hàm này sẽ reset các thông tin của chương trình theo người vừa đăng nhập thành công
+        DieuKienBUS.dsDK = DieuKienBUS.dkDAO.get();
+        GiangVienBUS.dsgv = GiangVienBUS.gvDAO.get();
+        HocPhanBUS.dshp = HocPhanBUS.hpDAO.get();
+        KhoaBUS.dsKhoa = KhoaBUS.khoaDAO.get();
+        LopBUS.dsLop = LopBUS.lopDao.get();
+        NganhBUS.dsNganh = NganhBUS.nganhDAO.get();
+        NhomBUS.dangkyMon = NhomBUS.nhomDAO.getCurrentDangKyMon();
+        NhomBUS.dsNhom = NhomBUS.nhomDAO.get();
+        NienHocBUS.currentNienHoc = NienHocBUS.nhDAO.getCurrentNienHoc();
+    }
+
     public static void login(Login lg) {
         String tenTK = lg.getUsername().getText();
         String matkhau = lg.getPassword().getText();
         TaiKhoanBUS qltk = new TaiKhoanBUS();
         curentLogin = qltk.getByUsername(tenTK);
         System.out.println(tenTK);
+        System.out.println("current login: "+ curentLogin);
         if (curentLogin != null) {
             int trangThai = qltk.getTrangThai(curentLogin);
             if (trangThai == 0) {
@@ -42,10 +55,11 @@ public class TaiKhoanBUS {
                 ArrayList<String> dsq = new NQ_CTQBUS().getListCTQByNQuyen(curentLogin.getMaNhomQuyen());
                 try {
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                    resetWhenNewLogin();
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ignored) {
 
                 }
-                
+
                 new TaiKhoanBUS().phanQuyen(dsq);
 
             } else {

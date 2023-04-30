@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class HocPhanBUS {
 
-    static HocPhanDAO hpDAO = new HocPhanDAO();
-    static ArrayList<HocPhanDTO> dshp = hpDAO.get();
+    public static HocPhanDAO hpDAO = new HocPhanDAO();
+    public static ArrayList<HocPhanDTO> dshp = hpDAO.get();
 
     public static String getHPnameByHPid(String id) {
         for (HocPhanDTO hp : dshp) {

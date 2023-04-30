@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class KhoaBUS {
     
-    static KhoaDAO khoaDAO = new KhoaDAO();
-    static ArrayList<KhoaDTO> dsKhoa = khoaDAO.get();
+    public static KhoaDAO khoaDAO = new KhoaDAO();
+    public static ArrayList<KhoaDTO> dsKhoa = khoaDAO.get();
     
     public static KhoaDTO getKhoaByID(String maKhoa) {
         for (KhoaDTO k : dsKhoa) {

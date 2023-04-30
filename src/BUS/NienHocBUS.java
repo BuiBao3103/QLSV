@@ -13,8 +13,8 @@ import DTO.NienHocDTO;
  */
 public class NienHocBUS {
 
-    static NienHocDAO nhDAO = new NienHocDAO();
-    static NienHocDTO currentNienHoc = nhDAO.getCurrentNienHoc();
+    public static NienHocDAO nhDAO = new NienHocDAO();
+    public static NienHocDTO currentNienHoc = nhDAO.getCurrentNienHoc();
 
     public static NienHocDAO getNhDAO() {
         return nhDAO;

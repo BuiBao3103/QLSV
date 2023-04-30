@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class DieuKienBUS {
 
-    static DieuKienDAO dkDAO = new DieuKienDAO();
-    static ArrayList<DieuKienDTO> dsDK = dkDAO.get();
+    public static DieuKienDAO dkDAO = new DieuKienDAO();
+    public static ArrayList<DieuKienDTO> dsDK = dkDAO.get();
 
     public static String getMaHP(String maHP_truoc) {
         for (DieuKienDTO dk : dsDK) {
