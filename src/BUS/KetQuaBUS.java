@@ -25,14 +25,9 @@ public class KetQuaBUS {
 
     static KetQuaDAO kqDAO = new KetQuaDAO();
 
-    public static ArrayList<KetQuaDTO> dsKQSV = kqDAO.getDaHoc(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
-    public static ArrayList<KetQuaDTO> dsDaDangKySV = kqDAO.getDaDangKy(
-            TaiKhoanBUS.curentLogin.getTenTaiKhoan(),
-            NienHocBUS.currentNienHoc.getHocKi(),
-            NienHocBUS.currentNienHoc.getNam());
-    public static ArrayList<KetQuaDTO> dsDaDangKyToanTruong = (new KetQuaDAO()).getDaDangKyToanTruong(
-            NienHocBUS.currentNienHoc.getHocKi(),
-            NienHocBUS.currentNienHoc.getNam());
+    public static ArrayList<KetQuaDTO> dsKQSV;
+    public static ArrayList<KetQuaDTO> dsDaDangKySV;
+    public static ArrayList<KetQuaDTO> dsDaDangKyToanTruong;
 
     public static boolean subjectRegistration(String maMon, int soNhom) {
         //check isLearn 

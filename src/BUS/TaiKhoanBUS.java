@@ -4,6 +4,7 @@
  */
 package BUS;
 
+import static BUS.KetQuaBUS.kqDAO;
 import DAO.TaiKhoanDAO;
 import DTO.TaiKhoanDTO;
 import BUS.NQ_CTQBUS;
@@ -27,6 +28,7 @@ public class TaiKhoanBUS {
     public static TaiKhoanDTO curentLogin = tkDAO.getByUserName("3121410066");
 
     public static void resetWhenNewLogin() { // hàm này sẽ reset các thông tin của chương trình theo người vừa đăng nhập thành công
+        System.out.println("reset: " + TaiKhoanBUS.curentLogin.getTenTaiKhoan());
         DieuKienBUS.dsDK = DieuKienBUS.dkDAO.get();
         GiangVienBUS.dsgv = GiangVienBUS.gvDAO.get();
         HocPhanBUS.dshp = HocPhanBUS.hpDAO.get();
@@ -36,6 +38,14 @@ public class TaiKhoanBUS {
         NhomBUS.dangkyMon = NhomBUS.nhomDAO.getCurrentDangKyMon();
         NhomBUS.dsNhom = NhomBUS.nhomDAO.get();
         NienHocBUS.currentNienHoc = NienHocBUS.nhDAO.getCurrentNienHoc();
+        KetQuaBUS.dsKQSV = KetQuaBUS.kqDAO.getDaHoc(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
+        KetQuaBUS.dsDaDangKySV = KetQuaBUS.kqDAO.getDaDangKy(
+                TaiKhoanBUS.curentLogin.getTenTaiKhoan(),
+                NienHocBUS.currentNienHoc.getHocKi(),
+                NienHocBUS.currentNienHoc.getNam());
+        KetQuaBUS.dsDaDangKyToanTruong = KetQuaBUS.kqDAO.getDaDangKyToanTruong(
+                NienHocBUS.currentNienHoc.getHocKi(),
+                NienHocBUS.currentNienHoc.getNam());
     }
 
     public static void login(Login lg) {
@@ -44,7 +54,7 @@ public class TaiKhoanBUS {
         TaiKhoanBUS qltk = new TaiKhoanBUS();
         curentLogin = qltk.getByUsername(tenTK);
         System.out.println(tenTK);
-        System.out.println("current login: "+ curentLogin);
+        System.out.println("current login: " + curentLogin);
         if (curentLogin != null) {
             int trangThai = qltk.getTrangThai(curentLogin);
             if (trangThai == 0) {
@@ -55,7 +65,7 @@ public class TaiKhoanBUS {
                 ArrayList<String> dsq = new NQ_CTQBUS().getListCTQByNQuyen(curentLogin.getMaNhomQuyen());
                 try {
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-                    resetWhenNewLogin();
+
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ignored) {
 
                 }
@@ -94,6 +104,7 @@ public class TaiKhoanBUS {
 
     public void phanQuyen(ArrayList<String> dsq) {
         Table table = new Table();
+        resetWhenNewLogin();
         table.setVisible(true);
         table.getBtnInformation().setVisible(false);
         table.getBtnSubjectRegistration().setVisible(false);

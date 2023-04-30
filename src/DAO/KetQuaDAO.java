@@ -16,7 +16,6 @@ public class KetQuaDAO {
     PreparedStatement pstm = null;
 
     public ArrayList<KetQuaDTO> get(int hk, int n) {
-
         con = ConnectionDB.getConnection();
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {
