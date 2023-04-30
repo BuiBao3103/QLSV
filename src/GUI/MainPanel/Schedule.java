@@ -138,6 +138,7 @@ public class Schedule extends javax.swing.JPanel {
 
         btgSapXep.add(btnSapXepTheoMon);
         btnSapXepTheoMon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSapXepTheoMon.setSelected(true);
         btnSapXepTheoMon.setText("Sắp xếp theo môn");
         btnSapXepTheoMon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSapXepTheoMon.addActionListener(new java.awt.event.ActionListener() {
@@ -150,6 +151,11 @@ public class Schedule extends javax.swing.JPanel {
         btnSapXepTheoThuTiet.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSapXepTheoThuTiet.setText("Sắp xếp theo thứ tiết");
         btnSapXepTheoThuTiet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSapXepTheoThuTiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSapXepTheoThuTietActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -425,6 +431,10 @@ public class Schedule extends javax.swing.JPanel {
     private void cbChonHocKyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbChonHocKyItemStateChanged
         NhomBUS.showTKB(this);
     }//GEN-LAST:event_cbChonHocKyItemStateChanged
+
+    private void btnSapXepTheoThuTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapXepTheoThuTietActionPerformed
+        NhomBUS.showTKB(this);
+    }//GEN-LAST:event_btnSapXepTheoThuTietActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

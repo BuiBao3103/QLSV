@@ -322,7 +322,8 @@ public class NhomBUS {
     public static void arrangeSchedule(Schedule schedule) {
         if (schedule.getBtnSapXepTheoMon().isSelected()) { // sắp xếp theo mã môn
             for (NhomDTO nh1 : dsNhomDaHoc) {
-                for (NhomDTO nh2 : dsNhomDaHoc) {
+                for (int i = dsNhomDaHoc.indexOf(nh1); i<dsNhomDaHoc.size(); i++) {
+                    NhomDTO nh2 = dsNhomDaHoc.get(i);
                     if (Integer.parseInt(nh1.getMaHP()) > Integer.parseInt(nh2.getMaHP())) {
                         int index1 = dsNhomDaHoc.indexOf(nh1);
                         int index2 = dsNhomDaHoc.indexOf(nh2);
@@ -330,9 +331,10 @@ public class NhomBUS {
                     }
                 }
             }
-        } else { // sắp xếp theo thứ tiết
+        } else{ // sắp xếp theo thứ tiết
             for (NhomDTO nh1 : dsNhomDaHoc) {
-                for (NhomDTO nh2 : dsNhomDaHoc) {
+                for (int i = dsNhomDaHoc.indexOf(nh1); i<dsNhomDaHoc.size(); i++) {
+                    NhomDTO nh2 = dsNhomDaHoc.get(i);
                     if (nh1.getNam() == nh2.getNam() && nh1.getHocKy() == nh2.getHocKy()) {
                         if (compare2NhomDTO(nh1, nh2)) { // nhóm 1 sau nhóm 2
                             int index1 = dsNhomDaHoc.indexOf(nh1);
