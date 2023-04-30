@@ -301,7 +301,7 @@ public class NhomBUS {
     }
 
     public static boolean compare2NhomDTO(NhomDTO nh1, NhomDTO nh2) {
-        if (getNumberFromDayOfWeek(nh1.getThu()) > getNumberFromDayOfWeek(nh2.getThu())) { // nhóm 1 nằm sau nhóm 2
+        if (getNumberFromDayOfWeek(nh1.getThu()) > getNumberFromDayOfWeek(nh2.getThu())) { // nhóm 1 nằm sau nhóm 2a
             return true;
         } else if (getNumberFromDayOfWeek(nh1.getThu()) == getNumberFromDayOfWeek(nh2.getThu())) { // 2 nhóm cùng ngày trong tuần
             if (nh1.getTietBD() > nh2.getTietBD()) {
@@ -320,6 +320,7 @@ public class NhomBUS {
     }
 
     public static void arrangeSchedule(Schedule schedule) {
+        dsNhomDaHoc = nhomDAO.getBySinhVien();
         if (schedule.getBtnSapXepTheoMon().isSelected()) { // sắp xếp theo mã môn
             for (NhomDTO nh1 : dsNhomDaHoc) {
                 for (int i = dsNhomDaHoc.indexOf(nh1); i<dsNhomDaHoc.size(); i++) {
@@ -332,9 +333,22 @@ public class NhomBUS {
                 }
             }
         } else{ // sắp xếp theo thứ tiết
-            for (NhomDTO nh1 : dsNhomDaHoc) {
-                for (int i = dsNhomDaHoc.indexOf(nh1); i<dsNhomDaHoc.size(); i++) {
-                    NhomDTO nh2 = dsNhomDaHoc.get(i);
+//            for (NhomDTO nh1 : dsNhomDaHoc) {
+//                for (int i = dsNhomDaHoc.indexOf(nh1); i<dsNhomDaHoc.size(); i++) {
+//                    NhomDTO nh2 = dsNhomDaHoc.get(i);
+//                    if (nh1.getNam() == nh2.getNam() && nh1.getHocKy() == nh2.getHocKy()) {
+//                        if (compare2NhomDTO(nh1, nh2)) { // nhóm 1 sau nhóm 2
+//                            int index1 = dsNhomDaHoc.indexOf(nh1);
+//                            int index2 = dsNhomDaHoc.indexOf(nh2);
+//                            swap(dsNhomDaHoc, index1, index2);
+//                        }
+//                    }
+//                }
+//            }
+            for(int i=0; i<dsNhomDaHoc.size()-1; i++){ 
+                for(int j=i+1; j<dsNhomDaHoc.size(); j++){
+                    NhomDTO nh1 = dsNhomDaHoc.get(i);
+                    NhomDTO nh2 = dsNhomDaHoc.get(j);
                     if (nh1.getNam() == nh2.getNam() && nh1.getHocKy() == nh2.getHocKy()) {
                         if (compare2NhomDTO(nh1, nh2)) { // nhóm 1 sau nhóm 2
                             int index1 = dsNhomDaHoc.indexOf(nh1);
