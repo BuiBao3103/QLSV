@@ -10,6 +10,7 @@ import DTO.HocPhanDTO;
 import GUI.MainPanel.Score;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +25,78 @@ public class KetQuaBUS {
 
     static KetQuaDAO kqDAO = new KetQuaDAO();
 
-    public static ArrayList<KetQuaDTO> dsKQSV = kqDAO.get(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
+    public static ArrayList<KetQuaDTO> dsKQSV = kqDAO.getDaHoc(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
+    public static ArrayList<KetQuaDTO> dsDaDangKySV = kqDAO.getDaDangKy(
+            TaiKhoanBUS.curentLogin.getTenTaiKhoan(),
+            NienHocBUS.currentNienHoc.getHocKi(),
+            NienHocBUS.currentNienHoc.getNam());
+    public static ArrayList<KetQuaDTO> dsDaDangKyToanTruong = (new KetQuaDAO()).getDaDangKyToanTruong(
+            NienHocBUS.currentNienHoc.getHocKi(),
+            NienHocBUS.currentNienHoc.getNam());
+
+    public static boolean subjectRegistration(String maMon, int soNhom) {
+        //check isLearn 
+        if (isLearned(maMon)) {
+            JOptionPane.showMessageDialog(null, "Bạn đã học môn này rồi!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        //check DaDangKy
+        if (NhomBUS.checkIsRegistered(maMon)) {
+            JOptionPane.showMessageDialog(null, "Bạn đã đăng ký môn này rồi!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        //checkKhoaNganh
+        if (!NhomBUS.checkSvKhoaNganh(maMon)) {
+            JOptionPane.showMessageDialog(null, "Không thuộc khoa,ngành của bạn!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        //check Prevous MonHoc
+        if (!NhomBUS.checkPreviousHocPhan(maMon)) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa học môn học trước!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        int hk = NienHocBUS.currentNienHoc.getHocKi();
+        int nam = NienHocBUS.currentNienHoc.getNam();
+        String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
+        KetQuaDTO dkm = new KetQuaDTO(maSV, maMon, soNhom, hk, nam, -1, -1);
+        kqDAO.add(dkm);
+        //update dsDaDangKy
+        dsDaDangKySV.add(dkm);
+        dsDaDangKyToanTruong.add(dkm);
+        return true;
+    }
+
+    public static void deleteSubjectRegister(String maMon, int soNhom) {
+        String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
+        int hk = NienHocBUS.currentNienHoc.getHocKi();
+        int nam = NienHocBUS.currentNienHoc.getNam();
+        //update database
+        kqDAO.delete(maSV, maMon, soNhom, hk, nam);
+        //update dsDangKySV
+        Iterator<KetQuaDTO> iterator = dsDaDangKySV.iterator();
+        while (iterator.hasNext()) {
+            KetQuaDTO dk = iterator.next();
+            String mon = dk.getMaHP();
+            int nhom = dk.getSoNhom();
+            if (mon.equals(maMon) && nhom == soNhom) {
+                iterator.remove();
+                break;
+            }
+        }
+        //update dsDangKyToanTruong
+        Iterator<KetQuaDTO> iterator2 = dsDaDangKyToanTruong.iterator();
+        while (iterator2.hasNext()) {
+            KetQuaDTO dk = iterator2.next();
+            String maHP = dk.getMaHP();
+            int nhom = dk.getSoNhom();
+
+            if (maHP.equals(maMon) && nhom == soNhom) {
+                iterator2.remove();
+                break;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Đã xóa đăng ký môn!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+    }
 
     public static boolean isLearned(String maHP) {
         for (KetQuaDTO kq : dsKQSV) {
@@ -56,7 +128,7 @@ public class KetQuaBUS {
                 double diemHe10 = lamTronSo(DiemHe10(phanTramQuaTrinh, diemQuaTrinh, diemCuoiKy));
                 String diemChu = DiemChu(diemHe10);
                 String ketQua = KetQua(diemHe10);
-                 soTinChi += tinhSoTinChi(soTC, diemHe10);
+                soTinChi += tinhSoTinChi(soTC, diemHe10);
                 TongDiemHe10 += diemHe10;
                 TongDiemHe4 += TinhDiemHe4(diemHe10);
                 stt++;
@@ -98,15 +170,19 @@ public class KetQuaBUS {
         }
 
     }
-public double lamTronSo(double diem){    // làm tròn số lên hoặc xuống tùy thuộc vào giá trị thập phân của số đó.
-return  Math.round(diem * 100.0) / 100.0;
-}
-public int tinhSoTinChi(int soTinChi,double diemHe10){ // hàm này để tính tổng số tín 
-    int tong = 0;
-    if(diemHe10>=4.0)
-        tong+=soTinChi;
-    return tong;
-}
+
+    public double lamTronSo(double diem) {    // làm tròn số lên hoặc xuống tùy thuộc vào giá trị thập phân của số đó.
+        return Math.round(diem * 100.0) / 100.0;
+    }
+
+    public int tinhSoTinChi(int soTinChi, double diemHe10) { // hàm này để tính tổng số tín 
+        int tong = 0;
+        if (diemHe10 >= 4.0) {
+            tong += soTinChi;
+        }
+        return tong;
+    }
+
     public static void formatTable(JTable table) {
         table.getColumn("STT").setMinWidth(30);
         table.getColumn("STT").setMaxWidth(30);
@@ -240,7 +316,7 @@ public int tinhSoTinChi(int soTinChi,double diemHe10){ // hàm này để tính 
 
     public static void main(String[] args) {
         kqDAO.get("3121410066");
-       KetQuaBUS kq = new KetQuaBUS();
+        KetQuaBUS kq = new KetQuaBUS();
         System.out.println(kq.lamTronSo(8.62));
     }
 

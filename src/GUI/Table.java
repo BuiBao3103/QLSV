@@ -680,7 +680,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.repaint();
         mainPanel.revalidate();
         NhomBUS.showGroupSuggestions(subjectRegistration.getTblNhomMonHoc());
-        NhomBUS.showGroupRegistration(subjectRegistration.getTblNhomDangKy());
+        NhomBUS.showGroupRegistration(subjectRegistration.getTblNhomDangKy(), subjectRegistration.getLblTongTinChi());
     }// GEN-LAST:event_btnSubjectRegistrationActionPerformed
 
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnScheduleActionPerformed

@@ -44,12 +44,116 @@ public class KetQuaDAO {
         return dskq;
     }
 
+    public ArrayList<KetQuaDTO> getDaHoc(String MaSV) {
+        con = ConnectionDB.getConnection();
+        ArrayList<KetQuaDTO> dskq = new ArrayList<>();
+        try {
+            String query = "select * from KetQua kq join HocPhan hp on kq.MaHP=hp.MaHP "
+                    + "where DiemQuaTrinh <> -1 and DiemCuoiKy <> -1 and  MaSV = ?";
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, MaSV);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String maSV = rs.getString("MaSV");
+                String maHP = rs.getString("MaHP");
+                String tenHP = rs.getString("TenMon");
+                int soTinChi = rs.getInt("TinChi");
+                int PhanTramQuaTrinh = rs.getInt("PhanTramQuaTrinh");
+                int soNhom = rs.getInt("SoNhom");
+                int hocKy = rs.getInt("HocKy");
+                int nam = rs.getInt("Nam");
+                double DiemQuaTrinh = rs.getDouble("DiemQuaTrinh");
+                double DiemCuoiKy = rs.getDouble("DiemCuoiKy");
+                KetQuaDTO k = new KetQuaDTO(maSV, maHP, soNhom, hocKy, nam, DiemQuaTrinh, DiemCuoiKy);
+
+                dskq.add(k);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dskq;
+    }
+
+    public ArrayList<KetQuaDTO> getDaDangKy(String MaSV, int hk, int n) {
+        con = ConnectionDB.getConnection();
+        ArrayList<KetQuaDTO> dskq = new ArrayList<>();
+        try {
+            String query = "select * from KetQua kq join HocPhan hp on kq.MaHP=hp.MaHP "
+                    + "where DiemQuaTrinh = -1 and DiemCuoiKy = -1 "
+                    + "and  MaSV = ? and HocKy = ? and nam = ?";
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, MaSV);
+            pstm.setInt(2, hk);
+            pstm.setInt(3, n);
+
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String maSV = rs.getString("MaSV");
+                String maHP = rs.getString("MaHP");
+                String tenHP = rs.getString("TenMon");
+                int soTinChi = rs.getInt("TinChi");
+                int PhanTramQuaTrinh = rs.getInt("PhanTramQuaTrinh");
+                int soNhom = rs.getInt("SoNhom");
+                int hocKy = rs.getInt("HocKy");
+                int nam = rs.getInt("Nam");
+                double DiemQuaTrinh = rs.getDouble("DiemQuaTrinh");
+                double DiemCuoiKy = rs.getDouble("DiemCuoiKy");
+                KetQuaDTO k = new KetQuaDTO(maSV, maHP, soNhom, hocKy, nam, DiemQuaTrinh, DiemCuoiKy);
+
+                dskq.add(k);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dskq;
+    }
+
+    public ArrayList<KetQuaDTO> getDaDangKyToanTruong(int hk, int n) {
+        System.out.println("KetQuaDAO");
+        con = ConnectionDB.getConnection();
+        ArrayList<KetQuaDTO> dskq = new ArrayList<>();
+        try {
+            String query = "select * from KetQua kq join HocPhan hp on kq.MaHP=hp.MaHP "
+                    + "where DiemQuaTrinh = -1 and DiemCuoiKy = -1 "
+                    + "and HocKy = ? and nam = ?";
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, hk);
+            pstm.setInt(2, n);
+
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                String maSV = rs.getString("MaSV");
+                String maHP = rs.getString("MaHP");
+                String tenHP = rs.getString("TenMon");
+                int soTinChi = rs.getInt("TinChi");
+                int PhanTramQuaTrinh = rs.getInt("PhanTramQuaTrinh");
+                int soNhom = rs.getInt("SoNhom");
+                int hocKy = rs.getInt("HocKy");
+                int nam = rs.getInt("Nam");
+                double DiemQuaTrinh = rs.getDouble("DiemQuaTrinh");
+                double DiemCuoiKy = rs.getDouble("DiemCuoiKy");
+                KetQuaDTO k = new KetQuaDTO(maSV, maHP, soNhom, hocKy, nam, DiemQuaTrinh, DiemCuoiKy);
+
+                dskq.add(k);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return dskq;
+    }
+
     public ArrayList<KetQuaDTO> get(String MaSV) {
         System.out.println("KetQuaDAO");
         con = ConnectionDB.getConnection();
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {
-            String query = "select * from KetQua kq join HocPhan hp on kq.MaHP=hp.MaHP where MaSV = ?";
+            String query = "select * from KetQua kq join HocPhan hp on kq.MaHP=hp.MaHP where  MaSV = ?";
             pstm = con.prepareStatement(query);
             pstm.setString(1, MaSV);
             ResultSet rs = pstm.executeQuery();
@@ -144,14 +248,14 @@ public class KetQuaDAO {
 
         }
     }
-    
-    public ArrayList<String> getDsMaSV(String maHP, int soNhom){
+
+    public ArrayList<String> getDsMaSV(String maHP, int soNhom) {
         ArrayList<String> dsMaSV = new ArrayList();
         con = ConnectionDB.getConnection();
         try {
-            String query = "select MaSV\n" +
-                            "from KETQUA\n" +
-                            "where MaHP = '"+maHP+"' and SoNhom = "+soNhom;
+            String query = "select MaSV\n"
+                    + "from KETQUA\n"
+                    + "where MaHP = '" + maHP + "' and SoNhom = " + soNhom;
             pstm = con.prepareStatement(query);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
@@ -165,6 +269,7 @@ public class KetQuaDAO {
         }
         return dsMaSV;
     }
+
     public static void main(String[] args) {
         KetQuaDAO kqd = new KetQuaDAO();
         ArrayList<KetQuaDTO> dskq = kqd.get("3121410482");

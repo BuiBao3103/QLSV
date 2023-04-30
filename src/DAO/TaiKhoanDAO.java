@@ -38,7 +38,6 @@ public class TaiKhoanDAO {
     }
 
     public TaiKhoanDTO getByUserName(String username) {
-        System.out.println(username);
         con = ConnectionDB.getConnection();
         try {
             String query = "select * from TaiKhoan where TenTaiKhoan = ?";//+

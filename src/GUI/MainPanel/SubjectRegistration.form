@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="896" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="904" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Component id="subjectRegistration" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -37,7 +37,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="1" pref="887" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -63,20 +63,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jscrollbar" pref="845" max="32767" attributes="0"/>
-                                      <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jscrollbar" alignment="0" pref="845" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -85,11 +78,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="jscrollbar" min="-2" pref="435" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel5" min="-2" pref="54" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -105,6 +98,7 @@
                               <Component id="jPanel3" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -269,7 +263,6 @@
                                   <Component id="jButton1" pref="163" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="add_btn" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -439,19 +432,11 @@
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblNhomMonHocMouseClicked"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tblNhomMonHoc.setFont(new Font(&quot;Segoe UI&quot;, 0, 14));&#xd;&#xa;tblNhomMonHoc.getTableHeader().setFont(new Font(&quot;Segoe UI&quot;, 0, 16));&#xd;&#xa;tblNhomMonHoc.setRowHeight(35);&#xd;&#xa;tblNhomMonHoc.setRowMargin(10);&#xd;&#xa;DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();&#xd;&#xa;leftRenderer.setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;((DefaultTableCellRenderer)tblNhomMonHoc.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;        for (int i = 0; i &lt; tblNhomMonHoc.getColumnCount(); i++)&#xd;&#xa;        {&#xd;&#xa;            &#xd;&#xa;            if(i != 1){&#xd;&#xa;                tblNhomMonHoc.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);&#xd;&#xa;            }else{&#xd;&#xa;                continue;&#xd;&#xa;            }&#xd;&#xa;        }&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tblNhomMonHoc.setFont(new Font(&quot;Segoe UI&quot;, 0, 14));&#xd;&#xa;tblNhomMonHoc.getTableHeader().setFont(new Font(&quot;Segoe UI&quot;, 0, 16));&#xd;&#xa;tblNhomMonHoc.setRowHeight(35);&#xd;&#xa;tblNhomMonHoc.setRowMargin(10);&#xd;&#xa;DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();&#xd;&#xa;leftRenderer.setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;((DefaultTableCellRenderer)tblNhomMonHoc.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;        for (int i = 0; i &lt; tblNhomMonHoc.getColumnCount(); i++)&#xd;&#xa;        {&#xd;&#xa;                tblNhomMonHoc.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);&#xd;&#xa;         &#xd;&#xa;        }&#xd;&#xa;"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="jLabel2">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="16" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="M&#xf4;n h&#x1ecd;c &#x111;&#xe3; &#x111;&#x103;ng k&#xed;:"/>
-                  </Properties>
-                </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -513,8 +498,76 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tblNhomDangKy.setFont(new Font(&quot;Segoe UI&quot;, 0, 14));&#xd;&#xa;tblNhomDangKy.getTableHeader().setFont(new Font(&quot;Segoe UI&quot;, 0, 16));&#xd;&#xa;tblNhomDangKy.setRowHeight(35);&#xd;&#xa;tblNhomDangKy.setRowMargin(10);&#xd;&#xa;DefaultTableCellRenderer leftRenderer2 = new DefaultTableCellRenderer();&#xd;&#xa;leftRenderer2.setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;((DefaultTableCellRenderer)tblNhomDangKy.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;        for (int i = 0; i &lt; tblNhomDangKy.getColumnCount(); i++)&#xd;&#xa;        {&#xd;&#xa;            if(i != 1){&#xd;&#xa;                tblNhomDangKy.getColumnModel().getColumn(i).setCellRenderer(leftRenderer2);&#xd;&#xa;            }else{&#xd;&#xa;                continue;&#xd;&#xa;            }&#xd;&#xa;        }&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tblNhomDangKy.setFont(new Font(&quot;Segoe UI&quot;, 0, 14));&#xd;&#xa;tblNhomDangKy.getTableHeader().setFont(new Font(&quot;Segoe UI&quot;, 0, 16));&#xd;&#xa;tblNhomDangKy.setRowHeight(35);&#xd;&#xa;tblNhomDangKy.setRowMargin(10);&#xd;&#xa;DefaultTableCellRenderer leftRenderer2 = new DefaultTableCellRenderer();&#xd;&#xa;leftRenderer2.setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;((DefaultTableCellRenderer)tblNhomDangKy.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);&#xd;&#xa;        for (int i = 0; i &lt; tblNhomDangKy.getColumnCount(); i++)&#xd;&#xa;        {&#xd;&#xa;        &#xd;&#xa;                tblNhomDangKy.getColumnModel().getColumn(i).setCellRenderer(leftRenderer2);&#xd;&#xa;          &#xd;&#xa;        }&#xd;&#xa;"/>
                       </AuxValues>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="jPanel5">
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lblTongTinChi" min="-2" pref="142" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnXoa" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTongTinChi" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="btnXoa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel2">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="16" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="M&#xf4;n h&#x1ecd;c &#x111;&#xe3; &#x111;&#x103;ng k&#xed;:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblTongTinChi">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="16" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="T&#x1ed5;ng s&#x1ed1; t&#xed;n ch&#x1ec9;:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnXoa">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="f8" green="9e" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="16" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
+                        <Property name="contentAreaFilled" type="boolean" value="false"/>
+                        <Property name="opaque" type="boolean" value="true"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

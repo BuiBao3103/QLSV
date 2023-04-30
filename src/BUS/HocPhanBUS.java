@@ -42,8 +42,6 @@ public class HocPhanBUS {
         ArrayList<String> dsMonHocTruoc = new ArrayList<>();
         for (DieuKienDTO dk : DieuKienBUS.getDsDK()) {
             if (dk.getMaHP().equals(maHP)) {
-                System.out.println(dk.getMaHP());
-                System.out.println(dk.getMaHP_truoc());
                 dsMonHocTruoc.add(dk.getMaHP_truoc());
             }
         }

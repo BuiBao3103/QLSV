@@ -23,14 +23,10 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.jdbc.JDBCCategoryDataset;
 
 /**
  *
@@ -378,11 +374,13 @@ public class Statistics extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(columnChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(columnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
 
         jScrollPane2.setViewportView(jPanel7);
+
+        jScrollPane2.getVerticalScrollBar().setUnitIncrement(16);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -458,21 +456,25 @@ public class Statistics extends javax.swing.JPanel {
 
     public void drawColumnChart(JPanel pnl) throws SQLException {
         con = ConnectionDB.getConnection();
-//        String query = "select count(*),SUBSTRING(NienKhoa,1,4) from SINHVIEN group by SUBSTRING(NienKhoa,1,4)";
-////        String query = "select count(*),NienKhoa from SINHVIEN group by NienKhoa";
-//        CategoryDataset dataset = new JDBCCategoryDataset(con, query);
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(120, "Profit", "Jan");
-        dataset.setValue(240, "Profit", "Feb");
-        dataset.setValue(180, "Profit", "Mar");
-        dataset.setValue(90, "Profit", "Apr");
-        JFreeChart chart = ChartFactory.createBarChart("Điểm trung bình của SV KHOA CNTT năm 2022", "Năm học", "Số lượng sinh viên", dataset, PlotOrientation.VERTICAL, false, true, false);
-        BarRenderer renderer = null;
-        CategoryPlot plot = chart.getCategoryPlot();
-        renderer = (BarRenderer) plot.getRenderer();
-        // Set custom colors for the bars
-        renderer.setSeriesPaint(0, new Color(0, 128, 215));
+        String query = "select count(*) as 'SL' ,SUBSTRING(NienKhoa,1,4) as 'NK' from SINHVIEN group by SUBSTRING(NienKhoa,1,4) order by SUBSTRING(NienKhoa,1,4) asc";
+        DefaultCategoryDataset dataset = null;
+        try {
+            dataset = new DefaultCategoryDataset();
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+            int index = 0;
+            while (rs.next()) {
+                int value = rs.getInt("SL");
+                int key = rs.getInt("NK");
+                dataset.addValue(value, "Total", String.valueOf(key) + "");
 
+                index++;
+            }
+        } catch (SQLException e) {
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        JFreeChart chart = ChartFactory.createBarChart("Số lượng sinh viên qua các năm", "Năm học", "Số lượng", dataset, PlotOrientation.VERTICAL, false, true, false);
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setVisible(true);
         pnl.add(chartPanel);
@@ -483,24 +485,6 @@ public class Statistics extends javax.swing.JPanel {
                 chartPanel.setSize(pnl.getSize().width, pnl.getSize().height);
             }
         });
-//         con = ConnectionDB.getConnection();
-//        String query = "select count(*),SUBSTRING(NienKhoa,1,4) from SINHVIEN group by SUBSTRING(NienKhoa,1,4)";
-//        CategoryDataset dataset = new JDBCCategoryDataset(con, query);
-//        JFreeChart chart = ChartFactory.createLineChart("Số lượng sinh viên các khoa", "Điểm TB", "Thang Điểm", dataset, PlotOrientation.VERTICAL, false, true, true);
-////        JFreeChart chart = ChartFactory.createBarChart("Số lượng sinh viên các khoa", "Năm học", "Số lượng", dataset, PlotOrientation.VERTICAL, true, true, );
-//    BarRenderer renderer = null;
-//        CategoryPlot plot = null;
-//        renderer = new BarRenderer();
-//        ChartPanel chartPanel = new ChartPanel(chart);
-//        chartPanel.setVisible(true);
-//        pnl.add(chartPanel);
-//        chartPanel.setSize(pnl.getSize().width, pnl.getSize().height);
-//        pnl.addComponentListener(new ComponentAdapter() {
-//            @Override
-//            public void componentResized(ComponentEvent e) {
-//                chartPanel.setSize(pnl.getSize().width, pnl.getSize().height);
-//            }
-//        });
     }
 
     public void drawPieChart(JPanel panel) {
@@ -542,7 +526,6 @@ public class Statistics extends javax.swing.JPanel {
                 pieChartPanel.setSize(panel.getSize().width, panel.getSize().height);
             }
         });
-        System.out.println("run");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel columnChart;
