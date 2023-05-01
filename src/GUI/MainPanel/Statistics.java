@@ -4,6 +4,9 @@
  */
 package GUI.MainPanel;
 
+import BUS.NganhBUS;
+import DAO.SinhVienDAO;
+import DTO.NganhDTO;
 import connectDB.ConnectionDB;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,8 +18,10 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -47,13 +52,8 @@ public class Statistics extends javax.swing.JPanel {
 
     public Statistics() {
         initComponents();
+        getComboBoxMenu(columnChartOption);
         drawPieChart(pieChart);
-        try {
-            drawColumnChart(columnChart);
-        } catch (SQLException ex) {
-            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -84,7 +84,7 @@ public class Statistics extends javax.swing.JPanel {
         pieChart = new javax.swing.JPanel();
         columnChart = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        columnChartOption = new javax.swing.JComboBox<>();
 
         jPanel1 = new RoundedPanel(20, new Color(50,177,249));
         jPanel1.setPreferredSize(new java.awt.Dimension(320, 104));
@@ -348,8 +348,17 @@ public class Statistics extends javax.swing.JPanel {
             }
         });
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toàn trường" }));
+        columnChartOption.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        columnChartOption.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                columnChartOptionItemStateChanged(evt);
+            }
+        });
+        columnChartOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                columnChartOptionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -360,7 +369,7 @@ public class Statistics extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(columnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(columnChartOption, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pieChart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
@@ -372,7 +381,7 @@ public class Statistics extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pieChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(columnChartOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(columnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
@@ -405,6 +414,72 @@ public class Statistics extends javax.swing.JPanel {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void columnChartOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_columnChartOptionActionPerformed
+
+    }//GEN-LAST:event_columnChartOptionActionPerformed
+    public void draw(String tenNganh, String maNganh) {
+        try {
+            drawColumnChart("Số lượng sinh viên ngành " + tenNganh, maNganh);
+        } catch (SQLException ex) {
+            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void columnChartOptionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_columnChartOptionItemStateChanged
+        if (evt.getStateChange() == 1) {
+            switch (columnChartOption.getSelectedItem() + "") {
+                case "Toàn Trường":
+                    draw("Toàn Trường", "D");
+                    break;
+                case "DLI-Sư Phạm Lí":
+                    draw("Sư Phạm Lí", "DLI");
+                    break;
+                case "DAN-Ngôn Ngữ Anh":
+                    draw("Ngôn Ngữ Anh", "DAN");
+                    break;
+                case "DCT-Công Nghệ Thông Tin":
+                    draw("Công Nghệ Thông Tin", "DCT");
+                    break;
+                case "DHO-Sư Phạm Hóa":
+                    draw("Sư Phạm Hóa", "DHO");
+                    break;
+                case "DKE-Kế Toán":
+                    draw("Kế Toán", "DKE");
+                    break;
+                case "DKH-Sư Phạm Khoa Học Tự Nhiên":
+                    draw("Sư Phạm Khoa Học Tự Nhiên", "DKH");
+                    break;
+                case "DKP-Kĩ Thuật Phần Mềm":
+                    draw("Kĩ Thuật Phần Mềm", "DKP");
+                    break;
+                case "DKQ-Kinh Doanh Quốc Tế":
+                    draw("Kinh Doanh Quốc Tế", "DKQ");
+                    break;
+                case "DQK-Quản Trị Kinh Doanh":
+                    draw("Quản Trị Kinh Doanh", "DQK");
+                    break;
+                case "DTN-Tài Chính - Ngân Hàng":
+                    draw("Tài Chính - Ngân Hàng", "DTN");
+                    break;
+                case "DSA-Sư Phạm Tiếng Anh":
+                    draw("Sư Phạm Tiếng Anh", "DSA");
+                    break;
+                case "DSI-Sư Phạm Sinh Học":
+                    draw("Sư Phạm Sinh Học", "DSI");
+                    break;
+
+                default:
+                    throw new AssertionError();
+            }
+        }
+    }//GEN-LAST:event_columnChartOptionItemStateChanged
+
+    public void getComboBoxMenu(JComboBox box) {
+        box.addItem("Toàn Trường");
+        for (NganhDTO nganh : NganhBUS.getDsNganh()) {
+            box.addItem(nganh.getMaNganh() + "-" + nganh.getTenNganh());
+        }
+    }
 
     class RoundedPanel extends JPanel {
 
@@ -454,35 +529,23 @@ public class Statistics extends javax.swing.JPanel {
         }
     }
 
-    public void drawColumnChart(JPanel pnl) throws SQLException {
-        con = ConnectionDB.getConnection();
-        String query = "select count(*) as 'SL' ,SUBSTRING(NienKhoa,1,4) as 'NK' from SINHVIEN group by SUBSTRING(NienKhoa,1,4) order by SUBSTRING(NienKhoa,1,4) asc";
-        DefaultCategoryDataset dataset = null;
-        try {
-            dataset = new DefaultCategoryDataset();
-            pstm = con.prepareStatement(query);
-            ResultSet rs = pstm.executeQuery();
-            int index = 0;
-            while (rs.next()) {
-                int value = rs.getInt("SL");
-                int key = rs.getInt("NK");
-                dataset.addValue(value, "Total", String.valueOf(key) + "");
-
-                index++;
-            }
-        } catch (SQLException e) {
-        } finally {
-            ConnectionDB.closeConnection(con, pstm);
+    public void drawColumnChart(String header, String maNganh) throws SQLException {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        ArrayList<ArrayList<Object>> data = new ArrayList<>();
+        data = new SinhVienDAO().getByOption(maNganh);
+        for (ArrayList<Object> row : data) {
+            dataset.addValue((Number) row.get(0), KEY1, row.get(1).toString());
         }
-        JFreeChart chart = ChartFactory.createBarChart("Số lượng sinh viên qua các năm", "Năm học", "Số lượng", dataset, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart chart = ChartFactory.createBarChart(header, "Năm học", "Số lượng", dataset, PlotOrientation.VERTICAL, true, true, false);
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setVisible(true);
-        pnl.add(chartPanel);
-        chartPanel.setSize(pnl.getSize().width, pnl.getSize().height);
-        pnl.addComponentListener(new ComponentAdapter() {
+        columnChart.removeAll();
+        columnChart.add(chartPanel);
+        chartPanel.setSize(columnChart.getSize().width, columnChart.getSize().height);
+        columnChart.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                chartPanel.setSize(pnl.getSize().width, pnl.getSize().height);
+                chartPanel.setSize(columnChart.getSize().width, columnChart.getSize().height);
             }
         });
     }
@@ -529,11 +592,11 @@ public class Statistics extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel columnChart;
+    private javax.swing.JComboBox<String> columnChartOption;
     private javax.swing.JLabel iconItem;
     private javax.swing.JLabel iconItem1;
     private javax.swing.JLabel iconItem2;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

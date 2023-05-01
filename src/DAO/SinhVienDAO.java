@@ -60,6 +60,28 @@ public class SinhVienDAO {
         return dssv;//+
     }
 
+    public ArrayList<ArrayList<Object>> getByOption(String maNganh) {
+        con = ConnectionDB.getConnection();
+        ArrayList<ArrayList<Object>> data = new ArrayList<>();
+        try {
+            String query = "SELECT count(*) AS 'SL', SUBSTRING(NienKhoa, 1, 4) AS 'NK' FROM SINHVIEN WHERE MaNganh LIKE ? GROUP BY SUBSTRING(NienKhoa, 1, 4) ORDER BY SUBSTRING(NienKhoa, 1, 4) ASC";
+            pstm = con.prepareStatement(query);
+            pstm.setString(1, "%" + maNganh + "%");
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                ArrayList<Object> rowData = new ArrayList<>();
+                rowData.add(rs.getInt("SL"));
+                rowData.add(rs.getString("NK"));
+                data.add(rowData);
+            }
+        } catch (SQLException e) {
+
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return data;
+    }
+
     public ArrayList<SinhVienDTO> getByKhoa(String maKhoa) { // hàm này lấy dssv theo mã khoa truyền vào
         con = ConnectionDB.getConnection();
         ArrayList<SinhVienDTO> dssv = new ArrayList<>();//+
