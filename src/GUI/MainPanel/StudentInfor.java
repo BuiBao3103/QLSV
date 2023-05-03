@@ -1170,7 +1170,7 @@ public class StudentInfor extends javax.swing.JPanel {
 
         int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa sinh viên này ?", "Xóa Sinh Viên", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
-            new SinhVienDAO().delete(SinhVienBUS.StudentinTable(tblStudentList, tblStudentList.getSelectedRow()).getMaSV());
+            SinhVienBUS.deleteSinhVien(SinhVienBUS.StudentinTable(tblStudentList, tblStudentList.getSelectedRow()).getMaSV());
             if (txtPresentPage.isVisible()) { // load lại table khi đang xem từ trang
                 txtPresentPageCaretUpdate(null);
             } else {
@@ -1209,7 +1209,7 @@ public class StudentInfor extends javax.swing.JPanel {
         if (tblStudentList.getSelectedRow() != -1) { // chọn vào 1 dòng rồi mới khôi phục được
             int a = JOptionPane.showConfirmDialog(null, "Khôi Phục Sinh Viên Này ?");
             if (a == JOptionPane.YES_OPTION) { // lấy mã sinh viên của dòng đang chọn rồi khôi phục nó
-                new SinhVienDAO().restore(SinhVienBUS.StudentinTable(tblStudentList, tblStudentList.getSelectedRow()).getMaSV());
+                SinhVienBUS.restoreSinhVien(SinhVienBUS.StudentinTable(tblStudentList, tblStudentList.getSelectedRow()).getMaSV());
                 JOptionPane.showMessageDialog(null, "Khôi phục thành công");
                 btnDongSinhVienActionPerformed(null);
                 SinhVienBUS.showDeletedStudent(this, Integer.parseInt(txtPresentPage.getText())); // khôi phục xong refresh cái table
