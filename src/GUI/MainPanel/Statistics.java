@@ -51,10 +51,24 @@ public class Statistics extends javax.swing.JPanel {
     Connection con = null;
     PreparedStatement pstm = null;
 
+    public JComboBox<String> getColumnChartOption() {
+        return columnChartOption;
+    }
+
+    public void setColumnChartOption(JComboBox<String> columnChartOption) {
+        this.columnChartOption = columnChartOption;
+    }
+
+    public JPanel getPieChart() {
+        return pieChart;
+    }
+
+    public void setPieChart(JPanel pieChart) {
+        this.pieChart = pieChart;
+    }
+
     public Statistics() {
         initComponents();
-        getComboBoxMenu(columnChartOption);
-        drawPieChart(pieChart);
     }
 
     @SuppressWarnings("unchecked")

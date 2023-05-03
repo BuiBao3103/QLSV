@@ -735,7 +735,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
 
 
     private void btnStudentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentListActionPerformed
-
         mainPanel.removeAll(); // xóa hết nội dung vùng content
         mainPanel.repaint();
         mainPanel.revalidate();
@@ -948,6 +947,8 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.add(statistics);
         mainPanel.repaint();
         mainPanel.revalidate();
+        statistics.getComboBoxMenu(statistics.getColumnChartOption());
+        statistics.drawPieChart(statistics.getPieChart());
     }//GEN-LAST:event_btnStatisticsActionPerformed
 
     private void btnToolMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToolMouseExited
