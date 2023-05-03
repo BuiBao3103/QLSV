@@ -1,6 +1,8 @@
 package DAO;
 
+import BUS.NienHocBUS;
 import DTO.KetQuaDTO;
+import DTO.NienHocDTO;
 import connectDB.ConnectionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,12 +47,16 @@ public class KetQuaDAO {
 
     public ArrayList<KetQuaDTO> getDaHoc(String MaSV) {
         con = ConnectionDB.getConnection();
+        NienHocDTO nh = NienHocBUS.getCurrentNienHoc();
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {
             String query = "select * from KetQua kq join HocPhan hp on kq.MaHP=hp.MaHP "
-                    + "where DiemQuaTrinh <> -1 and DiemCuoiKy <> -1 and  MaSV = ?";
+                    + "where HocKy <> ? or Nam <> ?  and  MaSV = ?";
             pstm = con.prepareStatement(query);
-            pstm.setString(1, MaSV);
+            pstm.setInt(1, nh.getHocKi());
+            pstm.setInt(2, nh.getNam());
+            pstm.setString(3, MaSV);
+
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 String maSV = rs.getString("MaSV");
@@ -80,8 +86,8 @@ public class KetQuaDAO {
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {
             String query = "select * from KetQua kq join HocPhan hp on kq.MaHP=hp.MaHP "
-                    + "where DiemQuaTrinh = -1 and DiemCuoiKy = -1 "
-                    + "and  MaSV = ? and HocKy = ? and nam = ?";
+                    + "where "
+                    + " MaSV = ? and HocKy = ? and nam = ?";
             pstm = con.prepareStatement(query);
             pstm.setString(1, MaSV);
             pstm.setInt(2, hk);
@@ -112,13 +118,12 @@ public class KetQuaDAO {
     }
 
     public ArrayList<KetQuaDTO> getDaDangKyToanTruong(int hk, int n) {
-        System.out.println("KetQuaDAO");
         con = ConnectionDB.getConnection();
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {
             String query = "select * from KetQua kq join HocPhan hp on kq.MaHP=hp.MaHP "
-                    + "where DiemQuaTrinh = -1 and DiemCuoiKy = -1 "
-                    + "and HocKy = ? and nam = ?";
+                    + "where "
+                    + " HocKy = ? and nam = ?";
             pstm = con.prepareStatement(query);
             pstm.setInt(1, hk);
             pstm.setInt(2, n);
