@@ -28,19 +28,19 @@ import javax.swing.table.DefaultTableModel;
  * @author ASUS
  */
 public class NhomBUS {
-    
+
     public static NhomDAO nhomDAO = new NhomDAO();
-    public static boolean dangkyMon ;
-    public static ArrayList<NhomDTO> dsNhom ;
+    public static boolean dangkyMon;
+    public static ArrayList<NhomDTO> dsNhom;
     static SinhVienDAO svDAO = new SinhVienDAO();
     static HocPhanDAO hpDAO = new HocPhanDAO();
-    
+
     public static ArrayList<NhomDTO> dsNhomDaHoc; // lấy các học phần sv đang đăng nhập đã học
 
     public static void updateCurrentDangKyMon(boolean isDangkyMon) {
         nhomDAO.updateCurrentDangKyMon(isDangkyMon);
     }
-    
+
     public static void showGroupRegistration(JTable table, JLabel lblTongTinChi) {
         DefaultTableModel tblDangKy = (DefaultTableModel) table.getModel();
         tblDangKy.setRowCount(0);
@@ -54,7 +54,7 @@ public class NhomBUS {
         }
         lblTongTinChi.setText("Tổng số tín chỉ: " + sumTC());
     }
-    
+
     public static int sumTC() {
         int sumTC = 0;
         for (KetQuaDTO dk : KetQuaBUS.dsDaDangKySV) {
@@ -63,7 +63,7 @@ public class NhomBUS {
         }
         return sumTC;
     }
-    
+
     public static void showGroupSuggestions(JTable table) {
         DefaultTableModel tblNhom = (DefaultTableModel) table.getModel();
         tblNhom.setRowCount(0);
@@ -101,7 +101,7 @@ public class NhomBUS {
             tblNhom.addRow(rowData);
         }
     }
-    
+
     public static int countGroupRegistered(ArrayList<KetQuaDTO> dskq, String maHP, int soNhom) {
         int cnt = 0;
         for (KetQuaDTO kq : dskq) {
@@ -111,7 +111,7 @@ public class NhomBUS {
         }
         return cnt;
     }
-    
+
     public static boolean checkIsRegistered(String maHP) {
         for (KetQuaDTO dk : KetQuaBUS.dsDaDangKySV) {
             if (dk.getMaHP().equals(maHP)) {
@@ -120,7 +120,7 @@ public class NhomBUS {
         }
         return false;
     }
-    
+
     public static boolean checkPreviousHocPhan(String maHP) {
         ArrayList<String> dsMonHocTruoc = HocPhanBUS.getMonHocTruoc(maHP);
         for (String hpt : dsMonHocTruoc) {
@@ -132,7 +132,7 @@ public class NhomBUS {
         }
         return true;
     }
-    
+
     public static boolean checkSvKhoaNganh(String maHP) {
         HocPhanDTO hp = HocPhanBUS.getHocPhanByID(maHP);
         SinhVienDTO sv = (new SinhVienDAO()).getByMaSV(TaiKhoanBUS.curentLogin.getTenTaiKhoan()).get(0);
@@ -156,7 +156,7 @@ public class NhomBUS {
         }
         return false;
     }
-    
+
     public static void filterGroup(String monHoc, String chuyenBiet, String chuyenBietPhu, JTable table) {
         boolean found = false;
         DefaultTableModel tblNhom = (DefaultTableModel) table.getModel();
@@ -174,7 +174,7 @@ public class NhomBUS {
             } else if (chuyenBiet.equals("Khoa") && (hp.getChuyenBiet() != 1 || !chuyenBietPhu.equals(hp.getMaKhoa()))) {
                 continue;
             }
-            
+
             String nameHP = HocPhanBUS.getHPnameByHPid(nhom.getMaHP());
             //filter by name or id HP
             if (!nhom.getMaHP().toLowerCase().contains(monHoc.toLowerCase())
@@ -209,7 +209,7 @@ public class NhomBUS {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
-    
+
     public static void showTKB(Schedule schedule) {
         JTable table = schedule.getTblSchedule();
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
@@ -235,13 +235,13 @@ public class NhomBUS {
         }
         table.setModel(tableModel);
     }
-    
+
     public static ArrayList<SinhVienDTO> getDSSVFromSelectedRow(Schedule schedule) { // hàm này lấy dssv từ học phần đang chọn
         int selectedRow = schedule.getTblSchedule().getSelectedRow();
         JTable tblSchedule = schedule.getTblSchedule();
         String maHpDuocChon = tblSchedule.getValueAt(selectedRow, 0).toString();
         int nhomDuocChon = Integer.parseInt(tblSchedule.getValueAt(selectedRow, 2).toString());
-        
+
         ArrayList<String> dsMaSV = new KetQuaDAO().getDsMaSV(maHpDuocChon, nhomDuocChon);
         ArrayList<SinhVienDTO> dssv = new ArrayList();
         for (String MaSV : dsMaSV) {
@@ -250,7 +250,7 @@ public class NhomBUS {
         }
         return dssv;
     }
-    
+
     public static void showDSSV(Schedule schedule) {
         int selectedRow = schedule.getTblSchedule().getSelectedRow();
         if (selectedRow < 0) {
@@ -264,7 +264,7 @@ public class NhomBUS {
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
         tableModel.setRowCount(0);
         formatTable(table);
-        
+
         int i = 1;
         for (SinhVienDTO sv : dssv) {
             if (sv.getTrangThai() == 1) {
@@ -274,13 +274,13 @@ public class NhomBUS {
             }
         }
     }
-    
+
     public static void addItemToCbChonHocKy(Schedule schedule) {
+        schedule.getCbChonHocKy().removeAllItems();
         String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
         SinhVienDTO sv = svDAO.getByMaSV(maSV).get(0);
         int namVaoHoc = Integer.parseInt(sv.getNienKhoa().split("-")[0]);
         NienHocDTO hientai = new NienHocDAO().getCurrentNienHoc();
-        schedule.getCbChonHocKy().removeAll();
         while (namVaoHoc <= hientai.getNam()) {
             schedule.getCbChonHocKy().addItem(hientai.getHocKi() + " - " + hientai.getNam());
             hientai = NienHocBUS.prevNienHoc(hientai);
@@ -306,7 +306,7 @@ public class NhomBUS {
                 return 8;
         }
     }
-    
+
     public static boolean compare2NhomDTO(NhomDTO nh1, NhomDTO nh2) {
         if (getNumberFromDayOfWeek(nh1.getThu()) > getNumberFromDayOfWeek(nh2.getThu())) { // nhóm 1 nằm sau nhóm 2a
             return true;
@@ -319,13 +319,13 @@ public class NhomBUS {
         }
         return false; // nhóm 1 học trước nhóm 2 trong 2 ngày khác nhau
     }
-    
+
     public static void swap(ArrayList<NhomDTO> dsn, int index1, int index2) { // hàm này đổi chổ 2 vị trí trong arrayLisst nhóm
         NhomDTO temp = dsn.get(index1);
         dsn.set(index1, dsn.get(index2));
         dsn.set(index2, temp);
     }
-    
+
     public static void arrangeSchedule(Schedule schedule) {
         dsNhomDaHoc = nhomDAO.getBySinhVien();
         if (schedule.getBtnSapXepTheoMon().isSelected()) { // sắp xếp theo mã môn
@@ -339,19 +339,7 @@ public class NhomBUS {
                     }
                 }
             }
-        } else { // sắp xếp theo thứ tiết
-//            for (NhomDTO nh1 : dsNhomDaHoc) {
-//                for (int i = dsNhomDaHoc.indexOf(nh1); i<dsNhomDaHoc.size(); i++) {
-//                    NhomDTO nh2 = dsNhomDaHoc.get(i);
-//                    if (nh1.getNam() == nh2.getNam() && nh1.getHocKy() == nh2.getHocKy()) {
-//                        if (compare2NhomDTO(nh1, nh2)) { // nhóm 1 sau nhóm 2
-//                            int index1 = dsNhomDaHoc.indexOf(nh1);
-//                            int index2 = dsNhomDaHoc.indexOf(nh2);
-//                            swap(dsNhomDaHoc, index1, index2);
-//                        }
-//                    }
-//                }
-//            }
+        } else {
             for (int i = 0; i < dsNhomDaHoc.size() - 1; i++) {
                 for (int j = i + 1; j < dsNhomDaHoc.size(); j++) {
                     NhomDTO nh1 = dsNhomDaHoc.get(i);
@@ -367,7 +355,7 @@ public class NhomBUS {
             }
         }
     }
-    
+
     public static void main(String[] args) {
 //        NhomBUS nBUS = new NhomBUS();
 //        System.out.println(nBUS.hocKyHienTai());

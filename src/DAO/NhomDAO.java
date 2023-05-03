@@ -191,7 +191,7 @@ public class NhomDAO {
         con = ConnectionDB.getConnection();
         try {
             String query = "Select nh.*\n"
-                    + "from KETQUA kq join NHOM nh on kq.MaHP = nh.MaHP and kq.SoNhom = nh.SoNhom\n"
+                    + "from KETQUA kq join NHOM nh on kq.MaHP = nh.MaHP and kq.SoNhom = nh.SoNhom and kq.HocKy = nh.HocKy and kq.Nam = nh.Nam\n"
                     + "where kq.MaSV = '" + maSV + "'";
             pstm = con.prepareStatement(query);
             ResultSet rs = pstm.executeQuery();
