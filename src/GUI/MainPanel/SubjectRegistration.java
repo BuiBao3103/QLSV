@@ -10,6 +10,7 @@ import BUS.KhoaBUS;
 import DTO.NganhDTO;
 import BUS.NganhBUS;
 import BUS.NhomBUS;
+import BUS.TaiKhoanBUS;
 import javax.swing.table.*;
 import javax.swing.*;
 import java.awt.*;
@@ -33,6 +34,14 @@ public class SubjectRegistration extends javax.swing.JPanel {
      */
     public SubjectRegistration() {
         initComponents();
+    }
+
+    public JButton getAdd_btn() {
+        return add_btn;
+    }
+
+    public void setAdd_btn(JButton add_btn) {
+        this.add_btn = add_btn;
     }
 
     /**
