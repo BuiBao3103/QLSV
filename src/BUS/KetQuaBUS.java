@@ -7,6 +7,7 @@ package BUS;
 import DAO.KetQuaDAO;
 import DTO.KetQuaDTO;
 import DTO.HocPhanDTO;
+import DTO.NienHocDTO;
 import GUI.MainPanel.Score;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -337,11 +338,32 @@ public class KetQuaBUS {
         }
     }
 
-    public static void main(String[] args) {
-        kqDAO.get("3121410066");
-        KetQuaBUS kq = new KetQuaBUS();
-        System.out.println(kq.lamTronSo(8.62));
+    public static ArrayList<Integer> getStatisticsResultScore() {
+        ArrayList<Integer> dsSRS = new ArrayList<>();
+        NienHocDTO nienHocHienTai = NienHocBUS.currentNienHoc;
+        NienHocDTO nienHocTruoc = NienHocBUS.prevNienHoc(nienHocHienTai);
+        int hocKyTruoc = nienHocTruoc.getHocKi();
+        int namHocTruoc = nienHocTruoc.getNam();
+       dsSRS.add(kqDAO.getThongKe(hocKyTruoc,namHocTruoc,0.0,4.0));
+       dsSRS.add(kqDAO.getThongKe(hocKyTruoc,namHocTruoc,4.0,5.5));
+       dsSRS.add(kqDAO.getThongKe(hocKyTruoc,namHocTruoc,5.5,7.0));
+       dsSRS.add(kqDAO.getThongKe(hocKyTruoc,namHocTruoc,7.0,8.5));
+       dsSRS.add(kqDAO.getThongKe(hocKyTruoc,namHocTruoc,8.5,10.1));
+        return dsSRS;
     }
+
+//    public static void main(String[] args) {
+//
+////        kqDAO.get("3121410066");
+//        KetQuaBUS kq = new KetQuaBUS();
+//        System.out.println(kq.lamTronSo(8.449));
+//          NienHocDTO nienHocHienTai = NienHocBUS.currentNienHoc;
+//        NienHocDTO nienHocTruoc = NienHocBUS.prevNienHoc(nienHocHienTai);
+//        int hocKyTruoc = nienHocTruoc.getHocKi();
+//        int namHocTruoc = nienHocTruoc.getNam();
+//           System.out.println(hocKyTruoc);
+//        System.out.println(namHocTruoc);
+//    }
 
     public ArrayList<KetQuaDTO> getDsKQSV() {
         return dsKQSV;
