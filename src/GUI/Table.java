@@ -1051,17 +1051,16 @@ public class Table extends javax.swing.JFrame implements Runnable {
         }
     }
 
-    public static void main(String args[]) {
-//        javax.swing.plaf.nimbus.NimbusLookAndFeel
-//com.sun.java.swing.plaf.windows.WindowsLookAndFeel
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
-                | UnsupportedLookAndFeelException ignored) {
-        }
-        new Table().setVisible(true);
-    }
-
+//    public static void main(String args[]) {
+////        javax.swing.plaf.nimbus.NimbusLookAndFeel
+////com.sun.java.swing.plaf.windows.WindowsLookAndFeel
+//        try {
+//            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+//        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
+//                | UnsupportedLookAndFeelException ignored) {
+//        }
+//        new Table().setVisible(true);
+//    }
     public JButton getBtnInformation() {
         return btnInformation;
     }

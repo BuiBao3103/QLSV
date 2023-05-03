@@ -30,10 +30,29 @@ public class KetQuaBUS {
     public static ArrayList<KetQuaDTO> dsDaDangKyToanTruong;
 
     public static boolean subjectRegistration(String maMon, int soNhom) {
+        //check maxTinChi
+        if (isMaxTinChi(maMon)) {
+            JOptionPane.showMessageDialog(null, "Vượt qua số tín chỉ tối đa!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+
         //check isLearn 
         if (isLearned(maMon)) {
-            JOptionPane.showMessageDialog(null, "Bạn đã học môn này rồi!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
-            return false;
+            KetQuaDTO oldRes = null;
+            for (KetQuaDTO kq : dsKQSV) {
+                if (kq.getMaHP().equals(maMon)) {
+                    oldRes = kq;
+                }
+            }
+            HocPhanDTO hp = HocPhanBUS.getHocPhanByID(maMon);
+            int phanTram = hp.getPhanTramQuaTrinh();
+            double diemTB = oldRes.getDiemQT() * phanTram + oldRes.getDiemQT() * (100 - phanTram);
+            if (diemTB >= 4) {
+                int res = JOptionPane.showConfirmDialog(null, "Bạn đã học môn này rồi! Bạn muốn có chắc muốn học cải thiện?", "Đăng ký môn học", JOptionPane.YES_NO_OPTION);
+                if (res == JOptionPane.NO_OPTION) {
+                    return false;
+                }
+            }
         }
         //check DaDangKy
         if (NhomBUS.checkIsRegistered(maMon)) {
@@ -54,6 +73,7 @@ public class KetQuaBUS {
         int nam = NienHocBUS.currentNienHoc.getNam();
         String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
         KetQuaDTO dkm = new KetQuaDTO(maSV, maMon, soNhom, hk, nam, -1, -1);
+        System.out.println(dkm.toString());
         kqDAO.add(dkm);
         //update dsDaDangKy
         dsDaDangKySV.add(dkm);
@@ -91,6 +111,14 @@ public class KetQuaBUS {
             }
         }
         JOptionPane.showMessageDialog(null, "Đã xóa đăng ký môn!", "Đăng ký môn học", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static boolean isMaxTinChi(String maHP) {
+        HocPhanDTO hp = HocPhanBUS.getHocPhanByID(maHP);
+        if (NhomBUS.sumTC() + hp.getTinChi() > 17) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean isLearned(String maHP) {
