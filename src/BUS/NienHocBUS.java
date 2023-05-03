@@ -14,7 +14,7 @@ import DTO.NienHocDTO;
 public class NienHocBUS {
 
     public static NienHocDAO nhDAO = new NienHocDAO();
-    public static NienHocDTO currentNienHoc = nhDAO.getCurrentNienHoc();
+    public static NienHocDTO currentNienHoc;
 
     public static NienHocDAO getNhDAO() {
         return nhDAO;

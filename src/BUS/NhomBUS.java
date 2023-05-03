@@ -30,12 +30,12 @@ import javax.swing.table.DefaultTableModel;
 public class NhomBUS {
 
     public static NhomDAO nhomDAO = new NhomDAO();
-    public static boolean dangkyMon = nhomDAO.getCurrentDangKyMon();
-    public static ArrayList<NhomDTO> dsNhom = nhomDAO.get();
+    public static boolean dangkyMon;
+    public static ArrayList<NhomDTO> dsNhom;
     static SinhVienDAO svDAO = new SinhVienDAO();
     static HocPhanDAO hpDAO = new HocPhanDAO();
 
-    public static ArrayList<NhomDTO> dsNhomDaHoc = nhomDAO.getBySinhVien(); // lấy các học phần sv đang đăng nhập đã học
+    public static ArrayList<NhomDTO> dsNhomDaHoc; // lấy các học phần sv đang đăng nhập đã học
 
     public static void updateCurrentDangKyMon(boolean isDangkyMon) {
         nhomDAO.updateCurrentDangKyMon(isDangkyMon);
@@ -45,16 +45,23 @@ public class NhomBUS {
         DefaultTableModel tblDangKy = (DefaultTableModel) table.getModel();
         tblDangKy.setRowCount(0);
         int i = 1;
-        int sumTC = 0;
         for (KetQuaDTO dk : KetQuaBUS.dsDaDangKySV) {
             HocPhanDTO hp = HocPhanBUS.getHocPhanByID(dk.getMaHP());
-            sumTC += hp.getTinChi();
             int phanTramGK = hp.getPhanTramQuaTrinh();
             int phanTramCK = 100 - phanTramGK;
             Object[] rowData = {i++, hp.getMaHP(), hp.getTenHP(), dk.getSoNhom(), hp.getTinChi(), phanTramGK, phanTramCK};
             tblDangKy.addRow(rowData);
         }
-        lblTongTinChi.setText("Tổng số tín chỉ: " + sumTC);
+        lblTongTinChi.setText("Tổng số tín chỉ: " + sumTC());
+    }
+
+    public static int sumTC() {
+        int sumTC = 0;
+        for (KetQuaDTO dk : KetQuaBUS.dsDaDangKySV) {
+            HocPhanDTO hp = HocPhanBUS.getHocPhanByID(dk.getMaHP());
+            sumTC += hp.getTinChi();
+        }
+        return sumTC;
     }
 
     public static void showGroupSuggestions(JTable table) {
@@ -269,11 +276,11 @@ public class NhomBUS {
     }
 
     public static void addItemToCbChonHocKy(Schedule schedule) {
+        schedule.getCbChonHocKy().removeAllItems();
         String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
         SinhVienDTO sv = svDAO.getByMaSV(maSV).get(0);
         int namVaoHoc = Integer.parseInt(sv.getNienKhoa().split("-")[0]);
         NienHocDTO hientai = new NienHocDAO().getCurrentNienHoc();
-        schedule.getCbChonHocKy().removeAll();
         while (namVaoHoc <= hientai.getNam()) {
             schedule.getCbChonHocKy().addItem(hientai.getHocKi() + " - " + hientai.getNam());
             hientai = NienHocBUS.prevNienHoc(hientai);
@@ -323,7 +330,7 @@ public class NhomBUS {
         dsNhomDaHoc = nhomDAO.getBySinhVien();
         if (schedule.getBtnSapXepTheoMon().isSelected()) { // sắp xếp theo mã môn
             for (NhomDTO nh1 : dsNhomDaHoc) {
-                for (int i = dsNhomDaHoc.indexOf(nh1); i<dsNhomDaHoc.size(); i++) {
+                for (int i = dsNhomDaHoc.indexOf(nh1); i < dsNhomDaHoc.size(); i++) {
                     NhomDTO nh2 = dsNhomDaHoc.get(i);
                     if (Integer.parseInt(nh1.getMaHP()) > Integer.parseInt(nh2.getMaHP())) {
                         int index1 = dsNhomDaHoc.indexOf(nh1);
@@ -332,21 +339,9 @@ public class NhomBUS {
                     }
                 }
             }
-        } else{ // sắp xếp theo thứ tiết
-//            for (NhomDTO nh1 : dsNhomDaHoc) {
-//                for (int i = dsNhomDaHoc.indexOf(nh1); i<dsNhomDaHoc.size(); i++) {
-//                    NhomDTO nh2 = dsNhomDaHoc.get(i);
-//                    if (nh1.getNam() == nh2.getNam() && nh1.getHocKy() == nh2.getHocKy()) {
-//                        if (compare2NhomDTO(nh1, nh2)) { // nhóm 1 sau nhóm 2
-//                            int index1 = dsNhomDaHoc.indexOf(nh1);
-//                            int index2 = dsNhomDaHoc.indexOf(nh2);
-//                            swap(dsNhomDaHoc, index1, index2);
-//                        }
-//                    }
-//                }
-//            }
-            for(int i=0; i<dsNhomDaHoc.size()-1; i++){ 
-                for(int j=i+1; j<dsNhomDaHoc.size(); j++){
+        } else {
+            for (int i = 0; i < dsNhomDaHoc.size() - 1; i++) {
+                for (int j = i + 1; j < dsNhomDaHoc.size(); j++) {
                     NhomDTO nh1 = dsNhomDaHoc.get(i);
                     NhomDTO nh2 = dsNhomDaHoc.get(j);
                     if (nh1.getNam() == nh2.getNam() && nh1.getHocKy() == nh2.getHocKy()) {

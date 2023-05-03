@@ -25,19 +25,19 @@ public class TaiKhoanBUS {
 
 //    public static TaiKhoanDTO curentLogin = new TaiKhoanBUS().getByUsername("3121410482");
     static TaiKhoanDAO tkDAO = new TaiKhoanDAO();
-    public static TaiKhoanDTO curentLogin = tkDAO.getByUserName("3121410066");
+    public static TaiKhoanDTO curentLogin;
 
     public static void resetWhenNewLogin() { // hàm này sẽ reset các thông tin của chương trình theo người vừa đăng nhập thành công
-        System.out.println("reset: " + TaiKhoanBUS.curentLogin.getTenTaiKhoan());
+        NienHocBUS.currentNienHoc = NienHocBUS.nhDAO.getCurrentNienHoc();
+        NhomBUS.dangkyMon = NhomBUS.nhomDAO.getCurrentDangKyMon();
         DieuKienBUS.dsDK = DieuKienBUS.dkDAO.get();
         GiangVienBUS.dsgv = GiangVienBUS.gvDAO.get();
         HocPhanBUS.dshp = HocPhanBUS.hpDAO.get();
         KhoaBUS.dsKhoa = KhoaBUS.khoaDAO.get();
         LopBUS.dsLop = LopBUS.lopDao.get();
         NganhBUS.dsNganh = NganhBUS.nganhDAO.get();
-        NhomBUS.dangkyMon = NhomBUS.nhomDAO.getCurrentDangKyMon();
-        NhomBUS.dsNhom = NhomBUS.nhomDAO.get();
-        NienHocBUS.currentNienHoc = NienHocBUS.nhDAO.getCurrentNienHoc();
+        NhomBUS.dsNhom = NhomBUS.nhomDAO.get(NienHocBUS.currentNienHoc);
+        NhomBUS.dsNhomDaHoc = NhomBUS.nhomDAO.getBySinhVien();
         KetQuaBUS.dsKQSV = KetQuaBUS.kqDAO.getDaHoc(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
         KetQuaBUS.dsDaDangKySV = KetQuaBUS.kqDAO.getDaDangKy(
                 TaiKhoanBUS.curentLogin.getTenTaiKhoan(),

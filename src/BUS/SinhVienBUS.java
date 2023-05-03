@@ -445,6 +445,14 @@ public class SinhVienBUS {
         table.getTxtMaTKSinhVien().setText(autoCompleteMaTK() + "");
         table.getTxtNienKhoaSinhVien().setText(autoCompleteNienKhoa());
     }
+    
+    public static void deleteSinhVien(String maSV){
+        svDAO.delete(maSV);
+    }
+    
+    public static void restoreSinhVien(String maSV){
+        svDAO.restore(maSV);
+    }
 
     public static String autoCompleteMSSV() {
         String mssv = "31"; // 2 số đầu là cố định

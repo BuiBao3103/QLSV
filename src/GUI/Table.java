@@ -681,6 +681,11 @@ public class Table extends javax.swing.JFrame implements Runnable {
         mainPanel.revalidate();
         NhomBUS.showGroupSuggestions(subjectRegistration.getTblNhomMonHoc());
         NhomBUS.showGroupRegistration(subjectRegistration.getTblNhomDangKy(), subjectRegistration.getLblTongTinChi());
+        if (!NhomBUS.dangkyMon) {
+            subjectRegistration.getAdd_btn().setVisible(false);
+            subjectRegistration.getBtnXoa().setVisible(false);
+        }
+
     }// GEN-LAST:event_btnSubjectRegistrationActionPerformed
 
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnScheduleActionPerformed
@@ -1051,17 +1056,16 @@ public class Table extends javax.swing.JFrame implements Runnable {
         }
     }
 
-    public static void main(String args[]) {
-//        javax.swing.plaf.nimbus.NimbusLookAndFeel
-//com.sun.java.swing.plaf.windows.WindowsLookAndFeel
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
-                | UnsupportedLookAndFeelException ignored) {
-        }
-        new Table().setVisible(true);
-    }
-
+//    public static void main(String args[]) {
+////        javax.swing.plaf.nimbus.NimbusLookAndFeel
+////com.sun.java.swing.plaf.windows.WindowsLookAndFeel
+//        try {
+//            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+//        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
+//                | UnsupportedLookAndFeelException ignored) {
+//        }
+//        new Table().setVisible(true);
+//    }
     public JButton getBtnInformation() {
         return btnInformation;
     }
