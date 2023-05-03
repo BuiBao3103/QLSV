@@ -4,6 +4,7 @@
  */
 package GUI.MainPanel;
 
+import BUS.KetQuaBUS;
 import connectDB.ConnectionDB;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,6 +16,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -34,11 +36,11 @@ import org.jfree.data.general.DefaultPieDataset;
  */
 public class Statistics extends javax.swing.JPanel {
 
-    private static final String KEY1 = "Xuất sắc";
-    public static final String KEY2 = "Giỏi";
-    public static final String KEY3 = "Khá";
-    public static final String KEY4 = "Trung Bình";
-    public static final String KEY5 = "Còn lại";
+    private static final String KEY1 = "Kém";
+    public static final String KEY2 = "Yếu";
+    public static final String KEY3 = "Trung Bình";
+    public static final String KEY4 = "Khá";
+    public static final String KEY5 = "Giỏi";
     /**
      * Creates new form Statistics
      */
@@ -488,12 +490,14 @@ public class Statistics extends javax.swing.JPanel {
     }
 
     public void drawPieChart(JPanel panel) {
-        DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue(KEY1, 99);
-        dataset.setValue(KEY2, 77);
-        dataset.setValue(KEY3, 12);
-        dataset.setValue(KEY4, 41);
-        dataset.setValue(KEY5, 89);
+        ArrayList <Integer> dsSRS = KetQuaBUS.getStatisticsResultScore();
+        
+        DefaultPieDataset dataset = new DefaultPieDataset();       
+        dataset.setValue(KEY1, dsSRS.get(0));
+        dataset.setValue(KEY2, dsSRS.get(1));
+        dataset.setValue(KEY3, dsSRS.get(2));
+        dataset.setValue(KEY4, dsSRS.get(3));
+        dataset.setValue(KEY5, dsSRS.get(4));
 
         JFreeChart someChart = ChartFactory.createPieChart(
                 "Đánh giá học tập", dataset, true, true, false);

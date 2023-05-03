@@ -43,7 +43,34 @@ public class KetQuaDAO {
         return dskq;
     }
 
-    public ArrayList<KetQuaDTO> getDaHoc(String MaSV) {
+    public int getThongKe(int hk, int nam, double diem1, double diem2) {
+        con = ConnectionDB.getConnection();  
+        int soLuong = -1;
+        try {
+            String query = "select count(*) as SoLuong "
+                    + " from (select masv, (sum(diemtongket)/count(*)) as diemtongket \n"
+                    + "from (select masv,hp.MaHP, (phantramquatrinh*0.01)*DiemQuaTrinh + (100-phantramquatrinh)*0.01*DiemCuoiKy as diemtongket\n"
+                    + "from HocPhan hp join KetQua kq on hp.mahp = kq.mahp\n"
+                    + "where hocky = ? and nam = ?) as temporary_table\n"
+                    + "group by masv \n"
+                    + "having (sum(diemtongket)/count(*))>= ? and (sum(diemtongket)/count(*))< ?) as ketqua";
+            pstm = con.prepareStatement(query);
+            pstm.setInt(1, hk);
+            pstm.setInt(2, nam);
+            pstm.setDouble(3, diem1);
+            pstm.setDouble(4, diem2);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                 soLuong = rs.getInt("SoLuong");            
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return soLuong;    
+}
+public ArrayList<KetQuaDTO> getDaHoc(String MaSV) {
         con = ConnectionDB.getConnection();
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {
