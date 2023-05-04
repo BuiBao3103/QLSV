@@ -4,7 +4,6 @@
  */
 package BUS;
 
-import static BUS.KetQuaBUS.kqDAO;
 import DAO.TaiKhoanDAO;
 import DTO.TaiKhoanDTO;
 import BUS.NQ_CTQBUS;
@@ -30,12 +29,12 @@ public class TaiKhoanBUS {
     public static void resetWhenNewLogin() { // hàm này sẽ reset các thông tin của chương trình theo người vừa đăng nhập thành công
         NienHocBUS.currentNienHoc = NienHocBUS.nhDAO.getCurrentNienHoc();
         NhomBUS.dangkyMon = NhomBUS.nhomDAO.getCurrentDangKyMon();
-        DieuKienBUS.dsDK = DieuKienBUS.dkDAO.get();
-        GiangVienBUS.dsgv = GiangVienBUS.gvDAO.get();
-        HocPhanBUS.dshp = HocPhanBUS.hpDAO.get();
-        KhoaBUS.dsKhoa = KhoaBUS.khoaDAO.get();
-        LopBUS.dsLop = LopBUS.lopDao.get();
-        NganhBUS.dsNganh = NganhBUS.nganhDAO.get();
+//        DieuKienBUS.dsDK = DieuKienBUS.dkDAO.get();
+//        GiangVienBUS.dsgv = GiangVienBUS.gvDAO.get();
+//        HocPhanBUS.dshp = HocPhanBUS.hpDAO.get();
+//        KhoaBUS.dsKhoa = KhoaBUS.khoaDAO.get();
+//        LopBUS.dsLop = LopBUS.lopDao.get();
+//        NganhBUS.dsNganh = NganhBUS.nganhDAO.get();
         NhomBUS.dsNhom = NhomBUS.nhomDAO.get(NienHocBUS.currentNienHoc);
         NhomBUS.dsNhomDaHoc = NhomBUS.nhomDAO.getBySinhVien();
         KetQuaBUS.dsKQSV = KetQuaBUS.kqDAO.getDaHoc(TaiKhoanBUS.curentLogin.getTenTaiKhoan());
