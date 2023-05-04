@@ -46,7 +46,7 @@ public class KetQuaDAO {
     }
 
     public int getThongKe(int hk, int nam, double diem1, double diem2) {
-        con = ConnectionDB.getConnection();  
+        con = ConnectionDB.getConnection();
         int soLuong = -1;
         try {
             String query = "select count(*) as SoLuong "
@@ -63,27 +63,31 @@ public class KetQuaDAO {
             pstm.setDouble(4, diem2);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                 soLuong = rs.getInt("SoLuong");            
+                soLuong = rs.getInt("SoLuong");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             ConnectionDB.closeConnection(con, pstm);
         }
-        return soLuong;    
-}
-public ArrayList<KetQuaDTO> getDaHoc(String MaSV) {
+        return soLuong;
+    }
+
+    public ArrayList<KetQuaDTO> getDaHoc(String MaSV) {
         con = ConnectionDB.getConnection();
         NienHocDTO nh = NienHocBUS.getCurrentNienHoc();
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {
-            String query = "select * from KetQua kq join HocPhan hp on kq.MaHP=hp.MaHP "
-                    + "where HocKy <> ? or Nam <> ?  and  MaSV = ?";
+            String query = "select * \n"
+                    + "from (select * \n"
+                    + "	from KetQua kq2\n"
+                    + "	where kq2.MaSV = ?) as kqTmp\n"
+                    + "	join HocPhan hp on kqTmp.MaHP=hp.MaHP\n"
+                    + "where HocKy <> ? or nam <> ?";
             pstm = con.prepareStatement(query);
-            pstm.setInt(1, nh.getHocKi());
-            pstm.setInt(2, nh.getNam());
-            pstm.setString(3, MaSV);
-
+            pstm.setString(1, MaSV);
+            pstm.setInt(2, nh.getHocKi());
+            pstm.setInt(3, nh.getNam());
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 String maSV = rs.getString("MaSV");
@@ -180,7 +184,6 @@ public ArrayList<KetQuaDTO> getDaHoc(String MaSV) {
     }
 
     public ArrayList<KetQuaDTO> get(String MaSV) {
-        System.out.println("KetQuaDAO");
         con = ConnectionDB.getConnection();
         ArrayList<KetQuaDTO> dskq = new ArrayList<>();
         try {
@@ -301,13 +304,13 @@ public ArrayList<KetQuaDTO> getDaHoc(String MaSV) {
         return dsMaSV;
     }
 
-    public static void main(String[] args) {
-        KetQuaDAO kqd = new KetQuaDAO();
-        ArrayList<KetQuaDTO> dskq = kqd.get("3121410482");
-        dskq.forEach(kq -> System.out.println(kq.toString()));
+//    public static void main(String[] args) {
+//        KetQuaDAO kqd = new KetQuaDAO();
+//        ArrayList<KetQuaDTO> dskq = kqd.get("3121410482");
+//        dskq.forEach(kq -> System.out.println(kq.toString()));
 //KetQua kq = new KetQua("3121410483","861303",1,2,2022,9.5,10);
-//        kqd.add(kq);
+//        kqd.add(kq);z
 //            kqd.update("3121410482","861302", 1, 2, 2021, kq);
 //    kqd.delete("3121410483","861303", 1,2,2022);
-    }
+//    }
 }

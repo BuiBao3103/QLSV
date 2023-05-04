@@ -721,6 +721,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         int namHienTai = NienHocBUS.getCurrentNienHoc().getNam();
         kq.addRowData(score, namHienTai, hkHienTai);
         kq.ShowTichLuy(score);
+        kq.setComboBoxNienHoc(score);
 
     }// GEN-LAST:event_btnScoreActionPerformed
 

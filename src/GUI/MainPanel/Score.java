@@ -6,6 +6,7 @@ package GUI.MainPanel;
 
 import BUS.KetQuaBUS;
 import java.awt.Color;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -24,12 +25,12 @@ public class Score extends javax.swing.JPanel {
         this.table = jTable2;
     }
 
-    public JTextField getTxtSearch() {
-        return txtSearch;
+    public JComboBox<String> getCbHocKy() {
+        return cbHocKy;
     }
 
-    public void setTxtSearch(JTextField txtSearch) {
-        this.txtSearch = txtSearch;
+    public void setCbHocKy(JComboBox<String> cbHocKy) {
+        this.cbHocKy = cbHocKy;
     }
 
     public JLabel getTxtHocKyHe10() {
@@ -87,7 +88,6 @@ public class Score extends javax.swing.JPanel {
     public void setTxtHocKyVaNam(JLabel txtHocKyVaNam) {
         this.txtHocKyVaNam = txtHocKyVaNam;
     }
-    
 
     /**
      * Creates new form Score
@@ -114,9 +114,8 @@ public class Score extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         txtHocKyVaNam = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel26 = new javax.swing.JLabel();
-        txtSearch = new javax.swing.JTextField();
-        btnXem = new javax.swing.JButton();
+        cbHocKy = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -186,45 +185,37 @@ public class Score extends javax.swing.JPanel {
         txtHocKyVaNam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtHocKyVaNam.setText("Học kỳ 2 Năm học 2022");
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel26.setText("Nhập học kỳ xem điểm thi (VD 20221)");
-        jPanel5.add(jLabel26);
+        cbHocKy.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cbHocKy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", " " }));
+        cbHocKy.setPreferredSize(new java.awt.Dimension(90, 30));
+        cbHocKy.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbHocKyItemStateChanged(evt);
+            }
+        });
 
-        txtSearch.setMinimumSize(new java.awt.Dimension(100, 22));
-        txtSearch.setPreferredSize(new java.awt.Dimension(100, 22));
-        txtSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchActionPerformed(evt);
-            }
-        });
-        jPanel5.add(txtSearch);
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel1.setText("Chọn học kỳ xem điểm:");
 
-        btnXem.setBackground(new java.awt.Color(0, 158, 248));
-        btnXem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnXem.setForeground(new java.awt.Color(255, 255, 255));
-        btnXem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/images/icons8-search-15.png"))); // NOI18N
-        btnXem.setText("Xem");
-        btnXem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        btnXem.setContentAreaFilled(false);
-        btnXem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnXem.setMaximumSize(new java.awt.Dimension(40, 25));
-        btnXem.setMinimumSize(new java.awt.Dimension(40, 16));
-        btnXem.setOpaque(true);
-        btnXem.setPreferredSize(new java.awt.Dimension(80, 25));
-        btnXem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnXemMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnXemMouseExited(evt);
-            }
-        });
-        btnXem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXemActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnXem);
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)))
+        );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -242,11 +233,11 @@ public class Score extends javax.swing.JPanel {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(txtHocKyVaNam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -273,12 +264,12 @@ public class Score extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSoTCHocKy, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(txtSoTCHocKy, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                     .addComponent(txtHocKyHe10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtHocKyHe4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -379,17 +370,17 @@ public class Score extends javax.swing.JPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(67, 67, 67))
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane3)
-                .addGap(22, 22, 22))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3))))
+                .addGap(27, 27, 27))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,7 +391,7 @@ public class Score extends javax.swing.JPanel {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(67, 67, 67))
+                .addContainerGap())
         );
 
         jScrollPane1.setViewportView(jPanel6);
@@ -410,7 +401,7 @@ public class Score extends javax.swing.JPanel {
         scoreLayout.setHorizontalGroup(
             scoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scoreLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addGap(0, 0, 0))
         );
         scoreLayout.setVerticalGroup(
@@ -438,32 +429,19 @@ public class Score extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchActionPerformed
-
-    private void btnXemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemActionPerformed
-      KetQuaBUS kq = new KetQuaBUS();
-      kq.SearchHocKy(this);
-    }//GEN-LAST:event_btnXemActionPerformed
-
-    private void btnXemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXemMouseEntered
-        btnXem.setBackground(new Color(153, 216, 252));
-    }//GEN-LAST:event_btnXemMouseEntered
-
-    private void btnXemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXemMouseExited
-        // TODO add your handling code here:
-        btnXem.setBackground(new Color(0, 158, 248));
-
-    }//GEN-LAST:event_btnXemMouseExited
+    private void cbHocKyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbHocKyItemStateChanged
+        if (evt.getStateChange() == 1) {
+            new KetQuaBUS().SearchHocKy(this);
+        }
+    }//GEN-LAST:event_cbHocKyItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnXem;
+    private javax.swing.JComboBox<String> cbHocKy;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
@@ -481,7 +459,6 @@ public class Score extends javax.swing.JPanel {
     private javax.swing.JLabel txtHocKyHe10;
     private javax.swing.JLabel txtHocKyHe4;
     private javax.swing.JLabel txtHocKyVaNam;
-    private javax.swing.JTextField txtSearch;
     private javax.swing.JLabel txtSoTCHocKy;
     private javax.swing.JLabel txtSoTinChiTichLuy;
     private javax.swing.JLabel txtTichLuyHe10;

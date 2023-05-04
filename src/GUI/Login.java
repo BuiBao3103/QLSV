@@ -295,7 +295,6 @@ public class Login extends javax.swing.JFrame {
             jPanel5.setVisible(true);
 //            jPanel6.setVisible(true);
         }
-        System.out.println("width: " + width + " height: " + height);
 
     }//GEN-LAST:event_formComponentResized
 
