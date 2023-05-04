@@ -37,7 +37,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import org.json.JSONObject;
 
-public class Table extends javax.swing.JFrame implements Runnable {
+public class Home extends javax.swing.JFrame implements Runnable {
 
     private final Color yellow = new Color(255, 188, 0);
     private final Color lightBlue = new Color(0, 158, 248);
@@ -59,7 +59,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     /**
      * Creates new form TableInside
      */
-    public Table() {
+    public Home() {
         Thread t = new Thread(this);
         initComponents();
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resource/images/logologinsmaller.png")));
@@ -1065,7 +1065,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
 //        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
 //                | UnsupportedLookAndFeelException ignored) {
 //        }
-//        new Table().setVisible(true);
+//        new Home().setVisible(true);
 //    }
     public JButton getBtnInformation() {
         return btnInformation;

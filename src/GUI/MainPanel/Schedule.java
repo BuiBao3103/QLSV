@@ -160,7 +160,7 @@ public class Schedule extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(0, 158, 248));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-imac-30.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-schedule-25.png"))); // NOI18N
         jButton1.setText("In TKB");
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -263,9 +263,9 @@ public class Schedule extends javax.swing.JPanel {
                     .addComponent(btnSapXepTheoThuTiet)
                     .addComponent(btnXemDSSV))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scpDSSV, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addComponent(scpDSSV, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

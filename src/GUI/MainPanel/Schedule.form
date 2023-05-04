@@ -99,9 +99,9 @@
                       <Component id="btnXemDSSV" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="198" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="201" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="scpDSSV" pref="207" max="32767" attributes="0"/>
+                  <Component id="scpDSSV" pref="209" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -298,7 +298,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resource/icons/icons8-imac-30.png"/>
+              <Image iconType="3" name="/resource/icons/icons8-schedule-25.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="In TKB"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>

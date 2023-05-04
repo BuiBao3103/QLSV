@@ -11,7 +11,7 @@ import BUS.NQ_CTQBUS;
 import BUS.SinhVienBUS;
 import GUI.Login;
 import GUI.MainPanel.ManagerYear;
-import GUI.Table;
+import GUI.Home;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -103,7 +103,7 @@ public class TaiKhoanBUS {
     }
 
     public void phanQuyen(ArrayList<String> dsq) {
-        Table table = new Table();
+        Home table = new Home();
         resetWhenNewLogin();
         table.setVisible(true);
         table.getBtnInformation().setVisible(false);
