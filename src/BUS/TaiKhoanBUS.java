@@ -51,6 +51,16 @@ public class TaiKhoanBUS {
     public static void login(Login lg) {
         String tenTK = lg.getUsername().getText();
         String matkhau = lg.getPassword().getText();
+        if (tenTK.equals("")) {
+            JOptionPane.showMessageDialog(null, "Chưa nhập tên đăng nhập!");
+            lg.getUsername().requestFocus();
+            return;
+        }
+        if (matkhau.equals("")) {
+            JOptionPane.showMessageDialog(null, "Chưa nhập mật khẩu!");
+            lg.getPassword().requestFocus();
+            return;
+        }
         TaiKhoanBUS qltk = new TaiKhoanBUS();
         curentLogin = qltk.getByUsername(tenTK);
         if (curentLogin != null) {
@@ -65,15 +75,12 @@ public class TaiKhoanBUS {
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ignored) {
-
                 }
-
                 qltk.phanQuyen(dsq);
-
+                lg.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Sai mật khẩu");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Sai tên đăng nhập");
         }

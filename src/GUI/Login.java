@@ -302,7 +302,6 @@ public class Login extends javax.swing.JFrame {
 //        JOptionPane.showMessageDialog(rootPane, "Hello");
 //        animatorLogin.start();
         TaiKhoanBUS.login(this);
-        this.dispose();
 
     }//GEN-LAST:event_button1ActionPerformed
 
