@@ -144,11 +144,12 @@ Insert into CHITIETQUYEN values
 ('CTQ3',N'Xem thời khóa biểu'),
 ('CTQ4',N'Xem điểm'),
 ('CTQ5',N'Nhập điểm'),
-('CTQ6',N'Xem danh sách sinh viên'),
-('CTQ7',N'Tạo nhóm đăn ký môn học'),
-('CTQ8',N'Quản lý sinh viên'),
-('CTQ9',N'Đổi mật khẩu'),
-('CTQ10',N'Quan lý tài khoản')
+('CTQ6',N'Quản lý năm học'),
+('CTQ7','Quản lý sinh viên'),
+('CTQ8',N'Đổi mật khẩu'),
+('CTQ9',N'Công cụ'),
+('CTQ10',N'Thống kê')
+
 
 Insert into NQ_CTQ values 
 ('Q4','CTQ1'),
@@ -156,13 +157,20 @@ Insert into NQ_CTQ values
 ('Q4','CTQ3'),
 ('Q4','CTQ4'),
 ('Q3','CTQ5'),
-('Q3','CTQ6'),
+('Q1','CTQ6'),
 ('Q2','CTQ7'),
 ('Q2','CTQ8'),
 ('Q2','CTQ9'),
 ('Q3','CTQ9'),
 ('Q4','CTQ9'),
-('Q1','CTQ10')
+('Q1','CTQ9'),
+('Q1','CTQ8'),
+('Q3','CTQ8'),
+('Q4','CTQ8'),
+('Q2','CTQ10')
+
+
+
 					-----======================		Tài Khoản	 ======================
 		
 Insert into  TAIKHOAN values
@@ -561,7 +569,6 @@ Insert into KetQua values
 ('3121410046','841109',1,1,'2022','9.5','9.0'),
 ('3121410062','841109',1,1,'2022','9.0','9.0'),
 ('3121410069','841109',1,1,'2022','9.3','9.0')
-select * from sinhvien
 					-----======================		Nhom	 ======================
 --MaHP nvarchar(10) not null,('861301',N'Triết học Mác-Lênin',3,0,40,'GDCT',null),
 --('861302',N'Kinh Tế Chính Trị Mác-Lênin',2,0,40,'GDCT',null),
@@ -988,7 +995,6 @@ add constraint FK_TAIKHOAN_MaNhomQuyen_NHOMQUYEN_MaNhomQuyen foreign key(MaNhomQ
 Alter table NQ_CTQ
 add constraint FK_NQ_CTQ_MaNhomQUyen_NHONQUYEN_MaNhonQuyen foreign key(MaNhomQuyen) references NHOMQUYEN(MaNhomQuyen),
 constraint FK_NQ_CTQ_MaQuyen_CHITIETQUYEN_MaQuyen foreign key(MaQuyen) references CHITIETQUYEN(MaQuyen)
-
 
 
 

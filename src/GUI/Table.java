@@ -1087,6 +1087,10 @@ public class Table extends javax.swing.JFrame implements Runnable {
         return btnGroup;
     }
 
+    public JButton getBtnAccountList() {
+        return btnAccountList;
+    }
+
     public JButton getInputPoint() {
         return btnInputPoint;
     }
@@ -1094,6 +1098,20 @@ public class Table extends javax.swing.JFrame implements Runnable {
     public JButton getStudentList() {
         return btnStudentList;
     }
+
+    public JButton getBtnTool() {
+        return btnTool;
+    }
+
+    public JButton getBtnStatistics() {
+        return btnStatistics;
+    }
+
+    public JButton getBtnSetting() {
+        return btnSetting;
+    }
+
+  
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

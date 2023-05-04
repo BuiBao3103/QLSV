@@ -70,7 +70,7 @@ public class TaiKhoanBUS {
 
                 }
 
-                new TaiKhoanBUS().phanQuyen(dsq);
+                qltk.phanQuyen(dsq);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Sai mật khẩu");
@@ -113,7 +113,10 @@ public class TaiKhoanBUS {
         table.getInputPoint().setVisible(false);
         table.getStudentList().setVisible(false);
         table.getGroup().setVisible(false);
-
+        table.getBtnTool().setVisible(false);
+        table.getBtnAccountList().setVisible(false);
+        table.getBtnStatistics().setVisible(false);
+        table.getBtnSetting().setVisible(false);
         for (String q : dsq) {
             switch (q) {
                 case "CTQ1" -> {
@@ -132,9 +135,20 @@ public class TaiKhoanBUS {
                     table.getInputPoint().setVisible(true);
                 }
                 case "CTQ6" -> {
-                    table.getBtnInformation().setVisible(true);
+                    table.getBtnAccountList().setVisible(true);
                 }
-
+                case "CTQ7" -> {
+                    table.getStudentList().setVisible(true);
+                }
+                case "CTQ8" -> {
+                    table.getBtnSetting().setVisible(true);
+                }
+                case "CTQ9" -> {
+                    table.getBtnTool().setVisible(true);
+                }
+                case "CTQ10" -> {
+                    table.getBtnStatistics().setVisible(true);
+                }
             }
         }
     }
