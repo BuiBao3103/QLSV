@@ -479,7 +479,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             leftBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftBarLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
         );
 
         getContentPane().add(leftBar, java.awt.BorderLayout.LINE_START);
@@ -1111,8 +1111,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
         return btnSetting;
     }
 
-  
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccountList;
@@ -1194,12 +1192,23 @@ public class Table extends javax.swing.JFrame implements Runnable {
             String formattedDate = today.format(formatter);
 
             //getName
+            String nhomQuyen = TaiKhoanBUS.curentLogin.getMaNhomQuyen();
             String id = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
-            String name = SinhVienBUS.getSvByID(id).getHoTen();
-            if (name == null) {
-                name = GiangVienBUS.getGVnameByGVid(id).getTenGV();
+            String name = "";
+            switch (nhomQuyen) {
+                case "Q1" -> {
+                    name = "Admin";
+                }
+                case "Q2" -> {
+                    name = "Giáo vụ khoa " + TaiKhoanBUS.curentLogin.getTenTaiKhoan();
+                }
+                case "Q3" -> {
+                    name = GiangVienBUS.getGVnameByGVid(id).getTenGV();
+                }
+                case "Q4" -> {
+                    name = SinhVienBUS.getSvByID(id).getHoTen();
+                }
             }
-
             //setText
             lblAuthor.setText("-" + author + "-");
             lblQuote.setText("\"" + quote + "\"");
