@@ -445,12 +445,12 @@ public class SinhVienBUS {
         table.getTxtMaTKSinhVien().setText(autoCompleteMaTK() + "");
         table.getTxtNienKhoaSinhVien().setText(autoCompleteNienKhoa());
     }
-    
-    public static void deleteSinhVien(String maSV){
+
+    public static void deleteSinhVien(String maSV) {
         svDAO.delete(maSV);
     }
-    
-    public static void restoreSinhVien(String maSV){
+
+    public static void restoreSinhVien(String maSV) {
         svDAO.restore(maSV);
     }
 
@@ -1163,9 +1163,8 @@ public class SinhVienBUS {
         }
     }
 
-    public static void main(String[] args) {
-//        SinhVien sv = (new SinhVienDAO()).getByMaSV(TaiKhoanBUS.curentLogin.getTenTaiKhoan()).get(0);
-//        System.out.println(sv);
+    public static ArrayList<ArrayList<Object>> getByOption(String maNganh) {
+        return svDAO.getByOption(maNganh);
     }
 
 }
