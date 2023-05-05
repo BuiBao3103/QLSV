@@ -8,6 +8,7 @@ import BUS.SinhVienBUS;
 import DAO.SinhVienDAO;
 import DTO.SinhVienDTO;
 import backend.Excel.IOExcel;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -575,6 +576,12 @@ public class StudentInfor extends javax.swing.JPanel {
         btnTimKiemSinhVien = new javax.swing.JButton();
         btnXoaLoc = new javax.swing.JButton();
 
+        studentinfo.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                studentinfoComponentResized(evt);
+            }
+        });
+
         tblStudentList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -682,7 +689,7 @@ public class StudentInfor extends javax.swing.JPanel {
         btnSuaSinhVien.setBackground(new java.awt.Color(0, 158, 248));
         btnSuaSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSuaSinhVien.setForeground(new java.awt.Color(255, 255, 255));
-        btnSuaSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-tools-30.png"))); // NOI18N
+        btnSuaSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-pen-25.png"))); // NOI18N
         btnSuaSinhVien.setText("Sửa");
         btnSuaSinhVien.setContentAreaFilled(false);
         btnSuaSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -697,7 +704,7 @@ public class StudentInfor extends javax.swing.JPanel {
         btnLuuSinhVien.setBackground(new java.awt.Color(0, 158, 248));
         btnLuuSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLuuSinhVien.setForeground(new java.awt.Color(255, 255, 255));
-        btnLuuSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-save-30.png"))); // NOI18N
+        btnLuuSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-save-25.png"))); // NOI18N
         btnLuuSinhVien.setText("Lưu");
         btnLuuSinhVien.setContentAreaFilled(false);
         btnLuuSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -714,7 +721,7 @@ public class StudentInfor extends javax.swing.JPanel {
         btnXoaSinhVien.setBackground(new java.awt.Color(0, 158, 248));
         btnXoaSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoaSinhVien.setForeground(new java.awt.Color(255, 255, 255));
-        btnXoaSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-trashcan-30.png"))); // NOI18N
+        btnXoaSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-delete-25.png"))); // NOI18N
         btnXoaSinhVien.setText("Xóa");
         btnXoaSinhVien.setContentAreaFilled(false);
         btnXoaSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -940,6 +947,12 @@ public class StudentInfor extends javax.swing.JPanel {
         });
         jPanel1.add(btnNextPage);
 
+        jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                jPanel2ComponentResized(evt);
+            }
+        });
+
         cbTrangThaiSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbTrangThaiSinhVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang Hoạt Động", "Đang Khóa" }));
         cbTrangThaiSinhVien.addItemListener(new java.awt.event.ItemListener() {
@@ -952,7 +965,7 @@ public class StudentInfor extends javax.swing.JPanel {
         btnKhoiPhucSinhVien.setBackground(new java.awt.Color(0, 158, 248));
         btnKhoiPhucSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnKhoiPhucSinhVien.setForeground(new java.awt.Color(255, 255, 255));
-        btnKhoiPhucSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-trash-restore-30.png"))); // NOI18N
+        btnKhoiPhucSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-restore-25.png"))); // NOI18N
         btnKhoiPhucSinhVien.setText("Khôi Phục");
         btnKhoiPhucSinhVien.setContentAreaFilled(false);
         btnKhoiPhucSinhVien.setOpaque(true);
@@ -966,7 +979,7 @@ public class StudentInfor extends javax.swing.JPanel {
         btnImport.setBackground(new java.awt.Color(0, 158, 248));
         btnImport.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnImport.setForeground(new java.awt.Color(255, 255, 255));
-        btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-import-excel-30.png"))); // NOI18N
+        btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-microsoft-excel-25.png"))); // NOI18N
         btnImport.setText("Import");
         btnImport.setContentAreaFilled(false);
         btnImport.setOpaque(true);
@@ -980,7 +993,7 @@ public class StudentInfor extends javax.swing.JPanel {
         btnExport.setBackground(new java.awt.Color(0, 158, 248));
         btnExport.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnExport.setForeground(new java.awt.Color(255, 255, 255));
-        btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-export-excel-30.png"))); // NOI18N
+        btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-export-excel-25.png"))); // NOI18N
         btnExport.setText("Export");
         btnExport.setContentAreaFilled(false);
         btnExport.setOpaque(true);
@@ -994,7 +1007,7 @@ public class StudentInfor extends javax.swing.JPanel {
         btnThemSinhVien.setBackground(new java.awt.Color(0, 158, 248));
         btnThemSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThemSinhVien.setForeground(new java.awt.Color(255, 255, 255));
-        btnThemSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-add-30.png"))); // NOI18N
+        btnThemSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-add-25.png"))); // NOI18N
         btnThemSinhVien.setText("Thêm");
         btnThemSinhVien.setContentAreaFilled(false);
         btnThemSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1018,7 +1031,7 @@ public class StudentInfor extends javax.swing.JPanel {
 
         //PromptSupport.setPrompt("Gợi ý ngắn", txtTimKiemSinhVien);
         txtTimKiemSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtTimKiemSinhVien.setPreferredSize(new java.awt.Dimension(90, 27));
+        txtTimKiemSinhVien.setPreferredSize(new java.awt.Dimension(90, 28));
         txtTimKiemSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtTimKiemSinhVienCaretUpdate(evt);
@@ -1034,7 +1047,7 @@ public class StudentInfor extends javax.swing.JPanel {
         btnTimKiemSinhVien.setBackground(new java.awt.Color(0, 158, 248));
         btnTimKiemSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKiemSinhVien.setForeground(new java.awt.Color(255, 255, 255));
-        btnTimKiemSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-find-30.png"))); // NOI18N
+        btnTimKiemSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-search-25.png"))); // NOI18N
         btnTimKiemSinhVien.setText("Tìm");
         btnTimKiemSinhVien.setContentAreaFilled(false);
         btnTimKiemSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1050,7 +1063,7 @@ public class StudentInfor extends javax.swing.JPanel {
         btnXoaLoc.setBackground(new java.awt.Color(0, 158, 248));
         btnXoaLoc.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnXoaLoc.setForeground(new java.awt.Color(255, 255, 255));
-        btnXoaLoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-restart-30.png"))); // NOI18N
+        btnXoaLoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-restart-25.png"))); // NOI18N
         btnXoaLoc.setText("Xóa");
         btnXoaLoc.setContentAreaFilled(false);
         btnXoaLoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1086,7 +1099,7 @@ public class StudentInfor extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scpStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                .addComponent(scpStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnMoreInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1098,7 +1111,7 @@ public class StudentInfor extends javax.swing.JPanel {
             studentinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentinfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pninfo, javax.swing.GroupLayout.DEFAULT_SIZE, 1048, Short.MAX_VALUE)
+                .addComponent(pninfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         studentinfoLayout.setVerticalGroup(
@@ -1315,12 +1328,26 @@ public class StudentInfor extends javax.swing.JPanel {
             Logger.getLogger(StudentInfor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnImportActionPerformed
+
+    private void studentinfoComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_studentinfoComponentResized
+
+    }//GEN-LAST:event_studentinfoComponentResized
+
+    private void jPanel2ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentResized
+        int width = evt.getComponent().getWidth();
+        int height = evt.getComponent().getHeight();
+        if (width <= 1250) {
+            txtTimKiemSinhVien.setPreferredSize(new Dimension(90, 28));
+        } else {
+            txtTimKiemSinhVien.setPreferredSize(new Dimension(200, 28));
+        }
+    }//GEN-LAST:event_jPanel2ComponentResized
 //    public void setCbNganhSinhVien(ArrayList<String> dsTenNganh) {
-//        cbNganhSinhVien.removeAllItems();
-//        for (String i : dsTenNganh) {
-//            cbNganhSinhVien.addItem(i);
-//        }
-//    }
+    //        cbNganhSinhVien.removeAllItems();
+    //        for (String i : dsTenNganh) {
+    //            cbNganhSinhVien.addItem(i);
+    //        }
+    //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnDongSinhVien;
