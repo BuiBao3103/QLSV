@@ -4,10 +4,13 @@
  */
 package BUS;
 
+import static BUS.NhomBUS.svDAO;
 import DAO.KetQuaDAO;
+import DAO.NienHocDAO;
 import DTO.KetQuaDTO;
 import DTO.HocPhanDTO;
 import DTO.NienHocDTO;
+import DTO.SinhVienDTO;
 import GUI.MainPanel.Score;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -132,7 +135,6 @@ public class KetQuaBUS {
     }
 
     public void addRowData(Score score, int nam, int hk) {
-        System.out.println(dsKQSV.toString());
         JTable table = score.getjTable2();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int stt = 0;
@@ -255,15 +257,6 @@ public class KetQuaBUS {
         table.setAutoCreateRowSorter(true);
     }
 
-    public int[] convertStringToNumber(String text) {
-        int[] result = new int[2];
-        String firstPart = text.substring(0, 4);
-        String secondPart = text.substring(4, 5);
-        result[0] = Integer.parseInt(firstPart);
-        result[1] = Integer.parseInt(secondPart);
-        return result;
-    }
-
     public boolean formatCheck(String text) {
         if (text.length() != 5) {
             return false;
@@ -276,22 +269,23 @@ public class KetQuaBUS {
         return true;
     }
 
+    public void setComboBoxNienHoc(Score score) {
+        score.getCbHocKy().removeAllItems();
+        String maSV = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
+        SinhVienDTO sv = svDAO.getByMaSV(maSV).get(0);
+        int namVaoHoc = Integer.parseInt(sv.getNienKhoa().split("-")[0]);
+        NienHocDTO hientai = new NienHocDAO().getCurrentNienHoc();
+        while (namVaoHoc <= hientai.getNam()) {
+            score.getCbHocKy().addItem(hientai.getHocKi() + "-" + hientai.getNam());
+            hientai = NienHocBUS.prevNienHoc(hientai);
+        }
+    }
+
     public void SearchHocKy(Score score) {
-        String input = score.getTxtSearch().getText();
-        if (input.isEmpty()) {
-            JOptionPane.showMessageDialog(score, "Bạn chưa nhập thông tin");
-            score.getTxtSearch().requestFocus(true);
-            return;
-        }
-        if (formatCheck(input)) {
-            int[] result = convertStringToNumber(input);
-            addRowData(score, result[0], result[1]);
-            score.getTxtSearch().setText("");
-        } else {
-            JOptionPane.showMessageDialog(score, "Nhập sai định dạng");
-            score.getTxtSearch().requestFocus(true);
-            score.getTxtSearch().setText("");
-        }
+        String nh = score.getCbHocKy().getSelectedItem() + "";//2-2022
+        int hk = Integer.parseInt(nh.split("-")[0]);
+        int nam = Integer.parseInt(nh.split("-")[1]);
+        addRowData(score, nam, hk);
     }
 
     public double DiemHe10(String PhanTramQuaTrinh, double diemQuaTrinh, double diemThi) {
@@ -319,11 +313,11 @@ public class KetQuaBUS {
     public String DiemChu(double diemHe10) {
         if (diemHe10 >= 8.5) {
             return "A";
-        } else if (diemHe10 >= 7.0 && diemHe10 <= 8.4) {
+        } else if (diemHe10 >= 7.0) {
             return "B";
-        } else if (diemHe10 >= 5.5 && diemHe10 <= 6.9) {
+        } else if (diemHe10 >= 5.5) {
             return "C";
-        } else if (diemHe10 >= 4.0 && diemHe10 <= 5.4) {
+        } else if (diemHe10 >= 4.0) {
             return "D";
         } else {
             return "F";
@@ -344,11 +338,11 @@ public class KetQuaBUS {
         NienHocDTO nienHocTruoc = NienHocBUS.prevNienHoc(nienHocHienTai);
         int hocKyTruoc = nienHocTruoc.getHocKi();
         int namHocTruoc = nienHocTruoc.getNam();
-       dsSRS.add(kqDAO.getThongKe(hocKyTruoc,namHocTruoc,0.0,4.0));
-       dsSRS.add(kqDAO.getThongKe(hocKyTruoc,namHocTruoc,4.0,5.5));
-       dsSRS.add(kqDAO.getThongKe(hocKyTruoc,namHocTruoc,5.5,7.0));
-       dsSRS.add(kqDAO.getThongKe(hocKyTruoc,namHocTruoc,7.0,8.5));
-       dsSRS.add(kqDAO.getThongKe(hocKyTruoc,namHocTruoc,8.5,10.1));
+        dsSRS.add(kqDAO.getThongKe(hocKyTruoc, namHocTruoc, 0.0, 4.0));
+        dsSRS.add(kqDAO.getThongKe(hocKyTruoc, namHocTruoc, 4.0, 5.5));
+        dsSRS.add(kqDAO.getThongKe(hocKyTruoc, namHocTruoc, 5.5, 7.0));
+        dsSRS.add(kqDAO.getThongKe(hocKyTruoc, namHocTruoc, 7.0, 8.5));
+        dsSRS.add(kqDAO.getThongKe(hocKyTruoc, namHocTruoc, 8.5, 10.1));
         return dsSRS;
     }
 
@@ -364,7 +358,6 @@ public class KetQuaBUS {
 //           System.out.println(hocKyTruoc);
 //        System.out.println(namHocTruoc);
 //    }
-
     public ArrayList<KetQuaDTO> getDsKQSV() {
         return dsKQSV;
     }

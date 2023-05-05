@@ -295,7 +295,6 @@ public class Login extends javax.swing.JFrame {
             jPanel5.setVisible(true);
 //            jPanel6.setVisible(true);
         }
-        System.out.println("width: " + width + " height: " + height);
 
     }//GEN-LAST:event_formComponentResized
 
@@ -303,7 +302,6 @@ public class Login extends javax.swing.JFrame {
 //        JOptionPane.showMessageDialog(rootPane, "Hello");
 //        animatorLogin.start();
         TaiKhoanBUS.login(this);
-        this.dispose();
 
     }//GEN-LAST:event_button1ActionPerformed
 

@@ -6,7 +6,7 @@ package GUI.MainPanel;
 
 import BUS.KetQuaBUS;
 import BUS.NganhBUS;
-import DAO.SinhVienDAO;
+import BUS.SinhVienBUS;
 import DTO.NganhDTO;
 import connectDB.ConnectionDB;
 import java.awt.Color;
@@ -98,7 +98,6 @@ public class Statistics extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         pieChart = new javax.swing.JPanel();
         columnChart = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         columnChartOption = new javax.swing.JComboBox<>();
 
         jPanel1 = new RoundedPanel(20, new Color(50,177,249));
@@ -133,7 +132,7 @@ public class Statistics extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,7 +201,7 @@ public class Statistics extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -348,20 +347,12 @@ public class Statistics extends javax.swing.JPanel {
         columnChart.setLayout(columnChartLayout);
         columnChartLayout.setHorizontalGroup(
             columnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 831, Short.MAX_VALUE)
+            .addGap(0, 841, Short.MAX_VALUE)
         );
         columnChartLayout.setVerticalGroup(
             columnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 299, Short.MAX_VALUE)
+            .addGap(0, 324, Short.MAX_VALUE)
         );
-
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toàn trường" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
 
         columnChartOption.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         columnChartOption.addItemListener(new java.awt.event.ItemListener() {
@@ -383,7 +374,6 @@ public class Statistics extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(columnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(columnChartOption, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pieChart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
@@ -392,8 +382,6 @@ public class Statistics extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pieChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(columnChartOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -425,10 +413,6 @@ public class Statistics extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void columnChartOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_columnChartOptionActionPerformed
 
@@ -547,9 +531,9 @@ public class Statistics extends javax.swing.JPanel {
     public void drawColumnChart(String header, String maNganh) throws SQLException {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         ArrayList<ArrayList<Object>> data = new ArrayList<>();
-        data = new SinhVienDAO().getByOption(maNganh);
+        data = SinhVienBUS.getByOption(maNganh);
         for (ArrayList<Object> row : data) {
-            dataset.addValue((Number) row.get(0), KEY1, row.get(1).toString());
+            dataset.addValue((Number) row.get(0), "Năm học", row.get(1).toString());
         }
         JFreeChart chart = ChartFactory.createBarChart(header, "Năm học", "Số lượng", dataset, PlotOrientation.VERTICAL, true, true, false);
         ChartPanel chartPanel = new ChartPanel(chart);
@@ -566,9 +550,9 @@ public class Statistics extends javax.swing.JPanel {
     }
 
     public void drawPieChart(JPanel panel) {
-        ArrayList <Integer> dsSRS = KetQuaBUS.getStatisticsResultScore();
-        
-        DefaultPieDataset dataset = new DefaultPieDataset();       
+        ArrayList<Integer> dsSRS = KetQuaBUS.getStatisticsResultScore();
+
+        DefaultPieDataset dataset = new DefaultPieDataset();
         dataset.setValue(KEY1, dsSRS.get(0));
         dataset.setValue(KEY2, dsSRS.get(1));
         dataset.setValue(KEY3, dsSRS.get(2));
@@ -576,7 +560,7 @@ public class Statistics extends javax.swing.JPanel {
         dataset.setValue(KEY5, dsSRS.get(4));
 
         JFreeChart someChart = ChartFactory.createPieChart(
-                "Đánh giá học tập", dataset, true, true, false);
+                "Đánh giá học tập toàn trường", dataset, true, true, false);
         PiePlot plot = (PiePlot) someChart.getPlot();
         plot.setSectionPaint(KEY1, Color.green);
         plot.setSectionPaint(KEY2, Color.red);
@@ -613,7 +597,6 @@ public class Statistics extends javax.swing.JPanel {
     private javax.swing.JLabel iconItem;
     private javax.swing.JLabel iconItem1;
     private javax.swing.JLabel iconItem2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -37,7 +37,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import org.json.JSONObject;
 
-public class Table extends javax.swing.JFrame implements Runnable {
+public class Home extends javax.swing.JFrame implements Runnable {
 
     private final Color yellow = new Color(255, 188, 0);
     private final Color lightBlue = new Color(0, 158, 248);
@@ -59,7 +59,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
     /**
      * Creates new form TableInside
      */
-    public Table() {
+    public Home() {
         Thread t = new Thread(this);
         initComponents();
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resource/images/logologinsmaller.png")));
@@ -479,7 +479,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
             leftBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftBarLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
         );
 
         getContentPane().add(leftBar, java.awt.BorderLayout.LINE_START);
@@ -721,6 +721,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
         int namHienTai = NienHocBUS.getCurrentNienHoc().getNam();
         kq.addRowData(score, namHienTai, hkHienTai);
         kq.ShowTichLuy(score);
+        kq.setComboBoxNienHoc(score);
 
     }// GEN-LAST:event_btnScoreActionPerformed
 
@@ -1065,7 +1066,7 @@ public class Table extends javax.swing.JFrame implements Runnable {
 //        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
 //                | UnsupportedLookAndFeelException ignored) {
 //        }
-//        new Table().setVisible(true);
+//        new Home().setVisible(true);
 //    }
     public JButton getBtnInformation() {
         return btnInformation;
@@ -1110,8 +1111,6 @@ public class Table extends javax.swing.JFrame implements Runnable {
     public JButton getBtnSetting() {
         return btnSetting;
     }
-
-  
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1194,12 +1193,23 @@ public class Table extends javax.swing.JFrame implements Runnable {
             String formattedDate = today.format(formatter);
 
             //getName
+            String nhomQuyen = TaiKhoanBUS.curentLogin.getMaNhomQuyen();
             String id = TaiKhoanBUS.curentLogin.getTenTaiKhoan();
-            String name = SinhVienBUS.getSvByID(id).getHoTen();
-            if (name == null) {
-                name = GiangVienBUS.getGVnameByGVid(id).getTenGV();
+            String name = "";
+            switch (nhomQuyen) {
+                case "Q1" -> {
+                    name = "Admin";
+                }
+                case "Q2" -> {
+                    name = "Giáo vụ khoa " + TaiKhoanBUS.curentLogin.getTenTaiKhoan();
+                }
+                case "Q3" -> {
+                    name = GiangVienBUS.getGVnameByGVid(id).getTenGV();
+                }
+                case "Q4" -> {
+                    name = SinhVienBUS.getSvByID(id).getHoTen();
+                }
             }
-
             //setText
             lblAuthor.setText("-" + author + "-");
             lblQuote.setText("\"" + quote + "\"");
