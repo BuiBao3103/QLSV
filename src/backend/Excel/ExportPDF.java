@@ -17,12 +17,15 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -76,6 +79,21 @@ public class ExportPDF {
         return now.getMonthValue();
     }
 
+    public static PdfPCell createCell(String text, Font font) {
+        PdfPCell cell = new PdfPCell(new Phrase(text, font));
+        cell.setBorderWidth(0);
+        cell.setPaddingTop(7f);
+        cell.setPaddingBottom(7f);
+        return cell;
+    }
+
+    public static void addTextToParagraph(Document document, String text, Font font) throws DocumentException {
+        Paragraph paragraph = new Paragraph(text, font);
+        paragraph.setSpacingBefore(5f);
+        paragraph.setSpacingAfter(5f);
+        document.add(paragraph);
+    }
+
     public static void generatePDF(String mssv) {
         BaseFont vietnameseFont = null;
         float topMargin = 10f;
@@ -93,10 +111,17 @@ public class ExportPDF {
         Font top_vn = new Font(vietnameseFont, 10);
         Font title_vn = new Font(vietnameseFont, 12, Font.ITALIC);
 
-        String fileName = "res/" + mssv + ".pdf";
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.showSaveDialog(null);
+        File savefile = jFileChooser.getSelectedFile();
+        if (savefile != null) {
+            savefile = new File(savefile.toString() + ".pdf");
+        } else {
+            JOptionPane.showMessageDialog(null, "File không được tạo");
+        }
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(fileName));
+            PdfWriter.getInstance(document, new FileOutputStream(savefile.getPath()));
             document.open();
             PdfPTable top_table = new PdfPTable(2);
             top_table.setWidthPercentage(100);
@@ -142,81 +167,20 @@ public class ExportPDF {
             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
             table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
             table.getDefaultCell().setBorderWidth(0);
-            PdfPCell cell1 = new PdfPCell(new Phrase("Họ và tên:", vn));
-            cell1.setBorderWidth(0);
-            cell1.setPaddingTop(7f);
-            cell1.setPaddingBottom(7f);
-            table.addCell(cell1);
-
-            PdfPCell cell2 = new PdfPCell(new Phrase(sv.getHoTen(), vn));
-            cell2.setBorderWidth(0);
-            cell2.setPaddingTop(7f);
-            cell2.setPaddingBottom(7f);
-            table.addCell(cell2);
-
-            PdfPCell cell3 = new PdfPCell(new Phrase("MSSV:", vn));
-            cell3.setBorderWidth(0);
-            cell3.setPaddingTop(7f);
-            cell3.setPaddingBottom(7f);
-            table.addCell(cell3);
-
-            PdfPCell cell4 = new PdfPCell(new Phrase(sv.getMaSV(), vn));
-            cell4.setBorderWidth(0);
-            cell4.setPaddingTop(7f);
-            cell4.setPaddingBottom(7f);
-            table.addCell(cell4);
-
-            PdfPCell cell5 = new PdfPCell(new Phrase("CCCD:", vn));
-            cell5.setBorderWidth(0);
-            cell5.setPaddingTop(7f);
-            cell5.setPaddingBottom(7f);
-            table.addCell(cell5);
-
-            PdfPCell cell6 = new PdfPCell(new Phrase(sv.getCmnd(), vn));
-            cell6.setBorderWidth(0);
-            cell6.setPaddingTop(7f);
-            cell6.setPaddingBottom(7f);
-            table.addCell(cell6);
-
-            PdfPCell cell7 = new PdfPCell(new Phrase("Số điện thoại:", vn));
-            cell7.setBorderWidth(0);
-            cell7.setPaddingTop(7f);
-            cell7.setPaddingBottom(7f);
-            table.addCell(cell7);
-
-            PdfPCell cell8 = new PdfPCell(new Phrase(sv.getSoDienThoai(), vn));
-            cell8.setBorderWidth(0);
-            cell8.setPaddingTop(7f);
-            cell8.setPaddingBottom(7f);
-            table.addCell(cell8);
-
-            PdfPCell cell9 = new PdfPCell(new Phrase("Niên khóa:", vn));
-            cell9.setBorderWidth(0);
-            cell9.setPaddingTop(7f);
-            cell9.setPaddingBottom(7f);
-            table.addCell(cell9);
-
-            PdfPCell cell10 = new PdfPCell(new Phrase(sv.getNienKhoa(), vn));
-            cell10.setBorderWidth(0);
-            cell10.setPaddingTop(7f);
-            cell10.setPaddingBottom(7f);
-            table.addCell(cell10);
+            table.addCell(createCell("Họ và tên:", vn));
+            table.addCell(createCell(sv.getHoTen(), vn));
+            table.addCell(createCell("MSSV:", vn));
+            table.addCell(createCell(sv.getMaSV(), vn));
+            table.addCell(createCell("CCCD:", vn));
+            table.addCell(createCell(sv.getCmnd(), vn));
+            table.addCell(createCell("Số điện thoại:", vn));
+            table.addCell(createCell(sv.getSoDienThoai(), vn));
+            table.addCell(createCell("Niên khóa:", vn));
+            table.addCell(createCell(sv.getNienKhoa(), vn));
             document.add(table);
 
-            Paragraph text1 = new Paragraph();
-            Paragraph text2 = new Paragraph();
-
-            text1.setFont(vn);
-            text1.add("Giấy xác nhận này cấp cho sinh viên dùng để bổ túc vào hồ sơ tạm hoãn nghĩa vụ quân sự tại địa phương");
-            text1.setSpacingBefore(5f);
-            text1.setSpacingAfter(5f);
-            document.add(text1);
-
-            text2.setFont(vn);
-            text2.add("Giấy này có giá trị 20 ngày kể từ ngày kí");
-            text2.setSpacingBefore(5f);
-            text2.setSpacingAfter(5f);
-            document.add(text2);
+            addTextToParagraph(document, "Giấy xác nhận này cấp cho sinh viên dùng để bổ túc vào hồ sơ tạm hoãn nghĩa vụ quân sự tại địa phương", vn);
+            addTextToParagraph(document, "Giấy này có giá trị 20 ngày kể từ ngày kí", vn);
 
             PdfPTable bottom_table = new PdfPTable(2);
             bottom_table.setWidthPercentage(100);
