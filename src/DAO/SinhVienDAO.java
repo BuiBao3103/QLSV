@@ -82,6 +82,39 @@ public class SinhVienDAO {
         return data;
     }
 
+    public SinhVienDTO getPDF(String mssv) {
+        con = ConnectionDB.getConnection();
+        SinhVienDTO svTemp = new SinhVienDTO();
+        try {
+            String query = "SELECT * FROM SinhVien WHERE MaSV like '%" + mssv + "%'";
+            pstm = con.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
+                String maSV = rs.getString("MaSV");
+                String cmnd = rs.getString("Cmnd");
+                String soDienThoai = rs.getString("SoDienThoai");
+                String maLop = rs.getString("MaLop");
+                String hoTen = rs.getString("HoTen");
+                Date ngaySinh = rs.getDate("NgaySinh");
+                String gioiTinh = rs.getString("GioiTinh");
+                String diaChi = rs.getString("DiaChi");
+                String danToc = rs.getString("DanToc");
+                String tonGiao = rs.getString("TonGiao");
+                String nienKhoa = rs.getString("NienKhoa");
+                String maNganh = rs.getString("MaNganh");
+                int maTK = rs.getInt("MaTK");
+                SinhVienDTO sv = new SinhVienDTO(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+                svTemp = sv;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(con, pstm);
+        }
+        return svTemp;
+    }
+
     public ArrayList<SinhVienDTO> getByKhoa(String maKhoa) { // hàm này lấy dssv theo mã khoa truyền vào
         con = ConnectionDB.getConnection();
         ArrayList<SinhVienDTO> dssv = new ArrayList<>();//+

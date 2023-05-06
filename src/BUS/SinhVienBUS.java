@@ -1167,4 +1167,7 @@ public class SinhVienBUS {
         return svDAO.getByOption(maNganh);
     }
 
+    public static SinhVienDTO  getPDF(String mssv) {
+        return svDAO.getPDF(mssv);
+    }
 }

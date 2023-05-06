@@ -4,9 +4,8 @@
  */
 package backend.Excel;
 
+import BUS.SinhVienBUS;
 import DTO.SinhVienDTO;
-import connectDB.ConnectionDB;
-import java.sql.Connection;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -21,12 +20,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
@@ -34,41 +30,37 @@ import java.util.Date;
  */
 public class ExportPDF {
 
-    static Connection con = null;
-    static PreparedStatement pstm = null;
-
-    public static SinhVienDTO getSinhVien(String MaSV) {
-        con = ConnectionDB.getConnection();
-        SinhVienDTO sv = null;
-        try {
-            String query = "SELECT * FROM SinhVien WHERE MaSV like '%" + MaSV + "%'";
-            pstm = con.prepareStatement(query);
-            ResultSet rs = pstm.executeQuery();
-            if (rs.next()) {
-                int trangThai = rs.getInt("TrangThai");
-                String maSV = rs.getString("MaSV");
-                String cmnd = rs.getString("Cmnd");
-                String soDienThoai = rs.getString("SoDienThoai");
-                String maLop = rs.getString("MaLop");
-                String hoTen = rs.getString("HoTen");
-                Date ngaySinh = rs.getDate("NgaySinh");
-                String gioiTinh = rs.getString("GioiTinh");
-                String diaChi = rs.getString("DiaChi");
-                String danToc = rs.getString("DanToc");
-                String tonGiao = rs.getString("TonGiao");
-                String nienKhoa = rs.getString("NienKhoa");
-                String maNganh = rs.getString("MaNganh");
-                int maTK = rs.getInt("MaTK");
-                sv = new SinhVienDTO(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            ConnectionDB.closeConnection(con, pstm);
-        }
-        return sv;
-    }
-
+//    public static SinhVienDTO getSinhVien(String MaSV) {
+//        con = ConnectionDB.getConnection();
+//        SinhVienDTO sv = null;
+//        try {
+//            String query = "SELECT * FROM SinhVien WHERE MaSV like '%" + MaSV + "%'";
+//            pstm = con.prepareStatement(query);
+//            ResultSet rs = pstm.executeQuery();
+//            if (rs.next()) {
+//                int trangThai = rs.getInt("TrangThai");
+//                String maSV = rs.getString("MaSV");
+//                String cmnd = rs.getString("Cmnd");
+//                String soDienThoai = rs.getString("SoDienThoai");
+//                String maLop = rs.getString("MaLop");
+//                String hoTen = rs.getString("HoTen");
+//                Date ngaySinh = rs.getDate("NgaySinh");
+//                String gioiTinh = rs.getString("GioiTinh");
+//                String diaChi = rs.getString("DiaChi");
+//                String danToc = rs.getString("DanToc");
+//                String tonGiao = rs.getString("TonGiao");
+//                String nienKhoa = rs.getString("NienKhoa");
+//                String maNganh = rs.getString("MaNganh");
+//                int maTK = rs.getInt("MaTK");
+//                sv = new SinhVienDTO(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh, gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            ConnectionDB.closeConnection(con, pstm);
+//        }
+//        return sv;
+//    }
     public static int getCurrentDay() {
         LocalDate currentDate = LocalDate.now();
         return currentDate.getDayOfMonth();
@@ -84,12 +76,15 @@ public class ExportPDF {
         return now.getMonthValue();
     }
 
-    public static void generatePDF(String mssv, SinhVienDTO sv) {
+    public static void generatePDF(String mssv) {
         BaseFont vietnameseFont = null;
         float topMargin = 10f;
         float bottomMargin = 10f;
+        SinhVienDTO sv = SinhVienBUS.getPDF(mssv);
+        System.out.println(sv.getHoTen());
+//        System.out.println(sv.getMaSV());
         try {
-            vietnameseFont = BaseFont.createFont("arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            vietnameseFont = BaseFont.createFont("/resource/arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());
             return;
@@ -113,7 +108,7 @@ public class ExportPDF {
             top_table.getDefaultCell().setBorderWidth(0);
 
 // add the first cell
-            PdfPCell top1 = new PdfPCell(new Phrase("TRƯỜNG ĐẠI HỌC MỘT MÌNH T", top_vn));
+            PdfPCell top1 = new PdfPCell(new Phrase("TRƯỜNG ĐẠI HỌC SÀI GÒN", top_vn));
             top1.setBorderWidth(0);
             top1.setPaddingTop(topMargin);
             top1.setPaddingBottom(bottomMargin);
@@ -128,7 +123,7 @@ public class ExportPDF {
 
             document.add(top_table);
             // Add image to the title
-            Image image = Image.getInstance("src\\images\\logologinsmaller.png");
+            Image image = Image.getInstance("src\\resource\\images\\logologinsmaller.png");
             image.scaleAbsolute(70f, 70f);
             image.setAlignment(Element.ALIGN_CENTER);
             Paragraph title = new Paragraph();
@@ -216,7 +211,7 @@ public class ExportPDF {
             text1.setSpacingBefore(5f);
             text1.setSpacingAfter(5f);
             document.add(text1);
-            
+
             text2.setFont(vn);
             text2.add("Giấy này có giá trị 20 ngày kể từ ngày kí");
             text2.setSpacingBefore(5f);
@@ -261,7 +256,7 @@ public class ExportPDF {
             bot5.setPaddingBottom(3f);
             bottom_table.addCell(bot5);
 
-            PdfPCell bot6 = new PdfPCell(new Phrase("Nguyễn Tiến Phát", vn));
+            PdfPCell bot6 = new PdfPCell(new Phrase("Nguyễn Thị Hồng Anh", vn));
             bot6.setBorderWidth(0);
             bot6.setPaddingTop(20f);
             bot6.setPaddingBottom(3f);
