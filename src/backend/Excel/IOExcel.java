@@ -65,84 +65,60 @@ public class IOExcel {
 
     public static void writeExcel(JTable table, String header, String sheetName) {
         try {
-            JFileChooser jFileChooser = new JFileChooser();
-            jFileChooser.showSaveDialog(table.getParent());
-            File savefile = jFileChooser.getSelectedFile();
-            if (savefile != null) {
-                savefile = new File(savefile.toString() + ".xlsx");
-                XSSFWorkbook wb = new XSSFWorkbook();
-                XSSFSheet sheet = wb.createSheet(sheetName);
-                //tạo hàng đầu tiên để đặt tiêu đề cho bảng
-                Row rowCol = sheet.createRow(0);
-
-                // Set title
-                CellStyle titleStyle = wb.createCellStyle();
-                titleStyle.setAlignment(HorizontalAlignment.CENTER);
-                XSSFFont font = wb.createFont();
-                font.setBold(true);
-                font.setFontHeightInPoints((short) 16);
-                titleStyle.setFont(font);
-                Cell titleCell = rowCol.createCell(0);
-                titleCell.setCellValue(header);
-                titleCell.setCellStyle(titleStyle);
-                sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, table.getColumnCount() - 1));
-
-                // Set header
-                CellStyle headerStyle = wb.createCellStyle();
-                headerStyle.setAlignment(HorizontalAlignment.CENTER);
-                Row rowHeader = sheet.createRow(1);
-                for (int i = 0; i < table.getColumnCount(); i++) {
-                    Cell cell = rowHeader.createCell(i);
-                    cell.setCellValue(table.getColumnName(i));
-                    cell.setCellStyle(headerStyle);
-                }
-
-                // Set data
-                CellStyle dataStyle = wb.createCellStyle();
-                dataStyle.setAlignment(HorizontalAlignment.CENTER);
-                for (int j = 0; j < table.getRowCount(); j++) {
-                    Row row = sheet.createRow(j + 2);
-                    for (int k = 0; k < table.getColumnCount(); k++) {
-                        Cell cell = row.createCell(k);
-                        if (table.getValueAt(j, k) != null) {
-                            cell.setCellValue(table.getValueAt(j, k).toString());
-                        }
-                        cell.setCellStyle(dataStyle);
-                    }
-                }
-
-                // Set column widths for data rows
-                for (int i = 0; i < table.getColumnCount(); i++) {
-                    sheet.autoSizeColumn(i);
-                }
-                try (FileOutputStream out = new FileOutputStream(new File(savefile.toString()))) {
-                    wb.write(out);
-                }
-                JOptionPane.showMessageDialog(null, "Xuất File Excel thành công");
-
-            } else {
+            JFileChooser jfc = new JFileChooser();
+            //hiển thị hộp thoại cho người dùng chọn nơi lưu tập tin
+            jfc.showSaveDialog(table.getParent());
+            File file = jfc.getSelectedFile();
+            if (file == null) {
                 JOptionPane.showMessageDialog(null, "Xuất File Excel thất bại");
+                return;
             }
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        } catch (IOException ex) {
-            Logger.getLogger(Schedule.class.getName()).log(Level.SEVERE, null, ex);
+            file = new File(file.toString() + ".xlsx");
+            XSSFWorkbook wb = new XSSFWorkbook();
+            XSSFSheet sheet = wb.createSheet(sheetName);
+            Row row = sheet.createRow(0);
+            CellStyle style = wb.createCellStyle();
+            style.setAlignment(HorizontalAlignment.CENTER);
+            XSSFFont font = wb.createFont();
+            font.setBold(true);
+            font.setFontHeightInPoints((short) 16);
+            style.setFont(font);
+            Cell cell = row.createCell(0);
+            cell.setCellValue(header);
+            cell.setCellStyle(style);
+            //câu lệnh này dùng để các ô trong sheet thành 1 ô duy nhất
+            sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, table.getColumnCount() - 1));
+            style = wb.createCellStyle();
+            style.setAlignment(HorizontalAlignment.CENTER);
+            row = sheet.createRow(1);
+            for (int i = 0; i < table.getColumnCount(); i++) {
+                cell = row.createCell(i);
+                cell.setCellValue(table.getColumnName(i));
+                cell.setCellStyle(style);
+            }
+            style = wb.createCellStyle();
+            style.setAlignment(HorizontalAlignment.CENTER);
+            for (int i = 0; i < table.getRowCount(); i++) {
+                row = sheet.createRow(i + 2);
+                for (int j = 0; j < table.getColumnCount(); j++) {
+                    cell = row.createCell(j);
+                    Object value = table.getValueAt(i, j);
+                    cell.setCellValue(value != null ? value.toString() : "");
+                    cell.setCellStyle(style);
+                }
+            }
+            //dùng để auto resize cho các cột dữ liệu
+            for (int i = 0; i < table.getColumnCount(); i++) {
+                sheet.autoSizeColumn(i);
+            }
+            try (FileOutputStream out = new FileOutputStream(file)) {
+                wb.write(out);
+            }
+            JOptionPane.showMessageDialog(null, "Xuất File Excel thành công");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Xuất File Excel thất bại");
+            e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws IOException, InvalidFormatException {
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
-                | UnsupportedLookAndFeelException ignored) {
-        }
-
-        ArrayList<ArrayList<Object>> data = IOExcel.readExcel(0);
-        for (ArrayList<Object> sv : data) {
-            for (Object cot : sv) {
-                System.out.print(cot.toString() + " ");
-            }
-            System.out.println();
-        }
-    }
 }
