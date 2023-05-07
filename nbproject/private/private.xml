@@ -15,9 +15,15 @@
             <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/DAO/KetQuaDAO.java</file>
             <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/BUS/TaiKhoanBUS.java</file>
             <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/BUS/KetQuaBUS.java</file>
+            <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/GUI/MainPanel/SubjectRegistration.java</file>
             <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/DAO/GiangVienDAO.java</file>
+            <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/GUI/Login.java</file>
+            <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/GUI/MainPanel/StudentInfor.java</file>
             <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/BUS/GiangVienBUS.java</file>
             <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/DTO/GiangVienDTO.java</file>
+            <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/GUI/MainPanel/Statistics.java</file>
+            <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/GUI/Home.java</file>
+            <file>file:/D:/SGU/Year2/HK2/Java2/StudentManager/src/GUI/MainPanel/PersonalInfo.java</file>
         </group>
     </open-files>
 </project-private>

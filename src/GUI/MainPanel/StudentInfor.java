@@ -1031,7 +1031,7 @@ public class StudentInfor extends javax.swing.JPanel {
 
         //PromptSupport.setPrompt("Gợi ý ngắn", txtTimKiemSinhVien);
         txtTimKiemSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtTimKiemSinhVien.setPreferredSize(new java.awt.Dimension(90, 28));
+        txtTimKiemSinhVien.setPreferredSize(new java.awt.Dimension(120, 28));
         txtTimKiemSinhVien.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtTimKiemSinhVienCaretUpdate(evt);
