@@ -966,8 +966,7 @@ public class SinhVienBUS {
         if (!checkCMND(sv.getCmnd()) || !checkDanToc(sv.getDanToc()) || !checkDiaChi(sv.getDiaChi()) //|| !checkMaLop(sv.getMaLop())
                 || !checkGioiTinh(sv.getGioiTinh()) || !checkHoTen(sv.getHoTen()) || !checkMSSV(sv.getMaSV())
                 || !checkMaTaiKhoan(sv.getMaTK() + "") || !checkNganh(maNganhToTenNganh(sv.getMaNganh())) || !checkNgaySinh(dateFormat.format(sv.getNgaySinh()))
-                || !checkNienKhoa(sv.getNienKhoa()) || !checkSoDienThoai(sv.getSoDienThoai()) || !checkTonGiao(sv.getTonGiao()) || checkExistCMND(sv.getCmnd())
-                || checkExistMSSV(sv.getMaSV()) || checkExistMaTaiKhoan(sv.getMaTK() + "")) {
+                || !checkNienKhoa(sv.getNienKhoa()) || !checkSoDienThoai(sv.getSoDienThoai()) || !checkTonGiao(sv.getTonGiao())) {
             return false;
         }
         return true;
@@ -1126,10 +1125,10 @@ public class SinhVienBUS {
             int trangThai = 1;
             String maSV = svAttibute.get(0).toString();
             String cmnd = svAttibute.get(1).toString();
+
             String soDienThoai = svAttibute.get(2).toString();
             String maLop = svAttibute.get(3).toString();
             String hoTen = svAttibute.get(4).toString();
-            System.out.println("[" + svAttibute.get(5).toString() + "]");
             Date ngaySinh = dateFormat.parse("2000-01-01");
             try {
                 ngaySinh = dateFormat.parse(svAttibute.get(5).toString());
@@ -1145,11 +1144,13 @@ public class SinhVienBUS {
             int maTK = svDAO.maxMaTK() + 1;
             SinhVienDTO sv = new SinhVienDTO(trangThai, maSV, cmnd, soDienThoai, maLop, hoTen, ngaySinh,
                     gioiTinh, diaChi, danToc, tonGiao, nienKhoa, maNganh, maTK);
-            if (checkAllInfo(sv)) {
-                dssv.add(sv);
+
+            if (checkAllInfo(sv) && !checkExistCMND(sv.getCmnd())
+                    && !checkExistMSSV(sv.getMaSV()) && !checkExistMaTaiKhoan(sv.getMaTK() + "")) {
+                dssv.add(sv);//thêm vào mảng danh sách để tí cập nhật dưới database
+                SinhVienBUS.dssv.add(sv);//thêm vào mảng danh sách sinh viên của lần đăng nhập hiện thời
                 createTaiKhoanForSinhVien(sv);
             } else {
-                System.out.println("cai gi cung dc");
                 err += sv.getMaSV() + "\n";
             }
         }
@@ -1167,7 +1168,7 @@ public class SinhVienBUS {
         return svDAO.getByOption(maNganh);
     }
 
-    public static SinhVienDTO  getPDF(String mssv) {
+    public static SinhVienDTO getPDF(String mssv) {
         return svDAO.getPDF(mssv);
     }
 }
