@@ -98,7 +98,6 @@ public class TaiKhoanBUS {
         return -1;
     }
 
-
     public void phanQuyen(ArrayList<String> dsq) {
         Home table = new Home();
         resetWhenNewLogin();
@@ -163,6 +162,10 @@ public class TaiKhoanBUS {
             managerYear.getRdDKN().setSelected(true);
         }
 
+    }
+
+    public static void updatePwd(int maTK, String newPwd) {
+        tkDAO.updatePwd(maTK, newPwd);
     }
 
     public static void saveConfigManagerYear(ManagerYear managerYear) {

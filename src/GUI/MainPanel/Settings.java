@@ -35,6 +35,7 @@ public class Settings extends javax.swing.JPanel {
         "com.sun.java.swing.plaf.motif.MotifLookAndFeel",
         "com.sun.java.swing.plaf.windows.WindowsLookAndFeel",
         "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel"};
+
     public Settings() {
         initComponents();
     }
@@ -415,15 +416,15 @@ public class Settings extends javax.swing.JPanel {
             return;
         }
         try {
-            TaiKhoanDAO tknew = new TaiKhoanDAO();
-            tknew.updatePwd(curUser, newPwd);
+            TaiKhoanBUS tkBus = new TaiKhoanBUS();
+            tkBus.updatePwd(curUser, newPwd);
             JOptionPane.showMessageDialog(null, "Thay đổi mật khẩu thành công!!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Thay đổi mật khẩu thất bại!!");
 
         }
     }//GEN-LAST:event_button1ActionPerformed
-      private void changeTheme(JRadioButton btn, String themeText) {
+    private void changeTheme(JRadioButton btn, String themeText) {
         String text = UIManager.getSystemLookAndFeelClassName();
         if (text.equals(themeText)) {
             btn.setSelected(true);
@@ -444,7 +445,7 @@ public class Settings extends javax.swing.JPanel {
         this.validate();
         this.repaint();
     }
-    
+
     class RoundedPanel extends JPanel {
 
         private Color backgroundColor;
@@ -492,7 +493,7 @@ public class Settings extends javax.swing.JPanel {
             graphics.drawRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height); //paint border
         }
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnMetal;
