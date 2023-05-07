@@ -127,6 +127,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnInformation.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnInformation.setForeground(new java.awt.Color(255, 255, 255));
         btnInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/personalInfo.png"))); // NOI18N
+        btnInformation.setMnemonic('1');
         btnInformation.setText("Thông tin cá nhân");
         btnInformation.setAlignmentX(1.0F);
         btnInformation.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
@@ -156,6 +157,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnSubjectRegistration.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnSubjectRegistration.setForeground(new java.awt.Color(255, 255, 255));
         btnSubjectRegistration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-book-and-pencil-30.png"))); // NOI18N
+        btnSubjectRegistration.setMnemonic('2');
         btnSubjectRegistration.setText("Đăng kí môn học");
         btnSubjectRegistration.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnSubjectRegistration.setContentAreaFilled(false);
@@ -184,6 +186,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnSchedule.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnSchedule.setForeground(new java.awt.Color(255, 255, 255));
         btnSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-calendar-30.png"))); // NOI18N
+        btnSchedule.setMnemonic('3');
         btnSchedule.setText("Xem TKB");
         btnSchedule.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnSchedule.setContentAreaFilled(false);
@@ -212,6 +215,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnScore.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnScore.setForeground(new java.awt.Color(255, 255, 255));
         btnScore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-scorecard-30.png"))); // NOI18N
+        btnScore.setMnemonic('4');
         btnScore.setText("Xem Điểm");
         btnScore.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnScore.setContentAreaFilled(false);
@@ -240,6 +244,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnInputPoint.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnInputPoint.setForeground(new java.awt.Color(255, 255, 255));
         btnInputPoint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-database-import-30.png"))); // NOI18N
+        btnInputPoint.setMnemonic('6');
         btnInputPoint.setText("Nhập điểm");
         btnInputPoint.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnInputPoint.setContentAreaFilled(false);
@@ -263,6 +268,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnStudentList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnStudentList.setForeground(new java.awt.Color(255, 255, 255));
         btnStudentList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-user-groups-30.png"))); // NOI18N
+        btnStudentList.setMnemonic('7');
         btnStudentList.setText("Danh sách sinh viên");
         btnStudentList.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnStudentList.setContentAreaFilled(false);
@@ -291,6 +297,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnGroup.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnGroup.setForeground(new java.awt.Color(255, 255, 255));
         btnGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-google-classroom-30.png"))); // NOI18N
+        btnGroup.setMnemonic('8');
         btnGroup.setText("Nhóm môn học");
         btnGroup.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnGroup.setContentAreaFilled(false);
@@ -314,6 +321,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnSetting.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnSetting.setForeground(new java.awt.Color(255, 255, 255));
         btnSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-open-end-wrench-30.png"))); // NOI18N
+        btnSetting.setMnemonic('-');
         btnSetting.setText("Cài đặt");
         btnSetting.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnSetting.setContentAreaFilled(false);
@@ -342,6 +350,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnAccountList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnAccountList.setForeground(new java.awt.Color(255, 255, 255));
         btnAccountList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-cat-30.png"))); // NOI18N
+        btnAccountList.setMnemonic('9');
         btnAccountList.setText("Quản lí năm học");
         btnAccountList.setToolTipText("");
         btnAccountList.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
@@ -371,6 +380,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnStatistics.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnStatistics.setForeground(new java.awt.Color(255, 255, 255));
         btnStatistics.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-signal-30.png"))); // NOI18N
+        btnStatistics.setMnemonic('0');
         btnStatistics.setText("Thống kê");
         btnStatistics.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         btnStatistics.setContentAreaFilled(false);
@@ -499,6 +509,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
         btnLogout.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnLogout.setForeground(new java.awt.Color(255, 255, 255));
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/icons8-import-30.png"))); // NOI18N
+        btnLogout.setMnemonic('z');
         btnLogout.setText("Đăng xuất");
         btnLogout.setToolTipText("");
         btnLogout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -541,6 +552,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
 
         openMenu.setBackground(new java.awt.Color(0, 128, 215));
         openMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/images/icons8-menu-30.png"))); // NOI18N
+        openMenu.setMnemonic('M');
         openMenu.setBorder(null);
         openMenu.setContentAreaFilled(false);
         openMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -555,6 +567,7 @@ public class Home extends javax.swing.JFrame implements Runnable {
 
         closeMenu.setBackground(new java.awt.Color(0, 128, 215));
         closeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/images/icons8-close-30.png"))); // NOI18N
+        closeMenu.setMnemonic('M');
         closeMenu.setBorder(null);
         closeMenu.setContentAreaFilled(false);
         closeMenu.setOpaque(true);

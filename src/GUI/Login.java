@@ -128,6 +128,7 @@ public class Login extends javax.swing.JFrame {
         jPanel4.setLayout(new java.awt.CardLayout());
 
         eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/images/icons8-eye-20.png"))); // NOI18N
+        eye.setMnemonic('e');
         eye.setPreferredSize(new java.awt.Dimension(47, 47));
         eye.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +195,7 @@ public class Login extends javax.swing.JFrame {
 
         button1.setBackground(new java.awt.Color(51, 204, 255));
         button1.setForeground(new java.awt.Color(255, 255, 255));
+        button1.setMnemonic('L');
         button1.setText("Login");
         button1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         button1.addActionListener(new java.awt.event.ActionListener() {

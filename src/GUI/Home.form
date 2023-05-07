@@ -153,6 +153,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/icons/personalInfo.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="49"/>
                     <Property name="text" type="java.lang.String" value="Th&#xf4;ng tin c&#xe1; nh&#xe2;n"/>
                     <Property name="alignmentX" type="float" value="1.0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -191,6 +192,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/icons/icons8-book-and-pencil-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="50"/>
                     <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng k&#xed; m&#xf4;n h&#x1ecd;c"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -228,6 +230,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/icons/icons8-calendar-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="51"/>
                     <Property name="text" type="java.lang.String" value="Xem TKB"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -265,6 +268,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/icons/icons8-scorecard-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="52"/>
                     <Property name="text" type="java.lang.String" value="Xem &#x110;i&#x1ec3;m"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -302,6 +306,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/icons/icons8-database-import-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="54"/>
                     <Property name="text" type="java.lang.String" value="Nh&#x1ead;p &#x111;i&#x1ec3;m"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -338,6 +343,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/icons/icons8-user-groups-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="55"/>
                     <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch sinh vi&#xea;n"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -375,6 +381,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/icons/icons8-google-classroom-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="56"/>
                     <Property name="text" type="java.lang.String" value="Nh&#xf3;m m&#xf4;n h&#x1ecd;c"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -411,6 +418,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/icons/icons8-open-end-wrench-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="45"/>
                     <Property name="text" type="java.lang.String" value="C&#xe0;i &#x111;&#x1eb7;t"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -448,6 +456,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/icons/icons8-cat-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="57"/>
                     <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xed; n&#x103;m h&#x1ecd;c"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -486,6 +495,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/icons/icons8-signal-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="48"/>
                     <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -645,6 +655,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resource/icons/icons8-import-30.png"/>
                 </Property>
+                <Property name="mnemonic" type="int" value="122"/>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng xu&#x1ea5;t"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -735,6 +746,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/images/icons8-menu-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="77"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
@@ -764,6 +776,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resource/images/icons8-close-30.png"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="77"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
