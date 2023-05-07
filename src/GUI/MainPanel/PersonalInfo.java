@@ -529,7 +529,7 @@ public class PersonalInfo extends javax.swing.JPanel {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         try {
-            ExportPDF.generatePDF(TaiKhoanBUS.curentLogin.getTenTaiKhoan(), (new SinhVienDAO()).getByMaSV(TaiKhoanBUS.curentLogin.getTenTaiKhoan()).get(0));
+            ExportPDF.generatePDF(TaiKhoanBUS.curentLogin.getTenTaiKhoan().toString());
             JOptionPane.showMessageDialog(null, "Tạo file PDF thành công.Vui lòng vào folder res để nhận!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Xuất file  PDF thất bại: ");
