@@ -243,6 +243,7 @@ public class SubjectRegistration extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblNhomMonHoc.getTableHeader().setReorderingAllowed(false);
         tblNhomMonHoc.setFont(new Font("Segoe UI", 0, 14));
         tblNhomMonHoc.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
         tblNhomMonHoc.setRowHeight(35);
@@ -263,29 +264,17 @@ public class SubjectRegistration extends javax.swing.JPanel {
         jscrollbar.setViewportView(tblNhomMonHoc);
         if (tblNhomMonHoc.getColumnModel().getColumnCount() > 0) {
             tblNhomMonHoc.getColumnModel().getColumn(0).setMaxWidth(40);
-            tblNhomMonHoc.getColumnModel().getColumn(0).setHeaderValue("STT");
             tblNhomMonHoc.getColumnModel().getColumn(1).setMaxWidth(60);
-            tblNhomMonHoc.getColumnModel().getColumn(1).setHeaderValue("Mã");
-            tblNhomMonHoc.getColumnModel().getColumn(2).setHeaderValue("Tên môn");
             tblNhomMonHoc.getColumnModel().getColumn(3).setMaxWidth(40);
-            tblNhomMonHoc.getColumnModel().getColumn(3).setHeaderValue("Nh");
             tblNhomMonHoc.getColumnModel().getColumn(4).setMaxWidth(40);
-            tblNhomMonHoc.getColumnModel().getColumn(4).setHeaderValue("TC");
             tblNhomMonHoc.getColumnModel().getColumn(5).setMaxWidth(40);
-            tblNhomMonHoc.getColumnModel().getColumn(5).setHeaderValue("SL");
             tblNhomMonHoc.getColumnModel().getColumn(6).setMaxWidth(40);
-            tblNhomMonHoc.getColumnModel().getColumn(6).setHeaderValue("CL");
             tblNhomMonHoc.getColumnModel().getColumn(7).setMaxWidth(40);
-            tblNhomMonHoc.getColumnModel().getColumn(7).setHeaderValue("T");
             tblNhomMonHoc.getColumnModel().getColumn(8).setMaxWidth(40);
-            tblNhomMonHoc.getColumnModel().getColumn(8).setHeaderValue("TBD");
             tblNhomMonHoc.getColumnModel().getColumn(9).setMaxWidth(40);
-            tblNhomMonHoc.getColumnModel().getColumn(9).setHeaderValue("ST");
             tblNhomMonHoc.getColumnModel().getColumn(10).setMaxWidth(50);
-            tblNhomMonHoc.getColumnModel().getColumn(10).setHeaderValue("P");
             tblNhomMonHoc.getColumnModel().getColumn(11).setMinWidth(150);
             tblNhomMonHoc.getColumnModel().getColumn(11).setMaxWidth(200);
-            tblNhomMonHoc.getColumnModel().getColumn(11).setHeaderValue("GV");
         }
 
         tblNhomDangKy.setModel(new javax.swing.table.DefaultTableModel(

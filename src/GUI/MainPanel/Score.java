@@ -166,6 +166,7 @@ public class Score extends javax.swing.JPanel {
         });
         table.setRowHeight(35);
         table.setRowMargin(10);
+        table.getTableHeader().setReorderingAllowed(false);
         //jTable2.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
         //leftRenderer.setHorizontalAlignment(JLabel.CENTER);
         //((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);

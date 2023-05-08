@@ -79,6 +79,7 @@ public class Schedule extends javax.swing.JPanel {
         tblSchedule.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tblSchedule.setRowHeight(35);
         tblSchedule.setRowMargin(10);
+        tblSchedule.getTableHeader().setReorderingAllowed(false);
         tblSchedule.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
         DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
         leftRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -206,6 +207,7 @@ public class Schedule extends javax.swing.JPanel {
         });
         tblDSSV.setRowHeight(35);
         tblDSSV.setRowMargin(10);
+        tblDSSV.getTableHeader().setReorderingAllowed(false);
         tblDSSV.getTableHeader().setFont(new Font("Segoe UI", 0, 16));
         leftRenderer.setHorizontalAlignment(JLabel.CENTER);
         ((DefaultTableCellRenderer)tblDSSV.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);

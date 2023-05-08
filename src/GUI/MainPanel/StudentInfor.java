@@ -608,6 +608,7 @@ public class StudentInfor extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblStudentList.getTableHeader().setReorderingAllowed(false);
         tblStudentList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblStudentListMouseClicked(evt);
